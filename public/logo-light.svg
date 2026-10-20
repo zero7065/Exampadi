@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="emeraldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fbbf24;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background circle (light mode optimized) -->
+  <circle cx="64" cy="64" r="62" fill="#f8fafc" stroke="url(#emeraldGradient)" stroke-width="2"/>
+  
+  <!-- Letter E (geometric, bold) -->
+  <path d="M32 24 L88 24 L88 32 L40 32 L40 56 L80 56 L80 64 L40 64 L40 88 L88 88 L88 96 L32 96 Z" 
+        fill="#0f172a" stroke="url(#emeraldGradient)" stroke-width="1.5"/>
+  
+  <!-- Stylized Brain inside the E -->
+  <g filter="url(#glow)">
+    <!-- Left hemisphere -->
+    <path d="M44 42 
+             C40 40, 36 40, 36 44
+             C36 50, 40 54, 44 52
+             C48 50, 50 46, 50 40
+             C50 36, 48 32, 44 32
+             C40 32, 38 34, 40 38" 
+          fill="none" stroke="url(#emeraldGradient)" stroke-width="1.5" stroke-linecap="round"/>
+    
+    <!-- Right hemisphere -->
+    <path d="M76 42 
+             C80 40, 84 40, 84 44
+             C84 50, 80 54, 76 52
+             C72 50, 70 46, 70 40
+             C70 36, 72 32, 76 32
+             C80 32, 82 34, 80 38" 
+          fill="none" stroke="url(#emeraldGradient)" stroke-width="1.5" stroke-linecap="round"/>
+    
+    <!-- Neural pathways / AI analysis lines (gold) -->
+    <g stroke="url(#goldGradient)" stroke-width="1.2" stroke-linecap="round" opacity="0.95">
+      <path d="M50 44 L78 44" stroke-dasharray="4,3"/>
+      <path d="M50 52 L78 52" stroke-dasharray="4,3"/>
+      <path d="M58 36 L58 60" stroke-dasharray="3,4" opacity="0.8"/>
+      <path d="M70 36 L70 60" stroke-dasharray="3,4" opacity="0.8"/>
+      <path d="M46 46 L54 38" opacity="0.7"/>
+      <path d="M82 46 L74 38" opacity="0.7"/>
+      <path d="M46 52 L54 60" opacity="0.7"/>
+      <path d="M82 52 L74 60" opacity="0.7"/>
+    </g>
+    
+    <!-- Center connecting bridge -->
+    <path d="M60 44 C64 44, 64 52, 68 52" 
+          fill="none" stroke="url(#goldGradient)" stroke-width="1.5" stroke-linecap="round" opacity="0.9"/>
+    
+    <!-- Small neural nodes -->
+    <circle cx="54" cy="44" r="2.5" fill="url(#goldGradient)" opacity="1"/>
+    <circle cx="74" cy="44" r="2.5" fill="url(#goldGradient)" opacity="1"/>
+    <circle cx="64" cy="48" r="3" fill="url(#goldGradient)" opacity="0.9"/>
+  </g>
+</svg>

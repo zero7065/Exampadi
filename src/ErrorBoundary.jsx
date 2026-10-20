@@ -13,7 +13,7 @@ export default class ErrorBoundary extends Component {
   }
 
   handleClearAndReload() {
-    try { localStorage.clear(); } catch {}
+    try { localStorage.clear(); } catch { /* intentionally empty */ }
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister()));
     }

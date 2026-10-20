@@ -1,13 +1,11 @@
 // MessageBubble — user right-aligned (primary-soft), AI left-aligned (card).
 // AI messages get copy-to-clipboard; user image messages show a thumbnail.
 import { useState } from "react";
-import { Check, Copy } from "lucide-react";
-import { sanitizeAIResponse } from "../../lib/ai";
+import { Check, Copy, Sparkles } from "lucide-react";
 
-export default function MessageBubble({ message }) {
+export default function MessageBubble({ message, onGenerateImage }) {
   const [copied, setCopied] = useState(false);
   const isUser = message.role === "user";
-  const content = isUser ? message.content : sanitizeAIResponse(message.content || "");
   const imgs = Array.isArray(message.images)
     ? message.images
     : message.image
@@ -49,6 +47,14 @@ export default function MessageBubble({ message }) {
         <div style={{ fontSize: 14, color: isUser ? "#fff" : "var(--text)", lineHeight: 1.6, whiteSpace: "pre-wrap" }}>
           {message.content}
         </div>
+        {!isUser && message.pendingImage && onGenerateImage && (
+          <button
+            onClick={() => onGenerateImage(message.pendingImage.prompt)}
+            style={{ marginTop: 10, padding: "8px 14px", borderRadius: 8, background: "var(--primary)", border: "none", color: "#fff", fontWeight: 700, fontSize: 12, cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 6, fontFamily: "inherit" }}
+          >
+            <Sparkles size={13} /> Review &amp; generate image
+          </button>
+        )}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 8, marginTop: 4 }}>
           {!isUser && (
             <button

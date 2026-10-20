@@ -30,7 +30,7 @@ export default function AdminDevSettings() {
       try {
         const snap = await getDoc(doc(db, SETTINGS_DOC));
         if (snap.exists()) {
-          setSettings({ ...settings, ...snap.data() });
+          setSettings((prev) => ({ ...prev, ...snap.data() }));
         }
       } catch (e) {
         console.error("Failed to load dev settings:", e);

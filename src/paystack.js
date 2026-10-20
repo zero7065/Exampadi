@@ -96,47 +96,49 @@ export function loadPaystack() {
 }
 
 export function openPaystack({ key, email, amount, ref, currency, metadata, onSuccess, onClose }) {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const PaystackPop = await loadPaystack();
+  return new Promise((resolve, reject) => {
+    (async () => {
+      try {
+        const PaystackPop = await loadPaystack();
 
-      if (!PaystackPop || typeof PaystackPop.setup !== "function") {
-        reject(new Error("Paystack is not available. Please refresh and try again."));
-        return;
-      }
-
-      const handler = PaystackPop.setup({
-        key: key,
-        email: email,
-        amount: amount,
-        ref: ref,
-        currency: currency || "NGN",
-        metadata: metadata || {},
-        callback: async function(response) {
-          // Await activation before resolving — otherwise the caller re-enables
-          // its Pay button while the purchase is still being processed.
-          try {
-            if (onSuccess) await onSuccess(response);
-          } catch (err) {
-            console.error("Paystack callback error:", err);
-            reject(err);
-            return;
-          }
-          resolve(response);
-        },
-        onClose: function() {
-          if (onClose) onClose();
-          reject(new Error("Payment cancelled"));
+        if (!PaystackPop || typeof PaystackPop.setup !== "function") {
+          reject(new Error("Paystack is not available. Please refresh and try again."));
+          return;
         }
-      });
 
-      if (handler && typeof handler.openIframe === "function") {
-        handler.openIframe();
-      } else {
-        reject(new Error("Failed to open payment window. Try again."));
+        const handler = PaystackPop.setup({
+          key: key,
+          email: email,
+          amount: amount,
+          ref: ref,
+          currency: currency || "NGN",
+          metadata: metadata || {},
+          callback: async function(response) {
+            // Await activation before resolving — otherwise the caller re-enables
+            // its Pay button while the purchase is still being processed.
+            try {
+              if (onSuccess) await onSuccess(response);
+            } catch (err) {
+              console.error("Paystack callback error:", err);
+              reject(err);
+              return;
+            }
+            resolve(response);
+          },
+          onClose: function() {
+            if (onClose) onClose();
+            reject(new Error("Payment cancelled"));
+          }
+        });
+
+        if (handler && typeof handler.openIframe === "function") {
+          handler.openIframe();
+        } else {
+          reject(new Error("Failed to open payment window. Try again."));
+        }
+      } catch (err) {
+        reject(err);
       }
-    } catch (err) {
-      reject(err);
-    }
+    })();
   });
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Eye, Crown, Ban, RefreshCw, Loader2 } from "lucide-react";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import { getUserProfile } from "../lib/userProfile";
 

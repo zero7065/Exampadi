@@ -51,19 +51,23 @@ export default function AdminMedia() {
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState({});
 
-  async function load() {
-    setLoading(true);
-    try {
-      const snap = await getDoc(doc(db, "siteContent", "landing"));
-      setUrls(snap.exists() ? snap.data() || {} : {});
-    } catch (e) {
-      toast({ message: `Failed to load media: ${e.message}`, type: "error" });
-    } finally {
-      setLoading(false);
-    }
-  }
 
-  useEffect(() => { load(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    let cancelled = false;
+    async function loadMedia() {
+      setLoading(true);
+      try {
+        const snap = await getDoc(doc(db, "siteContent", "landing"));
+        if (!cancelled) setUrls(snap.exists() ? snap.data() || {} : {});
+      } catch (e) {
+        if (!cancelled) toast({ message: `Failed to load media: ${e.message}`, type: "error" });
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    }
+    loadMedia();
+    return () => { cancelled = true; };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function handleUpload(slot, file) {
     if (!file) return;
@@ -78,14 +82,15 @@ export default function AdminMedia() {
         toast({ message: "Image still large after compression — try a smaller file", type: "warning" });
       }
       const storage = getAppStorage();
-      const path = `landing/${slot}-${Date.now()}.jpg`;
+      const ts = Date.now();
+      const path = `landing/${slot}-${ts}.jpg`;
       await uploadBytes(ref(storage, path), blob, { contentType: "image/jpeg" });
       const url = await getDownloadURL(ref(storage, path));
       await setDoc(doc(db, "siteContent", "landing"), { [slot]: url, updatedAt: serverTimestamp() }, { merge: true });
       setUrls((prev) => ({ ...prev, [slot]: url }));
       try {
         localStorage.removeItem("exampadi_landing_media");
-      } catch (_) {}
+      } catch { /* intentionally empty */ }
       toast({ message: `${SLOT_LABELS[slot]} updated ✓`, type: "success" });
     } catch (e) {
       toast({ message: `Upload failed: ${e.message}`, type: "error" });
@@ -102,7 +107,7 @@ export default function AdminMedia() {
       setUrls(next);
       try {
         localStorage.removeItem("exampadi_landing_media");
-      } catch (_) {}
+      } catch { /* intentionally empty */ }
       toast({ message: `${SLOT_LABELS[slot]} reverted to bundled image`, type: "success" });
     } catch (e) {
       toast({ message: `Revert failed: ${e.message}`, type: "error" });

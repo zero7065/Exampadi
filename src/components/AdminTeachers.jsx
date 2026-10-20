@@ -21,11 +21,21 @@ export default function AdminTeachers() {
   }
 
   useEffect(() => {
-    load();
+    let cancelled = false;
+    async function init() {
+      try {
+        const data = await listTeacherInvites();
+        if (!cancelled) setInvites(data);
+      } catch (e) {
+        console.error("Failed to load invites:", e);
+      }
+    }
+    init();
     // Approved schools power the picker — their doc ids become users.schoolId.
     listSchools("approved")
-      .then(setApprovedSchools)
-      .catch(() => setApprovedSchools([]));
+      .then((data) => { if (!cancelled) setApprovedSchools(data); })
+      .catch(() => { if (!cancelled) setApprovedSchools([]); });
+    return () => { cancelled = true; };
   }, []);
 
   async function handleCreate() {

@@ -1,17 +1,14 @@
 // Landing hero — headline, CTAs, trust chips, live stats, phone mockup.
 import { Link } from "react-router-dom";
-import { ArrowRight, CheckCircle2, WifiOff, Gift, TrendingUp, Users, BookOpen } from "lucide-react";
+import { ArrowRight, CheckCircle2, WifiOff, Gift, TrendingUp, Users, BookOpen, Globe } from "lucide-react";
 import LandingMedia from "./LandingMedia";
 import DeviceShowcase from "./DeviceShowcase";
-import { getDocs, collection, getDoc, doc } from "firebase/firestore";
+import { getDoc, doc } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 import { useEffect, useState } from "react";
+import { TRUST_BADGES, STATS_DISPLAY } from "../../lib/stats";
 
-const CHIPS = [
-  { icon: CheckCircle2, label: "942+ exam questions" },
-  { icon: WifiOff, label: "Works offline" },
-  { icon: Gift, label: "Free to start" },
-];
+const CHIPS = TRUST_BADGES;
 
 export default function LandingHero({ user }) {
   const [stats, setStats] = useState(null);

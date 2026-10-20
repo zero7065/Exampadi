@@ -12,6 +12,7 @@ import { JAMB_SUBJECTS, WAEC_SUBJECTS } from "../data/subjects";
 import { Sparkles, BookOpen, HelpCircle, Loader2 } from "lucide-react";
 import ProGate from "../components/ProGate";
 import { useSubscription } from "../hooks/useSubscription";
+import { STATS_DISPLAY } from "../lib/stats";
 
 const PAST_YEARS = [2024,2023,2022,2021,2020,2019,2018,2017,2016,2015,2014];
 
@@ -113,7 +114,7 @@ export default function PastQuestionsPage() {
       <header>
         <h1 className="text-4xl font-black mb-2 text-text">Past Questions</h1>
         <p className="text-text-muted font-medium">
-          800+ JAMB, WAEC & NECO questions (2017–2026) + data-backed likely-question predictions
+          {STATS_DISPLAY.practiceQuestions} JAMB, WAEC, NECO & NABTEB questions (2017–2026) + data-backed likely-question predictions
         </p>
       </header>
 

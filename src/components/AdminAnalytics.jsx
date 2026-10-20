@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { BarChart3, Users, Activity, CreditCard, TrendingUp, Download, Loader2 } from "lucide-react";
-import { collection, getDocs, query, where, orderBy, limit } from "firebase/firestore";
+import { collection, getDocs, query, where, limit } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
 export default function AdminAnalytics() {

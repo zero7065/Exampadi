@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { collection, query, where, limit, getDocs } from "firebase/firestore";
+import { collection, query, orderBy, limit, getDocs } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import { History, ChevronRight, Calendar, Clock, Target, BookOpen, MessageSquare, TrendingUp } from "lucide-react";
 import { getAISessions } from "../lib/aiSessions";
@@ -20,14 +20,13 @@ export default function SessionHistoryPage() {
       if (!user) { setLoading(false); return; }
       try {
         const q = query(
-          collection(db, "sessions"),
-          where("userId", "==", user.uid),
+          collection(db, "users", user.uid, "sessions"),
+          orderBy("completedAt", "desc"),
           limit(50)
         );
         const snap = await getDocs(q);
         const firestoreSessions = [];
         snap.forEach(d => firestoreSessions.push({ id: d.id, ...d.data() }));
-        firestoreSessions.sort((a, b) => (b.completedAt?.seconds || 0) - (a.completedAt?.seconds || 0));
         setSessions(firestoreSessions);
         getAISessions(user.uid).then(setAiSessions).catch(() => {});
       } catch { setSessions([]); }

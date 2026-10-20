@@ -5,72 +5,107 @@
 @keyframes spin { to { transform: rotate(360deg); } }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* ─── Light Theme (default) — ash, white, grey, sage green ─── */
-:root,
-[data-theme="light"] {
-  --bg: #f4f4f0;
-  --bg-2: #ffffff;
-  --bg-3: #eaeae5;
-  --subtle: #e2e2de;
-  --border: #d4d4d0;
-  --text: #1a1a1a;
-  --text-muted: #7a7a7a;
-  --primary: #5a7a5a;
-  --primary-dim: rgba(90, 122, 90, 0.1);
-  --accent: #8a7a5a;
-  --accent-dim: rgba(138, 122, 90, 0.1);
-  --danger: #c44a5a;
-  --danger-dim: rgba(196, 74, 90, 0.1);
-  --success: #5a8a5a;
-  --success-dim: rgba(90, 138, 90, 0.1);
-  --card-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
-  --landing-gradient: linear-gradient(135deg, #5a7a5a, #7a9a6a);
-  --landing-gradient-2: linear-gradient(135deg, #8a7a5a, #a0906a);
-  /* RGB triplets — used by tailwind color-mix opacity modifiers (bg-primary/20) */
-  --bg-rgb: 244 244 240;
-  --bg-2-rgb: 255 255 255;
-  --bg-3-rgb: 234 234 229;
-  --subtle-rgb: 226 226 222;
-  --border-rgb: 212 212 208;
-  --text-rgb: 26 26 26;
-  --text-muted-rgb: 122 122 122;
-  --primary-rgb: 90 122 90;
-  --accent-rgb: 138 122 90;
-  --danger-rgb: 196 74 90;
-  --success-rgb: 90 138 90;
+/* ─── ExamPadi Theme System — Dark (default) & Light ─── */
+/* CSS Variables with zero-flash toggle support */
+
+/* Dark Theme (Default) */
+:root {
+  color-scheme: dark;
+  --bg-primary: #0a0f0d;
+  --bg-secondary: #111816;
+  --bg-card: #15201c;
+  --bg-elevated: #1a2a24;
+  --text-primary: #f0fdf4;
+  --text-secondary: #a7f3d0;
+  --text-muted: #6ee7b7;
+  --accent: #10b981;
+  --accent-hover: #34d399;
+  --border: #1e3a32;
+  --success: #34d399;
+  --warning: #fbbf24;
+  --danger: #f87171;
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  
+  /* Legacy aliases for backward compatibility */
+  --bg: var(--bg-primary);
+  --bg-2: var(--bg-secondary);
+  --bg-3: var(--bg-card);
+  --subtle: var(--bg-elevated);
+  --text: var(--text-primary);
+  --primary: var(--accent);
+  --primary-dim: rgba(16, 185, 129, 0.15);
+  --accent-dim: rgba(251, 191, 36, 0.1);
+  --danger-dim: rgba(248, 113, 113, 0.15);
+  --success-dim: rgba(52, 211, 153, 0.15);
+  --card-shadow: var(--shadow);
+  --landing-gradient: linear-gradient(135deg, #10b981, #059669);
+  --landing-gradient-2: linear-gradient(135deg, #f59e0b, #fbbf24);
+  
+  /* RGB triplets */
+  --bg-rgb: 10 15 13;
+  --bg-2-rgb: 17 24 22;
+  --bg-3-rgb: 21 32 28;
+  --subtle-rgb: 26 42 36;
+  --border-rgb: 30 58 50;
+  --text-rgb: 240 253 244;
+  --text-muted-rgb: 110 231 183;
+  --primary-rgb: 16 185 129;
+  --accent-rgb: 245 158 11;
+  --danger-rgb: 248 113 113;
+  --success-rgb: 52 211 153;
 }
 
-/* ─── Dark Theme ─── */
-[data-theme="dark"] {
-  --bg: #0f0f12;
-  --bg-2: #18181d;
-  --bg-3: #212126;
-  --subtle: #2a2a30;
-  --border: #2a2a30;
-  --text: #e8e8e8;
-  --text-muted: #888;
-  --primary: #6a9a6a;
-  --primary-dim: rgba(106, 154, 106, 0.15);
-  --accent: #a0906a;
-  --accent-dim: rgba(160, 144, 106, 0.15);
-  --danger: #e06070;
-  --danger-dim: rgba(224, 96, 112, 0.15);
-  --success: #6aaa6a;
-  --success-dim: rgba(106, 170, 106, 0.15);
-  --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
-  --landing-gradient: linear-gradient(135deg, #6a9a6a, #8aaa7a);
-  --landing-gradient-2: linear-gradient(135deg, #a0906a, #b0a07a);
-  --bg-rgb: 15 15 18;
-  --bg-2-rgb: 24 24 29;
-  --bg-3-rgb: 33 33 38;
-  --subtle-rgb: 42 42 48;
-  --border-rgb: 42 42 48;
-  --text-rgb: 232 232 232;
-  --text-muted-rgb: 136 136 136;
-  --primary-rgb: 106 154 106;
-  --accent-rgb: 160 144 106;
-  --danger-rgb: 224 96 112;
-  --success-rgb: 106 170 106;
+/* Light Theme */
+[data-theme="light"] {
+  color-scheme: light;
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --bg-elevated: #f1f5f9;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --accent: #059669;
+  --accent-hover: #047857;
+  --border: #e2e8f0;
+  --success: #059669;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  
+  /* Legacy aliases for backward compatibility */
+  --bg: var(--bg-primary);
+  --bg-2: var(--bg-secondary);
+  --bg-3: var(--bg-card);
+  --subtle: var(--bg-elevated);
+  --text: var(--text-primary);
+  --primary: var(--accent);
+  --primary-dim: rgba(5, 150, 105, 0.15);
+  --accent-dim: rgba(217, 119, 6, 0.1);
+  --danger-dim: rgba(220, 38, 38, 0.15);
+  --success-dim: rgba(5, 150, 105, 0.15);
+  --card-shadow: var(--shadow);
+  --landing-gradient: linear-gradient(135deg, #059669, #047857);
+  --landing-gradient-2: linear-gradient(135deg, #d97706, #fbbf24);
+  
+  /* RGB triplets */
+  --bg-rgb: 248 250 252;
+  --bg-2-rgb: 255 255 255;
+  --bg-3-rgb: 255 255 255;
+  --subtle-rgb: 241 245 249;
+  --border-rgb: 226 232 240;
+  --text-rgb: 15 23 42;
+  --text-muted-rgb: 100 116 139;
+  --primary-rgb: 5 150 105;
+  --accent-rgb: 217 119 6;
+  --danger-rgb: 220 38 38;
+  --success-rgb: 5 150 105;
+}
+
+/* Prevent FOUC (Flash of Unstyled Content) */
+html {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 * {

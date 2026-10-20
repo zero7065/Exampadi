@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import {
   BookOpen, Brain, GraduationCap, TrendingUp, Trophy, Target, ArrowRight,
 } from "lucide-react";
+import { STATS as STATS_CONFIG } from "../../lib/stats";
 
 function CountUp({ end, suffix = "", duration = 2000 }) {
   const [count, setCount] = useState(0);
@@ -34,10 +35,10 @@ function CountUp({ end, suffix = "", duration = 2000 }) {
 }
 
 const STATS = [
-  { value: "800", suffix: "+", label: "Practice Questions" },
-  { value: "16", suffix: "", label: "Subjects Covered" },
-  { value: "300", suffix: "+", label: "High-Yield Topics" },
-  { value: "4", suffix: "", label: "Exam Bodies" },
+  { value: String(STATS_CONFIG.practiceQuestions), suffix: "+", label: "Practice Questions" },
+  { value: String(STATS_CONFIG.subjects), suffix: "", label: "Subjects Covered" },
+  { value: String(STATS_CONFIG.highYieldTopics), suffix: "+", label: "High-Yield Topics" },
+  { value: String(STATS_CONFIG.examBodies), suffix: "", label: "Exam Bodies" },
 ];
 
 function AnimatedStat({ value, suffix, decimals }) {

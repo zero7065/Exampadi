@@ -10,9 +10,11 @@ export default function ConsentBar() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    let mounted = true;
     try {
-      if (!localStorage.getItem(KEY)) setVisible(true);
+      if (!localStorage.getItem(KEY) && mounted) setVisible(true);
     } catch { /* private mode — skip */ }
+    return () => { mounted = false; };
   }, []);
 
   if (!visible) return null;

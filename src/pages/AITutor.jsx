@@ -12,6 +12,7 @@ import { checkRateLimit } from "../lib/rateLimiter";
 import { unlockAchievement } from "../lib/achievements";
 import { preprocessImage } from "../lib/vision";
 import { checkAILimit } from "../lib/usageTracker";
+import { isImageRequest } from "../lib/imageGen";
 import { logActivity } from "../lib/activityLog";
 import ProUpgradeModal from "../components/ProUpgradeModal";
 import MessageBubble from "../components/AITutor/MessageBubble";
@@ -49,6 +50,7 @@ export default function AITutor() {
   const [analyzeMode, setAnalyzeMode] = useState(false);
   const [showUpload, setShowUpload] = useState(false);
   const [showImageGen, setShowImageGen] = useState(false);
+  const [genPrompt, setGenPrompt] = useState("");
   const [sessions, setSessions] = useState([]);
   const [showSessions, setShowSessions] = useState(false);
   const [currentSessionId, setCurrentSessionId] = useState(null);
@@ -188,6 +190,23 @@ export default function AITutor() {
         const limit = await checkAILimit(user.uid);
         setAiUsage(limit);
         if (!limit.allowed) { setShowProModal(true); return; }
+      }
+
+      // Image request → ask for confirmation before anything is generated.
+      if (!hasImages && isImageRequest(msg)) {
+        const userMsg = { id: Date.now(), role: "user", content: msg.trim(), timestamp: new Date().toISOString() };
+        const aiMsg = {
+          id: Date.now() + 1,
+          role: "ai",
+          content: "I can generate that image for you. I'll open the generator with your request so you can review and approve the exact prompt before anything is drawn.",
+          timestamp: new Date().toISOString(),
+          pendingImage: { prompt: msg.trim() },
+        };
+        setMessages(prev => [...prev, userMsg, aiMsg]);
+        setInput("");
+        setPendingImages([]);
+        logActivity({ action: "ai_image_request", userId: user?.uid, email: user?.email, details: { subject: activeSubject, prompt: msg.trim().slice(0, 120) } });
+        return;
       }
 
       const images = pendingImages;
@@ -353,7 +372,11 @@ export default function AITutor() {
             )}
 
             {messages.map(m => (
-              <MessageBubble key={m.id} message={m} />
+              <MessageBubble
+                key={m.id}
+                message={m}
+                onGenerateImage={(prompt) => { setGenPrompt(prompt); setShowImageGen(true); }}
+              />
             ))}
 
             {loading && <TypingIndicator />}
@@ -434,7 +457,7 @@ export default function AITutor() {
         </div>
       )}
 
-      {showImageGen && <ImageGenerator onClose={() => setShowImageGen(false)} />}
+      {showImageGen && <ImageGenerator initialPrompt={genPrompt} onClose={() => { setShowImageGen(false); setGenPrompt(""); }} />}
 
       {blocked && (
         <div style={{ position: "fixed", inset: 0, zIndex: 200, display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}>

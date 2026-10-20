@@ -1,5 +1,6 @@
 // Mission: aim, objectives, and live coverage data.
-import { Target, Eye, BarChart3, Wifi, Users, ShieldCheck } from "lucide-react";
+import { Target, Eye, BarChart3, Wifi, Users, ShieldCheck, BookOpen, Calendar } from "lucide-react";
+import { STATS_DISPLAY } from "../../lib/stats";
 
 const OBJECTIVES = [
   { icon: Target, title: "Exam mastery, not cramming", body: "Every feature — practice, mocks, flashcards, plans — drives long-term retention measured by rising accuracy, not hours logged." },
@@ -9,10 +10,10 @@ const OBJECTIVES = [
 ];
 
 const COVERAGE = [
-  { icon: BarChart3, value: "800+", label: "Curated questions" },
-  { icon: Target, value: "16", label: "Subjects covered" },
-  { icon: ShieldCheck, value: "4", label: "Exam bodies" },
-  { icon: Users, value: "2017–26", label: "Question years" },
+  { icon: BookOpen, value: STATS_DISPLAY.practiceQuestions, label: "Practice Questions" },
+  { icon: Target, value: STATS_DISPLAY.subjects, label: "Subjects Covered" },
+  { icon: ShieldCheck, value: STATS_DISPLAY.examBodies, label: "Exam Bodies" },
+  { icon: Calendar, value: STATS_DISPLAY.yearsOfQuestions, label: "Years of Questions" },
 ];
 
 export default function LandingMission() {

@@ -121,6 +121,9 @@ async function postAI({ model, messages, max_tokens, temperature, source, timeou
   if (!res.ok) {
     throw new Error(data?.error?.message || `AI error (${res.status})`);
   }
+  if (!data || !Array.isArray(data.choices)) {
+    throw new Error("The AI service returned an unexpected response — make sure /api/ai is deployed and configured.");
+  }
   return data;
 }
 

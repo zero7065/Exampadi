@@ -119,39 +119,7 @@ export default function AuthPage() {
     }
   }
 
-  const [testResult, setTestResult] = useState(null);
-  const [testing, setTesting] = useState(false);
 
-  async function testConnection() {
-    setTesting(true);
-    setTestResult(null);
-    const results = [];
-
-    const endpoints = [
-      ["Auth API", "https://identitytoolkit.googleapis.com/v1/projects?key=AIzaSyDbXyJpW351DfqEyxwrsc4zZUNLcltaGQE", "GET"],
-      ["Firestore", "https://firestore.googleapis.com/v1/projects/jamb-tutor/databases/(default)/documents/stats/global?key=AIzaSyDbXyJpW351DfqEyxwrsc4zZUNLcltaGQE", "GET"],
-      ["Tokens", "https://securetoken.googleapis.com/", "GET"],
-    ];
-
-    for (const [name, url, method] of endpoints) {
-      try {
-        const controller = new AbortController();
-        const timer = setTimeout(() => controller.abort(), 8000);
-        await fetch(url, { method, signal: controller.signal });
-        clearTimeout(timer);
-        results.push(`${name}: OK`); // any HTTP response = host reachable
-      } catch (e) {
-        results.push(`${name}: BLOCKED`);
-      }
-    }
-
-    const blockedCount = results.filter(r => r.includes("BLOCKED")).length;
-    let suffix = "";
-    if (blockedCount === endpoints.length) suffix = " — Your network is blocking Google. Try mobile data.";
-    else if (blockedCount > 0) suffix = " — Partial blocking: sessions/data may not sync. Try mobile data.";
-    setTestResult(results.join(" | ") + suffix);
-    setTesting(false);
-  }
 
   const inputStyle = (field) => ({
     width: "100%",
@@ -363,30 +331,7 @@ export default function AuthPage() {
             : <>Already have an account? <button onClick={() => setMode("signin")} style={{ background: "none", border: "none", color: "var(--primary)", fontWeight: 700, cursor: "pointer", fontFamily: "inherit", fontSize: 13 }}>Sign In</button></>
           }
         </p>
-
-        <div style={{ textAlign: "center", marginTop: 16, borderTop: "1px solid var(--border)", paddingTop: 16 }}>
-          <button
-            onClick={testConnection}
-            disabled={testing}
-            style={{
-              background: "none", border: "1px solid var(--border)", borderRadius: 8,
-              padding: "6px 14px", color: "var(--text-muted)", fontSize: 11, cursor: "pointer",
-              fontFamily: "inherit", opacity: testing ? 0.5 : 1,
-            }}
-          >
-            {testing ? "Testing..." : "Test Firebase Connection"}
-          </button>
-          {testResult && (
-            <p style={{
-              color: testResult.includes("BLOCKED") ? "var(--danger)" : "var(--success)",
-              fontSize: 11, marginTop: 8, fontFamily: "monospace", lineHeight: 1.6,
-              wordBreak: "break-word",
-            }}>
-              {testResult}
-            </p>
-          )}
-        </div>
       </div>
     </div>
   );
-}
+}

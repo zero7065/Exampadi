@@ -26,11 +26,14 @@ const DEMO = [
   },
 ];
 
+// Realistic UTME timer: 2 hours = 7200 seconds
+const INITIAL_SECONDS = 2 * 60 * 60; // 7200 = 02:00:00
+
 export default function DeviceShowcase() {
   const [qi, setQi] = useState(0);
   const [phase, setPhase] = useState(0); // 0 reading, 1 picked, 2 solved
-  const [secs, setSecs] = useState(118 * 60 + 24);
-  const [xp, setXp] = useState(1240);
+  const [secs, setSecs] = useState(INITIAL_SECONDS);
+  const [xp, setXp] = useState(2840);
 
   useEffect(() => {
     const t = setInterval(() => setSecs((s) => (s > 0 ? s - 1 : s)), 1000);
@@ -51,7 +54,8 @@ export default function DeviceShowcase() {
   }, [qi]);
 
   const d = DEMO[qi];
-  const mm = String(Math.floor(secs / 60)).padStart(3, "0");
+  const hh = String(Math.floor(secs / 3600)).padStart(2, "0");
+  const mm = String(Math.floor((secs % 3600) / 60)).padStart(2, "0");
   const ss = String(secs % 60).padStart(2, "0");
 
   return (
@@ -66,7 +70,7 @@ export default function DeviceShowcase() {
         {/* status bar */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
           <span style={{ fontSize: 11, fontWeight: 800, color: "var(--primary)" }}>● LIVE DEMO</span>
-          <span style={{ fontSize: 11, fontWeight: 700, color: "var(--text-muted)", fontVariantNumeric: "tabular-nums" }}>{mm}:{ss}</span>
+          <span style={{ fontSize: 11, fontWeight: 700, color: "var(--text-muted)", fontVariantNumeric: "tabular-nums" }}>{hh}:{mm}:{ss}</span>
         </div>
         <div style={{ background: "var(--landing-gradient)", borderRadius: 14, padding: 14, color: "#fff", marginBottom: 12, minHeight: 108 }}>
           <div style={{ fontSize: 11, opacity: 0.85, fontWeight: 600 }}>{d.tag}</div>

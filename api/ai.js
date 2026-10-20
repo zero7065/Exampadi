@@ -121,15 +121,24 @@ export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
   const key = process.env.GROQ_API_KEY;
-  if (!key) {
-    return res.status(500).json({ error: { message: "AI is not configured on the server (GROQ_API_KEY)." } });
-  }
-
   const openaiKey = process.env.OPENAI_API_KEY;
+  if (!key && !openaiKey) {
+    return res.status(500).json({
+      error: {
+        message: "AI is not configured on the server — set GROQ_API_KEY and/or OPENAI_API_KEY in Vercel.",
+      },
+      code: "NO_AI_KEY",
+    });
+  }
 
   const fb = getFirebase();
   if (!fb) {
-    return res.status(500).json({ error: { message: "AI backend unavailable." } });
+    return res.status(500).json({
+      error: {
+        message: "Server auth is not configured — add FIREBASE_SERVICE_ACCOUNT in Vercel (Firebase Console → Project settings → Service accounts → Generate new private key).",
+      },
+      code: "NO_SERVICE_ACCOUNT",
+    });
   }
 
   // ── Auth: a verified Firebase ID token is required. Without this the
@@ -210,21 +219,24 @@ export default async function handler(req, res) {
   let upstream;
   let data;
 
-  // 1) Try Groq first
-  try {
-    const result = await fetchProvider(GROQ_URL, key, model, body.messages, maxTokens, temperature);
-    upstream = result.res;
-    data = result.json;
-  } catch {
-    // Groq network error — fall through to OpenAI fallback
-    upstream = null;
-    data = null;
+  // 1) Try Groq first (skipped entirely when only OpenAI is configured)
+  if (key) {
+    try {
+      const result = await fetchProvider(GROQ_URL, key, model, body.messages, maxTokens, temperature);
+      upstream = result.res;
+      data = result.json;
+    } catch {
+      // Groq network error — fall through to OpenAI fallback
+      upstream = null;
+      data = null;
+    }
   }
 
   // 2) If Groq failed (network, 5xx, or invalid response), try OpenAI fallback
   if (!upstream?.ok || !data) {
     if (!openaiKey) {
-      return res.status(502).json({ error: { message: "AI services unavailable — no fallback provider configured." } });
+      const msg = data?.error?.message || "AI is unavailable right now — try again shortly.";
+      return res.status(502).json({ error: { message: msg } });
     }
     try {
       const result = await fetchProvider(OPENAI_URL, openaiKey, openaiModelFor(model), body.messages, maxTokens, temperature);
