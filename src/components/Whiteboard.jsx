@@ -92,8 +92,16 @@ const useWhiteboard = () => {
   };
 };
 
-const Whiteboard = () => {
-  const { isOpen, toggle, canvasRef, clear, showAI, setShowAI, aiImage, setAiImage, exportCanvas, calculator } = useWhiteboard();
+const Whiteboard = ({ open, onClose, canvasRef: externalCanvasRef } = {}) => {
+  const hook = useWhiteboard();
+  const {
+    isOpen: internalOpen, toggle: internalToggle, canvasRef: internalCanvasRef,
+    clear, showAI, setShowAI, aiImage, setAiImage, exportCanvas, calculator,
+  } = hook;
+  const controlled = typeof open === "boolean";
+  const isOpen = controlled ? open : internalOpen;
+  const toggle = controlled ? (onClose || (() => {})) : internalToggle;
+  const canvasRef = externalCanvasRef || internalCanvasRef;
   const [color, setColor] = useState("#000000");
   const [penSize, setPenSize] = useState("medium");
   const [tool, setTool] = useState("pen");
@@ -375,6 +383,7 @@ const Whiteboard = () => {
 
   return (
     <>
+      {!controlled && (
       <button
         onClick={toggle}
         style={s.toggleBtn}
@@ -390,6 +399,7 @@ const Whiteboard = () => {
       >
         <Calculator size={22} />
       </button>
+      )}
 
       {isOpen && (
         <div ref={panelRef} style={s.panel}>

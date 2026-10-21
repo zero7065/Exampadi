@@ -3,12 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "../components/Toast";
 import { redeemTeacherInvite } from "../lib/teacherInvites";
-import { doc, updateDoc } from "firebase/firestore";
-import { db } from "../firebaseConfig";
 import { GraduationCap, ArrowLeft, CheckCircle } from "lucide-react";
 
 export default function TeacherRegister() {
-  const { user } = useAuth();
+  const { user, refreshProfile } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
   const [code, setCode] = useState("");
@@ -22,14 +20,8 @@ export default function TeacherRegister() {
     }
     setLoading(true);
     try {
-      const invite = await redeemTeacherInvite(code.trim(), user.uid);
-      await updateDoc(doc(db, "users", user.uid), {
-        role: "teacher",
-        // schoolId must be the school DOC id so rules (isTeacherOfSchool)
-        // and class queries line up. Legacy invites only carry the name.
-        schoolId: invite.schoolId || invite.schoolName,
-        schoolName: invite.schoolName,
-      });
+      const invite = await redeemTeacherInvite(code.trim());
+      await refreshProfile?.();
       setRedeemed(invite);
       toast({ message: "Welcome, Teacher! Your account is ready.", type: "success" });
     } catch (e) {

@@ -29,21 +29,18 @@ export default function Logo({ size = 36, radius = 10 }) {
     <svg viewBox="0 0 512 512" width={size * 0.82} height={size * 0.82}>
       <defs>
         <linearGradient id="ep-logo-neon" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stopColor="#4E7A4E" />
-          <stop offset="0.55" stopColor="#6A9A6A" />
-          <stop offset="1" stopColor="#8FCE8F" />
+          <stop offset="0" stopColor="#6AF7C6" />
+          <stop offset="0.55" stopColor="#2EE6A8" />
+          <stop offset="1" stopColor="#0EA5A5" />
         </linearGradient>
         <linearGradient id="ep-logo-gold" x1="0" y1="0" x2="1" y2="0">
           <stop offset="0" stopColor="#FFE9A8" />
-          <stop offset="1" stopColor="var(--accent)" />
+          <stop offset="1" stopColor="#F5C451" />
         </linearGradient>
       </defs>
-      <rect x="118" y="118" width="44" height="212" rx="22" fill="#4E7A4E" />
-      <rect x="118" y="118" width="190" height="44" rx="22" fill="url(#ep-logo-neon)" />
-      <rect x="118" y="214" width="226" height="44" rx="22" fill="url(#ep-logo-gold)" />
-      <rect x="118" y="310" width="150" height="20" rx="10" fill="#6A9A6A" />
-      <circle cx="398" cy="132" r="36" fill="#07120C" stroke="url(#ep-logo-gold)" strokeWidth="12" />
-      <circle cx="398" cy="132" r="12" fill="url(#ep-logo-gold)" />
+      <path d="M256 84 72 170l184 86 184-86z" fill="url(#ep-logo-neon)" />
+      <path d="M256 232 136 176v88c0 52 54 92 120 112 66-20 120-60 120-112v-88z" fill="none" stroke="url(#ep-logo-neon)" strokeWidth="22" strokeLinejoin="round" />
+      <path d="M408 74l11 30 30 11-30 11-11 30-11-30-30-11 30-11z" fill="url(#ep-logo-gold)" />
     </svg>
   );
 

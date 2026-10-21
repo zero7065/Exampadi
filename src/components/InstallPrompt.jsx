@@ -1,101 +1,113 @@
 import { useState, useEffect } from "react";
+import { Download, Share, X } from "lucide-react";
 
 export default function InstallPrompt() {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [show, setShow] = useState(false);
-  const [showIOS, setShowIOS] = useState(false);
-  const [isStandalone, setIsStandalone] = useState(false);
+  const [ios] = useState(() =>
+    typeof navigator !== "undefined" && (
+      /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
+    )
+  );
+  const [standalone] = useState(() =>
+    typeof window !== "undefined" && (
+      window.matchMedia("(display-mode: standalone)").matches ||
+      window.navigator.standalone === true
+    )
+  );
 
   useEffect(() => {
-    // Check if already installed (standalone mode)
-    const standalone = window.matchMedia("(display-mode: standalone)").matches
-      || window.navigator.standalone === true;
-    setIsStandalone(standalone);
     if (standalone) return;
 
-    // Check if previously dismissed (within 24 hours)
-    const dismissed = localStorage.getItem("ep-install-dismissed");
-    if (dismissed) {
-      const dismissedTime = parseInt(dismissed, 10);
-      if (Date.now() - dismissedTime < 86400000) return;
-    }
+    const dismissed = Number(localStorage.getItem("ep-install-dismissed") || 0);
+    if (Date.now() - dismissed < 3 * 86400000) return;
 
     const handler = (e) => {
       e.preventDefault();
       setDeferredPrompt(e);
-      // Show after 5 seconds delay for better UX
-      setTimeout(() => setShow(true), 5000);
     };
-
     window.addEventListener("beforeinstallprompt", handler);
-    return () => window.removeEventListener("beforeinstallprompt", handler);
-  }, []);
 
-  async function handleInstall() {
-    if (!deferredPrompt) {
-      setShowIOS(true);
-      return;
-    }
+    const timer = setTimeout(() => {
+      if (ios) setShow(true);
+    }, 6000);
+
+    return () => {
+      window.removeEventListener("beforeinstallprompt", handler);
+      clearTimeout(timer);
+    };
+  }, [standalone, ios]);
+
+  useEffect(() => {
+    if (!deferredPrompt) return;
+    const timer = setTimeout(() => setShow(true), 5000);
+    return () => clearTimeout(timer);
+  }, [deferredPrompt]);
+
+  async function install() {
+    if (!deferredPrompt) return;
     deferredPrompt.prompt();
     const { outcome } = await deferredPrompt.userChoice;
-    if (outcome === "accepted") {
-      setShow(false);
-    }
+    if (outcome === "accepted") setShow(false);
     setDeferredPrompt(null);
   }
 
-  function handleDismiss() {
+  function dismiss() {
     localStorage.setItem("ep-install-dismissed", Date.now().toString());
     setShow(false);
   }
 
-  if (!show || isStandalone || !deferredPrompt) return null;
+  if (!show || standalone) return null;
 
   return (
     <div style={{
-      position: "fixed", bottom: 80, left: 12, right: 12, zIndex: 8888,
-      maxWidth: 420, margin: "0 auto",
-      background: "linear-gradient(135deg, var(--bg-2) 0%, var(--bg-2) 100%)",
-      border: "1px solid rgb(var(--primary-rgb) / 0.3)", borderRadius: 16,
-      padding: "16px 18px", display: "flex", alignItems: "center", gap: 12,
-      boxShadow: "0 8px 32px rgb(var(--primary-rgb) / 0.15), 0 4px 16px rgba(0,0,0,0.3)",
-      animation: "slideUp 0.4s ease-out",
+      position: "fixed", bottom: 84, left: 12, right: 12, zIndex: 8888,
+      maxWidth: 430, margin: "0 auto",
+      background: "var(--bg-card)",
+      border: "1px solid rgb(var(--primary-rgb) / 0.28)", borderRadius: 16,
+      padding: "14px 16px", display: "flex", alignItems: "flex-start", gap: 12,
+      boxShadow: "0 12px 40px rgb(var(--primary-rgb) / 0.16), 0 4px 16px rgba(0,0,0,0.25)",
+      animation: "slideUp 0.35s ease-out",
     }}>
-      <style>{`
-        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-      `}</style>
+      <style>{`@keyframes slideUp { from { transform: translateY(16px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }`}</style>
       <div style={{
-        width: 44, height: 44, borderRadius: 12,
+        width: 42, height: 42, borderRadius: 12, flexShrink: 0,
         background: "linear-gradient(135deg, var(--primary), var(--accent))",
         display: "flex", alignItems: "center", justifyContent: "center",
-        fontSize: 22, flexShrink: 0,
       }}>
-        E
+        <Download size={20} color="#04120D" />
       </div>
-      <div style={{ flex: 1 }}>
-        <p style={{ color: "#fff", fontWeight: 700, margin: 0, fontSize: 14, lineHeight: 1.3 }}>
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <p style={{ color: "var(--text)", fontWeight: 800, margin: 0, fontSize: 14 }}>
           Install ExamPadi
         </p>
-        <p style={{ color: "var(--text-muted)", fontSize: 12, margin: "2px 0 0", lineHeight: 1.3 }}>
-          Quick access from your home screen
-        </p>
+        {ios ? (
+          <p style={{ color: "var(--text-muted)", fontSize: 12, margin: "4px 0 0", lineHeight: 1.45 }}>
+            Tap <Share size={12} style={{ display: "inline", verticalAlign: "-1px" }} /> Share, then
+            <strong style={{ color: "var(--text)" }}> Add to Home Screen</strong>.
+          </p>
+        ) : (
+          <p style={{ color: "var(--text-muted)", fontSize: 12, margin: "4px 0 0", lineHeight: 1.45 }}>
+            Full-screen app, offline access and push notifications.
+          </p>
+        )}
+        {!ios && (
+          <button onClick={install} style={{
+            marginTop: 10, padding: "8px 14px", borderRadius: 9, border: "none",
+            background: "var(--primary)", color: "#04120D", fontWeight: 800,
+            cursor: "pointer", fontSize: 13, fontFamily: "inherit",
+          }}>
+            Install app
+          </button>
+        )}
       </div>
-      <div style={{ display: "flex", gap: 6, flexShrink: 0 }}>
-        <button onClick={handleDismiss} style={{
-          padding: "8px 12px", borderRadius: 10, border: "1px solid #333",
-          background: "none", color: "var(--text-muted)", cursor: "pointer", fontSize: 13,
-          fontFamily: "inherit", fontWeight: 600,
-        }}>
-          Later
-        </button>
-        <button onClick={handleInstall} style={{
-          padding: "8px 14px", borderRadius: 10, border: "none",
-          background: "var(--primary)", color: "#fff", fontWeight: 700,
-          cursor: "pointer", fontSize: 13, fontFamily: "inherit",
-        }}>
-          Install
-        </button>
-      </div>
+      <button onClick={dismiss} aria-label="Dismiss install prompt" style={{
+        background: "none", border: "none", color: "var(--text-muted)",
+        cursor: "pointer", padding: 2, flexShrink: 0,
+      }}>
+        <X size={18} />
+      </button>
     </div>
   );
 }

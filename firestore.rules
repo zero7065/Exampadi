@@ -22,6 +22,24 @@ service cloud.firestore {
       return request.auth != null && userDoc().get("role", "") == "teacher";
     }
 
+    function classDoc(classId) {
+      return get(/databases/$(database)/documents/classes/$(classId)).data;
+    }
+
+    function isClassMember(classId) {
+      return request.auth != null
+        && request.auth.uid in classDoc(classId).get("students", []);
+    }
+
+    function isClassTeacher(classId) {
+      let c = classDoc(classId);
+      return request.auth != null && (
+        isAdmin()
+        || c.get("createdBy", "") == request.auth.uid
+        || c.get("teacherId", "") == request.auth.uid
+      );
+    }
+
     // AI/question counters must only grow — or reset together with their
     // period key (WAT day/month rollover). Blocks counter-tampering that
     // would grant extra AI credits.
@@ -274,20 +292,35 @@ service cloud.firestore {
         isAdmin()
         || request.auth.uid in resource.data.students
         || (resource.data.keys().hasAny(["createdBy"]) && resource.data.createdBy == request.auth.uid)
+        || (resource.data.keys().hasAny(["teacherId"]) && resource.data.teacherId == request.auth.uid)
         || (resource.data.keys().hasAny(["schoolId"]) && isTeacherOfSchool(resource.data.schoolId))
       );
+      // Teachers create their own classes; admin can create for any teacher.
       allow create: if request.auth != null
-        && request.auth.uid == request.resource.data.createdBy;
+        && (isTeacher() || isAdmin())
+        && (isAdmin()
+            || (request.resource.data.createdBy == request.auth.uid
+                && request.resource.data.get("teacherId", "") == request.auth.uid));
+      // Class owner/teacher or admin. Students are added by the server join
+      // endpoint (Admin SDK), never by self-writing the students array.
       allow update: if request.auth != null && (
-        isAdmin() || resource.data.createdBy == request.auth.uid
+        isAdmin() || resource.data.get("createdBy", "") == request.auth.uid
+        || resource.data.get("teacherId", "") == request.auth.uid
       );
+      allow delete: if isAdmin() || resource.data.get("createdBy", "") == request.auth.uid;
     }
 
-    // ─── CLASS INVITES (code lookup by anyone signed in; join is open-code) ───
+    // ─── CLASS INVITES ───
+    // Codes are secrets. Only the creating teacher/admin can list/read them;
+    // students join through /api/class-invite (Admin SDK) so a code lookup
+    // never requires a client read of this collection.
     match /classInvites/{code} {
-      allow read: if request.auth != null;
-      allow create: if request.auth != null;
-      allow update: if request.auth != null;
+      allow read: if isAdmin() || (request.auth != null && resource.data.createdBy == request.auth.uid);
+      allow create: if request.auth != null
+        && request.resource.data.createdBy == request.auth.uid
+        && (isTeacher() || isAdmin());
+      allow update, delete: if isAdmin()
+        || (request.auth != null && resource.data.createdBy == request.auth.uid);
     }
 
     // ─── CLASSROOM LIVE TOOLS (ClassroomMode + TeacherTools) ───
@@ -456,10 +489,9 @@ service cloud.firestore {
       // approved reviews readable by any signed-in user; authors see their own;
       // admins see everything (pending queue). Anonymous (landing) uses the
       // canned fallback in the client.
-      allow read: if isAdmin()
-        || (request.auth != null && (
-          resource.data.status == "approved" || request.auth.uid == resource.data.uid
-        ));
+      // Approved reviews are public (landing page social proof, no login).
+      allow read: if resource.data.status == "approved" || isAdmin()
+        || (request.auth != null && request.auth.uid == resource.data.uid);
       allow create: if request.auth != null
         && request.auth.uid == request.resource.data.uid
         && request.resource.data.status == "pending";
@@ -522,15 +554,11 @@ service cloud.firestore {
     // Any signed-in user may look up codes; redemption may only flip an
     // unused invite to used for themselves.
     match /teacherInvites/{inviteId} {
-      allow read: if isAdmin() || request.auth != null;
-      allow create: if request.auth != null;
-      allow update: if isAdmin()
-        || (request.auth != null
-            && resource.data.used == false
-            && request.resource.data.used == true
-            && request.resource.data.usedBy == request.auth.uid
-            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["used", "usedBy", "usedAt"]));
-      allow delete: if isAdmin();
+      allow read: if isAdmin()
+        || (request.auth != null && resource.data.get("createdBy", "") == request.auth.uid);
+      allow create: if isAdmin();
+      // Redemption is server-only (/api/redeem-teacher-invite, Admin SDK).
+      allow update, delete: if isAdmin();
     }
 
     // ─── PARTNER COMMISSIONS (server-written; school contact/teacher + admin read) ───
@@ -560,14 +588,220 @@ service cloud.firestore {
 
     // ─── TEACHER ASSIGNMENTS (teacher write, assigned students read) ───
     match /teacherAssignments/{assignmentId} {
-      allow read: if request.auth != null && (resource.data.teacherId == request.auth.uid || request.auth.uid in resource.data.studentIds);
-      allow create, update, delete: if request.auth != null && request.auth.uid == resource.data.teacherId;
+      allow read: if request.auth != null && (
+        resource.data.teacherId == request.auth.uid
+        || request.auth.uid in resource.data.get("studentIds", [])
+        || (resource.data.get("classId", "") in get(/databases/$(database)/documents/users/$(request.auth.uid)).data.get("classIds", []))
+        || isAdmin()
+      );
+      allow create: if request.auth != null
+        && request.resource.data.teacherId == request.auth.uid
+        && (isTeacher() || isAdmin());
+      allow update, delete: if request.auth != null && (
+        resource.data.teacherId == request.auth.uid || isAdmin()
+      );
+
+      // Answer keys are teacher-only; students never receive them.
+      match /key/{questionId} {
+        allow read, write: if request.auth != null && (
+          get(/databases/$(database)/documents/teacherAssignments/$(assignmentId)).data.teacherId == request.auth.uid
+          || isAdmin()
+        );
+      }
+
+      // Student submissions are their own docs: no more writing a map onto
+      // the assignment doc (which rules correctly denied).
+      match /submissions/{studentUid} {
+        allow read: if request.auth != null && (
+          request.auth.uid == studentUid
+          || get(/databases/$(database)/documents/teacherAssignments/$(assignmentId)).data.teacherId == request.auth.uid
+          || isAdmin()
+        );
+        allow create: if request.auth != null && request.auth.uid == studentUid
+          && request.resource.data.studentUid == studentUid;
+        // Student may edit only while it is still a draft.
+        allow update: if request.auth != null && (
+          (request.auth.uid == studentUid
+            && resource.data.get("status", "submitted") == "draft")
+          // Teacher grading/remarks only; answers are frozen after submit.
+          || isAdmin()
+          || get(/databases/$(database)/documents/teacherAssignments/$(assignmentId)).data.teacherId == request.auth.uid
+        );
+        allow delete: if isAdmin();
+      }
+    }
+
+    // ─── LESSON PLANS (teacher writes, class reads) ───
+    match /lessonPlans/{planId} {
+      allow read: if request.auth != null && (
+        isAdmin()
+        || resource.data.teacherId == request.auth.uid
+        || isClassMember(resource.data.classId)
+        || isClassTeacher(resource.data.classId)
+      );
+      allow create: if request.auth != null
+        && request.resource.data.teacherId == request.auth.uid
+        && isClassTeacher(request.resource.data.classId);
+      allow update, delete: if request.auth != null && (
+        isAdmin() || resource.data.teacherId == request.auth.uid
+      );
+    }
+
+    // ─── CLASSROOM SHARED SESSIONS ───
+    // One live session per class; question set + reveal state are shared so
+    // every student sees exactly the teacher's question. Answers live in the
+    // teacher-only `key` subcollection and are copied into the public doc only
+    // when the teacher reveals them.
+    match /classSessions/{classId} {
+      allow read: if request.auth != null && (
+        isAdmin() || isClassMember(classId) || isClassTeacher(classId)
+      );
+      allow create, update, delete: if request.auth != null && (
+        isAdmin() || isClassTeacher(classId)
+      );
+      match /key/{qid} {
+        allow read, write: if request.auth != null && (
+          isAdmin() || isClassTeacher(classId)
+        );
+      }
+    }
+
+    // ─── CLASS SUBMISSIONS (whiteboard attempts) ───
+    match /classSubmissions/{submissionId} {
+      allow read: if request.auth != null && (
+        isAdmin()
+        || resource.data.studentUid == request.auth.uid
+        || isClassTeacher(resource.data.classId)
+        || isClassMember(resource.data.classId)
+      );
+      allow create: if request.auth != null
+        && request.resource.data.studentUid == request.auth.uid
+        && isClassMember(request.resource.data.classId);
+      // Owner may keep editing a draft; once submitted it is immutable.
+      allow update: if request.auth != null && (
+        isAdmin()
+        || isClassTeacher(resource.data.classId)
+        || (request.auth.uid == resource.data.studentUid
+            && resource.data.get("status", "submitted") == "draft")
+      );
+      allow delete: if isAdmin() || (
+        request.auth != null && request.auth.uid == resource.data.studentUid
+        && resource.data.get("status", "submitted") == "draft"
+      );
+    }
+
+    // Reactions + comments on a submission (class members).
+    match /classSubmissionReactions/{reactionId} {
+      allow read: if request.auth != null && (
+        isAdmin() || isClassMember(resource.data.classId) || isClassTeacher(resource.data.classId)
+      );
+      allow create, update: if request.auth != null
+        && request.resource.data.uid == request.auth.uid
+        && isClassMember(request.resource.data.classId);
+      allow delete: if isAdmin() || (request.auth != null && resource.data.uid == request.auth.uid);
+    }
+    match /classSubmissionComments/{commentId} {
+      allow read: if request.auth != null && (
+        isAdmin() || isClassMember(resource.data.classId) || isClassTeacher(resource.data.classId)
+      );
+      allow create: if request.auth != null
+        && request.resource.data.uid == request.auth.uid
+        && isClassMember(request.resource.data.classId);
+      allow update, delete: if isAdmin() || (request.auth != null && resource.data.uid == request.auth.uid);
+    }
+
+    // ─── REVIEW REQUESTS (student picks any teacher, private thread) ───
+    match /reviewRequests/{requestId} {
+      allow read: if request.auth != null && (
+        isAdmin()
+        || resource.data.studentUid == request.auth.uid
+        || resource.data.teacherUid == request.auth.uid
+      );
+      allow create: if request.auth != null
+        && request.resource.data.studentUid == request.auth.uid;
+      allow update: if request.auth != null && (
+        isAdmin()
+        || resource.data.studentUid == request.auth.uid
+        || resource.data.teacherUid == request.auth.uid
+      );
+      allow delete: if isAdmin() || (request.auth != null && resource.data.studentUid == request.auth.uid);
+      match /messages/{msgId} {
+        allow read: if request.auth != null && (
+          isAdmin()
+          || get(/databases/$(database)/documents/reviewRequests/$(requestId)).data.studentUid == request.auth.uid
+          || get(/databases/$(database)/documents/reviewRequests/$(requestId)).data.teacherUid == request.auth.uid
+        );
+        allow create: if request.auth != null
+          && request.resource.data.fromUid == request.auth.uid
+          && (
+            isAdmin()
+            || get(/databases/$(database)/documents/reviewRequests/$(requestId)).data.studentUid == request.auth.uid
+            || get(/databases/$(database)/documents/reviewRequests/$(requestId)).data.teacherUid == request.auth.uid
+          );
+      }
+    }
+
+    // ─── CLASS CHAT + PER-QUESTION DISCUSSIONS ───
+    match /classChat/{classId}/messages/{msgId} {
+      allow read: if request.auth != null && (
+        isAdmin() || isClassMember(classId) || isClassTeacher(classId)
+      );
+      allow create: if request.auth != null
+        && request.resource.data.fromUid == request.auth.uid
+        && (isClassMember(classId) || isClassTeacher(classId));
+      allow delete: if isAdmin() || (request.auth != null && resource.data.fromUid == request.auth.uid);
+    }
+    match /classDiscussions/{discussionId} {
+      allow read: if request.auth != null && (
+        isAdmin() || isClassMember(resource.data.classId) || isClassTeacher(resource.data.classId)
+      );
+      allow create: if request.auth != null
+        && request.resource.data.createdBy == request.auth.uid
+        && (isClassMember(request.resource.data.classId) || isClassTeacher(request.resource.data.classId));
+      allow update: if isAdmin() || (request.auth != null && resource.data.createdBy == request.auth.uid);
+      match /messages/{msgId} {
+        allow read: if request.auth != null && (
+          isAdmin()
+          || isClassMember(get(/databases/$(database)/documents/classDiscussions/$(discussionId)).data.classId)
+          || isClassTeacher(get(/databases/$(database)/documents/classDiscussions/$(discussionId)).data.classId)
+        );
+        allow create: if request.auth != null
+          && request.resource.data.fromUid == request.auth.uid;
+      }
+    }
+
+    // ─── NOTIFICATIONS (server fan-out; owner reads/marks read) ───
+    match /notifications/{uid}/items/{itemId} {
+      allow read, update, delete: if request.auth != null && (
+        request.auth.uid == uid || isAdmin()
+      );
+      allow create: if false; // /api/notify (Admin SDK) only
+    }
+
+    // ─── REMINDERS (owner; cron + in-app) ───
+    match /reminders/{reminderId} {
+      allow read, update, delete: if request.auth != null && (
+        request.auth.uid == resource.data.uid || isAdmin()
+      );
+      allow create: if request.auth != null
+        && request.resource.data.uid == request.auth.uid;
+    }
+
+    // ─── QUESTION REPORTS (student flags, admin reviews) ───
+    match /questionReports/{reportId} {
+      allow create: if request.auth != null
+        && request.resource.data.uid == request.auth.uid;
+      allow read, update, delete: if isAdmin();
     }
 
     // ─── TEACHER ANNOUNCEMENTS (school-scoped) ───
     match /teacherAnnouncements/{announcementId} {
       allow read: if request.auth != null;
-      allow create, update, delete: if request.auth != null && request.auth.uid == resource.data.teacherId;
+      allow create: if request.auth != null
+        && request.resource.data.teacherId == request.auth.uid;
+      allow update, delete: if request.auth != null && (
+        resource.data.teacherId == request.auth.uid || isAdmin()
+      );
     }
   }
 }

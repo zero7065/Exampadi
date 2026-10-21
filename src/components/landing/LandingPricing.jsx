@@ -1,7 +1,48 @@
 // Pricing (single source of truth: src/config/plans.js) + Schools strip.
 import { Link } from "react-router-dom";
-import { Check, MessageSquare, Users, GraduationCap } from "lucide-react";
+import { Check, Users, GraduationCap } from "lucide-react";
 import { PLANS } from "../../config/plans";
+
+function PlanCta({ plan, className }) {
+  const style = {
+    display: "block",
+    textAlign: "center",
+    padding: "13px 16px",
+    borderRadius: 12,
+    fontWeight: 800,
+    fontSize: 14,
+    textDecoration: "none",
+    lineHeight: 1.3,
+  };
+
+  if (plan.external) {
+    return (
+      <a
+        href={plan.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={className}
+        style={{ ...style, background: "var(--accent)", color: "#04120D" }}
+      >
+        {plan.cta}
+      </a>
+    );
+  }
+
+  return (
+    <Link
+      to={plan.href}
+      className={className}
+      style={{
+        ...style,
+        background: plan.popular ? "rgba(4,18,13,0.88)" : "var(--landing-gradient)",
+        color: plan.popular ? "#F2F7F5" : "#04120D",
+      }}
+    >
+      {plan.cta}
+    </Link>
+  );
+}
 
 export default function LandingPricing() {
   const cards = [
@@ -94,116 +135,250 @@ export default function LandingPricing() {
   ];
 
   return (
-    <section id="pricing" className="lp-section" style={{ background: "linear-gradient(180deg, var(--bg), rgb(var(--primary-rgb) / 0.06))" }}>
+    <section
+      id="pricing"
+      className="lp-section"
+      style={{ background: "linear-gradient(180deg, var(--bg), rgb(var(--primary-rgb) / 0.06))" }}
+    >
       <div className="lp-container">
-        <div style={{ textAlign: "center", marginBottom: 48 }}>
-          <h2 className="lp-h2">Simple, Fair Pricing Built for <span className="lp-gradient-text">Nigerian Students & Schools</span></h2>
+        <div style={{ textAlign: "center", marginBottom: 40 }}>
+          <h2 className="lp-h2">
+            Simple, Fair Pricing Built for{" "}
+            <span className="lp-gradient-text">Nigerian Students & Schools</span>
+          </h2>
           <p className="lp-sub">Start free. Upgrade when you need more power. No hidden fees.</p>
         </div>
-        <div className="lp-price-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24, maxWidth: 980, margin: "0 auto 48px", alignItems: "stretch" }}>
+
+        <div className="lp-price-grid">
           {cards.map((plan, i) => (
-            <div key={plan.name} className={`lp-animate-in lp-delay-${i + 1}`} style={{
-              background: plan.popular ? "var(--landing-gradient)" : "rgb(var(--bg-2-rgb) / 0.72)",
-              backdropFilter: plan.popular ? "none" : "blur(20px) saturate(1.4)",
-              WebkitBackdropFilter: plan.popular ? "none" : "blur(20px) saturate(1.4)",
-              borderRadius: 20, padding: 32,
-              border: plan.popular ? "none" : "1px solid var(--border)",
-              position: "relative", overflow: "hidden",
-              transform: plan.popular ? "scale(1.05)" : "none",
-              color: plan.popular ? "#fff" : "var(--text)",
-              display: "flex", flexDirection: "column",
-            }}>
-              {plan.popular && (
-                <div style={{
-                  position: "absolute", top: 16, right: -32,
-                  background: "rgba(255,255,255,0.2)", color: "#fff",
-                  padding: "4px 40px", fontSize: 11, fontWeight: 700,
-                  transform: "rotate(45deg)", backdropFilter: "blur(8px)",
-                }}>POPULAR</div>
-              )}
-              <h3 style={{ fontSize: 18, fontWeight: 700, margin: "0 0 4px" }}>{plan.name}</h3>
-              {plan.badge && (
-                <div style={{ fontSize: 11, fontWeight: 800, color: plan.popular ? "#fff" : "var(--accent)", letterSpacing: "0.04em", marginTop: 4 }}>{plan.badge}</div>
-              )}
-              <div style={{ margin: "16px 0" }}>
-                {plan.strike && (
-                  <span style={{ fontSize: 15, opacity: 0.6, textDecoration: "line-through", marginRight: 8 }}>{plan.strike}</span>
-                )}
-                <span style={{ fontSize: 36, fontWeight: 900 }}>{plan.price}</span>
-                <span style={{ fontSize: 14, opacity: 0.7 }}>{plan.period}</span>
+            <article
+              key={plan.name}
+              className={`lp-price-card lp-animate-in lp-delay-${i + 1}${plan.popular ? " is-popular" : ""}`}
+            >
+              {plan.popular && <div className="lp-price-ribbon">POPULAR</div>}
+              <header className="lp-price-head">
+                <h3>{plan.name}</h3>
+                {plan.badge && <div className="lp-price-badge">{plan.badge}</div>}
+              </header>
+              <div className="lp-price-amount">
+                {plan.strike && <span className="lp-price-strike">{plan.strike}</span>}
+                <span className="lp-price-value">{plan.price}</span>
+                <span className="lp-price-period">{plan.period}</span>
               </div>
-              <ul style={{ listStyle: "none", padding: 0, margin: "0 0 24px", display: "flex", flexDirection: "column", gap: 10, flex: 1 }}>
+              <ul className="lp-price-features">
                 {plan.features.map((f) => (
-                  <li key={f} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, lineHeight: 1.4 }}>
-                    <Check size={16} style={{ flexShrink: 0, color: plan.popular ? "rgba(255,255,255,0.85)" : "var(--primary)" }} />
-                    {f}
+                  <li key={f}>
+                    <Check size={16} aria-hidden="true" />
+                    <span>{f}</span>
                   </li>
                 ))}
               </ul>
-              <a
-                href={plan.href}
-                target={plan.external ? "_blank" : undefined}
-                rel={plan.external ? "noopener noreferrer" : undefined}
-                style={{
-                  display: "block", textAlign: "center", padding: "14px", borderRadius: 12,
-                  fontWeight: 700, fontSize: 14, textDecoration: "none",
-                  background: plan.popular ? "rgba(255,255,255,0.2)" : "var(--landing-gradient)",
-                  color: "#fff",
-                  border: plan.popular ? "1px solid rgba(255,255,255,0.2)" : "none",
-                }}
-              >{plan.cta}</a>
-            </div>
+              <PlanCta plan={plan} className="lp-price-cta" />
+            </article>
           ))}
         </div>
 
-        {/* Extra Plans: IELTS & Schools */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 24, maxWidth: 980, margin: "0 auto" }}>
+        <div className="lp-extra-grid">
           {extraPlans.map((plan, i) => (
-            <div key={plan.name} className={`lp-animate-in lp-delay-${i + 1}`} style={{
-              background: "rgb(var(--bg-2-rgb) / 0.72)",
-              backdropFilter: "blur(20px) saturate(1.4)",
-              WebkitBackdropFilter: "blur(20px) saturate(1.4)",
-              borderRadius: 20, padding: 32,
-              border: "1px solid var(--border)",
-              color: "var(--text)",
-              display: "flex", flexDirection: "column",
-            }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
-                <plan.icon size={20} color="var(--primary)" />
-                <h3 style={{ fontSize: 18, fontWeight: 700, margin: 0 }}>{plan.name}</h3>
+            <article key={plan.name} className={`lp-price-card lp-extra-card lp-animate-in lp-delay-${i + 1}`}>
+              <header className="lp-extra-head">
+                <plan.icon size={20} color="var(--primary)" aria-hidden="true" />
+                <h3>{plan.name}</h3>
+              </header>
+              {plan.badge && <div className="lp-price-badge">{plan.badge}</div>}
+              <div className="lp-price-amount">
+                <span className="lp-price-value">{plan.price}</span>
+                <span className="lp-price-period">{plan.period}</span>
               </div>
-              {plan.badge && (
-                <div style={{ fontSize: 11, fontWeight: 800, color: "var(--accent)", letterSpacing: "0.04em", marginBottom: 12 }}>{plan.badge}</div>
-              )}
-              <div style={{ margin: "8px 0 20px" }}>
-                <span style={{ fontSize: 36, fontWeight: 900 }}>{plan.price}</span>
-                <span style={{ fontSize: 14, color: "var(--text-muted)" }}>{plan.period}</span>
-              </div>
-              <ul style={{ listStyle: "none", padding: 0, margin: "0 0 24px", display: "flex", flexDirection: "column", gap: 10, flex: 1 }}>
+              <ul className="lp-price-features">
                 {plan.features.map((f) => (
-                  <li key={f} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, lineHeight: 1.4 }}>
-                    <Check size={16} style={{ flexShrink: 0, color: "var(--primary)" }} />
-                    {f}
+                  <li key={f}>
+                    <Check size={16} aria-hidden="true" />
+                    <span>{f}</span>
                   </li>
                 ))}
               </ul>
-              <a
-                href={plan.href}
-                target={plan.external ? "_blank" : undefined}
-                rel={plan.external ? "noopener noreferrer" : undefined}
-                style={{
-                  display: "block", textAlign: "center", padding: "14px", borderRadius: 12,
-                  fontWeight: 700, fontSize: 14, textDecoration: "none",
-                  background: plan.external ? "var(--accent)" : "var(--landing-gradient)",
-                  color: "#fff",
-                  border: "none",
-                }}
-              >{plan.cta}</a>
-            </div>
+              <PlanCta plan={plan} className="lp-price-cta" />
+            </article>
           ))}
         </div>
       </div>
-      <style>{`@media (max-width: 900px) { .lp-price-grid { grid-template-columns: 1fr !important; max-width: 420px; } }`}</style>
+
+      <style>{`
+        .lp-price-grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 20px;
+          max-width: 1040px;
+          margin: 0 auto 24px;
+          align-items: stretch;
+        }
+        .lp-extra-grid {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 20px;
+          max-width: 1040px;
+          margin: 0 auto;
+          align-items: stretch;
+        }
+        .lp-price-card {
+          min-width: 0;
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          padding: 26px 22px;
+          border-radius: 18px;
+          border: 1px solid var(--border);
+          background: rgb(var(--bg-2-rgb) / 0.78);
+          color: var(--text);
+          overflow: hidden;
+          position: relative;
+        }
+        .lp-price-card.is-popular {
+          background: var(--landing-gradient);
+          border-color: transparent;
+          color: #04120D;
+          transform: translateY(-6px);
+          box-shadow: 0 18px 44px rgb(var(--primary-rgb) / 0.18);
+        }
+        .lp-price-head h3,
+        .lp-extra-head h3 {
+          font-size: 17px;
+          font-weight: 800;
+          margin: 0;
+          line-height: 1.3;
+          overflow-wrap: anywhere;
+        }
+        .lp-price-head {
+          padding-right: 44px;
+        }
+        .lp-price-badge {
+          margin-top: 6px;
+          font-size: 11px;
+          font-weight: 800;
+          letter-spacing: 0.03em;
+          line-height: 1.4;
+          color: var(--accent);
+          overflow-wrap: anywhere;
+        }
+        .lp-price-card.is-popular .lp-price-badge {
+          color: rgba(4, 18, 13, 0.78);
+        }
+        .lp-price-amount {
+          display: flex;
+          align-items: baseline;
+          flex-wrap: wrap;
+          gap: 6px;
+          margin: 16px 0 18px;
+          min-width: 0;
+        }
+        .lp-price-value {
+          font-size: clamp(28px, 3vw, 36px);
+          font-weight: 900;
+          line-height: 1.05;
+          letter-spacing: -0.03em;
+          overflow-wrap: anywhere;
+        }
+        .lp-price-period {
+          font-size: 13px;
+          opacity: 0.72;
+          font-weight: 600;
+        }
+        .lp-price-strike {
+          width: 100%;
+          font-size: 13px;
+          opacity: 0.62;
+          text-decoration: line-through;
+        }
+        .lp-price-features {
+          list-style: none;
+          padding: 0;
+          margin: 0 0 22px;
+          display: flex;
+          flex-direction: column;
+          gap: 9px;
+          flex: 1;
+        }
+        .lp-price-features li {
+          display: flex;
+          align-items: flex-start;
+          gap: 8px;
+          font-size: 13px;
+          line-height: 1.45;
+          min-width: 0;
+        }
+        .lp-price-features li svg {
+          flex-shrink: 0;
+          margin-top: 1px;
+          color: var(--primary);
+        }
+        .lp-price-card.is-popular .lp-price-features li svg {
+          color: rgba(4, 18, 13, 0.82);
+        }
+        .lp-price-features li span {
+          min-width: 0;
+          overflow-wrap: anywhere;
+        }
+        .lp-price-cta {
+          margin-top: auto;
+        }
+        .lp-price-ribbon {
+          position: absolute;
+          top: 14px;
+          right: -34px;
+          width: 130px;
+          text-align: center;
+          padding: 4px 0;
+          background: rgba(4, 18, 13, 0.16);
+          color: #04120D;
+          font-size: 10px;
+          font-weight: 900;
+          letter-spacing: 0.06em;
+          transform: rotate(45deg);
+        }
+        .lp-extra-head {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          margin-bottom: 8px;
+        }
+        @media (max-width: 980px) {
+          .lp-price-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            max-width: 700px;
+          }
+          .lp-price-card.is-popular {
+            transform: none;
+          }
+          .lp-price-grid .lp-price-card:last-child {
+            grid-column: 1 / -1;
+            max-width: 420px;
+            width: 100%;
+            justify-self: center;
+          }
+          .lp-extra-grid {
+            grid-template-columns: 1fr;
+            max-width: 700px;
+          }
+        }
+        @media (max-width: 620px) {
+          .lp-price-grid {
+            grid-template-columns: 1fr;
+            max-width: 440px;
+            gap: 14px;
+          }
+          .lp-price-grid .lp-price-card:last-child {
+            grid-column: auto;
+            max-width: none;
+          }
+          .lp-price-card {
+            padding: 22px 18px;
+          }
+          .lp-price-head {
+            padding-right: 48px;
+          }
+        }
+      `}</style>
     </section>
   );
 }

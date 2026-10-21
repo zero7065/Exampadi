@@ -14,7 +14,7 @@ import {
   deleteUser,
   GoogleAuthProvider,
   setPersistence,
-  fetchSignInMethodsForEmail,
+  browserLocalPersistence,
 } from "firebase/auth";
 import {
   getFirestore,
@@ -64,10 +64,14 @@ if (isConfigured) {
   try {
     app = initializeApp(firebaseConfig);
     _auth = getAuth(app);
+    // Remember Gmail/password sessions across reloads and browser restarts.
+    setPersistence(_auth, browserLocalPersistence).catch((e) => {
+      console.warn("Auth persistence unavailable:", e?.message);
+    });
     // Use new cache API (replaces deprecated enableIndexedDbPersistence)
     try {
       _db = initializeFirestore(app, { localCache: persistentLocalCache() });
-    } catch (e) {
+    } catch {
       // Fallback if persistentLocalCache not supported
       _db = getFirestore(app);
     }
@@ -101,8 +105,7 @@ export { query, where, orderBy, limit, writeBatch, increment, serverTimestamp, a
 // Re-export Auth functions directly
 export { onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword };
 export { signOut, updateProfile, sendPasswordResetEmail, deleteUser };
-export { GoogleAuthProvider, setPersistence };
-export const browserLocalPersistence = "local";
+export { GoogleAuthProvider, setPersistence, browserLocalPersistence };
 
 // ─── Google sign-in helper ───
 const _googleProvider = new GoogleAuthProvider();
@@ -144,7 +147,7 @@ export async function seedAdminAccount() {
         onboarded: true,
         createdAt: serverTimestamp(),
       }, { merge: true }).catch(() => {});
-    } catch (e) {
+    } catch {
       // Firestore write failed, but auth user exists — that's fine
     }
     await signOut(_auth).catch(() => {});

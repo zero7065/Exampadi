@@ -65,7 +65,7 @@ export default function LandingStyles() {
       .lp-btn-primary {
         display: inline-flex; align-items: center; gap: 8px;
         padding: 16px 32px; border-radius: 14px; font-size: 16px; font-weight: 700;
-        background: var(--landing-gradient); color: #fff; text-decoration: none;
+        background: var(--landing-gradient); color: #04120D; text-decoration: none;
         box-shadow: 0 8px 32px rgb(var(--primary-rgb) / 0.35);
         transition: all 0.2s;
       }

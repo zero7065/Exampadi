@@ -30,6 +30,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 
 // Everything else lazy-loaded
 const LandingPage = lazy(() => import("./pages/LandingPage"));
+const DemoPage = lazy(() => import("./pages/DemoPage"));
 const SubjectSelector = lazy(() => import("./pages/SubjectSelector"));
 const Practice = lazy(() => import("./pages/Practice"));
 const CBTSimulator = lazy(() => import("./pages/CBTSimulator"));
@@ -60,13 +61,14 @@ const LeaderboardPage = lazy(() => import("./pages/LeaderboardPage"));
   const FlashcardsPage = lazy(() => import("./pages/FlashcardsPage"));
 const StudyPartnersPage = lazy(() => import("./pages/StudyPartnersPage"));
 const SharedTestPage = lazy(() => import("./pages/SharedTestPage"));
-const AssignmentPage = lazy(() => import("./pages/AssignmentPage"));
+const StudentAssignments = lazy(() => import("./pages/StudentAssignments"));
 const SchoolsLanding = lazy(() => import("./pages/schools/SchoolsLanding"));
 const SchoolSignup = lazy(() => import("./pages/schools/SchoolSignup"));
 const TeacherDashboard = lazy(() => import("./pages/schools/TeacherDashboard"));
 const TeacherRegister = lazy(() => import("./pages/TeacherRegister"));
 const ExamGenerator = lazy(() => import("./pages/schools/ExamGenerator"));
 const ClassroomMode = lazy(() => import("./pages/schools/ClassroomMode"));
+const ReviewInbox = lazy(() => import("./pages/schools/ReviewInbox"));
 const ParentReports = lazy(() => import("./pages/schools/ParentReports"));
 const JoinClass = lazy(() => import("./pages/schools/JoinClass"));
 const PartnerDashboard = lazy(() => import("./pages/schools/PartnerDashboard"));
@@ -134,7 +136,8 @@ function AuthAwareRoutes() {
       "/profile": "Profile — ExamPadi",
       "/study-partners": "Study Partners — ExamPadi",
       "/shared-test": "Shared Test — ExamPadi",
-      "/assignment": "Assignment — ExamPadi",
+      "/assignment": "Assignments — ExamPadi",
+      "/assignments": "Assignments — ExamPadi",
       "/flashcards": "Flashcards — ExamPadi",
       "/schools": "For Schools — ExamPadi",
       "/ielts": "IELTS Prep — ExamPadi",
@@ -195,6 +198,7 @@ function AuthAwareRoutes() {
         <Suspense fallback={<PageLoader />}>
         <Routes>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/demo" element={<DemoPage />} />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/privacy" element={<PrivacyPage />} />
@@ -240,7 +244,8 @@ function AuthAwareRoutes() {
           <Route path="/ielts" element={<IELTSPage />} />
           <Route path="/sat" element={<SATPage />} />
           <Route path="/shared-test" element={<ProtectedRoute><SharedTestPage /></ProtectedRoute>} />
-          <Route path="/assignment" element={<ProtectedRoute><AssignmentPage /></ProtectedRoute>} />
+          <Route path="/assignment" element={<ProtectedRoute><StudentAssignments /></ProtectedRoute>} />
+          <Route path="/assignments" element={<ProtectedRoute><StudentAssignments /></ProtectedRoute>} />
           <Route path="/payment/success" element={<ProtectedRoute><PaymentSuccess /></ProtectedRoute>} />
           <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
           <Route path="/settings/data-export" element={<ProtectedRoute><DataExport /></ProtectedRoute>} />
@@ -255,6 +260,7 @@ function AuthAwareRoutes() {
           <Route path="/teacher" element={<TeacherRoute><TeacherDashboard /></TeacherRoute>} />
           <Route path="/teacher/exam-generator" element={<TeacherRoute><ExamGenerator /></TeacherRoute>} />
           <Route path="/teacher/classroom" element={<TeacherRoute><ClassroomMode /></TeacherRoute>} />
+          <Route path="/teacher/reviews" element={<TeacherRoute><ReviewInbox /></TeacherRoute>} />
           <Route path="/teacher/parent-reports" element={<TeacherRoute><ParentReports /></TeacherRoute>} />
           {/* Student entry to a live classroom (shared link: /classroom?class=<id>) */}
           <Route path="/classroom" element={<ProtectedRoute><ClassroomMode /></ProtectedRoute>} />

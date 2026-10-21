@@ -7,15 +7,16 @@ import { useToast } from "../../components/Toast";
 import { getUserProfile } from "../../lib/userProfile";
 import {
   listSchoolClasses, createClass, createClassInvite, getClass,
-  saveTeacherNote, getTeacherNote,
+  saveTeacherNote, getTeacherNote, createLessonPlan, listLessonPlans, deleteLessonPlan,
 } from "../../lib/schools";
 import { collection, query, where, getDocs, limit } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 import AvatarDisplay from "../../components/Avatar/AvatarDisplay";
 import {
-  Users, Plus, FileText, MonitorPlay, ClipboardList, X, Send, Trophy, Sparkles, Megaphone, BookOpenCheck,
+  Users, Plus, FileText, MonitorPlay, ClipboardList, X, Send, Trophy, Sparkles, Megaphone, BookOpenCheck, Inbox,
 } from "lucide-react";
 import { createAssignment, createAnnouncement, listAssignmentsForTeacher, listAnnouncementsForSchool } from "../../lib/teacherContent";
+import { getQuestionsFromBank } from "../../data/questions/compat";
 import { askGroq } from "../../lib/ai";
 import TeacherTools from "../../components/TeacherTools";
 
@@ -42,6 +43,12 @@ export default function TeacherDashboard() {
   const [drill, setDrill] = useState(null); // {student, topic}
   const [note, setNote] = useState("");
   const [savingNote, setSavingNote] = useState(false);
+  const [lessons, setLessons] = useState([]);
+  const [showLesson, setShowLesson] = useState(false);
+  const [newLesson, setNewLesson] = useState({ title: "", topic: "", week: "", objectives: "", activities: "" });
+  const [showAssign, setShowAssign] = useState(false);
+  const [newAssign, setNewAssign] = useState({ title: "", subject: "", count: 10, dueDate: "" });
+  const [creatingAssign, setCreatingAssign] = useState(false);
 
   useEffect(() => {
     if (user) getUserProfile(user.uid).then(setProfile).catch(() => {});
@@ -127,6 +134,11 @@ export default function TeacherDashboard() {
     return () => { cancelled = true; };
   }, [classId]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  useEffect(() => {
+    if (!classId) { setLessons([]); return; }
+    listLessonPlans({ classId }).then(setLessons).catch(() => setLessons([]));
+  }, [classId]);
+
   const weakTopics = useMemo(() => {
     const totals = roster.reduce((acc, r) => {
       Object.entries(r.topics).forEach(([t, v]) => {
@@ -151,7 +163,13 @@ export default function TeacherDashboard() {
       return;
     }
     try {
-      const id = await createClass(schoolId, { name: newClass.name.trim(), subject: newClass.subject.trim(), createdBy: user.uid });
+      const id = await createClass(schoolId, {
+        name: newClass.name.trim(),
+        subject: newClass.subject.trim(),
+        createdBy: user.uid,
+        teacherId: user.uid,
+        teacherName: profile?.name || user.displayName || "Teacher",
+      });
       toast({ message: "Class created ✓", type: "success" });
       setNewClass({ name: "", subject: "" });
       setShowCreate(false);
@@ -166,7 +184,10 @@ export default function TeacherDashboard() {
   async function handleInvite() {
     if (!classId) return;
     try {
-      const code = await createClassInvite({ classId, schoolId, createdBy: user.uid });
+      const code = await createClassInvite({
+        classId, schoolId, createdBy: user.uid,
+        teacherName: profile?.name || user.displayName || "Teacher",
+      });
       setInviteCode(code);
       toast({ message: `Invite code: ${code} — share with students`, type: "success" });
     } catch (err) {
@@ -193,6 +214,80 @@ export default function TeacherDashboard() {
       toast({ message: `Save failed: ${e.message}`, type: "error" });
     } finally {
       setSavingNote(false);
+    }
+  }
+
+  async function handleCreateLesson(e) {
+    e.preventDefault();
+    if (!classId || !newLesson.title.trim()) {
+      toast({ message: "Pick a class and add a lesson title", type: "warning" });
+      return;
+    }
+    try {
+      await createLessonPlan({
+        schoolId,
+        classId,
+        teacherId: user.uid,
+        teacherName: profile?.name || user.displayName || "Teacher",
+        title: newLesson.title.trim(),
+        subject: classes.find((c) => c.id === classId)?.subject || "",
+        topic: newLesson.topic.trim(),
+        week: newLesson.week.trim(),
+        objectives: newLesson.objectives,
+        activities: newLesson.activities,
+      });
+      setNewLesson({ title: "", topic: "", week: "", objectives: "", activities: "" });
+      setShowLesson(false);
+      setLessons(await listLessonPlans({ classId }));
+      toast({ message: "Lesson plan published ✓", type: "success" });
+    } catch (err) {
+      toast({ message: `Failed: ${err.message}`, type: "error" });
+    }
+  }
+
+  async function handleCreateAssignment(e) {
+    e.preventDefault();
+    if (!classId || !newAssign.title.trim()) {
+      toast({ message: "Pick a class and add an assignment title", type: "warning" });
+      return;
+    }
+    const cls = classes.find((c) => c.id === classId);
+    const subject = newAssign.subject.trim() || cls?.subject || "Mathematics";
+    const count = Math.max(1, Math.min(40, Number(newAssign.count) || 10));
+    const questions = getQuestionsFromBank({ subject, count });
+    if (!questions.length) {
+      toast({ message: `No questions found for ${subject}`, type: "warning" });
+      return;
+    }
+    setCreatingAssign(true);
+    try {
+      await createAssignment({
+        teacherId: user.uid,
+        teacherName: profile?.name || user.displayName || "Teacher",
+        title: newAssign.title.trim(),
+        questions,
+        studentIds: roster.map((s) => s.uid),
+        dueDate: newAssign.dueDate || null,
+        subject,
+        classId,
+        schoolId,
+      });
+      toast({ message: "Assignment sent to the class ✓", type: "success" });
+      setNewAssign({ title: "", subject: "", count: 10, dueDate: "" });
+      setShowAssign(false);
+    } catch (err) {
+      toast({ message: `Failed: ${err.message}`, type: "error" });
+    } finally {
+      setCreatingAssign(false);
+    }
+  }
+
+  async function handleDeleteLesson(id) {
+    try {
+      await deleteLessonPlan(id);
+      setLessons((prev) => prev.filter((l) => l.id !== id));
+    } catch (err) {
+      toast({ message: `Delete failed: ${err.message}`, type: "error" });
     }
   }
 
@@ -223,6 +318,8 @@ export default function TeacherDashboard() {
           </select>
           <button onClick={() => setShowCreate(true)} className="btn-secondary px-4 text-sm"><Plus size={15} /> Class</button>
           <button onClick={handleInvite} className="btn-secondary px-4 text-sm"><Users size={15} /> Invite code</button>
+          <button onClick={() => setShowAssign((v) => !v)} className="btn-secondary px-4 text-sm flex items-center gap-1.5"><ClipboardList size={15} /> Assignment</button>
+          <Link to="/teacher/reviews" className="btn-secondary px-4 text-sm flex items-center gap-1.5"><Inbox size={15} /> Reviews</Link>
         </div>
       </header>
 
@@ -243,6 +340,60 @@ export default function TeacherDashboard() {
           </div>
         </form>
       )}
+
+      {showAssign && (
+        <form onSubmit={handleCreateAssignment} className="glass-card p-5 grid sm:grid-cols-2 gap-3">
+          <input value={newAssign.title} onChange={(e) => setNewAssign({ ...newAssign, title: e.target.value })} placeholder="Assignment title" className="input-field sm:col-span-2" />
+          <input value={newAssign.subject} onChange={(e) => setNewAssign({ ...newAssign, subject: e.target.value })} placeholder={`Subject (default: ${classes.find((c) => c.id === classId)?.subject || "class subject"})`} className="input-field" />
+          <input type="number" min="1" max="40" value={newAssign.count} onChange={(e) => setNewAssign({ ...newAssign, count: e.target.value })} placeholder="Questions" className="input-field" />
+          <input type="date" value={newAssign.dueDate} onChange={(e) => setNewAssign({ ...newAssign, dueDate: e.target.value })} className="input-field" />
+          <div className="flex gap-2">
+            <button type="submit" disabled={creatingAssign} className="btn-primary px-5" style={{ opacity: creatingAssign ? 0.6 : 1 }}>
+              {creatingAssign ? "Sending…" : `Send to ${roster.length} students`}
+            </button>
+            <button type="button" onClick={() => setShowAssign(false)} className="btn-secondary px-5">Cancel</button>
+          </div>
+        </form>
+      )}
+
+      {/* Lesson plans / scheme of work */}
+      <section className="glass-card p-5">
+        <div className="flex items-center justify-between gap-3 flex-wrap mb-3">
+          <h2 className="font-black text-text flex items-center gap-2"><BookOpenCheck size={17} className="text-primary" /> Lesson plans</h2>
+          <button onClick={() => setShowLesson((v) => !v)} className="btn-secondary px-4 text-sm"><Plus size={15} /> Lesson</button>
+        </div>
+        {showLesson && (
+          <form onSubmit={handleCreateLesson} className="grid sm:grid-cols-2 gap-2 mb-4">
+            <input value={newLesson.title} onChange={(e) => setNewLesson({ ...newLesson, title: e.target.value })} placeholder="Lesson title" className="input-field" />
+            <input value={newLesson.week} onChange={(e) => setNewLesson({ ...newLesson, week: e.target.value })} placeholder="Week (e.g. Week 3)" className="input-field" />
+            <input value={newLesson.topic} onChange={(e) => setNewLesson({ ...newLesson, topic: e.target.value })} placeholder="Topic" className="input-field" />
+            <input value={newLesson.objectives} onChange={(e) => setNewLesson({ ...newLesson, objectives: e.target.value })} placeholder="Objectives (comma separated)" className="input-field" />
+            <textarea value={newLesson.activities} onChange={(e) => setNewLesson({ ...newLesson, activities: e.target.value })} placeholder="Class activities / homework" rows={2} className="input-field sm:col-span-2" />
+            <div className="flex gap-2 sm:col-span-2">
+              <button type="submit" className="btn-primary px-5">Publish lesson</button>
+              <button type="button" onClick={() => setShowLesson(false)} className="btn-secondary px-5">Cancel</button>
+            </div>
+          </form>
+        )}
+        {lessons.length === 0 ? (
+          <p className="text-sm text-text-muted">No lesson plans yet. Publish one and it appears for every student in this class.</p>
+        ) : (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {lessons.map((l) => (
+              <div key={l.id} className="rounded-2xl border border-border p-4" style={{ background: "var(--bg-3)" }}>
+                <div className="flex items-start justify-between gap-2">
+                  <div>
+                    <p className="text-sm font-bold text-text">{l.title}</p>
+                    <p className="text-xs text-text-muted">{l.week || "No week"} · {l.topic || l.subject || "General"}</p>
+                  </div>
+                  <button onClick={() => handleDeleteLesson(l.id)} title="Delete lesson" style={{ background: "none", border: "none", color: "var(--text-muted)", cursor: "pointer" }}><X size={14} /></button>
+                </div>
+                {l.objectives && <p className="text-xs text-text-muted mt-2 line-clamp-3">{l.objectives}</p>}
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
 
       {/* Weak topics */}
       {weakTopics.length > 0 && (

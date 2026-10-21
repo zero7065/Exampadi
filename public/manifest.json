@@ -4,8 +4,8 @@
   "description": "AI-powered exam preparation for Nigerian students. Practice past questions, take mock exams, and get AI tutoring for JAMB, WAEC, NECO, NABTEB, POST-UTME, and IELTS.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#07120C",
-  "theme_color": "#6C3CE9",
+  "background_color": "#07090C",
+  "theme_color": "#2EE6A8",
   "orientation": "portrait",
   "scope": "/",
   "icons": [

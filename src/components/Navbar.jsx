@@ -6,6 +6,7 @@ import { useSubscription } from "../hooks/useSubscription";
 import { useTheme } from "../context/ThemeContext";
 import AvatarDisplay from "./Avatar/AvatarDisplay";
 import Logo from "./Logo";
+import NotificationPanel from "./NotificationPanel";
 import { isAdmin } from "../lib/activityLog";
 import {
   LayoutDashboard,
@@ -100,7 +101,7 @@ const Navbar = () => {
       title: "Pro Tools",
       items: [
         { name: "Notepad", path: "/notepad", icon: StickyNote, requiresPro: true },
-        { name: "Assignment", path: "/assignment", icon: ClipboardList, requiresPro: true },
+        { name: "Assignments", path: "/assignments", icon: ClipboardList },
         { name: "Mock Exam", path: "/mock-exam", icon: FlaskConical, requiresPro: true },
         { name: "Past Questions", path: "/past-questions", icon: History, requiresPro: true },
       ],
@@ -158,6 +159,7 @@ const Navbar = () => {
             <Logo size={32} radius={9} />
             <h1 className="text-xl font-black tracking-tight text-text">ExamPadi</h1>
           </Link>
+          <NotificationPanel />
           <button
             onClick={toggle}
             aria-label="Toggle theme"
@@ -243,6 +245,9 @@ const Navbar = () => {
             </Link>
           );
         })}
+        <div className="flex items-center justify-center shrink-0">
+          <NotificationPanel bottom />
+        </div>
         <button
           onClick={() => setMoreOpen(true)}
           aria-label="More"

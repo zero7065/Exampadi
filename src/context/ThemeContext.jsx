@@ -1,43 +1,28 @@
 // src/context/ThemeContext.jsx — Robust dark/light theme with zero white flash
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useLayoutEffect, useState } from "react";
 
 const ThemeContext = createContext();
+const THEME_COLORS = { dark: "#07090C", light: "#F5F8F7" };
+
+function initialTheme() {
+  if (typeof window === "undefined") return "dark";
+  const stored = localStorage.getItem("ep-theme");
+  if (stored === "light" || stored === "dark") return stored;
+  return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+}
 
 export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("ep-theme") || "dark";
-    }
-    return "dark";
-  });
-  const [mounted, setMounted] = useState(false);
+  const [theme, setTheme] = useState(initialTheme);
 
-  useEffect(() => {
-    const stored = localStorage.getItem("ep-theme");
-    const preferred = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
-    const initial = stored || preferred;
-    setTheme(initial);
-    document.documentElement.setAttribute("data-theme", initial);
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (!mounted) return;
+  useLayoutEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("ep-theme", theme);
-  }, [theme, mounted]);
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", THEME_COLORS[theme] || THEME_COLORS.dark);
+  }, [theme]);
 
-  const setThemeExplicit = (t) => setTheme(t);
-  const toggle = () => setTheme(t => t === "dark" ? "light" : "dark");
-
-  // Prevent flash of unmounted content
-  if (!mounted) {
-    return (
-      <ThemeContext.Provider value={{ theme: "dark", toggle: () => {}, setTheme: () => {} }}>
-        <div style={{ visibility: "hidden" }}>{children}</div>
-      </ThemeContext.Provider>
-    );
-  }
+  const setThemeExplicit = (t) => setTheme(t === "light" ? "light" : "dark");
+  const toggle = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
 
   return (
     <ThemeContext.Provider value={{ theme, toggle, setTheme: setThemeExplicit }}>

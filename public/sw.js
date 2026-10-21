@@ -2,7 +2,7 @@
 // Deliberately avoids loading Workbox from storage.googleapis.com so offline
 // support works even when that host is blocked.
 
-const VERSION = "exampadi-v1";
+const VERSION = "exampadi-v2";
 const PAGES_CACHE = `${VERSION}-pages`;
 const ASSETS_CACHE = `${VERSION}-assets`;
 const IMAGES_CACHE = `${VERSION}-images`;
@@ -118,6 +118,43 @@ self.addEventListener("fetch", (event) => {
       })()
     );
   }
+});
+
+// ─── Web push (FCM) ───
+self.addEventListener("push", (event) => {
+  let payload = {};
+  try { payload = event.data ? event.data.json() : {}; } catch { payload = {}; }
+  const n = payload.notification || {};
+  const data = payload.data || {};
+  const title = n.title || data.title || "ExamPadi";
+  const body = n.body || data.body || "You have a new update.";
+  const link = data.link || n.click_action || "/dashboard";
+  event.waitUntil(
+    self.registration.showNotification(title, {
+      body,
+      icon: "/icons/icon-192.png",
+      badge: "/icons/icon-192.png",
+      tag: data.id || "exampadi",
+      data: { link },
+    })
+  );
+});
+
+self.addEventListener("notificationclick", (event) => {
+  event.notification.close();
+  const link = event.notification.data?.link || "/dashboard";
+  event.waitUntil(
+    (async () => {
+      const clientsList = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
+      for (const client of clientsList) {
+        if ("focus" in client) {
+          client.navigate?.(link);
+          return client.focus();
+        }
+      }
+      return self.clients.openWindow(link);
+    })()
+  );
 });
 
 // Handle skip waiting

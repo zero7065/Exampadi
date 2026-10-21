@@ -9,8 +9,9 @@ import { bufferInteraction, flushMemory } from "../lib/aiMemory";
 import { motivatorFor } from "../data/wellness";
 import ProUpgradeModal from "../components/ProUpgradeModal";
 import { Whiteboard } from "../components/Whiteboard";
+import NotepadDrawer from "../components/NotepadDrawer";
 import { useHint } from "../hooks/useHints";
-import { ChevronRight, Sparkles, AlertCircle, CheckCircle2, XCircle, Flag, BookOpen, Lightbulb, PenTool } from "lucide-react";
+import { ChevronRight, Sparkles, AlertCircle, CheckCircle2, XCircle, Flag, BookOpen, Lightbulb, PenTool, NotebookPen } from "lucide-react";
 
 const MODE_MOCK = "mock";
 const MODE_PRACTICE = "practice";
@@ -40,6 +41,7 @@ export default function PracticeSession() {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth > 768);
   const [eliminated, setEliminated] = useState({});
   const [whiteboardOpen, setWhiteboardOpen] = useState(false);
+  const [notepadOpen, setNotepadOpen] = useState(false);
   const timerRef = useRef(null);
 
   const sessionId = sessionData?.startTime || "practice_session";
@@ -535,6 +537,23 @@ export default function PracticeSession() {
       >
         <PenTool size={22} />
       </button>
+
+      <button
+        onClick={() => setNotepadOpen(true)}
+        style={{
+          position: "fixed", bottom: 84, right: 24, zIndex: 9998,
+          width: 48, height: 48, borderRadius: "50%",
+          background: "var(--bg-2)", border: "1px solid var(--border)", color: "var(--text)", cursor: "pointer",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          boxShadow: "0 4px 20px rgba(0,0,0,0.35)",
+        }}
+        title="Notepad & AI"
+      >
+        <NotebookPen size={20} />
+      </button>
+
+      <Whiteboard open={whiteboardOpen} onClose={() => setWhiteboardOpen(false)} />
+      <NotepadDrawer open={notepadOpen} onClose={() => setNotepadOpen(false)} context={current?.question || ""} />
 
       <ProUpgradeModal open={showProModal} onClose={handleClosePro} reason={proReason} dismissible />
     </div>

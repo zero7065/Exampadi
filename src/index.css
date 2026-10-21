@@ -11,21 +11,21 @@
 /* Dark Theme (Default) */
 :root {
   color-scheme: dark;
-  --bg-primary: #0a0f0d;
-  --bg-secondary: #111816;
-  --bg-card: #15201c;
-  --bg-elevated: #1a2a24;
-  --text-primary: #f0fdf4;
-  --text-secondary: #a7f3d0;
-  --text-muted: #6ee7b7;
-  --accent: #10b981;
-  --accent-hover: #34d399;
-  --border: #1e3a32;
+  --bg-primary: #07090c;
+  --bg-secondary: #0c1117;
+  --bg-card: #111820;
+  --bg-elevated: #162029;
+  --text-primary: #f2f7f5;
+  --text-secondary: #c7d6d1;
+  --text-muted: #8fa6a0;
+  --accent: #2ee6a8;
+  --accent-hover: #6af7c6;
+  --border: #1c2a31;
   --success: #34d399;
-  --warning: #fbbf24;
-  --danger: #f87171;
-  --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
-  
+  --warning: #f5c451;
+  --danger: #fb7185;
+  --shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+
   /* Legacy aliases for backward compatibility */
   --bg: var(--bg-primary);
   --bg-2: var(--bg-secondary);
@@ -33,46 +33,46 @@
   --subtle: var(--bg-elevated);
   --text: var(--text-primary);
   --primary: var(--accent);
-  --primary-dim: rgba(16, 185, 129, 0.15);
-  --accent-dim: rgba(251, 191, 36, 0.1);
-  --danger-dim: rgba(248, 113, 113, 0.15);
-  --success-dim: rgba(52, 211, 153, 0.15);
+  --primary-dim: rgba(46, 230, 168, 0.14);
+  --accent-dim: rgba(245, 196, 81, 0.12);
+  --danger-dim: rgba(251, 113, 133, 0.14);
+  --success-dim: rgba(52, 211, 153, 0.14);
   --card-shadow: var(--shadow);
-  --landing-gradient: linear-gradient(135deg, #10b981, #059669);
-  --landing-gradient-2: linear-gradient(135deg, #f59e0b, #fbbf24);
-  
+  --landing-gradient: linear-gradient(135deg, #2ee6a8, #0ea5a5);
+  --landing-gradient-2: linear-gradient(135deg, #f5c451, #e8a63a);
+
   /* RGB triplets */
-  --bg-rgb: 10 15 13;
-  --bg-2-rgb: 17 24 22;
-  --bg-3-rgb: 21 32 28;
-  --subtle-rgb: 26 42 36;
-  --border-rgb: 30 58 50;
-  --text-rgb: 240 253 244;
-  --text-muted-rgb: 110 231 183;
-  --primary-rgb: 16 185 129;
-  --accent-rgb: 245 158 11;
-  --danger-rgb: 248 113 113;
+  --bg-rgb: 7 9 12;
+  --bg-2-rgb: 12 17 23;
+  --bg-3-rgb: 17 24 32;
+  --subtle-rgb: 22 32 41;
+  --border-rgb: 28 42 49;
+  --text-rgb: 242 247 245;
+  --text-muted-rgb: 143 166 160;
+  --primary-rgb: 46 230 168;
+  --accent-rgb: 245 196 81;
+  --danger-rgb: 251 113 133;
   --success-rgb: 52 211 153;
 }
 
 /* Light Theme */
 [data-theme="light"] {
   color-scheme: light;
-  --bg-primary: #f8fafc;
+  --bg-primary: #f5f8f7;
   --bg-secondary: #ffffff;
   --bg-card: #ffffff;
-  --bg-elevated: #f1f5f9;
-  --text-primary: #0f172a;
-  --text-secondary: #334155;
-  --text-muted: #64748b;
-  --accent: #059669;
-  --accent-hover: #047857;
-  --border: #e2e8f0;
-  --success: #059669;
-  --warning: #d97706;
+  --bg-elevated: #eef4f2;
+  --text-primary: #0a1412;
+  --text-secondary: #24332f;
+  --text-muted: #5f726d;
+  --accent: #0f9f7a;
+  --accent-hover: #0b7f62;
+  --border: #dce7e3;
+  --success: #0f9f7a;
+  --warning: #b7791f;
   --danger: #dc2626;
-  --shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-  
+  --shadow: 0 8px 30px rgba(10, 20, 18, 0.07);
+
   /* Legacy aliases for backward compatibility */
   --bg: var(--bg-primary);
   --bg-2: var(--bg-secondary);
@@ -80,26 +80,26 @@
   --subtle: var(--bg-elevated);
   --text: var(--text-primary);
   --primary: var(--accent);
-  --primary-dim: rgba(5, 150, 105, 0.15);
-  --accent-dim: rgba(217, 119, 6, 0.1);
-  --danger-dim: rgba(220, 38, 38, 0.15);
-  --success-dim: rgba(5, 150, 105, 0.15);
+  --primary-dim: rgba(15, 159, 122, 0.12);
+  --accent-dim: rgba(183, 121, 31, 0.12);
+  --danger-dim: rgba(220, 38, 38, 0.12);
+  --success-dim: rgba(15, 159, 122, 0.12);
   --card-shadow: var(--shadow);
-  --landing-gradient: linear-gradient(135deg, #059669, #047857);
-  --landing-gradient-2: linear-gradient(135deg, #d97706, #fbbf24);
-  
+  --landing-gradient: linear-gradient(135deg, #0f9f7a, #0b7a78);
+  --landing-gradient-2: linear-gradient(135deg, #b7791f, #d9a441);
+
   /* RGB triplets */
-  --bg-rgb: 248 250 252;
+  --bg-rgb: 245 248 247;
   --bg-2-rgb: 255 255 255;
   --bg-3-rgb: 255 255 255;
-  --subtle-rgb: 241 245 249;
-  --border-rgb: 226 232 240;
-  --text-rgb: 15 23 42;
-  --text-muted-rgb: 100 116 139;
-  --primary-rgb: 5 150 105;
-  --accent-rgb: 217 119 6;
+  --subtle-rgb: 238 244 242;
+  --border-rgb: 220 231 227;
+  --text-rgb: 10 20 18;
+  --text-muted-rgb: 95 114 109;
+  --primary-rgb: 15 159 122;
+  --accent-rgb: 183 121 31;
   --danger-rgb: 220 38 38;
-  --success-rgb: 5 150 105;
+  --success-rgb: 15 159 122;
 }
 
 /* Prevent FOUC (Flash of Unstyled Content) */

@@ -1,12 +1,12 @@
 // Landing hero — headline, CTAs, trust chips, live stats, phone mockup.
 import { Link } from "react-router-dom";
-import { ArrowRight, CheckCircle2, WifiOff, Gift, TrendingUp, Users, BookOpen, Globe } from "lucide-react";
+import { ArrowRight, TrendingUp, Users, BookOpen } from "lucide-react";
 import LandingMedia from "./LandingMedia";
 import DeviceShowcase from "./DeviceShowcase";
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 import { useEffect, useState } from "react";
-import { TRUST_BADGES, STATS_DISPLAY } from "../../lib/stats";
+import { TRUST_BADGES } from "../../lib/stats";
 
 const CHIPS = TRUST_BADGES;
 
@@ -48,7 +48,7 @@ export default function LandingHero({ user }) {
               background: "rgb(var(--primary-rgb) / 0.1)", border: "1px solid rgb(var(--primary-rgb) / 0.25)",
               marginBottom: 24, fontSize: 13, fontWeight: 600, color: "var(--primary)",
             }}>
-              <span style={{ background: "var(--landing-gradient)", color: "#fff", padding: "2px 10px", borderRadius: 100, fontSize: 11, fontWeight: 700 }}>NEW</span>
+              <span style={{ background: "var(--landing-gradient)", color: "#04120D", padding: "2px 10px", borderRadius: 100, fontSize: 11, fontWeight: 800 }}>NEW</span>
               AI-Powered Exam Prep for West African Students
             </div>
             <h1 className="lp-animate-in lp-delay-1" style={{ fontSize: "clamp(2rem, 6vw, 3.25rem)", fontWeight: 900, lineHeight: 1.08, margin: "0 0 20px", letterSpacing: "-0.03em" }}>
@@ -71,7 +71,7 @@ export default function LandingHero({ user }) {
               <Link to={user ? "/dashboard" : "/auth"} className="lp-btn-primary">
                 {user ? "Go to Dashboard" : "Start Free"} <ArrowRight size={18} />
               </Link>
-              <a href="#features" className="lp-btn-ghost">Learn More</a>
+              <Link to="/demo" className="lp-btn-ghost">Try a free demo</Link>
             </div>
             <div className="lp-animate-in lp-delay-4" style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
               {CHIPS.map((c) => (

@@ -1,37 +1,33 @@
-// Classroom mode — full-screen presenter for phone-free classrooms.
-// Big text, tap-to-reveal answers, works on projectors and laptops.
-// Teachers get a live attention board + engagement stats; students get
-// "raise hand" requests, polls and "I get it / I'm confused" signals.
+// Classroom mode — one shared live session per class.
 //
-// Everything is scoped to a classKey so different classes/schools never leak
-// into each other. The teacher opens /teacher/classroom?class=<classId>,
-// students open /classroom?class=<classId>. With no param we fall back to a
-// school-wide room (school_<schoolId>) so a whole school can share one board.
-import { useEffect, useState } from "react";
+// The teacher's question set, current index and reveal state live in
+// classSessions/{classId}, so every student sees the exact same question (the
+// old build generated a different random set per device). Answers are stored
+// in a teacher-only `key` subcollection and only copied into the public session
+// when the teacher reveals them.
+import { useEffect, useMemo, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import {
-  collection, query, where, onSnapshot, doc, setDoc, updateDoc,
-  increment, serverTimestamp,
-} from "firebase/firestore";
-import { db } from "../../firebaseConfig";
 import { useAuth } from "../../context/AuthContext";
 import { getUserProfile } from "../../lib/userProfile";
 import { getQuestionsFromBank } from "../../data/questions/compat";
 import { JAMB_SUBJECTS } from "../../data/subjects";
-import { useToast } from "../../components/Toast";
+import { getClass, listSchoolTeachers } from "../../lib/schools";
 import {
-  ArrowLeft, ArrowRight, Eye, EyeOff, Users, HelpCircle,
-  MessageSquare, ThumbsUp, ThumbsDown, X,
-} from "lucide-react";
+  subscribeClassSession, startClassSession, updateClassSession, revealClassAnswer,
+  subscribeClassSubmissions, subscribeClassChat, sendClassChatMessage,
+  subscribeSubmissionReactions, subscribeSubmissionComments, reactToSubmission,
+  addSubmissionComment, saveTeacherRemark, notifyUser,
+} from "../../lib/classroom";
+import { useToast } from "../../components/Toast";
+import AttemptWorkspace from "../../components/AttemptWorkspace";
+import NotepadDrawer from "../../components/NotepadDrawer";
 import StudentAttention from "../../components/StudentAttention";
-
-// Firestore Timestamps are objects, not numbers — compare via toMillis().
-function isRecentlyActive(ts, windowMs = 60000) {
-  if (!ts) return false;
-  const ms = ts.toMillis ? ts.toMillis() : (ts.seconds ? ts.seconds * 1000 : Number(ts));
-  if (!Number.isFinite(ms)) return false;
-  return Date.now() - ms < windowMs;
-}
+import TeacherTools from "../../components/TeacherTools";
+import {
+  ArrowLeft, ArrowRight, Eye, EyeOff, Users, HelpCircle, MessageSquare,
+  ThumbsUp, ThumbsDown, Heart, Play, Square, NotebookPen, Image as ImageIcon,
+  Send, Loader2, Sparkles, X,
+} from "lucide-react";
 
 export default function ClassroomMode() {
   const { user } = useAuth();
@@ -39,16 +35,21 @@ export default function ClassroomMode() {
   const location = useLocation();
 
   const [profile, setProfile] = useState(undefined);
+  const [cls, setCls] = useState(null);
+  const [session, setSession] = useState(null);
   const [subject, setSubject] = useState("Physics");
-  const [questions, setQuestions] = useState([]);
-  const [idx, setIdx] = useState(0);
-  const [revealed, setRevealed] = useState(false);
+  const [starting, setStarting] = useState(false);
   const [picked, setPicked] = useState(null);
   const [showAttention, setShowAttention] = useState(true);
-  const [attentionRequests, setAttentionRequests] = useState([]);
-  const [activePolls, setActivePolls] = useState([]);
-  const [studentResponses, setStudentResponses] = useState({});
-  const [votedPolls, setVotedPolls] = useState({});
+  const [submissions, setSubmissions] = useState([]);
+  const [teachers, setTeachers] = useState([]);
+  const [preview, setPreview] = useState(null);
+  const [attempt, setAttempt] = useState(null);
+  const [notepad, setNotepad] = useState(false);
+  const [chatOpen, setChatOpen] = useState(false);
+  const [chat, setChat] = useState([]);
+  const [chatText, setChatText] = useState("");
+  const [discussion, setDiscussion] = useState(false);
 
   useEffect(() => {
     if (!user) return;
@@ -61,329 +62,468 @@ export default function ClassroomMode() {
 
   const isTeacher = profile?.role === "teacher";
 
-  // Stable room key: explicit ?class=<id>, else school-wide, else "default".
-  let classKey = "default";
-  try {
-    const fromQuery = new URLSearchParams(location.search).get("class");
-    if (fromQuery && fromQuery.trim()) classKey = fromQuery.trim().slice(0, 80);
-    else if (profile?.schoolId) classKey = `school_${profile.schoolId}`;
-  } catch { /* ignore malformed query */ }
-
-  useEffect(() => {
-    const qs = getQuestionsFromBank({ subject, count: 30 });
-    setQuestions(qs || []);
-    setIdx(0);
-    setRevealed(false);
-    setPicked(null);
-  }, [subject]);
-
-  // Attention requests for this class (teacher only).
-  useEffect(() => {
-    if (!isTeacher || !db) return;
-    const unsub = onSnapshot(
-      query(
-        collection(db, "attentionRequests"),
-        where("classId", "==", classKey),
-        where("resolved", "==", false),
-      ),
-      (snap) => setAttentionRequests(snap.docs.map((d) => ({ id: d.id, ...d.data() }))),
-      () => setAttentionRequests([]),
-    );
-    return () => unsub();
-  }, [isTeacher, classKey]);
-
-  // Active polls for this class (everyone, so students can vote).
-  useEffect(() => {
-    if (!db) return;
-    const unsub = onSnapshot(
-      query(
-        collection(db, "classPolls"),
-        where("classId", "==", classKey),
-        where("active", "==", true),
-      ),
-      (snap) => setActivePolls(snap.docs.map((d) => ({ id: d.id, ...d.data() }))),
-      () => setActivePolls([]),
-    );
-    return () => unsub();
-  }, [classKey]);
-
-  // Student responses for this class (teacher only).
-  useEffect(() => {
-    if (!isTeacher || !db) return;
-    const unsub = onSnapshot(
-      query(collection(db, "classResponses"), where("classId", "==", classKey)),
-      (snap) => {
-        const responses = {};
-        snap.docs.forEach((d) => { const data = d.data(); responses[data.studentUid] = data; });
-        setStudentResponses(responses);
-      },
-      () => setStudentResponses({}),
-    );
-    return () => unsub();
-  }, [isTeacher, classKey]);
-
-  const q = questions[idx];
-
-  function choose(letter) {
-    setPicked(letter);
-    setRevealed(true);
-    if (user && !isTeacher) {
-      setDoc(doc(db, "classResponses", `${classKey}_${user.uid}`), {
-        studentUid: user.uid,
-        studentName: user.displayName || "Student",
-        classId: classKey,
-        questionIdx: idx,
-        answer: letter,
-        lastActive: serverTimestamp(),
-        questionsAnswered: increment(1),
-      }, { merge: true }).catch(() => {});
-    }
-  }
-
-  function next() {
-    setIdx((i) => (i + 1) % Math.max(questions.length, 1));
-    setRevealed(false);
-    setPicked(null);
-  }
-
-  function toggleUnderstood(understood) {
-    if (!user || isTeacher) return;
-    setDoc(doc(db, "classResponses", `${classKey}_${user.uid}`), {
-      studentUid: user.uid,
-      studentName: user.displayName || "Student",
-      classId: classKey,
-      understood,
-      lastActive: serverTimestamp(),
-    }, { merge: true })
-      .then(() => toast({ message: understood ? "Marked as understood" : "Flagged as confused", type: "info" }))
-      .catch(() => {});
-  }
-
-  async function votePoll(poll, optionIdx) {
-    if (!user || isTeacher) return;
-    if (votedPolls[poll.id]) { toast({ message: "You already voted", type: "info" }); return; }
-    if (optionIdx >= poll.options.length) return;
-    setVotedPolls((p) => ({ ...p, [poll.id]: true }));
+  const classId = useMemo(() => {
     try {
-      // Only the student's own vote doc is written; the teacher derives the
-      // tallies from these votes (clients can't inflate a poll).
-      await setDoc(doc(db, "classPollVotes", `${poll.id}_${user.uid}`), {
-        pollId: poll.id,
-        classId: classKey,
-        studentUid: user.uid,
-        optionIdx,
-        createdAt: serverTimestamp(),
+      const fromQuery = new URLSearchParams(location.search).get("class");
+      if (fromQuery?.trim()) return fromQuery.trim().slice(0, 80);
+    } catch { /* ignore */ }
+    return profile?.classIds?.[0] || null;
+  }, [location.search, profile?.classIds]);
+
+  useEffect(() => {
+    if (!classId) { setCls(null); return; }
+    getClass(classId).then(setCls).catch(() => setCls(null));
+  }, [classId]);
+
+  useEffect(() => {
+    if (!classId) return;
+    return subscribeClassSession(classId, (s) => {
+      setSession(s);
+      if (s?.subject) setSubject(s.subject);
+    });
+  }, [classId]);
+
+  useEffect(() => {
+    if (!classId) { setSubmissions([]); return; }
+    return subscribeClassSubmissions(classId, setSubmissions);
+  }, [classId]);
+
+  useEffect(() => {
+    if (!isTeacher || !profile?.schoolId) { setTeachers([]); return; }
+    listSchoolTeachers(profile.schoolId).then(setTeachers).catch(() => setTeachers([]));
+  }, [isTeacher, profile?.schoolId]);
+
+  useEffect(() => {
+    if (!chatOpen || !classId) { setChat([]); return; }
+    return subscribeClassChat(classId, setChat);
+  }, [chatOpen, classId]);
+
+  useEffect(() => { setPicked(null); }, [session?.currentIdx, session?.revealed]);
+
+  async function start() {
+    if (!classId || !user) return;
+    setStarting(true);
+    try {
+      const questions = getQuestionsFromBank({ subject, count: 30 });
+      if (!questions?.length) throw new Error("No questions for that subject yet.");
+      await startClassSession({
+        classId,
+        teacherUid: user.uid,
+        teacherName: profile?.name || user.displayName || "Teacher",
+        subject,
+        questions,
       });
-      toast({ message: "Vote submitted", type: "success" });
-    } catch {
-      setVotedPolls((p) => ({ ...p, [poll.id]: false }));
-      toast({ message: "Could not submit vote", type: "error" });
+      toast({ message: "Live session started ✓", type: "success" });
+    } catch (e) {
+      toast({ message: e.message || "Could not start the session", type: "error" });
+    } finally {
+      setStarting(false);
     }
   }
 
-  function resolveAttention(requestId) {
-    updateDoc(doc(db, "attentionRequests", requestId), { resolved: true, resolvedAt: serverTimestamp() })
-      .then(() => {
-        setAttentionRequests((prev) => prev.filter((r) => r.id !== requestId));
-        toast({ message: "Attention request resolved", type: "success" });
-      })
-      .catch(() => toast({ message: "Could not resolve request", type: "error" }));
+  async function next() {
+    if (!session) return;
+    const nextIdx = (Number(session.currentIdx || 0) + 1) % Math.max(session.questions?.length || 1, 1);
+    await updateClassSession(classId, { currentIdx: nextIdx, revealed: false, revealedAnswer: null, revealedExplanation: "" });
   }
 
-  const responses = Object.values(studentResponses || {});
-  const understoodCount = responses.filter((r) => r.understood === true).length;
-  const confusedCount = responses.filter((r) => r.understood === false).length;
-  const activeCount = responses.filter((r) => isRecentlyActive(r.lastActive)).length;
+  async function reveal() {
+    if (!session) return;
+    const q = session.questions?.[session.currentIdx];
+    if (!q) return;
+    try {
+      if (session.revealed) await updateClassSession(classId, { revealed: false, revealedAnswer: null, revealedExplanation: "" });
+      else await revealClassAnswer(classId, q.id);
+    } catch (e) {
+      toast({ message: e.message || "Could not reveal the answer", type: "error" });
+    }
+  }
+
+  async function endSession() {
+    if (!session) return;
+    if (!window.confirm("End the live session for everyone?")) return;
+    await updateClassSession(classId, { active: false });
+  }
+
+  async function sendChat() {
+    const text = chatText.trim();
+    if (!text || !classId || !user) return;
+    setChatText("");
+    try {
+      await sendClassChatMessage(classId, {
+        fromUid: user.uid,
+        fromName: profile?.name || user.displayName || "User",
+        text,
+      });
+    } catch (e) {
+      toast({ message: e.message || "Message failed", type: "error" });
+    }
+  }
+
+  async function discussCurrent() {
+    const q = session?.questions?.[session.currentIdx];
+    if (!q) return;
+    setDiscussion(true);
+  }
+
+  const q = session?.questions?.[session?.currentIdx];
+  const revealed = Boolean(session?.revealed);
+  const answer = session?.revealedAnswer || null;
+
+  if (profile === undefined) {
+    return <div className="page-content text-text-muted">Loading classroom…</div>;
+  }
+
+  if (!classId) {
+    return (
+      <div className="page-content max-w-xl mx-auto text-center space-y-4">
+        <h1 className="text-2xl font-black text-text">Classroom mode</h1>
+        <p className="text-text-muted">Open this from your class or join a class with a code first.</p>
+        <Link to={isTeacher ? "/teacher" : "/join"} className="btn-primary inline-flex px-6">{isTeacher ? "Teacher dashboard" : "Join a class"}</Link>
+      </div>
+    );
+  }
 
   return (
-    <div style={{ minHeight: "100vh", background: "#0a0a0f", color: "#fff", padding: "24px clamp(16px, 5vw, 80px)", fontFamily: "'Inter', system-ui, sans-serif" }}>
-      {/* Top Bar */}
-      <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24, flexWrap: "wrap" }}>
-        <Link to={isTeacher ? "/teacher" : "/dashboard"} style={{ display: "inline-flex", alignItems: "center", gap: 6, color: "var(--text-muted)", fontSize: 15, fontWeight: 600 }}>
-          <ArrowLeft size={18} /> Exit
+    <div style={{ minHeight: "100vh", background: "var(--bg)", color: "var(--text)", padding: "18px clamp(12px, 4vw, 56px) 90px", fontFamily: "'Inter', system-ui, sans-serif" }}>
+      <div className="flex items-center gap-2 mb-5 flex-wrap">
+        <Link to={isTeacher ? "/teacher" : "/dashboard"} className="inline-flex items-center gap-1.5 text-text-muted text-sm font-semibold">
+          <ArrowLeft size={17} /> Exit
         </Link>
-        <select value={subject} onChange={(e) => setSubject(e.target.value)}
-          style={{ background: "var(--bg-3)", border: "1px solid #333", borderRadius: 10, color: "#fff", padding: "10px 16px", fontSize: 16, fontWeight: 700, outline: "none", fontFamily: "inherit" }}>
-          {JAMB_SUBJECTS.map((s) => <option key={s.id} value={s.name}>{s.name}</option>)}
-        </select>
+        <div className="min-w-0">
+          <div className="text-sm font-black text-text truncate">{cls?.name || "Class"} <span className="text-text-muted font-medium">· {cls?.subject || subject}</span></div>
+          <div className="text-[11px] text-text-muted">Live classroom · {isTeacher ? "teacher controls" : "following your teacher"}</div>
+        </div>
 
-        <div style={{ display: "flex", gap: 12, marginLeft: "auto", alignItems: "center" }}>
+        <div className="ml-auto flex items-center gap-1.5 flex-wrap">
+          <button onClick={() => setNotepad(true)} className="btn-secondary text-xs px-3 py-1.5"><NotebookPen size={14} /> Notepad</button>
+          <button onClick={() => setChatOpen(true)} className="btn-secondary text-xs px-3 py-1.5"><MessageSquare size={14} /> Class chat</button>
           {isTeacher && (
-            <button onClick={() => setShowAttention(!showAttention)}
-              style={{ padding: "8px 16px", borderRadius: 8, background: attentionRequests.length > 0 ? "#ef4444" : "var(--primary)", border: "none", color: "#fff", fontWeight: 700, fontSize: 14, cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 6 }}>
-              <HelpCircle size={16} /> {attentionRequests.length > 0 ? `${attentionRequests.length} needs help` : "Attention Panel"}
+            <button onClick={() => setShowAttention((v) => !v)} className="btn-secondary text-xs px-3 py-1.5">
+              <HelpCircle size={14} /> Help
             </button>
           )}
-
-          {!isTeacher && activePolls.length > 0 && (
-            <span style={{ padding: "8px 16px", borderRadius: 8, background: "#f59e0b", color: "#000", fontWeight: 700, fontSize: 14, display: "inline-flex", alignItems: "center", gap: 6 }}>
-              <MessageSquare size={16} /> {activePolls.length} Live Poll{activePolls.length > 1 ? "s" : ""}
-            </span>
-          )}
-
-          <span style={{ color: "var(--text-muted)", fontSize: 15, fontWeight: 700 }}>
-            {questions.length > 0 ? `Question ${idx + 1} / ${questions.length}` : "Loading…"}
+          <span className="text-xs font-bold text-text-muted">
+            {session?.questions?.length ? `${Number(session.currentIdx || 0) + 1} / ${session.questions.length}` : "No session"}
           </span>
         </div>
       </div>
 
-      {/* Attention Panel (Teacher) */}
-      {isTeacher && showAttention && attentionRequests.length > 0 && (
-        <div style={{ position: "fixed", top: 100, right: 24, zIndex: 50, width: 380, maxHeight: "50vh", overflowY: "auto" }}>
-          <div className="glass-card p-4 space-y-3" style={{ boxShadow: "0 20px 60px rgba(0,0,0,0.5)" }}>
-            <div className="flex items-center justify-between mb-2">
-              <h3 className="font-bold text-text flex items-center gap-2"><HelpCircle size={18} className="text-red-500" /> Students Need Help ({attentionRequests.length})</h3>
-              <button onClick={() => setShowAttention(false)} style={{ background: "none", border: "none", color: "var(--text-muted)", cursor: "pointer" }}><X size={18} /></button>
-            </div>
-            {attentionRequests.map((req) => (
-              <div key={req.id} className="p-3 bg-red-500/10 border border-red-500/20 rounded-xl space-y-2">
-                <div className="flex items-center justify-between gap-2">
-                  <div className="flex items-center gap-2 min-w-0">
-                    <div className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center shrink-0">
-                      <HelpCircle size={16} className="text-red-500" />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="font-semibold text-text text-sm truncate">{req.studentName}</p>
-                      <p className="text-xs text-text-muted truncate">{req.message}</p>
-                    </div>
-                  </div>
-                  <button onClick={() => resolveAttention(req.id)} className="btn-primary px-3 py-1 text-xs shrink-0">Resolve</button>
-                </div>
-              </div>
-            ))}
-          </div>
+      {!session && (
+        <div className="max-w-2xl mx-auto glass-card p-6 text-center space-y-4 mt-8">
+          <Users size={38} className="mx-auto text-primary" />
+          <h1 className="text-xl font-black text-text">{isTeacher ? "Start a live session" : "Waiting for your teacher"}</h1>
+          <p className="text-sm text-text-muted">
+            {isTeacher
+              ? "Pick a subject, then every student in this class sees the same question and your reveal controls."
+              : "Your teacher hasn't started yet. Keep this page open — it updates automatically."}
+          </p>
+          {isTeacher && (
+            <>
+              <select value={subject} onChange={(e) => setSubject(e.target.value)} className="input-field max-w-xs mx-auto">
+                {JAMB_SUBJECTS.map((s) => <option key={s.id} value={s.name}>{s.name}</option>)}
+              </select>
+              <button onClick={start} disabled={starting} className="btn-primary px-6">
+                {starting ? <Loader2 size={16} className="animate-spin" /> : <Play size={16} />} Start session
+              </button>
+            </>
+          )}
         </div>
       )}
 
-      {/* Live Polls (Student) */}
-      {!isTeacher && activePolls.length > 0 && (
-        <div style={{ position: "fixed", top: 100, right: 24, zIndex: 50, width: 360, maxHeight: "60vh", overflowY: "auto" }}>
-          <div className="glass-card p-4 space-y-4" style={{ boxShadow: "0 20px 60px rgba(0,0,0,0.5)" }}>
-            <div className="flex items-center justify-between mb-2">
-              <h3 className="font-bold text-text flex items-center gap-2"><MessageSquare size={18} className="text-amber-500" /> Live Polls</h3>
-            </div>
-            {activePolls.map((poll) => (
-              <div key={poll.id} className="p-3 bg-amber-500/10 border border-amber-500/20 rounded-xl space-y-3">
-                <p className="font-semibold text-text text-sm">{poll.question}</p>
-                <div className="space-y-2">
-                  {(poll.options || []).map((opt, i) => (
-                    <button key={i} onClick={() => votePoll(poll, i)}
-                      disabled={!!votedPolls[poll.id]}
-                      style={{ width: "100%", textAlign: "left", padding: "12px", borderRadius: 10, background: "var(--bg-3)", border: "1px solid var(--border)", color: "#fff", fontSize: 14, cursor: votedPolls[poll.id] ? "default" : "pointer", opacity: votedPolls[poll.id] ? 0.6 : 1 }}>
-                      {opt}
-                    </button>
-                  ))}
-                </div>
-                {votedPolls[poll.id] && <p className="text-xs text-green-400 text-center">✓ Vote recorded</p>}
-              </div>
-            ))}
-          </div>
+      {session && !session.active && (
+        <div className="max-w-2xl mx-auto glass-card p-4 mb-4 text-sm text-text-muted">
+          This session has ended. {isTeacher ? "Start a new one when you're ready." : "Ask your teacher to start a new session."}
         </div>
       )}
 
-      {/* Student Attention Component */}
-      {!isTeacher && profile !== undefined && (
-        <StudentAttention classId={classKey} enabled />
-      )}
-
-      {/* Main Question Area */}
-      {!q ? (
-        <p style={{ color: "var(--text-muted)", fontSize: 18, textAlign: "center", marginTop: 60 }}>No questions for this subject yet.</p>
-      ) : (
-        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-          <div style={{ display: "flex", alignItems: "flex-start", gap: 16, marginBottom: 24, flexWrap: "wrap" }}>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontSize: "clamp(20px, 3vw, 32px)", fontWeight: 800, lineHeight: 1.5, marginBottom: 8 }}>
-                {q.question}
+      {session && q && (
+        <div className="max-w-5xl mx-auto space-y-4">
+          <div className="rounded-3xl border border-border p-5 sm:p-7" style={{ background: "var(--bg-2)" }}>
+            <div className="flex items-start gap-3 flex-wrap mb-4">
+              <div className="flex-1 min-w-[240px]">
+                <p className="text-lg sm:text-2xl font-bold leading-relaxed text-text">{q.question}</p>
+                <p className="text-xs text-primary font-bold mt-2">{q.topic} · {Array.isArray(q.exam) ? q.exam.join(", ") : q.exam} {q.year || ""}</p>
               </div>
-              <div style={{ color: "var(--primary)", fontSize: 15, fontWeight: 700, marginBottom: 4 }}>{q.topic} · {q.exam} {q.year}</div>
-              <div style={{ fontSize: 13, color: "var(--text-muted)" }}>Question {idx + 1} of {questions.length}</div>
+              <button onClick={() => setAttempt(q)} className="btn-primary text-sm px-4 py-2"><Sparkles size={15} /> Attempt on whiteboard</button>
             </div>
 
-            {!isTeacher && (
-              <div style={{ display: "flex", gap: 8 }}>
-                <button onClick={() => toggleUnderstood(true)}
-                  style={{ padding: "10px 16px", borderRadius: 10, background: "rgba(34,197,94,0.2)", border: "2px solid #22c55e", color: "#22c55e", fontWeight: 700, fontSize: 14, cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 6 }}>
-                  <ThumbsUp size={16} /> I get it
-                </button>
-                <button onClick={() => toggleUnderstood(false)}
-                  style={{ padding: "10px 16px", borderRadius: 10, background: "rgba(239,68,68,0.2)", border: "2px solid #ef4444", color: "#ef4444", fontWeight: 700, fontSize: 14, cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 6 }}>
-                  <ThumbsDown size={16} /> Confused
-                </button>
+            <div className="grid gap-2.5">
+              {Object.entries(q.options || {}).map(([letter, text]) => {
+                const isAnswer = revealed && letter === answer;
+                const isPicked = picked === letter;
+                return (
+                  <button
+                    key={letter}
+                    onClick={() => setPicked(letter)}
+                    className="flex items-center gap-3 text-left rounded-2xl px-4 py-3.5 border transition-all"
+                    style={{
+                      borderColor: isAnswer ? "#22c55e" : isPicked ? "var(--primary)" : "var(--border)",
+                      background: isAnswer ? "rgba(34,197,94,.14)" : isPicked ? "rgb(var(--primary-rgb) / .14)" : "var(--bg-3)",
+                      color: "var(--text)",
+                    }}
+                  >
+                    <span className="w-9 h-9 rounded-xl flex items-center justify-center font-black shrink-0" style={{ background: isAnswer ? "#22c55e" : "var(--primary)", color: "#04120c" }}>{letter}</span>
+                    <span className="text-sm sm:text-base font-semibold">{text}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {revealed && (
+              <div className="mt-4 rounded-2xl border-l-4 border-primary bg-primary/10 p-4 text-sm leading-relaxed text-text">
+                <strong>Answer: {answer}. </strong>{session.revealedExplanation || q.explanation || "Review this topic in your textbook."}
               </div>
             )}
-          </div>
 
-          <div style={{ display: "grid", gap: 14 }}>
-            {Object.entries(q.options || {}).map(([letter, text]) => {
-              const isAnswer = letter === (q.correctAnswer || q.answer);
-              const isPicked = picked === letter;
-              let bg = "#141419";
-              let border = "2px solid var(--border)";
-              if (revealed && isAnswer) { bg = "rgba(34,197,94,0.18)"; border = "2px solid #22c55e"; }
-              else if (revealed && isPicked && !isAnswer) { bg = "rgba(239,68,68,0.15)"; border = "2px solid #ef4444"; }
-              else if (isPicked) { bg = "rgb(var(--primary-rgb) / 0.2)"; border = "2px solid var(--primary)"; }
-              return (
-                <button key={letter} onClick={() => choose(letter)}
-                  style={{
-                    display: "flex", alignItems: "center", gap: 18, textAlign: "left",
-                    background: bg, border, borderRadius: 16, padding: "20px 24px",
-                    color: "#fff", cursor: "pointer", fontFamily: "inherit",
-                    fontSize: "clamp(17px, 2.4vw, 24px)", fontWeight: 600, lineHeight: 1.5,
-                    transition: "all 0.2s ease",
-                  }}>
-                  <span style={{
-                    width: 52, height: 52, borderRadius: 14, flexShrink: 0,
-                    background: revealed && isAnswer ? "#22c55e" : "var(--primary)",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    fontWeight: 900, fontSize: 24,
-                  }}>{letter}</span>
-                  {text}
-                </button>
-              );
-            })}
-          </div>
-
-          {revealed && (
-            <div style={{ marginTop: 24, padding: 24, borderRadius: 16, background: "rgb(var(--primary-rgb) / 0.12)", borderLeft: "4px solid var(--primary)", fontSize: "clamp(15px, 2vw, 19px)", lineHeight: 1.7 }}>
-              <strong>Explanation: </strong>{q.explanation || "Review this topic in your textbook."}
+            <div className="flex flex-wrap gap-2 mt-5">
+              {isTeacher ? (
+                <>
+                  <button onClick={reveal} className="btn-secondary text-sm"><Eye size={15} /> {revealed ? "Hide answer" : "Reveal answer"}</button>
+                  <button onClick={next} className="btn-primary text-sm">Next question <ArrowRight size={15} /></button>
+                  <button onClick={endSession} className="btn-secondary text-sm text-red-400"><Square size={14} /> End</button>
+                </>
+              ) : (
+                <>
+                  <button onClick={() => setPicked(null)} className="btn-secondary text-sm">Clear pick</button>
+                  <button onClick={() => setDiscussion(true)} className="btn-secondary text-sm"><MessageSquare size={15} /> Discuss</button>
+                </>
+              )}
             </div>
-          )}
-
-          <div style={{ display: "flex", gap: 12, marginTop: 28 }}>
-            <button onClick={() => setRevealed((r) => !r)}
-              style={{ padding: "14px 28px", borderRadius: 12, background: "transparent", border: "2px solid var(--primary)", color: "#fff", fontWeight: 700, fontSize: 16, cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 8, fontFamily: "inherit" }}>
-              {revealed ? <><EyeOff size={18} /> Hide answer</> : <><Eye size={18} /> Reveal answer</>}
-            </button>
-            <button onClick={next}
-              style={{ padding: "14px 28px", borderRadius: 12, background: "var(--primary)", border: "none", color: "#fff", fontWeight: 700, fontSize: 16, cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 8, fontFamily: "inherit" }}>
-              Next question <ArrowRight size={18} />
-            </button>
           </div>
+
+          <section>
+            <div className="flex items-center justify-between mb-2">
+              <h2 className="font-black text-text">Class working</h2>
+              <span className="text-xs text-text-muted">{submissions.length} submission{submissions.length === 1 ? "" : "s"}</span>
+            </div>
+            {submissions.length === 0 ? (
+              <p className="text-sm text-text-muted">No one has submitted work yet. Use “Attempt on whiteboard”.</p>
+            ) : (
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {submissions.map((s) => (
+                  <SubmissionCard
+                    key={s.id}
+                    submission={s}
+                    isTeacher={isTeacher}
+                    currentUser={user}
+                    profile={profile}
+                    onOpen={() => setPreview(s)}
+                  />
+                ))}
+              </div>
+            )}
+          </section>
 
           {isTeacher && (
-            <div style={{ marginTop: 32, padding: 20, borderRadius: 16, background: "var(--bg-3)", border: "1px solid var(--border)" }}>
-              <h4 className="font-bold text-text mb-4 flex items-center gap-2"><Users size={18} className="text-primary" /> Live Class Engagement</h4>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: 16 }}>
-                <div className="text-center p-4 bg-primary/10 rounded-xl">
-                  <div className="text-3xl font-black text-primary">{understoodCount}</div>
-                  <div className="text-sm text-text-muted">Understood</div>
+            <TeacherTools schoolId={profile?.schoolId} roster={[]} classId={classId} />
+          )}
+          {!isTeacher && profile !== undefined && <StudentAttention classId={classId} enabled />}
+        </div>
+      )}
+
+      {isTeacher && showAttention && (
+        <div className="fixed top-20 right-4 z-40">
+          <div className="glass-card p-3 text-xs text-text-muted">Student help signals appear here and in the teacher dashboard.</div>
+        </div>
+      )}
+
+      <AttemptWorkspace
+        open={Boolean(attempt)}
+        onClose={() => setAttempt(null)}
+        question={attempt}
+        classId={classId}
+        sessionId={session?.id || "live"}
+        teacherUid={cls?.teacherId || session?.teacherUid}
+        teacherName={cls?.teacherName || session?.teacherName}
+        teachers={teachers}
+        studentName={profile?.name || user?.displayName || "Student"}
+        onSubmit={() => setAttempt(null)}
+      />
+
+      <AttemptWorkspace
+        open={Boolean(preview)}
+        onClose={() => setPreview(null)}
+        question={session?.questions?.find((x) => String(x.id) === String(preview?.questionId))}
+        classId={classId}
+        sessionId={preview?.sessionId}
+        initialStrokes={preview?.strokes || []}
+        readOnly
+        remarks={preview?.teacherRemarks || ""}
+      />
+
+      <NotepadDrawer open={notepad} onClose={() => setNotepad(false)} context={q?.question || ""} />
+
+      {chatOpen && (
+        <div className="fixed inset-0 z-[75]">
+          <button className="absolute inset-0 bg-black/40" onClick={() => setChatOpen(false)} aria-label="Close chat" />
+          <aside className="absolute right-0 top-0 h-full w-full sm:w-[390px] flex flex-col border-l border-border" style={{ background: "var(--bg-2)" }}>
+            <header className="flex items-center justify-between p-3 border-b border-border">
+              <span className="font-black text-text flex items-center gap-2"><MessageSquare size={16} className="text-primary" /> Class chat</span>
+              <button onClick={() => setChatOpen(false)} className="p-1.5 text-text-muted"><X size={18} /></button>
+            </header>
+            <div className="flex-1 overflow-y-auto p-3 space-y-2">
+              {chat.length === 0 && <p className="text-sm text-text-muted">Ask a question or help a classmate. Be kind.</p>}
+              {chat.map((m) => (
+                <div key={m.id} className={`rounded-2xl p-2.5 text-sm ${m.fromUid === user?.uid ? "bg-primary/10 ml-8" : "bg-bg-3 mr-8"}`}>
+                  <div className="text-[10px] font-bold text-text-muted mb-0.5">{m.fromName || "User"}</div>
+                  <div className="text-text whitespace-pre-wrap">{m.text}</div>
                 </div>
-                <div className="text-center p-4 bg-red-500/10 rounded-xl">
-                  <div className="text-3xl font-black text-red-500">{confusedCount}</div>
-                  <div className="text-sm text-text-muted">Confused</div>
-                </div>
-                <div className="text-center p-4 bg-amber-500/10 rounded-xl">
-                  <div className="text-3xl font-black text-amber-500">{attentionRequests.length}</div>
-                  <div className="text-sm text-text-muted">Need Help</div>
-                </div>
-                <div className="text-center p-4 bg-green-500/10 rounded-xl">
-                  <div className="text-3xl font-black text-green-500">{activeCount}</div>
-                  <div className="text-sm text-text-muted">Active Now</div>
-                </div>
-              </div>
+              ))}
+            </div>
+            <div className="p-3 border-t border-border flex gap-2">
+              <input value={chatText} onChange={(e) => setChatText(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") sendChat(); }} placeholder="Message the class…" className="input-field text-sm" />
+              <button onClick={sendChat} className="btn-primary px-3"><Send size={15} /></button>
+            </div>
+          </aside>
+        </div>
+      )}
+
+      {discussion && (
+        <div className="fixed inset-0 z-[76] flex items-center justify-center p-4">
+          <button className="absolute inset-0 bg-black/50" onClick={() => setDiscussion(false)} aria-label="Close discussion" />
+          <div className="relative glass-card w-full max-w-lg p-5 space-y-3">
+            <div className="flex items-center justify-between">
+              <h3 className="font-black text-text">Discuss this question</h3>
+              <button onClick={() => setDiscussion(false)} className="text-text-muted"><X size={18} /></button>
+            </div>
+            <p className="text-sm text-text-muted">{q?.question}</p>
+            <div className="text-sm text-text">Use class chat to compare approaches. Your teacher can reveal the official answer when ready.</div>
+            <button onClick={() => { setDiscussion(false); setChatOpen(true); }} className="btn-primary w-full"><MessageSquare size={15} /> Open class chat</button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function SubmissionCard({ submission, isTeacher, currentUser, profile, onOpen }) {
+  const { toast } = useToast();
+  const [expanded, setExpanded] = useState(false);
+  const [reactions, setReactions] = useState([]);
+  const [comments, setComments] = useState([]);
+  const [comment, setComment] = useState("");
+  const [remark, setRemark] = useState(submission.teacherRemarks || "");
+  const [saving, setSaving] = useState(false);
+
+  useEffect(() => {
+    if (!expanded) return;
+    const a = subscribeSubmissionReactions(submission.id, setReactions);
+    const b = subscribeSubmissionComments(submission.id, setComments);
+    return () => { a?.(); b?.(); };
+  }, [expanded, submission.id]);
+
+  const counts = useMemo(() => {
+    const c = { heart: 0, better: 0, down: 0 };
+    reactions.forEach((r) => { if (c[r.type] != null) c[r.type] += 1; });
+    return c;
+  }, [reactions]);
+
+  async function react(type) {
+    if (!currentUser) return;
+    try {
+      await reactToSubmission({ submissionId: submission.id, classId: submission.classId, uid: currentUser.uid, type });
+      if (submission.studentUid !== currentUser.uid) {
+        await notifyUser(submission.studentUid, {
+          type: "reaction",
+          title: `${profile?.name || currentUser.displayName || "Someone"} reacted to your work`,
+          body: type === "heart" ? "❤️ Nice work" : type === "better" ? "You can do better" : "Needs another look",
+          link: "/classroom",
+          actorName: profile?.name || currentUser.displayName,
+        });
+      }
+    } catch (e) {
+      toast({ message: e.message || "Reaction failed", type: "error" });
+    }
+  }
+
+  async function addComment() {
+    const text = comment.trim();
+    if (!text || !currentUser) return;
+    setComment("");
+    try {
+      await addSubmissionComment({
+        submissionId: submission.id, classId: submission.classId,
+        uid: currentUser.uid, name: profile?.name || currentUser.displayName || "Student", text,
+      });
+      if (submission.studentUid !== currentUser.uid) {
+        await notifyUser(submission.studentUid, {
+          type: "comment", title: "New comment on your work", body: text.slice(0, 120),
+          link: "/classroom", actorName: profile?.name || currentUser.displayName,
+        });
+      }
+    } catch (e) {
+      toast({ message: e.message || "Comment failed", type: "error" });
+    }
+  }
+
+  async function saveRemark() {
+    if (!remark.trim()) return;
+    setSaving(true);
+    try {
+      await saveTeacherRemark(submission.id, {
+        teacherUid: currentUser.uid,
+        teacherName: profile?.name || currentUser.displayName || "Teacher",
+        remark,
+      });
+      await notifyUser(submission.studentUid, {
+        type: "review_remark", title: "Your teacher left a remark",
+        body: remark.slice(0, 120), link: "/classroom",
+        actorName: profile?.name || currentUser.displayName,
+      });
+      toast({ message: "Remark saved ✓", type: "success" });
+    } catch (e) {
+      toast({ message: e.message || "Could not save remark", type: "error" });
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  return (
+    <div className="rounded-2xl border border-border p-3" style={{ background: "var(--bg-2)" }}>
+      <div className="flex items-center gap-2">
+        <div className="w-8 h-8 rounded-full bg-primary/15 text-primary flex items-center justify-center text-xs font-black">
+          {(submission.studentName || "S").slice(0, 1).toUpperCase()}
+        </div>
+        <div className="min-w-0 flex-1">
+          <p className="text-sm font-bold text-text truncate">{submission.studentName || "Student"}</p>
+          <p className="text-[10px] text-text-muted">{submission.status === "reviewed" ? "Reviewed" : submission.status === "submitted" ? "Submitted" : "Draft"}</p>
+        </div>
+        <button onClick={onOpen} className="btn-secondary text-xs px-2.5 py-1.5"><ImageIcon size={13} /> View</button>
+      </div>
+
+      {submission.thumbnail ? (
+        <button onClick={onOpen} className="mt-2 block w-full rounded-xl overflow-hidden border border-border">
+          <img src={submission.thumbnail} alt={`${submission.studentName}'s working`} className="w-full h-auto" loading="lazy" />
+        </button>
+      ) : null}
+
+      <div className="flex items-center gap-1.5 mt-2">
+        <button onClick={() => react("heart")} className="px-2 py-1 rounded-lg bg-bg-3 text-xs text-text"><Heart size={13} /> {counts.heart || ""}</button>
+        <button onClick={() => react("better")} className="px-2 py-1 rounded-lg bg-bg-3 text-xs text-text"><ThumbsUp size={13} /> {counts.better || ""}</button>
+        <button onClick={() => react("down")} className="px-2 py-1 rounded-lg bg-bg-3 text-xs text-text"><ThumbsDown size={13} /> {counts.down || ""}</button>
+        <button onClick={() => setExpanded((v) => !v)} className="ml-auto text-xs text-primary font-bold">{expanded ? "Hide" : "Comments"}</button>
+      </div>
+
+      {expanded && (
+        <div className="mt-2 space-y-2">
+          {submission.teacherRemarks && <p className="text-xs rounded-lg bg-accent/10 border border-accent/20 p-2 text-text"><strong>Remark:</strong> {submission.teacherRemarks}</p>}
+          {isTeacher && (
+            <div className="flex gap-1.5">
+              <input value={remark} onChange={(e) => setRemark(e.target.value)} placeholder="Add a remark…" className="input-field text-xs py-1.5" />
+              <button onClick={saveRemark} disabled={saving} className="btn-primary text-xs px-2.5">{saving ? "…" : "Save"}</button>
             </div>
           )}
+          <div className="space-y-1.5 max-h-40 overflow-y-auto">
+            {comments.map((c) => (
+              <div key={c.id} className="text-xs text-text"><strong className="text-text-muted">{c.name}:</strong> {c.text}</div>
+            ))}
+            {comments.length === 0 && <p className="text-xs text-text-muted">No comments yet.</p>}
+          </div>
+          <div className="flex gap-1.5">
+            <input value={comment} onChange={(e) => setComment(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") addComment(); }} placeholder="Comment…" className="input-field text-xs py-1.5" />
+            <button onClick={addComment} className="btn-secondary text-xs px-2.5"><Send size={12} /></button>
+          </div>
         </div>
       )}
     </div>

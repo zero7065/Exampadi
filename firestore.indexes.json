@@ -57,6 +57,14 @@
       ]
     },
     {
+      "collectionGroup": "teacherAssignments",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "classId", "order": "ASCENDING" },
+        { "fieldPath": "status", "order": "ASCENDING" }
+      ]
+    },
+    {
       "collectionGroup": "teacherAnnouncements",
       "queryScope": "COLLECTION",
       "fields": [

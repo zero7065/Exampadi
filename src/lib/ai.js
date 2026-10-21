@@ -606,7 +606,7 @@ export const GUIDE_ROUTES = [
   { path: "/study-partners", label: "Friend Chat", keywords: ["chat", "message friend", "talk to partner", "discuss problem"] },
   { path: "/room", label: "Study Room", keywords: ["study room", "room code", "live room", "group practice", "classroom live", "study together live", "share room"] },
   { path: "/study-partners", label: "Study Partners", keywords: ["partner", "friend", "together", "share test", "invite"] },
-  { path: "/assignment", label: "Assignments", keywords: ["assignment", "homework", "task"] },
+  { path: "/assignments", label: "Assignments", keywords: ["assignment", "homework", "task"] },
   { path: "/notepad", label: "Notepad", keywords: ["note", "write", "formula"] },
   { path: "/settings", label: "Settings", keywords: ["setting", "subject", "change subject", "theme", "dark", "light", "notification", "reminder", "language"] },
   { path: "/profile", label: "Profile", keywords: ["profile", "avatar", "photo", "name", "account", "delete"] },
