@@ -182,7 +182,7 @@ export async function createClassInvite({ classId, schoolId, createdBy, teacherN
   return code;
 }
 
-export async function acceptClassInvite(code, _uid) {
+export async function acceptClassInvite(code) {
   needDb();
   const clean = String(code || "").trim().toUpperCase();
   return apiPost("/api/class-invite", { code: clean, action: "join" });

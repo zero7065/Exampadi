@@ -40,7 +40,7 @@ export default function JoinClass() {
     if (!user) { navigate("/auth", { replace: true }); return; }
     setBusy(true);
     try {
-      await acceptClassInvite(clean, user.uid);
+      await acceptClassInvite(clean);
       toast({ message: "Welcome to your class! \uD83C\uDF93", type: "success" });
       navigate("/dashboard", { replace: true });
     } catch (e) {

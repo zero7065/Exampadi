@@ -13,11 +13,10 @@ import { collection, query, where, getDocs, limit } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 import AvatarDisplay from "../../components/Avatar/AvatarDisplay";
 import {
-  Users, Plus, FileText, MonitorPlay, ClipboardList, X, Send, Trophy, Sparkles, Megaphone, BookOpenCheck, Inbox,
+  Users, Plus, FileText, MonitorPlay, ClipboardList, X, Send, Trophy, BookOpenCheck, Inbox,
 } from "lucide-react";
-import { createAssignment, createAnnouncement, listAssignmentsForTeacher, listAnnouncementsForSchool } from "../../lib/teacherContent";
+import { createAssignment } from "../../lib/teacherContent";
 import { getQuestionsFromBank } from "../../data/questions/compat";
-import { askGroq } from "../../lib/ai";
 import TeacherTools from "../../components/TeacherTools";
 
 function cellColor(acc) {

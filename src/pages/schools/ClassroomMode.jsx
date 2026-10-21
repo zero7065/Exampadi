@@ -24,7 +24,7 @@ import NotepadDrawer from "../../components/NotepadDrawer";
 import StudentAttention from "../../components/StudentAttention";
 import TeacherTools from "../../components/TeacherTools";
 import {
-  ArrowLeft, ArrowRight, Eye, EyeOff, Users, HelpCircle, MessageSquare,
+  ArrowLeft, ArrowRight, Eye, Users, HelpCircle, MessageSquare,
   ThumbsUp, ThumbsDown, Heart, Play, Square, NotebookPen, Image as ImageIcon,
   Send, Loader2, Sparkles, X,
 } from "lucide-react";
@@ -158,12 +158,6 @@ export default function ClassroomMode() {
     } catch (e) {
       toast({ message: e.message || "Message failed", type: "error" });
     }
-  }
-
-  async function discussCurrent() {
-    const q = session?.questions?.[session.currentIdx];
-    if (!q) return;
-    setDiscussion(true);
   }
 
   const q = session?.questions?.[session?.currentIdx];
