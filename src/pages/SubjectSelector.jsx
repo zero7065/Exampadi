@@ -119,7 +119,7 @@ const SubjectSelector = () => {
                   <button 
                     key={e} 
                     onClick={() => { setExam(e); setSelectedSubjects([]); }}
-                    className={`flex-1 py-3 rounded-xl font-bold text-sm transition-all ${exam === e ? "bg-primary text-black shadow-lg shadow-primary/20" : "text-text-muted"}`}
+                    className={`flex-1 py-3 rounded-xl font-bold text-sm transition-all ${exam === e ? "bg-primary" : "text-text-muted"}`}
                   >
                     {e}
                   </button>
@@ -137,7 +137,7 @@ const SubjectSelector = () => {
                   <button 
                     key={m.id} 
                     onClick={() => setMode(m.id)}
-                    className={`flex-1 py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all ${mode === m.id ? "bg-accent text-black shadow-lg shadow-accent/20" : "text-text-muted"}`}
+                    className={`flex-1 py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all ${mode === m.id ? "bg-accent shadow-lg shadow-accent/20" : "text-text-muted"}`}
                   >
                     {m.icon}
                     {m.label}

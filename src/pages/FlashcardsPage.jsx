@@ -90,19 +90,19 @@ export default function FlashcardsPage() {
       <div className="glass-card p-5 space-y-4">
         <div className="flex flex-wrap gap-3">
           <select value={exam} onChange={e => { setExam(e.target.value); setSubject(""); }}
-            className="px-4 py-2.5 rounded-xl bg-black/40 border border-white/10 text-sm" style={{ color: "var(--text)" }}>
+            className="px-4 py-2.5 rounded-xl bg-subtle border border-border text-sm" style={{ color: "var(--text)" }}>
             <option value="JAMB">JAMB</option>
             <option value="WAEC">WAEC</option>
           </select>
           <select value={subject} onChange={e => setSubject(e.target.value)}
-            className="px-4 py-2.5 rounded-xl bg-black/40 border border-white/10 text-sm" style={{ color: "var(--text)" }}>
+            className="px-4 py-2.5 rounded-xl bg-subtle border border-border text-sm" style={{ color: "var(--text)" }}>
             <option value="">Select subject…</option>
             {subjects.map(s => <option key={s.id} value={s.name}>{s.icon} {s.name}</option>)}
           </select>
           <input value={topic} onChange={e => setTopic(e.target.value)} placeholder="Topic (optional)"
-            className="flex-1 min-w-[160px] px-4 py-2.5 rounded-xl bg-black/40 border border-white/10 text-sm" style={{ color: "var(--text)" }} />
+            className="flex-1 min-w-[160px] px-4 py-2.5 rounded-xl bg-subtle border border-border text-sm" style={{ color: "var(--text)" }} />
           <select value={count} onChange={e => setCount(Number(e.target.value))}
-            className="px-4 py-2.5 rounded-xl bg-black/40 border border-white/10 text-sm" style={{ color: "var(--text)" }}>
+            className="px-4 py-2.5 rounded-xl bg-subtle border border-border text-sm" style={{ color: "var(--text)" }}>
             {[6, 10, 15, 20].map(n => <option key={n} value={n}>{n} cards</option>)}
           </select>
           <button onClick={handleGenerate} disabled={loading}

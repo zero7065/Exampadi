@@ -16,6 +16,12 @@ service cloud.firestore {
         && userDoc().schoolId == schoolId;
     }
 
+    // Any teacher (used by classroom tools). Doc-independent so list queries
+    // (where classId == X) remain provable against the rules.
+    function isTeacher() {
+      return request.auth != null && userDoc().get("role", "") == "teacher";
+    }
+
     // AI/question counters must only grow — or reset together with their
     // period key (WAT day/month rollover). Blocks counter-tampering that
     // would grant extra AI credits.
@@ -284,6 +290,55 @@ service cloud.firestore {
       allow update: if request.auth != null;
     }
 
+    // ─── CLASSROOM LIVE TOOLS (ClassroomMode + TeacherTools) ───
+    // Polls: teacher creates/owns; every signed-in user may read to see it.
+    match /classPolls/{pollId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null
+        && (isAdmin() || request.resource.data.teacherUid == request.auth.uid);
+      allow update, delete: if isAdmin()
+        || (request.auth != null && resource.data.teacherUid == request.auth.uid);
+    }
+
+    // Poll votes: a student writes ONLY their own single vote doc; the teacher
+    // (or admin) reads all votes for a class and derives the tallies. A student
+    // can therefore never inflate another option's count.
+    match /classPollVotes/{voteId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null
+        && request.resource.data.studentUid == request.auth.uid;
+      allow update, delete: if isAdmin();
+    }
+
+    // "I get it / I'm confused" signals + last-active: owner writes own doc,
+    // teacher/admin read for the live engagement board.
+    match /classResponses/{respId} {
+      allow read: if isAdmin() || isTeacher();
+      allow create, update: if request.auth != null
+        && request.resource.data.studentUid == request.auth.uid
+        && request.resource.data.classId is string;
+      allow delete: if isAdmin();
+    }
+
+    // "Raise hand" attention requests: student creates own; teacher resolves.
+    match /attentionRequests/{reqId} {
+      allow read: if isAdmin() || isTeacher();
+      allow create: if request.auth != null
+        && request.resource.data.studentUid == request.auth.uid
+        && request.resource.data.classId is string
+        && request.resource.data.resolved == false;
+      allow update, delete: if isAdmin() || isTeacher();
+    }
+
+    // Class announcements: teacher writes (own), everyone signed-in reads.
+    match /classAnnouncements/{annId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null
+        && (isAdmin() || request.resource.data.teacherUid == request.auth.uid);
+      allow update, delete: if isAdmin()
+        || (request.auth != null && resource.data.teacherUid == request.auth.uid);
+    }
+
     // ─── TEACHER NOTES ───
     match /teacherNotes/{noteId} {
       allow read: if request.auth != null && (
@@ -343,13 +398,15 @@ service cloud.firestore {
       }
     }
 
-    // ─── STUDY ROOMS (admin-moderated: host plays immediately, public only
-    //     after admin sets status "approved") ───
+    // ─── STUDY ROOMS (open-by-code: anyone with the code joins instantly) ───
+    // Rooms are created "approved" so the host's friends can join right away by
+    // sharing the code. The public listing still just filters approved rooms,
+    // so admins can remove/close abusive rooms.
     match /studyRooms/{code} {
       allow create: if request.auth != null
         && request.auth.uid == request.resource.data.hostUid
-        && request.resource.data.status == "pending";
-      // host + admin always; others only once approved (list queries must
+        && request.resource.data.status in ["approved", "pending"];
+      // host + admin always; others read approved rooms (list queries must
       // filter where status == "approved" to be provable).
       allow read: if request.auth != null && (
         isAdmin()
@@ -377,11 +434,14 @@ service cloud.firestore {
 
       // Answer keys: never readable by any client (host can't peek via the
       // console either). Only the host who created the room may seed keys,
-      // once each. Grading happens server-side via Admin SDK (bypasses rules).
+      // once each, in the SAME batch that creates the room. Each key doc
+      // carries hostUid (unreadable, so no exposure) to make this provable
+      // without relying on getAfter(). Grading happens server-side via Admin
+      // SDK (bypasses rules).
       match /key/{qid} {
         allow read, list: if false;
         allow create: if request.auth != null
-          && request.auth.uid == get(/databases/$(database)/documents/studyRooms/$(code)).data.hostUid;
+          && request.resource.data.hostUid == request.auth.uid;
         allow update, delete: if false;
       }
 

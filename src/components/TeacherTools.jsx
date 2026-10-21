@@ -1,193 +1,440 @@
-import { useState } from "react";
-import { Sparkles, Megaphone, BookOpenCheck, Loader2, Send } from "lucide-react";
-import { useAuth } from "../context/AuthContext";
+// TeacherTools \u2014 Real-time classroom interaction tools for teachers.
+import { useState, useEffect, useMemo } from "react";
 import { useToast } from "../components/Toast";
-import { createAssignment, createAnnouncement, listAssignmentsForTeacher, listAnnouncementsForSchool } from "../lib/teacherContent";
-import { askGroq } from "../lib/ai";
+import { useAuth } from "../context/AuthContext";
+import { collection, query, where, onSnapshot, doc, updateDoc, serverTimestamp } from "firebase/firestore";
+import { db } from "../firebaseConfig";
+import { addDoc } from "firebase/firestore";
+
+// Firestore Timestamps are objects — never subtract them directly.
+function isRecentlyActive(ts, windowMs = 60000) {
+  if (!ts) return false;
+  const ms = ts.toMillis ? ts.toMillis() : (ts.seconds ? ts.seconds * 1000 : Number(ts));
+  if (!Number.isFinite(ms)) return false;
+  return Date.now() - ms < windowMs;
+}
+import { 
+  Users, Send, TrendingUp, AlertTriangle, Zap, 
+  MessageSquare, ThumbsUp, ThumbsDown, Volume2, VolumeX,
+  Eye, EyeOff, Timer, Settings, RefreshCw, Download, Plus, X, HelpCircle, EyeOff as EyeOffIcon, Volume2 as Volume2Icon
+} from "lucide-react";
 
 export default function TeacherTools({ schoolId, roster, classId }) {
-  const { user } = useAuth();
   const { toast } = useToast();
-  const [tab, setTab] = useState("report");
-  const [aiLoading, setAiLoading] = useState(false);
-  const [aiReport, setAiReport] = useState("");
-  const [assignment, setAssignment] = useState({ title: "", subject: "", dueDate: "", topic: "" });
-  const [announcement, setAnnouncement] = useState({ title: "", body: "" });
-  const [assignments, setAssignments] = useState([]);
+  const { user } = useAuth();
+  const [activeTab, setActiveTab] = useState("overview");
+  const [liveResponses, setLiveResponses] = useState({});
+  const [polls, setPolls] = useState([]);
+  const [pollVotes, setPollVotes] = useState({});
+  const [attentionRequests, setAttentionRequests] = useState([]);
   const [announcements, setAnnouncements] = useState([]);
+  const [showPollForm, setShowPollForm] = useState(false);
+  const [pollQuestion, setPollQuestion] = useState("");
+  const [pollOptions, setPollOptions] = useState(["", ""]);
+  const [sending, setSending] = useState(false);
 
-  const selectedStudents = roster.map((r) => r.uid);
-
-  async function generateAIReport() {
-    if (!roster.length) {
-      toast({ message: "No students in this class yet", type: "warning" });
-      return;
-    }
-    setAiLoading(true);
-    setAiReport("");
-    try {
-      const summary = roster.map((r) => {
-        const topics = Object.entries(r.topics).map(([t, v]) => `${t}: ${v.c}/${v.t} correct`).join(", ");
-        return `${r.name} (XP: ${r.xp}, streak: ${r.streak}) — ${topics || "no activity yet"}`;
-      }).join("\n");
-
-      const result = await askGroq(
-        "You are an expert teaching assistant. Analyze student performance data and give a concise report: 1) Class overview, 2) Top 3 weak topics across students, 3) 3 specific teaching recommendations, 4) Students needing individual attention. Keep it under 300 words. Use simple language.",
-        `Class: ${classId}\nStudents:\n${summary}`,
-        { maxTokens: 600 }
-      );
-      setAiReport(result);
-    } catch (e) {
-      toast({ message: `AI report failed: ${e.message}`, type: "error" });
-    } finally {
-      setAiLoading(false);
-    }
-  }
-
-  async function loadAssignments() {
-    try {
-      const data = await listAssignmentsForTeacher(user.uid);
-      setAssignments(data);
-    } catch (e) {
-      console.error("Failed to load assignments:", e);
-    }
-  }
-
-  async function loadAnnouncements() {
-    try {
-      const data = await listAnnouncementsForSchool(schoolId);
-      setAnnouncements(data);
-    } catch (e) {
-      console.error("Failed to load announcements:", e);
-    }
-  }
-
-  async function handleCreateAssignment() {
-    if (!assignment.title.trim() || !assignment.topic.trim()) {
-      toast({ message: "Title and topic are required", type: "warning" });
-      return;
-    }
-    try {
-      await createAssignment({
-        teacherId: user.uid,
-        teacherName: user.displayName || user.email,
-        title: assignment.title.trim(),
-        questions: [],
-        studentIds: selectedStudents,
-        dueDate: assignment.dueDate || null,
-        subject: assignment.subject.trim(),
+  // Subscribe to live student responses
+  useEffect(function() {
+    if (!classId) return;
+    const responsesRef = collection(db, "classResponses");
+    const q = query(responsesRef, where("classId", "==", classId));
+    const unsub = onSnapshot(q, function(snap) {
+      var responses = {};
+      snap.docs.forEach(function(d) {
+        var data = d.data();
+        responses[data.studentUid] = data;
       });
-      toast({ message: "Assignment created", type: "success" });
-      setAssignment({ title: "", subject: "", dueDate: "", topic: "" });
-      await loadAssignments();
-    } catch (e) {
-      toast({ message: `Failed: ${e.message}`, type: "error" });
-    }
-  }
+      setLiveResponses(responses);
+    });
+    return function() { return unsub(); };
+  }, [classId]);
 
-  async function handleCreateAnnouncement() {
-    if (!announcement.title.trim() || !announcement.body.trim()) {
-      toast({ message: "Title and body are required", type: "warning" });
+  // Subscribe to polls
+  useEffect(function() {
+    if (!classId) return;
+    const pollsRef = collection(db, "classPolls");
+    const q = query(pollsRef, where("classId", "==", classId), where("active", "==", true));
+    const unsub = onSnapshot(q, function(snap) {
+      setPolls(snap.docs.map(function(d) { return { id: d.id, ...d.data() }; }));
+    });
+    return function() { return unsub(); };
+  }, [classId]);
+
+  // Subscribe to poll votes — students only write their own vote doc, so the
+  // teacher derives tallies here (votes can never be inflated client-side).
+  useEffect(function() {
+    if (!classId) return;
+    const votesRef = collection(db, "classPollVotes");
+    const q = query(votesRef, where("classId", "==", classId));
+    const unsub = onSnapshot(q, function(snap) {
+      const tallies = {};
+      snap.docs.forEach(function(d) {
+        const v = d.data();
+        if (!tallies[v.pollId]) tallies[v.pollId] = { counts: {}, total: 0 };
+        const idx = v.optionIdx;
+        tallies[v.pollId].counts[idx] = (tallies[v.pollId].counts[idx] || 0) + 1;
+        tallies[v.pollId].total += 1;
+      });
+      setPollVotes(tallies);
+    });
+    return function() { return unsub(); };
+  }, [classId]);
+
+  // Subscribe to attention requests
+  useEffect(function() {
+    if (!classId) return;
+    const attentionRef = collection(db, "attentionRequests");
+    const q = query(attentionRef, where("classId", "==", classId), where("resolved", "==", false));
+    const unsub = onSnapshot(q, function(snap) {
+      setAttentionRequests(snap.docs.map(function(d) { return { id: d.id, ...d.data() }; }));
+    });
+    return function() { return unsub(); };
+  }, [classId]);
+
+  // Subscribe to announcements
+  useEffect(function() {
+    if (!classId) return;
+    const annRef = collection(db, "classAnnouncements");
+    const q = query(annRef, where("classId", "==", classId), where("active", "==", true));
+    const unsub = onSnapshot(q, function(snap) {
+      setAnnouncements(snap.docs.map(function(d) { return { id: d.id, ...d.data() }; }));
+    });
+    return function() { return unsub(); };
+  }, [classId]);
+
+  function createPoll() {
+    if (!pollQuestion.trim() || pollOptions.filter(function(o) { return o.trim(); }).length < 2) {
+      toast({ message: "Need a question and at least 2 options", type: "warning" });
       return;
     }
-    try {
-      await createAnnouncement({
-        teacherId: user.uid,
-        teacherName: user.displayName || user.email,
-        title: announcement.title.trim(),
-        body: announcement.body.trim(),
-        targetStudentIds: [],
-        schoolId,
-      });
-      toast({ message: "Announcement published", type: "success" });
-      setAnnouncement({ title: "", body: "" });
-      await loadAnnouncements();
-    } catch (e) {
-      toast({ message: `Failed: ${e.message}`, type: "error" });
-    }
+    setSending(true);
+    var cleanOpts = pollOptions.filter(function(o) { return o.trim(); }).slice(0, 6);
+    addDoc(collection(db, "classPolls"), {
+      classId: classId,
+      teacherUid: user ? user.uid : null,
+      question: pollQuestion.trim(),
+      options: cleanOpts,
+      votes: Object.fromEntries(cleanOpts.map(function(_, i) { return [i, 0]; })),
+      totalVotes: 0,
+      active: true,
+      createdAt: serverTimestamp(),
+    }).then(function() {
+      setPollQuestion("");
+      setPollOptions(["", ""]);
+      setShowPollForm(false);
+      toast({ message: "Poll sent to class!", type: "success" });
+    }).catch(function(e) {
+      toast({ message: "Failed: " + e.message, type: "error" });
+    }).finally(function() {
+      setSending(false);
+    });
   }
+
+  function closePoll(pollId) {
+    updateDoc(doc(db, "classPolls", pollId), { active: false, closedAt: serverTimestamp() })
+      .then(function() { toast({ message: "Poll closed", type: "success" }); })
+      .catch(function(e) { toast({ message: "Failed: " + e.message, type: "error" }); });
+  }
+
+  function resolveAttention(requestId, studentUid) {
+    updateDoc(doc(db, "attentionRequests", requestId), { resolved: true, resolvedAt: serverTimestamp() })
+      .then(function() { toast({ message: "Attention request resolved", type: "success" }); })
+      .catch(function(e) { toast({ message: "Failed: " + e.message, type: "error" }); });
+  }
+
+  function sendAnnouncement(message) {
+    if (!message.trim()) return;
+    addDoc(collection(db, "classAnnouncements"), {
+      classId: classId,
+      teacherUid: user ? user.uid : null,
+      message: message.trim(),
+      active: true,
+      createdAt: serverTimestamp(),
+    }).then(function() {
+      toast({ message: "Announcement sent!", type: "success" });
+    }).catch(function(e) {
+      toast({ message: "Failed: " + e.message, type: "error" });
+    });
+  }
+
+  var onlineStudents = roster.filter(function(r) { 
+    return isRecentlyActive(liveResponses[r.uid]?.lastActive);
+  }).length;
+
+  var pollFormButton = showPollForm ? (
+    <button onClick={function() { setShowPollForm(false); }} className="btn-secondary text-sm">
+      <EyeOff size={14} /> Hide Create Poll
+    </button>
+  ) : (
+    <button onClick={function() { setShowPollForm(true); }} className="btn-secondary text-sm">
+      <Eye size={14} /> Create Poll
+    </button>
+  );
 
   return (
-    <div style={{ marginTop: 24 }}>
-      <div style={{ display: "flex", gap: 8, marginBottom: 16, flexWrap: "wrap" }}>
-        {[
-          { id: "report", label: "AI Student Report", icon: Sparkles },
-          { id: "assignments", label: "Assignments", icon: BookOpenCheck },
-          { id: "announcements", label: "Announcements", icon: Megaphone },
-        ].map((t) => {
-          const Icon = t.icon;
+    <div className="glass-card p-5 space-y-4">
+      <div className="flex items-center justify-between">
+        <h2 className="font-black text-text flex items-center gap-2"><Zap size={18} className="text-primary" /> Classroom Tools</h2>
+        <div className="flex items-center gap-2 text-sm text-text-muted">
+          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-green-500" /> {onlineStudents} online</span>
+          <span className="flex items-center gap-1">{roster.length} total</span>
+        </div>
+      </div>
+
+      <div className="flex gap-2 border-b border-border pb-2" style={{ overflowX: "auto" }}>
+        {["overview", "polls", "attention", "announcements", "analytics"].map(function(tab) {
           return (
-            <button key={t.id} onClick={() => { setTab(t.id); if (t.id === "assignments") loadAssignments(); if (t.id === "announcements") loadAnnouncements(); }} style={{ padding: "8px 16px", borderRadius: 8, border: "none", cursor: "pointer", background: tab === t.id ? "var(--primary)" : "var(--border)", color: tab === t.id ? "#fff" : "var(--text-muted)", fontWeight: 600, fontSize: 13, display: "flex", alignItems: "center", gap: 6 }}>
-              <Icon size={14} /> {t.label}
+            <button key={tab} onClick={function() { setActiveTab(tab); }} className={"px-4 py-2 rounded-lg text-sm font-semibold transition-colors whitespace-nowrap " + (activeTab === tab ? "bg-primary text-black" : "text-text-muted hover:text-text")}>
+              {tab.charAt(0).toUpperCase() + tab.slice(1)}
             </button>
           );
         })}
       </div>
 
-      {tab === "report" && (
-        <div className="glass-card" style={{ padding: 20 }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
-            <h3 style={{ color: "var(--text)", fontSize: 16, fontWeight: 700, margin: 0 }}>AI-Compiled Student Performance Report</h3>
-            <button onClick={generateAIReport} disabled={aiLoading} style={{ padding: "8px 16px", borderRadius: 8, background: "var(--primary)", border: "none", color: "#fff", fontWeight: 700, fontSize: 13, cursor: aiLoading ? "not-allowed" : "pointer", display: "flex", alignItems: "center", gap: 6, opacity: aiLoading ? 0.6 : 1 }}>
-              {aiLoading ? <Loader2 size={14} /> : <Sparkles size={14} />} Generate Report
-            </button>
+      {/* Overview Tab */}
+      {activeTab === "overview" && (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="glass-card p-4 text-center hover:scale-[1.02] transition-transform">
+            <Users size={24} className="text-primary mx-auto mb-2" />
+            <div className="text-3xl font-black text-text">{roster.length}</div>
+            <div className="text-xs text-text-muted">Total Students</div>
           </div>
-          {aiReport && (
-            <div style={{ padding: 16, borderRadius: 10, background: "rgb(var(--primary-rgb) / 0.08)", border: "1px solid rgb(var(--primary-rgb) / 0.2)", whiteSpace: "pre-wrap", color: "var(--text)", fontSize: 14, lineHeight: 1.7 }}>
-              {aiReport}
-            </div>
-          )}
-          {!aiReport && !aiLoading && (
-            <p style={{ color: "var(--text-muted)", fontSize: 13, margin: 0 }}>Click "Generate Report" to get an AI analysis of your students' performance, weak topics, and teaching recommendations.</p>
-          )}
+          <div className="glass-card p-4 text-center hover:scale-[1.02] transition-transform">
+            <Zap size={24} className="text-green-500 mx-auto mb-2" />
+            <div className="text-3xl font-black text-green-500">{onlineStudents}</div>
+            <div className="text-xs text-text-muted">Currently Online</div>
+          </div>
+          <div className="glass-card p-4 text-center hover:scale-[1.02] transition-transform">
+            <MessageSquare size={24} className="text-accent mx-auto mb-2" />
+            <div className="text-3xl font-black text-accent">{polls.filter(function(p) { return p.active; }).length}</div>
+            <div className="text-xs text-text-muted">Active Polls</div>
+          </div>
+          <div className="glass-card p-4 text-center hover:scale-[1.02] transition-transform">
+            <AlertTriangle size={24} className="text-red-500 mx-auto mb-2" />
+            <div className="text-3xl font-black text-red-500">{attentionRequests.length}</div>
+            <div className="text-xs text-text-muted">Needs Attention</div>
+          </div>
         </div>
       )}
 
-      {tab === "assignments" && (
-        <div className="glass-card" style={{ padding: 20 }}>
-          <h3 style={{ color: "var(--text)", fontSize: 16, fontWeight: 700, margin: "0 0 12px" }}>Create Assignment</h3>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 12 }}>
-            <input placeholder="Title (e.g., Week 5 Homework)" value={assignment.title} onChange={(e) => setAssignment({ ...assignment, title: e.target.value })} style={{ padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "#fff", fontSize: 13, outline: "none" }} />
-            <input placeholder="Subject" value={assignment.subject} onChange={(e) => setAssignment({ ...assignment, subject: e.target.value })} style={{ padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "#fff", fontSize: 13, outline: "none" }} />
-            <input placeholder="Topic to study" value={assignment.topic} onChange={(e) => setAssignment({ ...assignment, topic: e.target.value })} style={{ padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "#fff", fontSize: 13, outline: "none" }} />
-            <input type="date" value={assignment.dueDate} onChange={(e) => setAssignment({ ...assignment, dueDate: e.target.value })} style={{ padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "#fff", fontSize: 13, outline: "none" }} />
+      {/* Polls Tab */}
+      {activeTab === "polls" && (
+        <div className="space-y-4">
+          <div className="flex gap-2 justify-end">
+            {pollFormButton}
           </div>
-          <button onClick={handleCreateAssignment} style={{ padding: "10px 20px", borderRadius: 8, background: "var(--primary)", border: "none", color: "#fff", fontWeight: 700, fontSize: 13, cursor: "pointer", marginBottom: 16 }}>Create Assignment</button>
-
-          {assignments.length > 0 && (
-            <div>
-              <h4 style={{ color: "var(--text-muted)", fontSize: 13, fontWeight: 700, margin: "0 0 8px" }}>Previous Assignments</h4>
-              {assignments.map((a) => (
-                <div key={a.id} style={{ padding: 12, borderRadius: 8, background: "var(--bg-3)", marginBottom: 8 }}>
-                  <div style={{ color: "#fff", fontWeight: 600, fontSize: 13 }}>{a.title}</div>
-                  <div style={{ color: "var(--text-muted)", fontSize: 12 }}>{a.subject} · Due: {a.dueDate || "No deadline"} · {a.studentIds?.length || 0} students</div>
-                </div>
-              ))}
+          
+          {showPollForm && (
+            <div className="glass-card p-4 space-y-3 animate-slide-up">
+              <input
+                value={pollQuestion}
+                onChange={function(e) { setPollQuestion(e.target.value); }}
+                placeholder="Poll question (e.g. Which topic should we review?)"
+                className="input-field"
+              />
+              <div className="space-y-2">
+                {pollOptions.map(function(opt, i) {
+                  return (
+                    <div key={i} className="flex gap-2">
+                      <input
+                        value={opt}
+                        onChange={function(e) { setPollOptions(function(o) { return o.map(function(v, j) { return j === i ? e.target.value : v; }); }); }}
+                        placeholder={"Option " + (i + 1)}
+                        className="input-field flex-1"
+                      />
+                      {pollOptions.length > 2 && (
+                        <button onClick={function() { setPollOptions(function(o) { return o.filter(function(_, j) { return j !== i; }); }); }} className="btn-secondary px-3 text-sm">
+                          <X size={14} />
+                        </button>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+              {pollOptions.length < 6 && (
+                <button onClick={function() { setPollOptions([...pollOptions, ""]); }} className="btn-secondary text-sm w-full">
+                  <Plus size={14} /> Add Option
+                </button>
+              )}
+              <div className="flex gap-2">
+                <button onClick={createPoll} disabled={sending} className="btn-primary flex-1">
+                  {sending ? "Sending..." : "Send Poll to Class"}
+                </button>
+                <button onClick={function() { setShowPollForm(false); setPollQuestion(""); setPollOptions(["", ""]); }} className="btn-secondary px-4">Cancel</button>
+              </div>
             </div>
           )}
+
+          {polls.length === 0 && !showPollForm && (
+            <div className="glass-card p-8 text-center text-text-muted">
+              <MessageSquare size={32} className="mx-auto mb-3 opacity-50" />
+              <p>No active polls. Create one to engage your class!</p>
+            </div>
+          )}
+
+          {polls.map(function(poll) {
+            return (
+              <div key={poll.id} className="glass-card p-4 space-y-3 animate-slide-up">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex-1">
+                    <p className="font-semibold text-text">{poll.question}</p>
+                    <p className="text-xs text-text-muted">Created {poll.createdAt?.toDate ? poll.createdAt.toDate().toLocaleString() : "recently"} · {(pollVotes[poll.id]?.total || 0)} votes</p>
+                  </div>
+                  <span className={"px-2 py-1 rounded-full text-xs font-bold " + (poll.active ? "bg-green-500/20 text-green-500" : "bg-gray-500/20 text-gray-500")}>
+                    {poll.active ? "LIVE" : "CLOSED"}
+                  </span>
+                </div>
+                <div className="space-y-2">
+                  {poll.options.map(function(opt, i) {
+                    var tally = pollVotes[poll.id] || { counts: {}, total: 0 };
+                    var votes = tally.counts[i] || 0;
+                    var pct = tally.total > 0 ? (votes / tally.total) * 100 : 0;
+                    return (
+                      <div key={i} className="flex items-center gap-3">
+                        <span className="text-sm text-text flex-1">{opt}</span>
+                        <div className="flex-1 h-2 bg-bg-3 rounded overflow-hidden">
+                          <div style={{ width: pct + "%", height: "100%", background: "var(--primary)", borderRadius: "2px", transition: "width 0.5s ease" }} />
+                        </div>
+                        <span className="text-sm font-bold text-primary w-16 text-right">{votes} ({pct.toFixed(0)}%)</span>
+                      </div>
+                    );
+                  })}
+                </div>
+                {poll.active && (
+                  <button onClick={function() { closePoll(poll.id); }} className="btn-secondary w-full text-sm">
+                    Close Poll
+                  </button>
+                )}
+              </div>
+            );
+          })}
         </div>
       )}
 
-      {tab === "announcements" && (
-        <div className="glass-card" style={{ padding: 20 }}>
-          <h3 style={{ color: "var(--text)", fontSize: 16, fontWeight: 700, margin: "0 0 12px" }}>Send Announcement</h3>
-          <input placeholder="Title" value={announcement.title} onChange={(e) => setAnnouncement({ ...announcement, title: e.target.value })} style={{ width: "100%", padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "#fff", fontSize: 13, outline: "none", marginBottom: 12, boxSizing: "border-box" }} />
-          <textarea placeholder="Write your announcement…" value={announcement.body} onChange={(e) => setAnnouncement({ ...announcement, body: e.target.value })} rows={4} style={{ width: "100%", padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "#fff", fontSize: 13, outline: "none", marginBottom: 12, boxSizing: "border-box", resize: "vertical" }} />
-          <button onClick={handleCreateAnnouncement} style={{ padding: "10px 20px", borderRadius: 8, background: "var(--primary)", border: "none", color: "#fff", fontWeight: 700, fontSize: 13, cursor: "pointer", marginBottom: 16, display: "flex", alignItems: "center", gap: 6 }}>
-            <Send size={14} /> Publish to All Students
-          </button>
-
-          {announcements.length > 0 && (
-            <div>
-              <h4 style={{ color: "var(--text-muted)", fontSize: 13, fontWeight: 700, margin: "0 0 8px" }}>Previous Announcements</h4>
-              {announcements.map((a) => (
-                <div key={a.id} style={{ padding: 12, borderRadius: 8, background: "var(--bg-3)", marginBottom: 8 }}>
-                  <div style={{ color: "#fff", fontWeight: 600, fontSize: 13 }}>{a.title}</div>
-                  <div style={{ color: "var(--text-muted)", fontSize: 12, marginTop: 4 }}>{a.body?.slice(0, 100)}…</div>
-                </div>
-              ))}
+      {/* Attention Requests Tab */}
+      {activeTab === "attention" && (
+        <div className="space-y-3">
+          {attentionRequests.length === 0 && (
+            <div className="glass-card p-8 text-center text-text-muted">
+              <ThumbsUp size={32} className="mx-auto mb-3 opacity-50" />
+              <p>No students need attention right now. Great job!</p>
             </div>
           )}
+          {attentionRequests.map(function(req) {
+            return (
+              <div key={req.id} className="glass-card p-4 animate-slide-up border-l-4 border-amber-500">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center">
+                      <AlertTriangle size={20} className="text-amber-500" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-text">{req.studentName || "Student"}</p>
+                      <p className="text-sm text-text-muted">{req.message || "Needs help"} · {req.createdAt?.toDate ? req.createdAt.toDate().toLocaleTimeString() : "just now"}</p>
+                    </div>
+                  </div>
+                  <button onClick={function() { resolveAttention(req.id, req.studentUid); }} className="btn-primary px-4 text-sm">
+                    Resolve
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {/* Announcements Tab */}
+      {activeTab === "announcements" && (
+        <div className="space-y-4">
+          <div className="glass-card p-4">
+            <label className="text-xs font-bold text-text-muted mb-2 block">Send announcement to class</label>
+            <div className="flex gap-2">
+              <input type="text" placeholder="Type your announcement..." className="input-field flex-1" onKeyDown={function(e) { if (e.key === "Enter") { sendAnnouncement(e.target.value); e.target.value = ""; } }} />
+              <button onClick={function(e) { var input = e.currentTarget.parentElement.querySelector("input"); sendAnnouncement(input.value); input.value = ""; }} className="btn-primary px-4">Send</button>
+            </div>
+          </div>
+          
+          {announcements.length === 0 && (
+            <div className="glass-card p-8 text-center text-text-muted">
+              <Volume2 size={32} className="mx-auto mb-3 opacity-50" />
+              <p>No active announcements.</p>
+            </div>
+          )}
+          
+          {announcements.map(function(ann) {
+            return (
+              <div key={ann.id} className="glass-card p-4 animate-slide-up border-l-4 border-primary">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex-1">
+                    <p className="text-text">{ann.message}</p>
+                    <p className="text-xs text-text-muted mt-1">Sent {ann.createdAt?.toDate ? ann.createdAt.toDate().toLocaleString() : "recently"}</p>
+                  </div>
+                  <button onClick={async function() { await updateDoc(doc(db, "classAnnouncements", ann.id), { active: false }); }} className="btn-secondary text-sm">Dismiss</button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {/* Analytics Tab */}
+      {activeTab === "analytics" && (
+        <div className="space-y-4">
+          <div className="grid sm:grid-cols-3 gap-3">
+            <div className="glass-card p-4 text-center">
+              <TrendingUp size={24} className="text-primary mx-auto mb-2" />
+              <div className="text-2xl font-black text-text">
+                {roster.reduce(function(sum, s) { return sum + (liveResponses[s.uid]?.questionsAnswered || 0); }, 0)}
+              </div>
+              <div className="text-xs text-text-muted">Questions Answered (Live)</div>
+            </div>
+            <div className="glass-card p-4 text-center">
+              <ThumbsUp size={24} className="text-green-500 mx-auto mb-2" />
+              <div className="text-2xl font-black text-green-500">
+                {roster.filter(function(s) { return liveResponses[s.uid]?.understood === true; }).length}
+              </div>
+              <div className="text-xs text-text-muted">Students Understood</div>
+            </div>
+            <div className="glass-card p-4 text-center">
+              <ThumbsDown size={24} className="text-red-500 mx-auto mb-2" />
+              <div className="text-2xl font-black text-red-500">
+                {roster.filter(function(s) { return liveResponses[s.uid]?.understood === false; }).length}
+              </div>
+              <div className="text-xs text-text-muted">Students Confused</div>
+            </div>
+          </div>
+
+          <div className="glass-card p-4">
+            <h3 className="font-bold text-text mb-3">Student Engagement (Live)</h3>
+            {roster.length === 0 ? (
+              <p className="text-text-muted text-center py-8">No students in class yet</p>
+            ) : (
+              <div className="space-y-2 max-h-80 overflow-y-auto">
+                {roster.map(function(s) {
+                  var resp = liveResponses[s.uid];
+                  var online = isRecentlyActive(resp?.lastActive);
+                  var understood = resp?.understood;
+                  return (
+                    <div key={s.uid} className="flex items-center gap-3 p-2 bg-bg-3 rounded-lg hover:bg-bg-2 transition-colors">
+                      <div className={"w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm " + (online ? "bg-green-500 text-black" : "bg-gray-500 text-white")}>
+                        {s.name?.[0]?.toUpperCase() || "?"}
+                      </div>
+                      <span className="text-sm font-medium text-text flex-1 truncate">{s.name}</span>
+                      <span className={"px-2 py-1 rounded-full text-xs font-bold " + (online ? "bg-green-500/20 text-green-500" : "bg-gray-500/20 text-gray-500")}>
+                        {online ? "Online" : "Offline"}
+                      </span>
+                      <span className={"px-2 py-1 rounded-full text-xs font-bold " + (understood === true ? "bg-green-500/20 text-green-500" : understood === false ? "bg-red-500/20 text-red-500" : "bg-gray-500/20 text-gray-500")}>
+                        {understood === true ? "\u2713 Understood" : understood === false ? "\u2717 Confused" : "\u2014"}
+                      </span>
+                      {resp?.questionsAnswered > 0 && (
+                        <span className="text-xs text-text-muted">{resp.questionsAnswered} Qs</span>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
         </div>
       )}
     </div>

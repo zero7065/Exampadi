@@ -256,6 +256,8 @@ function AuthAwareRoutes() {
           <Route path="/teacher/exam-generator" element={<TeacherRoute><ExamGenerator /></TeacherRoute>} />
           <Route path="/teacher/classroom" element={<TeacherRoute><ClassroomMode /></TeacherRoute>} />
           <Route path="/teacher/parent-reports" element={<TeacherRoute><ParentReports /></TeacherRoute>} />
+          {/* Student entry to a live classroom (shared link: /classroom?class=<id>) */}
+          <Route path="/classroom" element={<ProtectedRoute><ClassroomMode /></ProtectedRoute>} />
 
           {/* Class join */}
           <Route path="/join" element={<ProtectedRoute><JoinClass /></ProtectedRoute>} />

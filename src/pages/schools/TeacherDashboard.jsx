@@ -334,7 +334,7 @@ export default function TeacherDashboard() {
         <section className="glass-card p-5 space-y-3">
           <h2 className="font-black text-text">Actions</h2>
           <Link to="/teacher/exam-generator" className="btn-secondary w-full flex items-center gap-2"><FileText size={16} /> Generate exam (PDF)</Link>
-          <Link to="/teacher/classroom" className="btn-secondary w-full flex items-center gap-2"><MonitorPlay size={16} /> Open classroom mode</Link>
+          <Link to={classId ? `/teacher/classroom?class=${classId}` : "/teacher/classroom"} className="btn-secondary w-full flex items-center gap-2"><MonitorPlay size={16} /> Open classroom mode</Link>
           <Link to="/room" className="btn-secondary w-full flex items-center gap-2"><MonitorPlay size={16} /> Start live study room</Link>
           <Link to="/teacher/parent-reports" className="btn-secondary w-full flex items-center gap-2"><ClipboardList size={16} /> Parent reports</Link>
         </section>

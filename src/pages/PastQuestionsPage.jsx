@@ -125,7 +125,7 @@ export default function PastQuestionsPage() {
           <div className="flex bg-bg-3 p-1 rounded-xl border border-border">
             {enabledExams.map(e => (
               <button key={e} onClick={() => { setExam(e); setSubject(""); }}
-                className={`flex-1 py-2 rounded-lg font-bold text-sm transition-all ${exam === e ? "bg-primary text-black shadow-lg" : "text-text-muted"}`}
+                className={`flex-1 py-2 rounded-lg font-bold text-sm transition-all ${exam === e ? "bg-primary" : "text-text-muted"}`}
               >
                 {e}
               </button>
@@ -183,7 +183,7 @@ export default function PastQuestionsPage() {
                   </span>
                 </div>
                 <p className="text-text-muted text-sm mb-4 leading-relaxed">{p.reason}</p>
-                <div className="p-3 bg-white/5 rounded-lg border border-white/5 italic text-sm text-text-muted">
+                <div className="p-3 bg-subtle border border-border italic text-sm text-text-muted">
                   Sample: {p.sampleQuestion}
                 </div>
               </div>
@@ -197,21 +197,21 @@ export default function PastQuestionsPage() {
          {questions.length === 0 ? (
            <div className="flex flex-col items-center justify-center py-16 text-center">
              <span className="text-5xl mb-4">🔍</span>
-             <h3 className="text-lg font-semibold text-gray-700 mb-2">
-               No questions found
-             </h3>
-             <p className="text-gray-500 mb-4">
+<h3 className="text-lg font-semibold text-text mb-2">
+                No questions found
+              </h3>
+              <p className="text-text-muted mb-4">
                Try adjusting your subject, year, or exam type filter.
              </p>
-             <button
-               onClick={() => {
-                 setExam("JAMB");
-                 setSubject("");
-                 setYear(2024);
-               }}
-               className="px-4 py-2 bg-primary text-white rounded-lg hover:opacity-90"
-             >
-               Clear Filters
+<button
+                onClick={() => {
+                  setExam("JAMB");
+                  setSubject("");
+                  setYear(2024);
+                }}
+                className="px-4 py-2 bg-primary rounded-lg hover:opacity-90" style={{ color: "#000" }}
+>
+                Clear Filters
              </button>
            </div>
          ) : (
@@ -235,9 +235,9 @@ export default function PastQuestionsPage() {
                
                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                  {Object.entries(q.options).map(([key, val]) => (
-                   <div key={key} className={`p-4 rounded-xl border transition-all ${
-                     revealed[q.id] && key === q.correctAnswer ? "border-primary bg-primary/5 text-primary" : "border-white/5 bg-bg-3 text-text"
-                   }`}>
+<div key={key} className={`p-4 rounded-xl border transition-all ${
+                      revealed[q.id] && key === q.correctAnswer ? "border-primary bg-primary/5 text-primary" : "border-border bg-bg-3 text-text"
+                    }`}>
                      <strong className="font-black mr-2">{key})</strong> {val}
                    </div>
                  ))}

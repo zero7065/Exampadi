@@ -161,19 +161,23 @@ export default function MasteryPage() {
           background: "linear-gradient(135deg, var(--primary), #047857)",
           border: "none"
         }}>
-          <Sparkles size={32} className="mx-auto text-white" />
-          <h2 className="text-xl font-bold text-white">Focus Areas</h2>
-          <p className="text-sm max-w-lg mx-auto" style={{ color: "rgba(255,255,255,0.8)" }}>
+          <Sparkles size={32} className="mx-auto" style={{ color: "var(--text)" }} />
+          <h2 className="text-xl font-bold" style={{ color: "var(--text)" }}>Focus Areas</h2>
+          <p className="text-sm max-w-lg mx-auto" style={{ color: "var(--text-muted)" }}>
             Based on your accuracy, focus on{" "}
             {weakest.map((w, i) => (
               <span key={w.name}>
-                <strong className="text-white">{w.name}</strong>
+                <strong style={{ color: "var(--text)" }}>{w.name}</strong>
                 {i < weakest.length - 2 ? ", " : i === weakest.length - 2 ? " and " : ""}
               </span>
             ))}{" "}
             this week.
           </p>
-          <Link to="/study-plan" className="inline-flex items-center gap-2 bg-white text-emerald-700 font-bold px-8 py-3 rounded-xl hover:bg-emerald-50 transition-all active:scale-95 shadow-lg">
+          <Link to="/study-plan" className="inline-flex items-center gap-2 font-bold px-8 py-3 rounded-xl shadow-lg" style={{
+            background: "var(--text)",
+            color: "var(--primary)",
+            transition: "all 0.2s ease"
+          }}>
             View Study Plan
           </Link>
         </div>

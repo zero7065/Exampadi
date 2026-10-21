@@ -207,10 +207,11 @@ const Navbar = () => {
 
         <div className="mt-auto pt-4 border-t border-border space-y-4 shrink-0">
           {!proStatus && (
-            <Link
+<Link
               to="/payment"
-              className="flex items-center justify-center gap-2 bg-gradient-to-r from-accent to-orange-500 text-black py-3 rounded-xl font-black shadow-lg shadow-accent/20 hover:scale-[1.02] transition-all"
-            >
+              className="flex items-center justify-center gap-2 bg-gradient-to-r from-accent to-orange-500 py-3 rounded-xl font-black shadow-lg shadow-accent/20 hover:scale-[1.02] transition-all"
+              style={{ color: "#000" }}
+>
               <Crown size={18} />
               Go Pro
             </Link>

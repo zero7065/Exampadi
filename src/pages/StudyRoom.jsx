@@ -31,7 +31,7 @@ function Lobby() {
         subject, count: Number(count) || 10, exam: "JAMB",
         hostUid: user.uid, hostName: user.displayName || "Student",
       });
-      toast({ message: `Room ${c} created — you can start now. It joins the public list once admin approves it.`, type: "success" });
+      toast({ message: `Room ${c} created — share the code with friends to join instantly!`, type: "success" });
       navigate(`/room/${c}`);
     } catch (e) {
       toast({ message: e.message || "Could not create room — check your connection", type: "error" });
@@ -168,13 +168,13 @@ function RoomView({ code }) {
   }
 
   if (room === null) {
-    return <div className="glass-card p-10 text-center text-text-muted">Room not found — or it's still awaiting admin approval.</div>;
+    return <div className="glass-card p-10 text-center text-text-muted">Room not found. Check the code and try again.</div>;
   }
   if (!room) {
     return <div className="glass-card p-10 text-center text-text-muted">Joining room…</div>;
   }
   if (room.status !== "approved" && user && room.hostUid !== user.uid) {
-    return <div className="glass-card p-10 text-center text-text-muted">This room is awaiting approval by the ExamPadi team. The host can play now — you'll be able to join once it's approved.</div>;
+    return <div className="glass-card p-10 text-center text-text-muted">This room is awaiting admin approval. The host can play now — you'll be able to join once it's approved.</div>;
   }
 
   const members = Object.entries(room.progress || {})

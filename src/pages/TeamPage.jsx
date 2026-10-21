@@ -135,7 +135,7 @@ export default function TeamPage() {
       {/* Header */}
       <div className="glass-card p-6">
         <div className="flex items-start gap-4 flex-wrap">
-          <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-white shrink-0" style={{ background: "var(--landing-gradient)" }}>
+          <div className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0" style={{ background: "var(--landing-gradient)", color: "var(--text)" }}>
             <Users size={26} />
           </div>
           <div className="flex-1 min-w-[200px]">

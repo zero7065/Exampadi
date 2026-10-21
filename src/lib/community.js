@@ -3,7 +3,7 @@ import {
   doc, setDoc, getDoc, getDocs, addDoc, updateDoc, deleteDoc,
   collection, query, where, orderBy, limit, serverTimestamp, increment, arrayUnion, arrayRemove, onSnapshot,
 } from "firebase/firestore";
-import { db } from "../firebaseConfig";
+import { db, auth } from "../firebaseConfig";
 
 function needDb() {
   if (!db) throw new Error("Not available offline");
@@ -110,14 +110,17 @@ export async function getActiveSurvey() {
 }
 
 export async function submitSurveyVote(surveyId, uid, optionIdx, rating = null) {
-  needDb();
-  await setDoc(doc(db, "surveyVotes", `${surveyId}_${uid}`), {
-    surveyId, uid, optionIdx, rating, createdAt: serverTimestamp(),
+  const u = auth?.currentUser;
+  if (!u) throw new Error("Sign in to vote");
+  const token = await u.getIdToken();
+  const res = await fetch("/api/survey-vote", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+    body: JSON.stringify({ surveyId, optionIdx, rating }),
   });
-  await updateDoc(doc(db, "surveys", surveyId), {
-    [`votes.${optionIdx}`]: increment(1),
-    totalVotes: increment(1),
-  });
+  const data = await res.json().catch(() => null);
+  if (!res.ok) throw new Error(data?.error?.message || "Could not record your vote");
+  return data;
 }
 
 export async function hasVotedSurvey(surveyId, uid) {

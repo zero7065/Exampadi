@@ -165,7 +165,7 @@ export default function ProfilePage() {
               🌍 Public profile {profile?.isPublic ? "ON" : "OFF"}
             </button>
             <div className="flex items-center gap-2 mt-3 justify-center sm:justify-start flex-wrap">
-              <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest inline-flex items-center gap-1 ${isPro ? "bg-accent/10 text-accent border border-accent/20" : "bg-white/5 text-text-muted border border-border"}`}>
+              <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest inline-flex items-center gap-1 ${isPro ? "bg-accent/10 text-accent border border-accent/20" : "bg-subtle text-text-muted border border-border"}`}>
                 {isPro && <Crown size={11} />} {isPro ? "Pro Member" : "Free Member"}
               </span>
               {(profile?.exam || profile?.targetScore) && (

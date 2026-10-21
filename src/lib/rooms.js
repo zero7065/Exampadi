@@ -4,9 +4,9 @@
 // Creator generates questions once; joiners pull the same set and report
 // progress into the room doc (live via onSnapshot). No presence infra.
 //
-// Moderation: user-created rooms start status "pending" — only the host can
-// enter. They appear on the site (public listing / joinable) after an admin
-// approves them (status "approved").
+// Moderation: user-created rooms start status "approved" so anyone with the
+// code joins instantly. Admins can still close/delete abusive rooms from the
+// moderation queue (setRoomStatus / deleteRoom).
 //
 // Answer keys: room docs deliberately carry NO correctAnswer and NO
 // explanations (an explanation can give the answer away). The key for each
@@ -41,13 +41,15 @@ export async function createRoom({ subject, count = 10, exam = "JAMB", hostUid, 
   // Room doc = everything players may see. NO answer key, NO explanations
   // (an explanation can give the answer away). The key goes to
   // studyRooms/{code}/key/{qid}, which firestore.rules denies to all clients.
+  // Rooms are "approved" by default so anyone with the code can join immediately.
+  // Public listing still requires admin approval (moderation queue).
   batch.set(roomRef, {
     code,
     subject,
     exam,
     hostUid,
     hostName: String(hostName || "Host").slice(0, 60),
-    status: "pending",
+    status: "approved",
     questions: questions.map((q) => ({
       id: q.id,
       question: q.question,
@@ -59,6 +61,7 @@ export async function createRoom({ subject, count = 10, exam = "JAMB", hostUid, 
   });
   questions.forEach((q) => {
     batch.set(doc(roomRef, "key", String(q.id)), {
+      hostUid,
       correct: String(q.correctAnswer || q.answer || "").toUpperCase().trim(),
       explanation: q.explanation || "",
     });
@@ -71,12 +74,12 @@ export async function joinRoom(code, { uid, name }) {
   needDb();
   const clean = String(code || "").trim().toUpperCase();
   const ref = doc(db, "studyRooms", clean);
-  // Pending rooms are unreadable to non-hosts → getDoc may be denied.
   const snap = await getDoc(ref).catch(() => null);
   if (!snap || !snap.exists()) {
-    throw new Error("Room not found — or it's still awaiting admin approval.");
+    throw new Error("Room not found. Check the code and try again.");
   }
   const room = snap.data();
+  // Rooms are approved by default. This check remains for backward compatibility.
   if (room.status !== "approved" && room.hostUid !== uid) {
     throw new Error("This room is awaiting admin approval — the host can play now, others once approved.");
   }

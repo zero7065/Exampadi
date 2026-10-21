@@ -1,4 +1,4 @@
-// src/lib/schools.js — schools, classes, class invites, teacher notes.
+// src/lib/schools.js \u2014 schools, classes, class invites, teacher notes.
 import {
   doc, collection, addDoc, getDoc, getDocs, setDoc, updateDoc,
   query, where, limit, serverTimestamp, arrayUnion,
@@ -10,7 +10,7 @@ function needDb() {
   if (!db) throw new Error("Not available offline");
 }
 
-// ─── Schools ───
+// \u2502\u2502\u2502 Schools \u2502\u2502\u2502
 export async function createSchoolRequest(data) {
   needDb();
   const ref = await addDoc(collection(db, "schools"), {
@@ -76,7 +76,7 @@ export async function setSchoolStatus(schoolId, status, adminUid, teacherUid = n
   });
 }
 
-// ─── Classes ───
+// \u2502\u2502\u2502 Classes \u2502\u2502\u2502
 export async function createClass(schoolId, { name, subject, createdBy }) {
   needDb();
   const ref = await addDoc(collection(db, "classes"), {
@@ -102,7 +102,7 @@ export async function getClass(classId) {
   return snap.exists() ? { id: snap.id, ...snap.data() } : null;
 }
 
-// ─── Class invites (code-based) ───
+// \u2502\u2502\u2502 Class invites (code-based) \u2502\u2502\u2502
 function makeCode() {
   const chars = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
   let code = "";
@@ -139,7 +139,25 @@ export async function acceptClassInvite(code, uid) {
   return { classId: inv.classId, schoolId: inv.schoolId };
 }
 
-// ─── Teacher notes (per student, visible to teacher + admin) ───
+export async function getClassByInvite(code) {
+  needDb();
+  const clean = String(code || "").trim().toUpperCase();
+  const snap = await getDoc(doc(db, "classInvites", clean));
+  if (!snap.exists()) return null;
+  const inv = snap.data();
+  if (inv.status !== "open") return null;
+  const classSnap = await getDoc(doc(db, "classes", inv.classId));
+  if (!classSnap.exists()) return null;
+  const cls = classSnap.data();
+  return {
+    name: cls.name,
+    subject: cls.subject,
+    teacherName: cls.teacherName || "Teacher",
+    studentCount: cls.students?.length || 0,
+  };
+}
+
+// \u2502\u2502\u2502 Teacher notes (per student, visible to teacher + admin) \u2502\u2502\u2502
 export async function saveTeacherNote({ schoolId, classId, studentUid, authorUid, note }) {
   needDb();
   const id = `${classId}_${studentUid}`;
@@ -159,7 +177,7 @@ export async function getTeacherNote(classId, studentUid) {
   return snap.exists() ? snap.data() : null;
 }
 
-// ─── Generated exams archive ───
+// \u2502\u2502\u2502 Generated exams archive \u2502\u2502\u2502
 export async function saveGeneratedExam(schoolId, exam) {
   needDb();
   const ref = await addDoc(collection(db, `schools/${schoolId}/exams`), {

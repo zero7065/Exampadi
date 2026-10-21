@@ -409,7 +409,7 @@ const StatsPage = () => {
                         <div className="text-[10px] text-text-muted">{item.attempts} attempts</div>
                       </div>
                     </div>
-                    <div className="h-3 bg-white/5 rounded-full overflow-hidden">
+<div className="h-3 bg-subtle rounded-full overflow-hidden">
                       <div
                         className={`h-full ${item.score >= 70 ? "bg-primary" : item.score >= 40 ? "bg-yellow-400" : "bg-danger"} transition-all duration-1000 shadow-[0_0_10px_rgba(0,0,0,0.3)]`}
                         style={{ width: `${item.score}%` }}
