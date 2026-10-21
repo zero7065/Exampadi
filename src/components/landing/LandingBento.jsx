@@ -31,7 +31,7 @@ function CountUp({ end, suffix = "", duration = 2000 }) {
     return () => observer.disconnect();
   }, [end, duration]);
 
-  return <span ref={ref}>{count}{suffix}</span>;
+  return <span ref={ref}>{Number(count).toLocaleString("en-NG")}{suffix}</span>;
 }
 
 const STATS = [
@@ -67,7 +67,7 @@ function AnimatedStat({ value, suffix, decimals }) {
     return () => observer.disconnect();
   }, [value, decimals]);
 
-  return <span ref={ref}>{count}{suffix}</span>;
+  return <span ref={ref}>{Number(count).toLocaleString("en-NG")}{suffix}</span>;
 }
 
 const FEATURES = [

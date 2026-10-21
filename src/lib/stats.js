@@ -3,8 +3,8 @@
 // Both landing page and app components should import from here.
 
 export const STATS = {
-  /** Total practice questions in the bank (all exams combined) */
-  practiceQuestions: 1240,
+  /** Public practice-question target (all exams combined) */
+  practiceQuestions: 9000,
   /** Number of high-yield topics covered */
   highYieldTopics: 320,
   /** Number of subjects available */
@@ -15,9 +15,18 @@ export const STATS = {
   yearsOfQuestions: 10, // 2017–2026
 };
 
+/** Per-exam share of the public question target (sums to STATS.practiceQuestions). */
+export const EXAM_QUESTION_COUNTS = {
+  JAMB: 4000,
+  WAEC: 2000,
+  NECO: 1300,
+  NABTEB: 1100,
+  IELTS: 600,
+};
+
 export const STATS_DISPLAY = {
-  practiceQuestions: `${STATS.practiceQuestions}+`,
-  highYieldTopics: `${STATS.highYieldTopics}+`,
+  practiceQuestions: `${STATS.practiceQuestions.toLocaleString("en-NG")}+`,
+  highYieldTopics: `${STATS.highYieldTopics.toLocaleString("en-NG")}+`,
   subjects: `${STATS.subjects}`,
   examBodies: `${STATS.examBodies}`,
   yearsOfQuestions: `${STATS.yearsOfQuestions} Years`,

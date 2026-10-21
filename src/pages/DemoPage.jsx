@@ -181,7 +181,7 @@ export default function DemoPage() {
             </div>
 
             <p style={{ textAlign: "center", marginTop: 18, fontSize: 12, color: "var(--text-muted)" }}>
-              1,200+ more questions, timed mocks and an AI tutor inside the free account.
+              9,000+ more questions, timed mocks and an AI tutor inside the free account.
             </p>
           </>
         )}

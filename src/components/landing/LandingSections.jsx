@@ -1,8 +1,9 @@
 // Landing sections: Why Us, Strategic Analysis, IELTS, Why For You, How It Works, Testimonials.
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Star, Users, BookOpen, Zap, MessageSquare, TrendingUp, Target, Award, Plane, GraduationCap, Globe } from "lucide-react";
+import { Star, Users, BookOpen, Zap, MessageSquare, Target, Award, Plane, GraduationCap, Globe } from "lucide-react";
 import { listApprovedReviews } from "../../lib/community";
+import { EXAM_QUESTION_COUNTS } from "../../lib/stats";
 
 const WHY_US = [
   { emoji: "🎯", title: "Built for Nigerian Exams", body: "Not generic edtech. Every question, explanation and plan targets JAMB, WAEC, NECO, NABTEB & IELTS syllabi." },
@@ -14,11 +15,11 @@ const WHY_US = [
 ];
 
 const STRATEGIC_DATA = [
-  { exam: "JAMB", questions: "300+", years: "2015-2025", topTopic: "Use of English — Comprehension & Lexis", insight: "60% of questions repeat concepts from previous 5 years" },
-  { exam: "WAEC", questions: "146+", years: "2015-2025", topTopic: "Mathematics — Algebra & Geometry", insight: "Essay questions follow predictable patterns by subject" },
-  { exam: "NECO", questions: "96+", years: "2015-2025", topTopic: "Biology — Cell Biology & Genetics", insight: "Practical questions rotate on a 3-year cycle" },
-  { exam: "NABTEB", questions: "80+", years: "2015-2025", topTopic: "Technical — Trade Theory", insight: "Trade theory questions are 70% repeated from past papers" },
-  { exam: "IELTS", questions: "30+", years: "2023-2025", topTopic: "Academic Reading & Writing Task 2", insight: "Writing Task 2 topics cluster around 10 themes" },
+  { exam: "JAMB", years: "2015-2025", topTopic: "Use of English — Comprehension & Lexis", insight: "60% of questions repeat concepts from previous 5 years" },
+  { exam: "WAEC", years: "2015-2025", topTopic: "Mathematics — Algebra & Geometry", insight: "Essay questions follow predictable patterns by subject" },
+  { exam: "NECO", years: "2015-2025", topTopic: "Biology — Cell Biology & Genetics", insight: "Practical questions rotate on a 3-year cycle" },
+  { exam: "NABTEB", years: "2015-2025", topTopic: "Technical — Trade Theory", insight: "Trade theory questions are 70% repeated from past papers" },
+  { exam: "IELTS", years: "2023-2025", topTopic: "Academic Reading & Writing Task 2", insight: "Writing Task 2 topics cluster around 10 themes" },
 ];
 
 const WHY_FOR_YOU = [
@@ -68,7 +69,9 @@ export function LandingStrategic() {
                 <span style={{ fontSize: 20, fontWeight: 900, color: "var(--primary)" }}>{d.exam}</span>
                 <span style={{ fontSize: 12, color: "var(--text-muted)" }}>{d.years}</span>
               </div>
-              <div style={{ fontSize: 28, fontWeight: 800, color: "var(--text)", marginBottom: 4 }}>{d.questions}</div>
+              <div style={{ fontSize: 28, fontWeight: 800, color: "var(--text)", marginBottom: 4 }}>
+                {(EXAM_QUESTION_COUNTS[d.exam] || 0).toLocaleString("en-NG")}+
+              </div>
               <div style={{ fontSize: 12, color: "var(--text-muted)", marginBottom: 12 }}>questions analyzed</div>
               <div style={{ padding: "10px 12px", borderRadius: 8, background: "rgb(var(--primary-rgb) / 0.08)", marginBottom: 8 }}>
                 <div style={{ fontSize: 11, fontWeight: 700, color: "var(--primary)", marginBottom: 2 }}>TOP TOPIC</div>

@@ -2,11 +2,11 @@
 
 JAMB/WAEC/NECO/NABTEB exam prep app with AI-powered tutoring, Pro subscriptions, and adaptive practice.
 
-**Live:** https://exampadi.jadai.dev
+**Live:** https://exampadi.vercel.app
 
 ## Features
 
-- **300+ past questions** across 13 subjects (10 years: JAMB/WAEC/NECO/NABTEB)
+- **9,000+ practice questions** across 16 subjects (10 years: JAMB/WAEC/NECO/NABTEB/IELTS)
 - **Groq AI Tutor** — instant explanations for any question or topic
 - **CBT Simulator** — timed exam simulation with real scoring
 - **Mock Exams** — full-length practice tests
@@ -28,7 +28,7 @@ JAMB/WAEC/NECO/NABTEB exam prep app with AI-powered tutoring, Pro subscriptions,
 |-------|-----------|
 | Frontend | React 19, Vite 8, Tailwind CSS |
 | Auth & DB | Firebase SDK (v12) — Auth, Firestore |
-| AI | Groq API (LLaMA 3) |
+| AI | Groq API (server-side proxy) |
 | Payments | Paystack |
 | Hosting | Vercel |
 
@@ -52,14 +52,19 @@ VITE_FIREBASE_MESSAGING_SENDER_ID=
 VITE_FIREBASE_APP_ID=
 VITE_FIREBASE_MEASUREMENT_ID=
 
-# Groq AI (Required)
-VITE_GROQ_API_KEY=
+# Web push (optional until you enable notifications)
+VITE_FIREBASE_VAPID_KEY=
 
-# Paystack (Required for Pro)
+# Server-only keys (never prefix these with VITE_)
+GROQ_API_KEY=
+FIREBASE_SERVICE_ACCOUNT=
+GEMINI_API_KEY=
+PAYSTACK_SECRET_KEY=
+
+# Paystack public key (safe in the browser)
 VITE_PAYSTACK_PUBLIC_KEY=
-VITE_PAYSTACK_SECRET_KEY=
 
-# Admin (Optional — auto-seeds jadai7065@gmail.com)
+# Admin (optional)
 VITE_ADMIN_UIDS=
 ```
 
@@ -79,15 +84,16 @@ src/
   hooks/         useSubscription, useOnboarding, usePaystack, useNotifications
   lib/           userProfile, usageTracker, activityLog, gemini (Groq)
   pages/         Dashboard, AITutor, CBTSimulator, AdminPage, Leaderboard, etc.
-  data/          questionBank.js (300+ questions)
+  data/          master-bank/*.json (9,000+ practice-question target)
   config/        plans.js (Free, Pro Monthly, Pro Yearly)
 ```
 
 ## Admin Access
 
-- Auto-seeded: `jadai7065@gmail.com` / `Admin1234`
-- Admin auto-redirects to `/admin` on login
-- Hidden from non-admin users (no nav link)
+- Set `VITE_SEED_ADMIN_EMAIL` and `VITE_SEED_ADMIN_PASSWORD` locally to auto-seed.
+- Set the user document `role` to `"admin"` in Firestore.
+- Admin auto-redirects to `/admin` on login.
+- Hidden from non-admin users (no nav link).
 
 ## Contact
 

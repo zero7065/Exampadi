@@ -134,20 +134,32 @@ enforces the limit in `api/ai.js`; the client display is only a convenience.
 ## 4. Web push notifications
 
 1. Firebase Console → **Project settings → Cloud Messaging**.
-2. Under **Web configuration → Web Push certificates**, generate a key pair.
-3. Copy the public key.
-4. Add it to Vercel as `VITE_FIREBASE_VAPID_KEY` for Production and Preview.
-5. Redeploy:
+2. Under **Web configuration → Web Push certificates**, click
+   **Generate key pair** (or use the existing pair).
+3. Copy the **public** key. This is safe to expose in the browser; never copy
+   the Firebase private key or service-account JSON here.
+4. Local: open `.env` and set:
+   ```env
+   VITE_FIREBASE_VAPID_KEY=YOUR_PUBLIC_VAPID_KEY
+   ```
+5. Vercel: **Project → Settings → Environment Variables → Add New**.
+   - Key: `VITE_FIREBASE_VAPID_KEY`
+   - Value: the same public key
+   - Environments: **Production** and **Preview**
+6. Save, then redeploy so the new client bundle is built:
    ```powershell
    vercel --prod
    ```
-6. In the app, open the notification bell and click **Enable notifications**.
-7. On iPhone/iPad:
+7. Open the app, sign in, open the notification bell, and click
+   **Enable notifications**.
+8. On iPhone/iPad:
    - iOS 16.4 or newer is required.
    - Safari → Share → **Add to Home Screen**.
    - Open the installed app, then enable notifications.
-8. Push is best-effort on the free plan. In-app notifications always work
+9. Push is best-effort on the free plan. In-app notifications always work
    through the `notifications` collection and `NotificationPanel`.
+10. If `Enable notifications` does nothing, confirm the key starts with `B`
+    and that the deployed bundle contains the value after redeploying.
 
 ---
 
