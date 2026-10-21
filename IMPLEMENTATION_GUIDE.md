@@ -177,11 +177,14 @@ Production URL: https://exampadi.vercel.app
 | `VITE_FIREBASE_STORAGE_BUCKET` | Client | Firebase web config |
 | `VITE_FIREBASE_MESSAGING_SENDER_ID` | Client | Firebase web config |
 | `VITE_FIREBASE_APP_ID` | Client | Firebase web config |
+| `VITE_FIREBASE_MEASUREMENT_ID` | Client | Analytics (optional) |
 | `VITE_FIREBASE_VAPID_KEY` | Client | Web push |
+| `VITE_PAYSTACK_PUBLIC_KEY` | Client | Paystack checkout |
 | `GROQ_API_KEY` | Server | AI tutor |
 | `FIREBASE_SERVICE_ACCOUNT` | Server | Token verification + APIs |
 | `GEMINI_API_KEY` | Server | Image features (optional) |
-| `PAYSTACK_SECRET_KEY` | Server | Payment verification (optional) |
+| `HF_API_KEY` | Server | Image fallback (optional) |
+| `PAYSTACK_SECRET_KEY` | Server | Payment verification |
 
 ### 5.2 Deploy
 ```powershell
@@ -196,6 +199,20 @@ Or connect the GitHub repository and let Vercel deploy on every push to `main`.
 4. Confirm the domain shown in the browser is `exampadi.vercel.app`.
 5. If a custom domain points at an old deployment, remove the old alias in
    Vercel → **Settings → Domains**, then add it to the current project.
+
+### 5.4 Paystack production key
+`/api/health` reports `paystack: false` until Vercel sees the server key.
+
+1. Vercel → **Project → Settings → Environment Variables**.
+2. Confirm the exact name is `PAYSTACK_SECRET_KEY` (not `VITE_PAYSTACK_SECRET_KEY`).
+3. Enable **Production** and **Preview**.
+4. Redeploy:
+   ```powershell
+   vercel --prod
+   ```
+5. Re-open `/api/health` and confirm `paystack: true`.
+6. The public checkout key stays in `VITE_PAYSTACK_PUBLIC_KEY`; the secret key
+   must never be prefixed with `VITE_`.
 
 ---
 
