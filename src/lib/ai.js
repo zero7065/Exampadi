@@ -95,17 +95,35 @@ export function isAIConfigured() {
 async function postAI({ model, messages, max_tokens, temperature, source, timeoutMs = 45000 }) {
   let token = null;
   try {
-    token = auth?.currentUser ? await auth.currentUser.getIdToken() : null;
+    if (auth?.currentUser) token = await auth.currentUser.getIdToken();
   } catch {
-    token = null;
+    // Leave token null; the user is asked to sign in again below.
   }
   if (!token) throw new Error("Sign in to use the AI tutor.");
 
-  const res = await groqFetch("/api/ai", {
+  const payload = JSON.stringify({ model, messages, max_tokens, temperature, source });
+  let res = await groqFetch("/api/ai", {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-    body: JSON.stringify({ model, messages, max_tokens, temperature, source }),
+    body: payload,
   }, timeoutMs);
+
+  // A cached Firebase token can be rejected after a long idle period. Force a
+  // refresh once, then retry the same request before surfacing an auth error.
+  if (res.status === 401) {
+    try {
+      token = auth?.currentUser ? await auth.currentUser.getIdToken(true) : null;
+    } catch {
+      token = null;
+    }
+    if (token) {
+      res = await groqFetch("/api/ai", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        body: payload,
+      }, timeoutMs);
+    }
+  }
 
   const data = await res.json().catch(() => null);
 
@@ -164,7 +182,7 @@ export function sanitizeAIResponse(text) {
     .replace(/^#{1,6}\s+/gm, "")
     .replace(/\[(.+?)\]\(.+?\)/g, "$1")
     .replace(/^\s*[-*]\s+/gm, "• ")
-    .replace(/^\s*\d+\.\s+/gm, (m, offset, str) => {
+    .replace(/^\s*\d+\.\s+/gm, (m) => {
       const num = m.match(/\d+/)[0];
       return `${num}. `;
     });
@@ -500,7 +518,7 @@ export async function predictLikelyQuestions({ subject, exam, count = 6 }) {
   }
 }
 
-export async function generateStudyPlan({ targetScore, examDate, currentLevel: _currentLevel, weakTopics }) {
+export async function generateStudyPlan({ targetScore, examDate, weakTopics }) {
   const daysUntilExam = Math.ceil((new Date(examDate) - new Date()) / (1000 * 60 * 60 * 24));
   try {
     const system = "You are an exam consultant. Create a study plan as JSON. Return ONLY valid JSON, no markdown fences.";

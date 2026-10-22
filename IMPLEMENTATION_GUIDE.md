@@ -69,7 +69,13 @@ Console: https://console.firebase.google.com/project/jamb-tutor/overview
 2. Click **Generate new private key**.
 3. Copy the entire JSON object into the Vercel environment variable
    `FIREBASE_SERVICE_ACCOUNT` (Production and Preview).
-4. Never commit the JSON file.
+4. If the JSON cannot be pasted reliably, use these three Vercel variables instead:
+   - `FIREBASE_PROJECT_ID` = `project_id` from the JSON
+   - `FIREBASE_CLIENT_EMAIL` = `client_email` from the JSON
+   - `FIREBASE_PRIVATE_KEY` = `private_key` from the JSON, keeping literal `\n` sequences
+5. Never commit the JSON file or the private key.
+6. Redeploy after changing any of these variables, then check
+   `/api/health` for `firebaseAdmin: true` and `firebaseAdminReason: "ready"`.
 
 ### 2.4 Free-plan limits
 - Firebase Storage is **not enabled** on the free plan. Whiteboard saves use

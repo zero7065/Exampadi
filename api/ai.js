@@ -135,7 +135,7 @@ export default async function handler(req, res) {
   if (!fb) {
     return res.status(500).json({
       error: {
-        message: "Server auth is not configured — add FIREBASE_SERVICE_ACCOUNT in Vercel (Firebase Console → Project settings → Service accounts → Generate new private key).",
+        message: "Server auth is not configured — add FIREBASE_SERVICE_ACCOUNT in Vercel, or FIREBASE_PROJECT_ID + FIREBASE_CLIENT_EMAIL + FIREBASE_PRIVATE_KEY. Generate the key in Firebase Console → Project settings → Service accounts.",
       },
       code: "NO_SERVICE_ACCOUNT",
     });
