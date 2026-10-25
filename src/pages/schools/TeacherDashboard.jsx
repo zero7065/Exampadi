@@ -6,14 +6,14 @@ import { useAuth } from "../../context/AuthContext";
 import { useToast } from "../../components/Toast";
 import { getUserProfile } from "../../lib/userProfile";
 import {
-  listSchoolClasses, createClass, createClassInvite, getClass,
+  listSchoolClasses, createClass, createClassInvite, getClass, updateClassSettings,
   saveTeacherNote, getTeacherNote, createLessonPlan, listLessonPlans, deleteLessonPlan,
 } from "../../lib/schools";
 import { collection, query, where, getDocs, limit } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 import AvatarDisplay from "../../components/Avatar/AvatarDisplay";
 import {
-  Users, Plus, FileText, MonitorPlay, ClipboardList, X, Send, Trophy, BookOpenCheck, Inbox,
+  Users, Plus, FileText, MonitorPlay, ClipboardList, X, Send, Trophy, BookOpenCheck, Inbox, Settings2,
 } from "lucide-react";
 import { createAssignment } from "../../lib/teacherContent";
 import { getQuestionsFromBank } from "../../data/questions/compat";
@@ -48,6 +48,12 @@ export default function TeacherDashboard() {
   const [showAssign, setShowAssign] = useState(false);
   const [newAssign, setNewAssign] = useState({ title: "", subject: "", count: 10, dueDate: "" });
   const [creatingAssign, setCreatingAssign] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
+  const [savingSettings, setSavingSettings] = useState(false);
+  const [classCfg, setClassCfg] = useState({
+    questionSeconds: 0, allowChat: true, showLeaderboard: true,
+    instructions: "", goal: "", lateJoin: true,
+  });
 
   useEffect(() => {
     if (user) getUserProfile(user.uid).then(setProfile).catch(() => {});
@@ -134,6 +140,20 @@ export default function TeacherDashboard() {
   }, [classId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
+    if (!classId) return;
+    getClass(classId).then((c) => {
+      setClassCfg({
+        questionSeconds: Number(c?.config?.questionSeconds) || 0,
+        allowChat: c?.config?.allowChat !== false,
+        showLeaderboard: c?.config?.showLeaderboard !== false,
+        instructions: c?.config?.instructions || "",
+        goal: c?.config?.goal || "",
+        lateJoin: c?.config?.lateJoin !== false,
+      });
+    }).catch(() => {});
+  }, [classId]);
+
+  useEffect(() => {
     if (!classId) { setLessons([]); return; }
     listLessonPlans({ classId }).then(setLessons).catch(() => setLessons([]));
   }, [classId]);
@@ -177,6 +197,22 @@ export default function TeacherDashboard() {
       setClassId(id);
     } catch (err) {
       toast({ message: `Failed: ${err.message}`, type: "error" });
+    }
+  }
+
+  async function saveClassSettings(e) {
+    e.preventDefault();
+    if (!classId) return;
+    setSavingSettings(true);
+    try {
+      await updateClassSettings(classId, { config: classCfg });
+      setClasses((cs) => cs.map((c) => (c.id === classId ? { ...c, config: classCfg } : c)));
+      toast({ message: "Class settings saved", type: "success" });
+      setShowSettings(false);
+    } catch (err) {
+      toast({ message: err.message || "Could not save settings", type: "error" });
+    } finally {
+      setSavingSettings(false);
     }
   }
 
@@ -316,6 +352,7 @@ export default function TeacherDashboard() {
             {classes.map((c) => <option key={c.id} value={c.id}>{c.name} · {c.subject}</option>)}
           </select>
           <button onClick={() => setShowCreate(true)} className="btn-secondary px-4 text-sm"><Plus size={15} /> Class</button>
+          <button onClick={() => setShowSettings(true)} disabled={!classId} className="btn-secondary px-4 text-sm disabled:opacity-50"><Settings2 size={15} /> Settings</button>
           <button onClick={handleInvite} className="btn-secondary px-4 text-sm"><Users size={15} /> Invite code</button>
           <button onClick={() => setShowAssign((v) => !v)} className="btn-secondary px-4 text-sm flex items-center gap-1.5"><ClipboardList size={15} /> Assignment</button>
           <Link to="/teacher/reviews" className="btn-secondary px-4 text-sm flex items-center gap-1.5"><Inbox size={15} /> Reviews</Link>
@@ -337,6 +374,35 @@ export default function TeacherDashboard() {
             <button type="submit" className="btn-primary px-5">Create</button>
             <button type="button" onClick={() => setShowCreate(false)} className="btn-secondary px-5">Cancel</button>
           </div>
+        </form>
+      )}
+
+      {showSettings && (
+        <form onSubmit={saveClassSettings} className="glass-card p-5 space-y-3">
+          <div className="flex items-center justify-between gap-2">
+            <h2 className="font-black text-text flex items-center gap-2"><Settings2 size={17} className="text-primary" /> Class defaults</h2>
+            <button type="button" onClick={() => setShowSettings(false)} className="text-text-muted"><X size={17} /></button>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-3">
+            <label className="text-xs font-bold text-text-muted">
+              Goal for this class
+              <input value={classCfg.goal} onChange={(e) => setClassCfg({ ...classCfg, goal: e.target.value })} maxLength={160} placeholder="e.g. Finish Mechanics before midterm" className="input-field mt-1" />
+            </label>
+            <label className="text-xs font-bold text-text-muted">
+              Default seconds per question
+              <input type="number" min="0" max="900" value={classCfg.questionSeconds} onChange={(e) => setClassCfg({ ...classCfg, questionSeconds: Number(e.target.value) || 0 })} className="input-field mt-1" />
+            </label>
+          </div>
+          <label className="block text-xs font-bold text-text-muted">
+            Default class instructions
+            <textarea value={classCfg.instructions} onChange={(e) => setClassCfg({ ...classCfg, instructions: e.target.value })} maxLength={500} rows={3} className="input-field mt-1 resize-none" />
+          </label>
+          <div className="flex flex-wrap gap-4 text-xs font-bold text-text-muted">
+            <label className="flex items-center gap-2"><input type="checkbox" checked={classCfg.allowChat} onChange={(e) => setClassCfg({ ...classCfg, allowChat: e.target.checked })} /> Allow class chat</label>
+            <label className="flex items-center gap-2"><input type="checkbox" checked={classCfg.showLeaderboard} onChange={(e) => setClassCfg({ ...classCfg, showLeaderboard: e.target.checked })} /> Show leaderboard</label>
+            <label className="flex items-center gap-2"><input type="checkbox" checked={classCfg.lateJoin} onChange={(e) => setClassCfg({ ...classCfg, lateJoin: e.target.checked })} /> Allow late join</label>
+          </div>
+          <button type="submit" disabled={savingSettings} className="btn-primary px-5 disabled:opacity-60">{savingSettings ? "Saving…" : "Save class settings"}</button>
         </form>
       )}
 

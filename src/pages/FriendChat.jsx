@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "../components/Toast";
+import PresenceBadge from "../components/PresenceBadge";
+import { subscribePresenceForUids } from "../lib/presence";
 import { getOrCreateThread, sendMessage, subscribeMessages } from "../lib/discussions";
 import { getQuestionsFromBank } from "../data/questions/compat";
 import { ArrowLeft, Send, Share2, BookOpen, X } from "lucide-react";
@@ -17,7 +19,9 @@ export default function FriendChat() {
   const [showShare, setShowShare] = useState(false);
   const [shareSubject, setShareSubject] = useState("Physics");
   const [shareQs, setShareQs] = useState([]);
+  const [presence, setPresence] = useState({});
   const bottomRef = useRef(null);
+  const partnerUid = (pairId || "").split("_").find((uid) => uid && uid !== user?.uid) || "";
 
   useEffect(() => {
     if (!user || !pairId) return;
@@ -25,6 +29,8 @@ export default function FriendChat() {
     const unsub = subscribeMessages(pairId, setMessages);
     return () => unsub && unsub();
   }, [user, pairId]);
+
+  useEffect(() => subscribePresenceForUids([partnerUid], setPresence), [partnerUid]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -80,7 +86,10 @@ export default function FriendChat() {
       <Link to="/study-partners" style={{ display: "inline-flex", alignItems: "center", gap: 6, color: "var(--text-muted)", fontSize: 14, fontWeight: 600, marginBottom: 12 }}>
         <ArrowLeft size={16} /> Partners
       </Link>
-      <h1 className="type-h2" style={{ marginBottom: 12 }}>Friend discussion</h1>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, marginBottom: 12, flexWrap: "wrap" }}>
+        <h1 className="type-h2" style={{ margin: 0 }}>Friend discussion</h1>
+        <PresenceBadge presence={presence[partnerUid]} />
+      </div>
 
       <div className="glass-card p-4 flex-1 flex flex-col" style={{ minHeight: 380 }}>
         <div style={{ flex: 1, overflowY: "auto", display: "flex", flexDirection: "column", gap: 10, marginBottom: 12 }}>

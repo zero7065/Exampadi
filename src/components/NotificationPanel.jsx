@@ -13,7 +13,7 @@ function getSeen() {
   try { return localStorage.getItem(SEEN_KEY) || ""; } catch { return ""; }
 }
 
-export default function NotificationPanel({ bottom = false }) {
+export default function NotificationPanel({ bottom = false, modal = false }) {
   const { user } = useAuth();
   const [open, setOpen] = useState(false);
   const [items, setItems] = useState([]);
@@ -73,12 +73,15 @@ export default function NotificationPanel({ bottom = false }) {
 
       {open && (
         <>
-          <div style={{ position: "fixed", inset: 0, zIndex: 60 }} onClick={() => setOpen(false)} />
+          <div style={{ position: "fixed", inset: 0, zIndex: modal ? 90 : 60, background: modal ? "rgba(0,0,0,0.55)" : "transparent" }} onClick={() => setOpen(false)} />
           <div className="glass-card" style={{
-            position: "absolute", right: bottom ? "50%" : 0,
-            transform: bottom ? "translateX(50%)" : "none",
-            top: bottom ? "auto" : 48, bottom: bottom ? 48 : "auto",
-            width: "min(380px, 88vw)", zIndex: 61,
+            position: modal ? "fixed" : "absolute",
+            left: modal ? "50%" : "auto",
+            right: modal ? "auto" : (bottom ? "50%" : 0),
+            transform: modal ? "translate(-50%, -50%)" : (bottom ? "translateX(50%)" : "none"),
+            top: modal ? "50%" : (bottom ? "auto" : 48),
+            bottom: modal ? "auto" : (bottom ? 48 : "auto"),
+            width: "min(380px, 88vw)", zIndex: modal ? 91 : 61,
             maxHeight: "70vh", overflowY: "auto", padding: 16,
           }}>
             <div className="flex items-center justify-between mb-3">

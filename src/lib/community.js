@@ -4,6 +4,7 @@ import {
   collection, query, where, orderBy, limit, serverTimestamp, increment, arrayUnion, arrayRemove, onSnapshot,
 } from "firebase/firestore";
 import { db, auth } from "../firebaseConfig";
+import { apiUrl } from "./apiBase";
 
 function needDb() {
   if (!db) throw new Error("Not available offline");
@@ -113,7 +114,7 @@ export async function submitSurveyVote(surveyId, uid, optionIdx, rating = null) 
   const u = auth?.currentUser;
   if (!u) throw new Error("Sign in to vote");
   const token = await u.getIdToken();
-  const res = await fetch("/api/survey-vote", {
+  const res = await fetch(apiUrl("/api/survey-vote"), {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
     body: JSON.stringify({ surveyId, optionIdx, rating }),

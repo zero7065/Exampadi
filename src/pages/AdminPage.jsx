@@ -9,7 +9,7 @@ import AdminCompliance from "../components/AdminCompliance";
 import AdminTeams from "../components/AdminTeams";
 import AdminContent from "../components/AdminContent";
 const isAdmin = typeof _isAdmin === 'function' ? _isAdmin : () => false;
-import { Shield, Users, Activity, BookOpen, Crown, ArrowLeft, RefreshCw, UserCheck, UserX, ChevronDown, Search, CrownIcon, Zap, CreditCard, ClipboardList, Award, Clock, FileText, CheckCircle, XCircle, Wifi, Eye } from "lucide-react";
+import { Shield, Users, Activity, BookOpen, Crown, ArrowLeft, RefreshCw, Search, Zap, CreditCard, ClipboardList, Award, Clock, CheckCircle, XCircle, Eye } from "lucide-react";
 import NetworkDiagnostic from "../components/NetworkDiagnostic";
 import AdminTrainingData from "../components/AdminTrainingData";
 import AdminTeachers from "../components/AdminTeachers";
@@ -55,7 +55,7 @@ export default function AdminPage() {
   useEffect(() => {
     if (!user || !isAdmin(user)) { navigate("/dashboard"); return; }
     fetchData();
-  }, [user]);
+  }, [user, navigate]);
 
   async function fetchData() {
     setLoading(true);
@@ -146,11 +146,6 @@ export default function AdminPage() {
   function formatDate(ts) {
     if (!ts?.toDate) return "—";
     return ts.toDate().toLocaleDateString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
-  }
-
-  function formatDateShort(ts) {
-    if (!ts?.toDate) return "—";
-    return ts.toDate().toLocaleDateString("en-GB", { day: "numeric", month: "short" });
   }
 
   function getActionColor(action) {
@@ -600,7 +595,7 @@ export default function AdminPage() {
                           </td>
                           <td style={{ padding: "12px 16px" }}>
                             <div style={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
-                              {Object.entries(FULL_PRO_FEATURES).map(([key, val]) => (
+                              {Object.entries(FULL_PRO_FEATURES).map(([key]) => (
                                 <span key={key} style={{
                                   padding: "2px 6px", borderRadius: 4, fontSize: 9, fontWeight: 700,
                                   background: features[key] ? "rgba(74,222,128,0.15)" : "rgba(255,255,255,0.05)",

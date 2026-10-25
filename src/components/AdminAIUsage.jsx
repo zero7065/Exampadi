@@ -2,10 +2,11 @@
 import { useState, useEffect } from "react";
 import {
   Zap, AlertTriangle, TrendingUp, Download, Loader2, DollarSign,
-  Users, MessageSquare, BarChart3, ShieldCheck, Bell
+  MessageSquare, BarChart3, ShieldCheck, Bell
 } from "lucide-react";
 import { collection, getDocs, query, where, limit, orderBy } from "firebase/firestore";
-import { db } from "../firebaseConfig";
+import { auth, db } from "../firebaseConfig";
+import { apiUrl } from "../lib/apiBase";
 
 const AI_COST_PER_1K_TOKENS = 0.00015; // Groq pricing estimate
 const MONTHLY_BUDGET_USD = 200; // Adjust based on your budget
@@ -19,15 +20,12 @@ function formatCurrency(n) {
   return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(n);
 }
 
-function formatDate(ts) {
-  if (!ts?.toDate) return "—";
-  return ts.toDate().toLocaleDateString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
-}
-
 export default function AdminAIUsage() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [timeRange, setTimeRange] = useState("7d"); // 1d, 7d, 30d, all
+  const [timeRange, setTimeRange] = useState("7d");
+  const [exporting, setExporting] = useState(false);
+  const [exportError, setExportError] = useState("");
 
   useEffect(() => {
     async function load() {
@@ -168,6 +166,36 @@ export default function AdminAIUsage() {
     URL.revokeObjectURL(url);
   }
 
+  async function exportLogs() {
+    if (!auth?.currentUser) {
+      setExportError("Sign in again to export AI logs.");
+      return;
+    }
+    setExporting(true);
+    setExportError("");
+    try {
+      const token = await auth.currentUser.getIdToken();
+      const res = await fetch(apiUrl("/api/export/ai-logs?scope=all&limit=5000&format=jsonl"), {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!res.ok) {
+        const payload = await res.json().catch(() => null);
+        throw new Error(payload?.error || `Export failed (${res.status})`);
+      }
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `ai-logs-${new Date().toISOString().slice(0, 10)}.jsonl`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      setExportError(error?.message || "Export failed.");
+    } finally {
+      setExporting(false);
+    }
+  }
+
   if (loading) {
     return <div style={{ color: "var(--text-muted)", padding: 24, display: "flex", alignItems: "center", gap: 12 }}><Loader2 className="animate-spin" size={20} /> Loading AI usage...</div>;
   }
@@ -198,8 +226,12 @@ export default function AdminAIUsage() {
           <button onClick={downloadCSV} style={{ padding: "8px 16px", borderRadius: 8, background: "#4ADE80", border: "none", color: "#000", fontWeight: 700, fontSize: 12, cursor: "pointer", display: "flex", alignItems: "center", gap: 6 }}>
             <Download size={14} /> Export CSV
           </button>
+          <button onClick={exportLogs} disabled={exporting} style={{ padding: "8px 16px", borderRadius: 8, background: "var(--primary)", border: "none", color: "#fff", fontWeight: 700, fontSize: 12, cursor: exporting ? "wait" : "pointer", display: "flex", alignItems: "center", gap: 6, opacity: exporting ? 0.7 : 1 }}>
+            {exporting ? <Loader2 size={14} className="animate-spin" /> : <Download size={14} />} Export AI Logs
+          </button>
         </div>
       </div>
+      {exportError && <div style={{ color: "#f87171", fontSize: 12 }}>{exportError}</div>}
 
       {/* Alert Banner */}
       {data.isAlert && (
@@ -241,7 +273,7 @@ export default function AdminAIUsage() {
       <div style={{ background: "var(--bg-3)", borderRadius: 12, padding: 16 }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
           <span style={{ fontSize: 13, fontWeight: 700, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: 1 }}>
-            Monthly Budget: {formatCurrency(estimatedCost)} / {formatCurrency(MONTHLY_BUDGET_USD)}
+            Monthly Budget: {formatCurrency(data.estimatedCost)} / {formatCurrency(MONTHLY_BUDGET_USD)}
           </span>
           <span style={{ fontSize: 13, fontWeight: 700, color: data.isAlert ? "#f87171" : "#4ADE80" }}>
             {data.remainingPct.toFixed(1)}% Remaining
@@ -338,7 +370,7 @@ export default function AdminAIUsage() {
             </tr>
           </thead>
           <tbody>
-            {data.topUsers.map((u, i) => (
+            {data.topUsers.map((u) => (
               <tr key={u.uid} style={{ borderBottom: "1px solid var(--border)" }}>
                 <td style={{ padding: "10px 8px", color: "#fff", fontWeight: 600 }}>{u.name || "—"}</td>
                 <td style={{ padding: "10px 8px", color: "var(--text-muted)", fontSize: 11 }}>{u.email}</td>

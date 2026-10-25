@@ -82,8 +82,7 @@ export default function AdminMedia() {
         toast({ message: "Image still large after compression — try a smaller file", type: "warning" });
       }
       const storage = getAppStorage();
-      const ts = Date.now();
-      const path = `landing/${slot}-${ts}.jpg`;
+      const path = `landing/${slot}-${crypto.randomUUID()}.jpg`;
       await uploadBytes(ref(storage, path), blob, { contentType: "image/jpeg" });
       const url = await getDownloadURL(ref(storage, path));
       await setDoc(doc(db, "siteContent", "landing"), { [slot]: url, updatedAt: serverTimestamp() }, { merge: true });

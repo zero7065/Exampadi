@@ -85,6 +85,13 @@ service cloud.firestore {
             && pay.get("userId", "") == request.auth.uid);
     }
 
+    // ─── PRESENCE (presence + last seen for partners/classes) ───
+    match /presence/{uid} {
+      allow read: if request.auth != null;
+      allow create, update: if request.auth != null && request.auth.uid == uid;
+      allow delete: if isAdmin();
+    }
+
     // ─── USERS ───
     match /users/{userId} {
       allow read: if request.auth != null;
@@ -340,13 +347,18 @@ service cloud.firestore {
       allow read: if request.auth != null;
       allow create: if request.auth != null
         && request.resource.data.studentUid == request.auth.uid;
-      allow update, delete: if isAdmin();
+      allow update: if request.auth != null
+        && resource.data.studentUid == request.auth.uid
+        && request.resource.data.studentUid == request.auth.uid;
+      allow delete: if isAdmin();
     }
 
     // "I get it / I'm confused" signals + last-active: owner writes own doc,
     // teacher/admin read for the live engagement board.
     match /classResponses/{respId} {
-      allow read: if isAdmin() || isTeacher();
+      allow read: if request.auth != null && (
+        isAdmin() || isTeacher() || isClassMember(resource.data.classId)
+      );
       allow create, update: if request.auth != null
         && request.resource.data.studentUid == request.auth.uid
         && request.resource.data.classId is string;
@@ -453,6 +465,13 @@ service cloud.firestore {
       allow update: if request.auth != null && (
         isAdmin()
         || (
+          request.auth.uid == resource.data.hostUid
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+            "goal", "rules", "allowChat", "showLeaderboard", "visibility",
+            "active", "allowLateJoin", "pinnedMessage", "timer", "updatedAt",
+          ])
+        )
+        || (
           request.resource.data.diff(resource.data).affectedKeys().hasOnly(["progress"])
           && !(request.auth.uid in resource.data.get("progress", {}))
           && request.resource.data.progress.keys().hasAll(resource.data.get("progress", {}).keys())
@@ -481,6 +500,18 @@ service cloud.firestore {
       // Graded responses: server-only (dedup + source of truth for verdicts).
       match /responses/{uid} {
         allow read, list, create, update, delete: if false;
+      }
+
+      // Room chat: only joined members can read or write; host can moderate.
+      match /chat/{msgId} {
+        allow read: if request.auth != null
+          && request.auth.uid in get(/databases/$(database)/documents/studyRooms/$(code)).data.get("progress", {});
+        allow create: if request.auth != null
+          && request.resource.data.fromUid == request.auth.uid
+          && request.auth.uid in get(/databases/$(database)/documents/studyRooms/$(code)).data.get("progress", {});
+        allow delete: if isAdmin()
+          || (request.auth != null && resource.data.fromUid == request.auth.uid)
+          || (request.auth != null && request.auth.uid == get(/databases/$(database)/documents/studyRooms/$(code)).data.hostUid);
       }
     }
 
@@ -578,6 +609,21 @@ service cloud.firestore {
         && request.resource.data.userId == request.auth.uid;
       allow read: if isAdmin();
       allow update, delete: if isAdmin();
+    }
+
+    match /aiLogs/{logId} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+
+    match /aiLogsDaily/{dateKey}/rollups/{uidHash} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+
+    match /aiCache/{promptHash} {
+      allow read: if isAdmin();
+      allow write: if false;
     }
 
     // ─── AI SESSIONS (owner read/write) ───

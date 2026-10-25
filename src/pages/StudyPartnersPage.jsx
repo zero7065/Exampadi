@@ -4,15 +4,16 @@ import { useAuth } from "../context/AuthContext";
 import { useSubscription } from "../hooks/useSubscription";
 import { useToast } from "../components/Toast";
 import ProGate from "../components/ProGate";
+import PresenceBadge from "../components/PresenceBadge";
+import { subscribePresenceForUids } from "../lib/presence";
 import {
   getPartners, addPartner, removePartner,
   createSharedTest, getPartnerTests, getPartnerLeaderboard,
 } from "../lib/studyPartners";
 import { shareOnWhatsApp } from "../components/WhatsAppShare";
-import { getQuestionsFromBank } from "../data/questions/compat";
 import {
-  Users, UserPlus, Trash2, Trophy, Clock, Target,
-  Crown, Zap, MessageCircle, Play, X,
+  Users, UserPlus, Trash2, Target,
+  MessageCircle, Play, X,
 } from "lucide-react";
 
 export default function StudyPartnersPage() {
@@ -24,11 +25,11 @@ export default function StudyPartnersPage() {
   const [partners, setPartners] = useState([]);
   const [tests, setTests] = useState([]);
   const [leaderboard, setLeaderboard] = useState([]);
+  const [presence, setPresence] = useState({});
   const [loading, setLoading] = useState(true);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showScheduleModal, setShowScheduleModal] = useState(false);
   const [selectedPartner, setSelectedPartner] = useState(null);
-  const [inviteId, setInviteId] = useState(null);
 
   const [scheduleForm, setScheduleForm] = useState({
     subject: "Use of English Language",
@@ -46,6 +47,11 @@ export default function StudyPartnersPage() {
     if (!user) return;
     loadData();
   }, [user]);
+
+  useEffect(
+    () => subscribePresenceForUids(partners.map((p) => p.uid), setPresence),
+    [partners],
+  );
 
   async function loadData() {
     setLoading(true);
@@ -112,7 +118,7 @@ export default function StudyPartnersPage() {
       return;
     }
     try {
-      const testId = await createSharedTest(user.uid, user.displayName || "Student", {
+      await createSharedTest(user.uid, user.displayName || "Student", {
         partnerUid: selectedPartner.uid,
         subject: scheduleForm.subject,
         questionCount: scheduleForm.questionCount,
@@ -226,9 +232,12 @@ export default function StudyPartnersPage() {
                       {(p.displayName || "?")[0].toUpperCase()}
                     </div>
                     <div style={{ flex: 1 }}>
-                      <div style={{ fontWeight: 600, fontSize: 15 }}>{p.displayName || "Student"}</div>
+                      <div style={{ fontWeight: 600, fontSize: 15, display: "flex", alignItems: "center", gap: 8 }}>
+                        {p.displayName || "Student"}
+                        <PresenceBadge presence={presence[p.uid]} />
+                      </div>
                       <div style={{ fontSize: 12, color: "var(--text-muted)" }}>
-                        ⭐ {p.totalXP || p.xp || 0} XP · 🔥 {p.streak || 0} day streak
+                        ⚡ {p.totalXP || p.xp || 0} XP · 🔥 {p.streak || 0} day streak
                       </div>
                     </div>
                     <button

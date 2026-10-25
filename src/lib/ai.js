@@ -1,11 +1,12 @@
-// src/lib/ai.js - Unified Groq AI client.
+﻿// src/lib/ai.js - Unified Groq AI client.
 //
 // All model calls go through our own server proxy (POST /api/ai). The Groq
-// key lives only in the server env (GROQ_API_KEY) — Vite inlines any
+// key lives only in the server env (GROQ_API_KEY) â€” Vite inlines any
 // VITE_-prefixed var into the public bundle, so it must never carry a secret.
 
 import { logTrainingEntry } from "./aiTraining";
 import { auth } from "../firebaseConfig";
+import { apiUrl } from "./apiBase";
 import { checkAILimit } from "./usageTracker";
 
 // Thrown when the user has no AI credits left. Consumers can catch this to
@@ -19,7 +20,7 @@ export class AILimitError extends Error {
   }
 }
 
-// Central gate — run before every Groq call. Throws AILimitError when the
+// Central gate â€” run before every Groq call. Throws AILimitError when the
 // user is hard-stopped (monthly cap + no pack credits). Fires a soft-warning
 // event at 80% of the monthly cap. Fail-open: anonymous users and Firestore
 // errors never block the AI call.
@@ -35,8 +36,8 @@ async function enforceAILimit(source) {
   if (!check.allowed) {
     throw new AILimitError(
       check.isFree
-        ? "You've used all 3 free AI messages for today. Upgrade to Pro or buy a 50-message pack (₦1,500) to continue."
-        : `You've used all ${check.monthLimit} AI messages for this month. Upgrade to Pro or buy a 50-message pack (₦1,500) to continue.`,
+        ? "You've used all 3 free AI messages for today. Upgrade to Pro or buy a 50-message pack (â‚¦1,500) to continue."
+        : `You've used all ${check.monthLimit} AI messages for this month. Upgrade to Pro or buy a 50-message pack (â‚¦1,500) to continue.`,
       { ...check, source }
     );
   }
@@ -54,7 +55,7 @@ async function enforceAILimit(source) {
 let _lastSoftWarningAt = 0;
 
 // NOTE: usage is no longer booked here. The server proxy (api/ai.js) is the
-// single authority — it enforces the credit limit and writes the counters
+// single authority â€” it enforces the credit limit and writes the counters
 // after a successful Groq response, so the client gate above is UX only.
 
 // Verified against GET /openai/v1/models for this API key (Oct 2026).
@@ -84,8 +85,26 @@ export function clearAIError() {
 
 export function isAIConfigured() {
   // The Groq key now lives only on the server (api/ai.js, GROQ_API_KEY).
-  // The client cannot preflight it — real errors surface per call.
+  // The client cannot preflight it â€” real errors surface per call.
   return true;
+}
+
+function randomId(prefix) {
+  if (typeof crypto !== "undefined" && crypto.randomUUID) return `${prefix}_${crypto.randomUUID()}`;
+  return `${prefix}_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
+}
+
+let _sessionId = null;
+function aiSessionId() {
+  if (_sessionId) return _sessionId;
+  try {
+    const key = "exampadi:ai-session";
+    _sessionId = sessionStorage.getItem(key) || randomId("s");
+    sessionStorage.setItem(key, _sessionId);
+  } catch {
+    _sessionId = randomId("s");
+  }
+  return _sessionId;
 }
 
 // POST to our own server proxy. The Groq key never touches the browser; the
@@ -101,8 +120,17 @@ async function postAI({ model, messages, max_tokens, temperature, source, timeou
   }
   if (!token) throw new Error("Sign in to use the AI tutor.");
 
-  const payload = JSON.stringify({ model, messages, max_tokens, temperature, source });
-  let res = await groqFetch("/api/ai", {
+  const payload = JSON.stringify({
+    model,
+    messages,
+    max_tokens,
+    temperature,
+    source,
+    sessionId: aiSessionId(),
+    requestId: randomId("req"),
+    clientVersion: "2.0.0",
+  });
+  let res = await groqFetch(apiUrl("/api/ai"), {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
     body: payload,
@@ -117,7 +145,7 @@ async function postAI({ model, messages, max_tokens, temperature, source, timeou
       token = null;
     }
     if (token) {
-      res = await groqFetch("/api/ai", {
+      res = await groqFetch(apiUrl("/api/ai"), {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: payload,
@@ -134,13 +162,13 @@ async function postAI({ model, messages, max_tokens, temperature, source, timeou
     );
   }
   if (res.status === 401) {
-    throw new Error(data?.error?.message || "Your session expired — sign in again to use the AI tutor.");
+    throw new Error(data?.error?.message || "Your session expired â€” sign in again to use the AI tutor.");
   }
   if (!res.ok) {
     throw new Error(data?.error?.message || `AI error (${res.status})`);
   }
   if (!data || !Array.isArray(data.choices)) {
-    throw new Error("The AI service returned an unexpected response — make sure /api/ai is deployed and configured.");
+    throw new Error("The AI service returned an unexpected response â€” make sure /api/ai is deployed and configured.");
   }
   return data;
 }
@@ -162,7 +190,7 @@ async function groqFetch(url, options, timeoutMs = 45000) {
     return await fetch(url, { ...options, signal: ctrl.signal });
   } catch (e) {
     if (e?.name === "AbortError") {
-      throw new Error(`AI request timed out after ${Math.round(timeoutMs / 1000)}s — check your connection and try again.`, { cause: e });
+      throw new Error(`AI request timed out after ${Math.round(timeoutMs / 1000)}s â€” check your connection and try again.`, { cause: e });
     }
     throw e;
   } finally {
@@ -181,7 +209,7 @@ export function sanitizeAIResponse(text) {
     .replace(/`(.+?)`/g, "$1")
     .replace(/^#{1,6}\s+/gm, "")
     .replace(/\[(.+?)\]\(.+?\)/g, "$1")
-    .replace(/^\s*[-*]\s+/gm, "• ")
+    .replace(/^\s*[-*]\s+/gm, "â€¢ ")
     .replace(/^\s*\d+\.\s+/gm, (m) => {
       const num = m.match(/\d+/)[0];
       return `${num}. `;
@@ -189,14 +217,14 @@ export function sanitizeAIResponse(text) {
 }
 
 async function callGroqWithFallback(systemPrompt, userPrompt, maxTokens = 300, temperature = 0.5, opts = {}) {
-  // Central gate — outside the model loop so AILimitError propagates immediately.
+  // Central gate â€” outside the model loop so AILimitError propagates immediately.
   const source = opts.source || "ai";
   await enforceAILimit(source);
 
   let lastError;
   for (const model of MODELS) {
     try {
-      // gpt-oss models are reasoning models — reasoning tokens count toward max_tokens
+      // gpt-oss models are reasoning models â€” reasoning tokens count toward max_tokens
       const tokens = model.startsWith("openai/gpt-oss") ? maxTokens + 2000 : maxTokens;
       const data = await postAI({
         model,
@@ -211,7 +239,7 @@ async function callGroqWithFallback(systemPrompt, userPrompt, maxTokens = 300, t
       _lastAIError = null;
       return data.choices[0]?.message?.content?.trim() || "";
     } catch (e) {
-      if (e?.code === "AI_LIMIT") throw e; // credit exhaustion — no point trying other models
+      if (e?.code === "AI_LIMIT") throw e; // credit exhaustion â€” no point trying other models
       console.warn(`[AI] Model ${model} failed:`, e.message);
       lastError = e;
     }
@@ -253,7 +281,7 @@ async function callGroqChatWithFallback(systemPrompt, messages, maxTokens = 600,
 import { VISION_MODEL, downscaleDataUrl } from "./vision";
 import { topWeakTopics, recentSummaries } from "./aiMemory";
 
-// ─── Vision chat (image-capable). ONLY tries the multimodal model —
+// â”€â”€â”€ Vision chat (image-capable). ONLY tries the multimodal model â€”
 // gpt-oss/allam are text-only and cannot accept image payloads.
 async function callGroqVisionChat(systemPrompt, textMessages, images, maxTokens = 1000, opts = {}) {
   const source = opts.source || "ai-vision";
@@ -280,7 +308,7 @@ async function callGroqVisionChat(systemPrompt, textMessages, images, maxTokens 
       max_tokens: maxTokens,
       temperature: 0.6,
       source,
-      // Vision payloads carry base64 images — give the server room to work.
+      // Vision payloads carry base64 images â€” give the server room to work.
       timeoutMs: 75000,
     });
     _lastAIError = null;
@@ -300,7 +328,7 @@ export async function askGroqVision({ systemPrompt, messages, imageBase64, image
   try {
     return await callGroqVisionChat(systemPrompt, messages, list, maxTokens, { skipGate: true });
   } catch (firstErr) {
-    // Do not retry on credit exhaustion — the retry would fail the same way.
+    // Do not retry on credit exhaustion â€” the retry would fail the same way.
     if (firstErr?.code === "AI_LIMIT") throw firstErr;
     console.warn("[AI] Vision full-size failed, retrying downscaled:", firstErr.message);
     try {
@@ -315,7 +343,7 @@ export async function askGroqVision({ systemPrompt, messages, imageBase64, image
 
 // Document analysis: OCR + key points + likely exam questions from up to 3 pages.
 export async function analyzeDocument({ images, subject = "General", instruction = "" }) {
-  const system = `You are ExamPadi, a Nigerian exam tutor. Analyze the attached document photo(s) — class notes, textbook pages, or past questions. Respond in 3 short sections: 1) "What this says" (2-3 sentence summary), 2) "Key points to memorize" (up to 5 bullets), 3) "Likely exam questions" (3 questions a JAMB/WAEC examiner could set from this, with one-line answers). Plain simple language. Never say you are built by Google.`;
+  const system = `You are ExamPadi, a Nigerian exam tutor. Analyze the attached document photo(s) â€” class notes, textbook pages, or past questions. Respond in 3 short sections: 1) "What this says" (2-3 sentence summary), 2) "Key points to memorize" (up to 5 bullets), 3) "Likely exam questions" (3 questions a JAMB/WAEC examiner could set from this, with one-line answers). Plain simple language. Never say you are built by Google.`;
   const user = instruction.trim()
     || `Analyze this ${subject} document for exam prep.`;
   return askGroqVision({
@@ -326,7 +354,7 @@ export async function analyzeDocument({ images, subject = "General", instruction
   });
 }
 
-// ─── Memory-aware tutor system prompt ───
+// â”€â”€â”€ Memory-aware tutor system prompt â”€â”€â”€
 const STYLE_INSTRUCTIONS = {
   visual: "Prefer visual explanations: describe diagrams, layouts and what the student should picture or sketch.",
   verbal: "Prefer clear verbal explanations: precise definitions and well-structured prose.",
@@ -340,7 +368,7 @@ export function buildTutorSystemPrompt({ subject, userProfile, memory }) {
   const sums = recentSummaries(memory, 3);
 
   const lines = [
-    "You are ExamPadi Tutor — an expert, friendly Nigerian exam tutor specializing in JAMB, WAEC, NECO and NABTEB.",
+    "You are ExamPadi Tutor â€” an expert, friendly Nigerian exam tutor specializing in JAMB, WAEC, NECO and NABTEB.",
     "",
     "Student profile:",
     `- Name: ${userProfile?.name || "Student"}`,
@@ -353,14 +381,14 @@ export function buildTutorSystemPrompt({ subject, userProfile, memory }) {
     "- Reference Nigerian curriculum (NERDC, WAEC syllabus)",
     "- Give worked examples with step-by-step solutions",
     "- Be encouraging but honest about weak areas",
-    "- Keep responses concise but complete — under 300 words unless solving a long problem",
+    "- Keep responses concise but complete â€” under 300 words unless solving a long problem",
     "- Always relate answers back to what appears in JAMB/WAEC exams",
     "- Explain WHY an answer is right, not just what it is",
     "- Be direct and precise: lead with the answer, then the shortest correct reasoning",
-    "- Break details down stepwise: What → Why → How it appears in exams → What to revise next",
+    "- Break details down stepwise: What â†’ Why â†’ How it appears in exams â†’ What to revise next",
     '- End study-type answers with "What to revise next:" and one concrete topic',
-    "- Use emojis naturally (📚 ✅ 💡 🔥 🎯 📝) — be conversational like Claude or Grok",
-    "- NEVER use markdown ** for bold — write in plain conversational text instead",
+    "- Use emojis naturally (ðŸ“š âœ… ðŸ’¡ ðŸ”¥ ðŸŽ¯ ðŸ“) â€” be conversational like Claude or Grok",
+    "- NEVER use markdown ** for bold â€” write in plain conversational text instead",
     "- Use bullet points and numbered lists with plain text, not markdown symbols",
   ];
 
@@ -386,7 +414,7 @@ export function buildTutorSystemPrompt({ subject, userProfile, memory }) {
   return lines.join("\n");
 }
 
-// Generic single-prompt caller — used by question generators
+// Generic single-prompt caller â€” used by question generators
 export async function askGroq(systemPrompt, userPrompt, opts = {}) {
   const result = await callGroqWithFallback(systemPrompt, userPrompt, opts.maxTokens ?? 300, opts.temperature ?? 0.5, { source: opts.source || "askGroq" });
   const { user } = await import("../context/AuthContext").catch(() => ({}));
@@ -450,7 +478,7 @@ export async function chatWithTutor({ messages, subject, userProfile, memory = n
       systemPrompt += ragContextFor(lastUser.content, { subject });
     }
   } catch {
-    // RAG is best-effort — never break the chat
+    // RAG is best-effort â€” never break the chat
   }
 
   const chatMessages = messages.map(m => ({
@@ -459,7 +487,7 @@ export async function chatWithTutor({ messages, subject, userProfile, memory = n
   }));
 
   try {
-    // Image(s) present → vision path (multimodal model only, no text-model fallback)
+    // Image(s) present â†’ vision path (multimodal model only, no text-model fallback)
     const imgList = images || (imageBase64 ? [imageBase64] : []);
     if (imgList.length > 0) {
       const result = await askGroqVision({ systemPrompt, messages: chatMessages, images: imgList, maxTokens: 1000 });
@@ -474,7 +502,7 @@ export async function chatWithTutor({ messages, subject, userProfile, memory = n
   } catch (e) {
     if (e?.code === "AI_LIMIT") throw e;
     console.warn("chatWithTutor fallback:", e.message);
-    return `I'm ExamPadi Tutor. I can help with ${subject} questions. Please try asking again — I'm having temporary connectivity issues. In the meantime, review your notes and past questions on this topic.`;
+    return `I'm ExamPadi Tutor. I can help with ${subject} questions. Please try asking again â€” I'm having temporary connectivity issues. In the meantime, review your notes and past questions on this topic.`;
   }
 }
 
@@ -566,7 +594,7 @@ Cover the highest-yield facts, formulas, definitions and distinctions. No fluff.
   }
 }
 
-// ─── Session summarization ───
+// â”€â”€â”€ Session summarization â”€â”€â”€
 // Pro: Groq produces 3 learning bullets + 1 weak topic (1 LLM call).
 // Free: instant offline heuristic from scores/weak topics (zero tokens).
 export async function summarizeSessionGroq({ subject, correct, total, weakTopics = [] }) {
@@ -587,14 +615,14 @@ export function heuristicSummary({ subject, correct, total, weakTopics = [] }) {
   const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
   const weak = weakTopics[0];
   const bullets = [
-    `Scored ${pct}% (${correct}/${total}) in ${subject} — ${pct >= 70 ? "strong session, keep the streak" : pct >= 50 ? "solid base, push weak spots" : "focus session needed on fundamentals"}.`,
-    weak ? `Priority revision: ${weak}.` : "No dominant weak topic — broaden coverage next.",
+    `Scored ${pct}% (${correct}/${total}) in ${subject} â€” ${pct >= 70 ? "strong session, keep the streak" : pct >= 50 ? "solid base, push weak spots" : "focus session needed on fundamentals"}.`,
+    weak ? `Priority revision: ${weak}.` : "No dominant weak topic â€” broaden coverage next.",
     pct >= 70 ? "Next: timed mixed practice to build exam speed." : "Next: re-attempt missed questions with AI explanations.",
   ];
   return { at: Date.now(), subject, bullets, weakTopic: weak || null };
 }
 
-// ─── Guide assistant (helps new users in plain language) ───
+// â”€â”€â”€ Guide assistant (helps new users in plain language) â”€â”€â”€
 // App route map the guide can reference. Keep in sync with App.jsx routes.
 export const GUIDE_ROUTES = [
   { path: "/dashboard", label: "Dashboard", keywords: ["home", "dashboard", "start", "overview"] },

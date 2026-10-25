@@ -3,6 +3,7 @@ import {
   serverTimestamp, doc, setDoc, updateDoc,
 } from "firebase/firestore";
 import { db, auth } from "../firebaseConfig";
+import { apiUrl } from "./apiBase";
 
 const ASSIGNMENTS = "teacherAssignments";
 const ANNOUNCEMENTS = "teacherAnnouncements";
@@ -84,7 +85,7 @@ export async function submitAssignment(assignmentId, studentId, answers) {
   if (!db) throw new Error("Database not available");
   const token = await auth?.currentUser?.getIdToken?.();
   if (!token) throw new Error("Sign in to submit this assignment.");
-  const res = await fetch("/api/grade-assignment", {
+  const res = await fetch(apiUrl("/api/grade-assignment"), {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
     body: JSON.stringify({ assignmentId, answers }),

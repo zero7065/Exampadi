@@ -16,7 +16,6 @@ import { db } from "../firebaseConfig";
 import ProUpgradeModal from "../components/ProUpgradeModal";
 import ResumeBanner from "../components/ResumeBanner";
 import NotificationPrompt from "../components/NotificationPrompt";
-import NotificationPanel from "../components/NotificationPanel";
 import OnboardingTour from "../components/OnboardingTour";
 import { tourSeen } from "../lib/tour";
 import SurveyPrompt from "../components/SurveyPrompt";
@@ -203,7 +202,6 @@ export default function Dashboard() {
               <span>🔥</span> <span style={{ fontWeight: 600 }}>{streak} day streak</span>
           </div>
           <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
-            <NotificationPanel />
             <div style={{ background: "var(--bg-2)", border: "1px solid var(--border)", padding: "8px 16px", borderRadius: 20, display: "flex", alignItems: "center", gap: 8 }}>
               <Zap size={16} color="var(--accent)" /> <span style={{ fontWeight: 600 }}>{xp} XP</span>
             </div>

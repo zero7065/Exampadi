@@ -4,6 +4,7 @@ import {
   query, where, limit, serverTimestamp, arrayUnion,
 } from "firebase/firestore";
 import { db, auth } from "../firebaseConfig";
+import { apiUrl } from "./apiBase";
 import { logActivity } from "./activityLog";
 
 function needDb() {
@@ -12,7 +13,7 @@ function needDb() {
 
 async function apiPost(path, body) {
   const token = await auth?.currentUser?.getIdToken?.();
-  const res = await fetch(path, {
+  const res = await fetch(apiUrl(path), {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -112,7 +113,10 @@ export async function setSchoolStatus(schoolId, status, adminUid, teacherUid = n
 }
 
 // \u2502\u2502\u2502 Classes \u2502\u2502\u2502
-export async function createClass(schoolId, { name, subject, createdBy, teacherId, teacherName, grade = "" }) {
+export async function createClass(schoolId, {
+  name, subject, createdBy, teacherId, teacherName, grade = "",
+  config = {},
+}) {
   needDb();
   const tid = teacherId || createdBy;
   const ref = await addDoc(collection(db, "classes"), {
@@ -124,9 +128,37 @@ export async function createClass(schoolId, { name, subject, createdBy, teacherI
     teacherName: teacherName || "",
     students: [],
     createdBy,
+    config: {
+      questionSeconds: Math.max(0, Math.min(900, Number(config.questionSeconds) || 0)),
+      allowChat: config.allowChat !== false,
+      showLeaderboard: config.showLeaderboard !== false,
+      instructions: String(config.instructions || "").slice(0, 500),
+      goal: String(config.goal || "").slice(0, 160),
+      lateJoin: config.lateJoin !== false,
+    },
     createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp(),
   });
   return ref.id;
+}
+
+export async function updateClassSettings(classId, patch = {}) {
+  needDb();
+  const clean = {};
+  if (patch.name != null) clean.name = String(patch.name).slice(0, 80);
+  if (patch.subject != null) clean.subject = String(patch.subject).slice(0, 80);
+  if (patch.grade != null) clean.grade = String(patch.grade).slice(0, 40);
+  if (patch.config != null) {
+    clean.config = {
+      questionSeconds: Math.max(0, Math.min(900, Number(patch.config.questionSeconds) || 0)),
+      allowChat: patch.config.allowChat !== false,
+      showLeaderboard: patch.config.showLeaderboard !== false,
+      instructions: String(patch.config.instructions || "").slice(0, 500),
+      goal: String(patch.config.goal || "").slice(0, 160),
+      lateJoin: patch.config.lateJoin !== false,
+    };
+  }
+  await updateDoc(doc(db, "classes", classId), { ...clean, updatedAt: serverTimestamp() });
 }
 
 export async function listSchoolTeachers(schoolId) {

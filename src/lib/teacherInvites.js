@@ -1,5 +1,6 @@
 import { collection, addDoc, getDocs, query, where, doc, deleteDoc, serverTimestamp } from "firebase/firestore";
 import { db, auth } from "../firebaseConfig";
+import { apiUrl } from "./apiBase";
 
 const COLLECTION = "teacherInvites";
 
@@ -42,7 +43,7 @@ export async function listTeacherInvites() {
 export async function redeemTeacherInvite(code) {
   const token = await auth?.currentUser?.getIdToken?.();
   if (!token) throw new Error("Sign in first");
-  const res = await fetch("/api/redeem-teacher-invite", {
+  const res = await fetch(apiUrl("/api/redeem-teacher-invite"), {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
     body: JSON.stringify({ code: String(code || "").trim().toUpperCase() }),

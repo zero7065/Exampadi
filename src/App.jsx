@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { StudyProvider } from "./context/StudyContext";
 import { ThemeProvider } from "./context/ThemeContext";
+import { PresenceProvider } from "./context/PresenceContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminRoute from "./components/AdminRoute";
 import TeacherRoute from "./components/TeacherRoute";
@@ -313,7 +314,9 @@ function App() {
     <ThemeProvider>
       <StudyProvider>
         <Router>
-          <AuthAwareRoutes />
+          <PresenceProvider>
+            <AuthAwareRoutes />
+          </PresenceProvider>
         </Router>
       </StudyProvider>
     </ThemeProvider>

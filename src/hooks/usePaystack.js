@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { doc, updateDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebaseConfig";
+import { apiUrl } from "../lib/apiBase";
 import { PLANS, convertFromNGN } from "../config/plans";
 import { openPaystack } from "../paystack";
 import { useToast } from "../components/Toast";
@@ -62,8 +63,7 @@ export function usePaystack() {
   //   { unreachable: true }                          — our API could not be reached
   async function verifyOnServer(reference) {
     const attempts = [
-      `/api/verify-payment?ref=${encodeURIComponent(reference)}`,
-      `https://exampadi.jadai.dev/api/verify-payment?ref=${encodeURIComponent(reference)}`,
+      apiUrl(`/api/verify-payment?ref=${encodeURIComponent(reference)}`),
     ];
     for (const url of attempts) {
       try {

@@ -6,7 +6,7 @@ export const YEARLY_PLANS = new Set(["pro_yearly", "ielts", "team_yearly"]);
 export const PACK_PLANS = new Set(["ai_pack_50"]);
 export const TEAM_PLANS = new Set(["team_monthly", "team_yearly"]);
 export const KNOWN_PLANS = new Set([
-  "pro_monthly", "pro_yearly", "ielts",
+  "free", "pro_monthly", "pro_yearly", "ielts",
   "team_monthly", "team_yearly",
   "ai_pack_50",
 ]);

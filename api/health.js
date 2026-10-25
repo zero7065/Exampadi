@@ -25,9 +25,17 @@ export default function handler(req, res) {
   return res.status(200).json({
     ok: missing.length === 0,
     services,
+    aiGateway: {
+      version: "2.0.0",
+      route: "/api/ai",
+      providers: ["groq", "openai", "gemini"].filter((name) => services[name]),
+      cache: "aiCache",
+      logs: ["aiLogs", "aiLogsDaily"],
+    },
     firebaseAdminReason: firebase.reason,
     missing,
-    aiReady: (services.groq || services.openai) && services.firebaseAdmin,
+    aiReady: (services.groq || services.openai || services.gemini) && services.firebaseAdmin,
+    visionReady: (services.gemini || services.groq || services.openai) && services.firebaseAdmin,
     imagesReady: (services.gemini || services.huggingface) && services.firebaseAdmin,
     time: new Date().toISOString(),
   });

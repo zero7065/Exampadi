@@ -5,6 +5,7 @@
 // model. Keyless Pollinations remains as a fallback so diagrams always work.
 
 import { auth } from "../firebaseConfig";
+import { apiUrl } from "./apiBase";
 import { askGroq, askGroqVision } from "./ai";
 import { downscaleDataUrl } from "./vision";
 
@@ -69,7 +70,7 @@ export async function generateImage({ prompt, provider = "auto" }) {
   const timer = setTimeout(() => controller.abort(), 70_000);
   let res;
   try {
-    res = await fetch("/api/image", {
+    res = await fetch(apiUrl("/api/image"), {
       method: "POST",
       headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
       body: JSON.stringify({ prompt: clean, provider }),

@@ -5,6 +5,7 @@ import {
   onSnapshot, addDoc, serverTimestamp, getDocs, limit,
 } from "firebase/firestore";
 import { db, auth } from "../firebaseConfig";
+import { apiUrl } from "./apiBase";
 
 function needDb() {
   if (!db) throw new Error("Not available offline");
@@ -19,7 +20,7 @@ export async function notifyUser(toUid, { type = "system", title, body, link = "
   try {
     const t = await token();
     if (!t) return;
-    await fetch("/api/notify", {
+    await fetch(apiUrl("/api/notify"), {
       method: "POST",
       headers: { "Content-Type": "application/json", Authorization: `Bearer ${t}` },
       body: JSON.stringify({ toUid, type, title, body, link, actorName }),
@@ -37,7 +38,11 @@ export function subscribeClassSession(classId, cb) {
   }, () => cb(null));
 }
 
-export async function startClassSession({ classId, teacherUid, teacherName, subject, questions }) {
+export async function startClassSession({
+  classId, teacherUid, teacherName, subject, questions,
+  instructions = "", questionSeconds = 0, mode = "guided",
+  allowChat = true, showLeaderboard = true,
+}) {
   needDb();
   const publicQuestions = (questions || []).map((q) => ({
     id: q.id, question: q.question, options: q.options, topic: q.topic,
@@ -54,6 +59,16 @@ export async function startClassSession({ classId, teacherUid, teacherName, subj
     revealedAnswer: null,
     revealedExplanation: "",
     active: true,
+    status: "live",
+    mode: ["guided", "timed", "discussion"].includes(mode) ? mode : "guided",
+    instructions: String(instructions || "").slice(0, 500),
+    allowChat: allowChat !== false,
+    showLeaderboard: showLeaderboard !== false,
+    questionSeconds: Math.max(0, Math.min(900, Number(questionSeconds) || 0)),
+    questionStartedAt: serverTimestamp(),
+    questionEndsAt: Number(questionSeconds) > 0
+      ? new Date(Date.now() + Number(questionSeconds) * 1000)
+      : null,
     startedAt: serverTimestamp(),
     updatedAt: serverTimestamp(),
   });
@@ -313,4 +328,70 @@ export async function sendDiscussionMessage(discussionIdValue, { fromUid, fromNa
     fromUid, fromName: fromName || "User",
     text: String(text || "").slice(0, 2000), createdAt: serverTimestamp(),
   });
+}
+
+// ─── Live class polls, announcements, and participation pulse ───
+export function subscribeClassPolls(classId, cb) {
+  if (!db || !classId) { cb([]); return () => {}; }
+  return onSnapshot(
+    query(collection(db, "classPolls"), where("classId", "==", classId), where("active", "==", true), limit(12)),
+    (snap) => cb(snap.docs.map((d) => ({ id: d.id, ...d.data() }))),
+    () => cb([]),
+  );
+}
+
+export async function voteClassPoll({ pollId, classId, studentUid, optionIdx }) {
+  needDb();
+  await setDoc(doc(db, "classPollVotes", `${pollId}_${studentUid}`), {
+    pollId,
+    classId,
+    studentUid,
+    optionIdx: Number(optionIdx),
+    createdAt: serverTimestamp(),
+  });
+}
+
+export function subscribeClassAnnouncements(classId, cb) {
+  if (!db || !classId) { cb([]); return () => {}; }
+  return onSnapshot(
+    query(collection(db, "classAnnouncements"), where("classId", "==", classId), where("active", "==", true), limit(12)),
+    (snap) => cb(snap.docs.map((d) => ({ id: d.id, ...d.data() }))
+      .sort((a, b) => (b.createdAt?.toMillis?.() || 0) - (a.createdAt?.toMillis?.() || 0))),
+    () => cb([]),
+  );
+}
+
+export async function sendClassAnnouncement({ classId, teacherUid, message }) {
+  needDb();
+  const clean = String(message || "").trim().slice(0, 500);
+  if (!clean) throw new Error("Write an announcement first");
+  await addDoc(collection(db, "classAnnouncements"), {
+    classId,
+    teacherUid,
+    message: clean,
+    active: true,
+    createdAt: serverTimestamp(),
+  });
+}
+
+export async function setClassPulse(classId, { studentUid, studentName, state }) {
+  needDb();
+  const safe = ["understood", "confused", "working", "away"].includes(state) ? state : "working";
+  await setDoc(doc(db, "classResponses", `${classId}_${studentUid}`), {
+    classId,
+    studentUid,
+    studentName: studentName || "Student",
+    state: safe,
+    lastActive: serverTimestamp(),
+    updatedAt: serverTimestamp(),
+  }, { merge: true });
+}
+
+export function subscribeClassPulse(classId, cb) {
+  if (!db || !classId) { cb([]); return () => {}; }
+  return onSnapshot(
+    query(collection(db, "classResponses"), where("classId", "==", classId), limit(120)),
+    (snap) => cb(snap.docs.map((d) => ({ id: d.id, ...d.data() }))),
+    () => cb([]),
+  );
 }

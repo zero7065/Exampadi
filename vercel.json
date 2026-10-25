@@ -1,6 +1,7 @@
 {
   "functions": {
-    "api/*.js": { "maxDuration": 60 }
+    "api/*.js": { "maxDuration": 60 },
+    "api/export/*.js": { "maxDuration": 60 }
   },
   "crons": [{ "path": "/api/reminders", "schedule": "0 6 * * *" }],
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],

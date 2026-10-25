@@ -1,5 +1,5 @@
 // Admin compliance tab: audit counts, audit CSV, school approvals, role editor, partner payouts.
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { collection, query, where, getDocs, limit, doc, updateDoc, increment, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import { listSchools, setSchoolStatus } from "../lib/schools";
@@ -42,9 +42,8 @@ export default function AdminCompliance({ adminUser, usersList, logs, showToast 
     }
   }
 
-  const nowRef = React.useRef(Date.now());
+  const [now] = useState(() => Date.now());
   const counts = useMemo(() => {
-    const now = nowRef.current;
     const active30d = usersList.filter((u) => {
       const last = u.lastActive?.toDate ? u.lastActive.toDate().getTime()
         : u.lastActive ? new Date(u.lastActive).getTime() : 0;
@@ -55,7 +54,7 @@ export default function AdminCompliance({ adminUser, usersList, logs, showToast 
       deleted: usersList.filter((u) => u.deletedAt).length,
       adminReads: logs.filter((l) => l.action === "admin_user_read").length,
     };
-  }, [usersList, logs]);
+  }, [usersList, logs, now]);
 
   function exportCsv() {
     const rows = [

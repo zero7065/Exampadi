@@ -245,9 +245,6 @@ const Navbar = () => {
             </Link>
           );
         })}
-        <div className="flex items-center justify-center shrink-0">
-          <NotificationPanel bottom />
-        </div>
         <button
           onClick={() => setMoreOpen(true)}
           aria-label="More"
@@ -268,6 +265,7 @@ const Navbar = () => {
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-black text-text">All Sections</h2>
               <div className="flex items-center gap-2">
+                <NotificationPanel modal />
                 <button
                   onClick={toggle}
                   aria-label="Toggle theme"
