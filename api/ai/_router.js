@@ -1,41 +1,94 @@
 const ROUTING = {
   chat: {
-    free: [{ p: "groq", m: "openai/gpt-oss-20b" }],
-    paid: [{ p: "groq", m: "openai/gpt-oss-120b" }],
+    free: [
+      { p: "groq", m: "openai/gpt-oss-20b" },
+      { p: "openai", m: "gpt-4o-mini" },
+      { p: "gemini", m: process.env.GEMINI_MODEL || "gemini-2.5-flash" },
+    ],
+    paid: [
+      { p: "groq", m: "openai/gpt-oss-120b" },
+      { p: "openai", m: "gpt-4o-mini" },
+      { p: "gemini", m: process.env.GEMINI_MODEL || "gemini-2.5-flash" },
+    ],
   },
   explain: {
-    free: [{ p: "groq", m: "openai/gpt-oss-20b" }],
-    paid: [{ p: "groq", m: "openai/gpt-oss-120b" }],
+    free: [
+      { p: "groq", m: "openai/gpt-oss-20b" },
+      { p: "openai", m: "gpt-4o-mini" },
+      { p: "gemini", m: process.env.GEMINI_MODEL || "gemini-2.5-flash" },
+    ],
+    paid: [
+      { p: "groq", m: "openai/gpt-oss-120b" },
+      { p: "openai", m: "gpt-4o-mini" },
+      { p: "gemini", m: process.env.GEMINI_MODEL || "gemini-2.5-flash" },
+    ],
   },
   solve: {
-    free: [{ p: "groq", m: "qwen/qwen3.8-27b" }],
-    paid: [{ p: "groq", m: "qwen/qwen3.8-27b" }, { p: "openai", m: "gpt-4o" }],
+    free: [
+      { p: "groq", m: "openai/gpt-oss-20b" },
+      { p: "openai", m: "gpt-4o-mini" },
+      { p: "gemini", m: process.env.GEMINI_MODEL || "gemini-2.5-flash" },
+    ],
+    paid: [
+      { p: "groq", m: "openai/gpt-oss-120b" },
+      { p: "openai", m: "gpt-4o" },
+      { p: "gemini", m: process.env.GEMINI_MODEL || "gemini-2.5-flash" },
+    ],
   },
   plan: {
-    free: [{ p: "groq", m: "openai/gpt-oss-120b" }],
-    paid: [{ p: "groq", m: "openai/gpt-oss-120b" }, { p: "openai", m: "gpt-4o-mini" }],
+    free: [
+      { p: "groq", m: "openai/gpt-oss-20b" },
+      { p: "openai", m: "gpt-4o-mini" },
+      { p: "gemini", m: process.env.GEMINI_MODEL || "gemini-2.5-flash" },
+    ],
+    paid: [
+      { p: "groq", m: "openai/gpt-oss-120b" },
+      { p: "openai", m: "gpt-4o-mini" },
+      { p: "gemini", m: process.env.GEMINI_MODEL || "gemini-2.5-flash" },
+    ],
   },
   predict: {
-    free: [{ p: "groq", m: "openai/gpt-oss-120b" }],
-    paid: [{ p: "groq", m: "openai/gpt-oss-120b" }, { p: "openai", m: "gpt-4o-mini" }],
+    free: [
+      { p: "groq", m: "openai/gpt-oss-20b" },
+      { p: "openai", m: "gpt-4o-mini" },
+      { p: "gemini", m: process.env.GEMINI_MODEL || "gemini-2.5-flash" },
+    ],
+    paid: [
+      { p: "groq", m: "openai/gpt-oss-120b" },
+      { p: "openai", m: "gpt-4o-mini" },
+      { p: "gemini", m: process.env.GEMINI_MODEL || "gemini-2.5-flash" },
+    ],
   },
   flashcard: {
-    free: [{ p: "groq", m: "openai/gpt-oss-20b" }],
-    paid: [{ p: "groq", m: "openai/gpt-oss-20b" }],
+    free: [
+      { p: "groq", m: "openai/gpt-oss-20b" },
+      { p: "openai", m: "gpt-4o-mini" },
+    ],
+    paid: [
+      { p: "groq", m: "openai/gpt-oss-20b" },
+      { p: "openai", m: "gpt-4o-mini" },
+    ],
   },
   grade: {
-    free: [{ p: "groq", m: "openai/gpt-oss-120b" }],
-    paid: [{ p: "groq", m: "openai/gpt-oss-120b" }, { p: "openai", m: "gpt-4o-mini" }],
+    free: [
+      { p: "groq", m: "openai/gpt-oss-20b" },
+      { p: "openai", m: "gpt-4o-mini" },
+      { p: "gemini", m: process.env.GEMINI_MODEL || "gemini-2.5-flash" },
+    ],
+    paid: [
+      { p: "groq", m: "openai/gpt-oss-120b" },
+      { p: "openai", m: "gpt-4o-mini" },
+      { p: "gemini", m: process.env.GEMINI_MODEL || "gemini-2.5-flash" },
+    ],
   },
   vision: {
     free: [
       { p: "gemini", m: process.env.GEMINI_VISION_MODEL || process.env.GEMINI_MODEL || "gemini-2.5-flash" },
-      { p: "groq", m: "qwen/qwen3.8-27b" },
+      { p: "openai", m: "gpt-4o-mini" },
     ],
     paid: [
       { p: "gemini", m: process.env.GEMINI_VISION_MODEL || process.env.GEMINI_MODEL || "gemini-2.5-flash" },
       { p: "openai", m: "gpt-4o-mini" },
-      { p: "groq", m: "qwen/qwen3.8-27b" },
     ],
   },
 };
