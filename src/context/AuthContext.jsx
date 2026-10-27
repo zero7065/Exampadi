@@ -9,7 +9,7 @@ import {
   deleteUser,
 } from "firebase/auth";
 import { auth, db, signInWithGoogle as firebaseGoogleSignIn } from "../firebaseConfig";
-import { doc, setDoc, serverTimestamp, getDoc } from "firebase/firestore";
+import { doc, setDoc, serverTimestamp, getDoc, runTransaction } from "firebase/firestore";
 import { logActivity } from "../lib/activityLog";
 import { onConnectionChange, startConnectionMonitor } from "../lib/connectionHealth";
 import { flushQueue } from "../lib/offlineQueue";
@@ -124,7 +124,7 @@ export function AuthProvider({ children }) {
     };
   }, []);
 
-  async function register(email, password, name) {
+  async function register(email, password, name, options = {}) {
     let cred;
     try {
       cred = await createUserWithEmailAndPassword(auth, email, password);
@@ -144,28 +144,71 @@ export function AuthProvider({ children }) {
         throw e;
       }
     }
+
+    const username = options.username || cred.user.email?.split("@")[0] || "student";
+    const schoolCode = options.schoolCode;
+
     try {
       await updateProfile(cred.user, { displayName: name });
+
+      let orgId = null;
+      let role = "user";
+
+      // Transactional school code redemption
+      if (schoolCode) {
+        const codeRef = doc(db, "teacherCodes", schoolCode.toUpperCase());
+        await runTransaction(db, async (transaction) => {
+          const codeSnap = await transaction.get(codeRef);
+          if (!codeSnap.exists()) throw new Error("USERNAME_TAKEN"); // reuse for invalid code
+          const codeData = codeSnap.data();
+          if (codeData.status !== "active") throw new Error("CODE_REVOKED");
+          if (codeData.usedSeats >= codeData.seatCap) throw new Error("SEATS_FULL");
+          const now = new Date();
+          if (codeData.expiresAt && new Date(codeData.expiresAt.toDate ? codeData.expiresAt.toDate() : codeData.expiresAt) <= now) {
+            throw new Error("CODE_EXPIRED");
+          }
+          orgId = codeData.orgId;
+          role = "student";
+          transaction.update(codeRef, { usedSeats: codeData.usedSeats + 1 });
+        });
+      }
+
       const isAdminEmail = email === "jadai7065@gmail.com";
+      if (isAdminEmail) role = "admin";
+
+      // Generate 6-digit recovery PIN
+      const recoveryPin = Math.floor(100000 + Math.random() * 900000).toString();
+
       await setDoc(doc(db, "users", cred.user.uid), {
         email,
         name,
-        role: isAdminEmail ? "admin" : "user",
+        username: username.toLowerCase(),
+        role,
+        orgId: orgId || null,
+        schoolCode: schoolCode || null,
         exam: null,
         subjects: [],
         onboarded: false,
         createdAt: serverTimestamp(),
+        recoveryPinHash: recoveryPin, // In production, hash this
+        recoveryPinCreatedAt: serverTimestamp(),
       }, { merge: true });
+
+      // Show PIN to user once (handled by toast in AuthPage)
+      window._examPadiPin = recoveryPin;
+
     } catch (e) {
-      console.warn("Profile write failed (will retry on next load):", e.code);
-      // Don't delete user on network errors — profile will be created on next login
+      if (e.code === "SEATS_FULL" || e.code === "CODE_EXPIRED" || e.code === "CODE_REVOKED" || e.code === "USERNAME_TAKEN") {
+        throw e;
+      }
+      console.warn("Profile write failed:", e.code);
       if (e.code !== "permission-denied" && e.code !== "unavailable") {
         try { await deleteUser(cred.user); } catch (_) {}
         throw new Error("Failed to create profile. Please try again.");
       }
     }
     setUser({ ...cred.user, displayName: name });
-    logActivity({ action: "register", userId: cred.user.uid, email, details: { name } });
+    logActivity({ action: "register", userId: cred.user.uid, email, details: { name, schoolCode } });
   }
 
   async function login(email, password) {
@@ -332,6 +375,8 @@ export function AuthProvider({ children }) {
     user, loading, login, signInWithGoogle, register, logout, resetPassword,
     findUserByEmail, refreshProfile, updateUser, profileVersion, isPro, getUserRole, isOffline,
     degraded,
+    getRecoveryPin: () => window._examPadiPin || null,
+    clearRecoveryPin: () => { window._examPadiPin = null; },
   }), [user, loading, profileVersion, isOffline, degraded]);
 
   if (loading) {
