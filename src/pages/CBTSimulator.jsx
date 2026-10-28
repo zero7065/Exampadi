@@ -1,4 +1,4 @@
-// src/pages/CBTSimulator.jsx
+﻿// src/pages/CBTSimulator.jsx
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
@@ -137,7 +137,7 @@ const CBTSimulator = () => {
           </div>
           <button 
             onClick={handleFinish} 
-            className="btn-primary bg-danger text-white px-8 h-12 flex items-center gap-3 shadow-xl shadow-danger/20"
+            className="btn-primary bg-danger text-ash-900 px-8 h-12 flex items-center gap-3 shadow-xl shadow-danger/20"
           >
             <Send size={18} />
             Submit
@@ -292,3 +292,4 @@ const CBTSimulator = () => {
 };
 
 export default CBTSimulator;
+

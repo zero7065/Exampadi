@@ -1,4 +1,4 @@
-// Join a class with an invite code OR a school/teacher code (/join or /join/:code).
+﻿// Join a class with an invite code OR a school/teacher code (/join or /join/:code).
 // Supports class invites (6 chars) and school codes (8 chars, seat-capped).
 import { useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
@@ -105,7 +105,7 @@ export default function JoinClass() {
           </div>
           {status === 'checking' && (
             <div className="absolute inset-0 rounded-2xl flex items-center justify-center bg-black/50">
-              <Loader2 size={24} className="animate-spin text-white" />
+              <Loader2 size={24} className="animate-spin text-ash-900" />
             </div>
           )}
           {status === 'success' && (

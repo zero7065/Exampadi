@@ -1,5 +1,5 @@
-// GuideAssistant — "tell me your issue, I'll take you there."
-// Layer 1 (instant, free, offline): local intent match → steps + deep links.
+﻿// GuideAssistant â€” "tell me your issue, I'll take you there."
+// Layer 1 (instant, free, offline): local intent match â†’ steps + deep links.
 // Layer 2 (AI, counts against daily AI limit): organized plan from askGuide.
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -32,14 +32,14 @@ export default function GuideAssistant({ compact = false, onNavigate }) {
 
   function handleGuide() {
     if (!issue.trim()) {
-      toast({ message: "Describe your issue first — e.g. 'I want to practice physics'", type: "info" });
+      toast({ message: "Describe your issue first â€” e.g. 'I want to practice physics'", type: "info" });
       return;
     }
     const routes = matchGuideRoutes(issue);
     setAiAnswer("");
     if (routes.length === 0) {
       setMatched([]);
-      toast({ message: "No exact match — try 'Ask AI' below for a custom plan", type: "info" });
+      toast({ message: "No exact match â€” try 'Ask AI' below for a custom plan", type: "info" });
       return;
     }
     setMatched(routes);
@@ -56,7 +56,7 @@ export default function GuideAssistant({ compact = false, onNavigate }) {
       if (!isPro && user) {
         const limit = await checkAILimit(user.uid);
         if (!limit.allowed) {
-          toast({ message: `AI limit reached. Upgrade to Pro — the instant guide above is still free!`, type: "warning" });
+          toast({ message: `AI limit reached. Upgrade to Pro â€” the instant guide above is still free!`, type: "warning" });
           return;
         }
       }
@@ -75,7 +75,7 @@ export default function GuideAssistant({ compact = false, onNavigate }) {
       setMatched(matchGuideRoutes(issue));
     } catch (e) {
       if (e?.code === "AI_LIMIT") toast({ message: e.message, type: "warning" });
-      else toast({ message: "Guide failed — check your connection", type: "error" });
+      else toast({ message: "Guide failed â€” check your connection", type: "error" });
     } finally {
       setAiLoading(false);
     }
@@ -88,11 +88,11 @@ export default function GuideAssistant({ compact = false, onNavigate }) {
   return (
     <div className={compact ? "" : "glass-card p-6 md:p-8"} style={compact ? {} : { borderColor: "rgb(var(--primary-rgb) / 0.35)" }}>
       <div className="flex items-center gap-3 mb-2">
-        <div className="w-11 h-11 rounded-2xl flex items-center justify-center text-white shrink-0" style={{ background: "var(--landing-gradient)" }}>
+        <div className="w-11 h-11 rounded-2xl flex items-center justify-center text-ash-900 shrink-0" style={{ background: "var(--landing-gradient)" }}>
           <Compass size={22} />
         </div>
         <div>
-          <h2 className="text-xl font-black text-text">Tell me your issue — I'll take you there</h2>
+          <h2 className="text-xl font-black text-text">Tell me your issue â€” I'll take you there</h2>
           <p className="text-sm text-text-muted">New here? Say what you want in plain words. Instant guide is free; AI plan uses 1 AI message.</p>
         </div>
       </div>
@@ -111,7 +111,7 @@ export default function GuideAssistant({ compact = false, onNavigate }) {
           </button>
           <button onClick={handleAskAI} disabled={aiLoading} className="btn-primary px-5 whitespace-nowrap disabled:opacity-60">
             {aiLoading ? <Loader2 size={15} className="animate-spin" /> : <Sparkles size={15} />}
-            {aiLoading ? "Thinking…" : "Ask AI"}
+            {aiLoading ? "Thinkingâ€¦" : "Ask AI"}
           </button>
         </div>
       </div>
@@ -129,7 +129,7 @@ export default function GuideAssistant({ compact = false, onNavigate }) {
           <div className="text-sm font-bold text-text">Here's where to go, in order:</div>
           {matched.map((r, i) => (
             <Link key={r.path} to={r.path} onClick={go} className="flex items-center gap-3 p-3 rounded-xl border border-border hover:border-primary/50 transition-colors group">
-              <span className="w-7 h-7 rounded-full bg-primary text-white text-xs font-black flex items-center justify-center shrink-0">{i + 1}</span>
+              <span className="w-7 h-7 rounded-full bg-primary text-ash-900 text-xs font-black flex items-center justify-center shrink-0">{i + 1}</span>
               <span className="font-bold text-text text-sm flex-1">{r.label}</span>
               <ArrowRight size={15} className="text-text-muted group-hover:text-primary transition-colors" />
             </Link>
@@ -139,7 +139,7 @@ export default function GuideAssistant({ compact = false, onNavigate }) {
 
       {matched && matched.length === 0 && !aiAnswer && (
         <div className="mt-5 text-sm text-text-muted">
-          I couldn't match that to a page. Try different words — or tap <strong>Ask AI</strong> for a custom plan, or <Link to="/contact" onClick={go} className="text-primary font-semibold">talk to a human</Link>.
+          I couldn't match that to a page. Try different words â€” or tap <strong>Ask AI</strong> for a custom plan, or <Link to="/contact" onClick={go} className="text-primary font-semibold">talk to a human</Link>.
         </div>
       )}
 
@@ -154,3 +154,4 @@ export default function GuideAssistant({ compact = false, onNavigate }) {
     </div>
   );
 }
+

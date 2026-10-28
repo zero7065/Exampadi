@@ -1,4 +1,4 @@
-// TeacherTools \u2014 Real-time classroom interaction tools for teachers.
+﻿// TeacherTools \u2014 Real-time classroom interaction tools for teachers.
 import { useState, useEffect, useMemo } from "react";
 import { useToast } from "../components/Toast";
 import { useAuth } from "../context/AuthContext";
@@ -6,7 +6,7 @@ import { collection, query, where, onSnapshot, doc, updateDoc, serverTimestamp }
 import { db } from "../firebaseConfig";
 import { addDoc } from "firebase/firestore";
 
-// Firestore Timestamps are objects — never subtract them directly.
+// Firestore Timestamps are objects â€” never subtract them directly.
 function isRecentlyActive(ts, windowMs = 60000) {
   if (!ts) return false;
   const ms = ts.toMillis ? ts.toMillis() : (ts.seconds ? ts.seconds * 1000 : Number(ts));
@@ -60,7 +60,7 @@ export default function TeacherTools({ schoolId, roster, classId }) {
     return function() { return unsub(); };
   }, [classId]);
 
-  // Subscribe to poll votes — students only write their own vote doc, so the
+  // Subscribe to poll votes â€” students only write their own vote doc, so the
   // teacher derives tallies here (votes can never be inflated client-side).
   useEffect(function() {
     if (!classId) return;
@@ -278,7 +278,7 @@ export default function TeacherTools({ schoolId, roster, classId }) {
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1">
                     <p className="font-semibold text-text">{poll.question}</p>
-                    <p className="text-xs text-text-muted">Created {poll.createdAt?.toDate ? poll.createdAt.toDate().toLocaleString() : "recently"} · {(pollVotes[poll.id]?.total || 0)} votes</p>
+                    <p className="text-xs text-text-muted">Created {poll.createdAt?.toDate ? poll.createdAt.toDate().toLocaleString() : "recently"} Â· {(pollVotes[poll.id]?.total || 0)} votes</p>
                   </div>
                   <span className={"px-2 py-1 rounded-full text-xs font-bold " + (poll.active ? "bg-green-500/20 text-green-500" : "bg-gray-500/20 text-gray-500")}>
                     {poll.active ? "LIVE" : "CLOSED"}
@@ -330,7 +330,7 @@ export default function TeacherTools({ schoolId, roster, classId }) {
                     </div>
                     <div>
                       <p className="font-semibold text-text">{req.studentName || "Student"}</p>
-                      <p className="text-sm text-text-muted">{req.message || "Needs help"} · {req.createdAt?.toDate ? req.createdAt.toDate().toLocaleTimeString() : "just now"}</p>
+                      <p className="text-sm text-text-muted">{req.message || "Needs help"} Â· {req.createdAt?.toDate ? req.createdAt.toDate().toLocaleTimeString() : "just now"}</p>
                     </div>
                   </div>
                   <button onClick={function() { resolveAttention(req.id, req.studentUid); }} className="btn-primary px-4 text-sm">
@@ -416,7 +416,7 @@ export default function TeacherTools({ schoolId, roster, classId }) {
                   var understood = resp?.understood;
                   return (
                     <div key={s.uid} className="flex items-center gap-3 p-2 bg-bg-3 rounded-lg hover:bg-bg-2 transition-colors">
-                      <div className={"w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm " + (online ? "bg-green-500 text-black" : "bg-gray-500 text-white")}>
+                      <div className={"w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm " + (online ? "bg-green-500 text-black" : "bg-gray-500 text-ash-900")}>
                         {s.name?.[0]?.toUpperCase() || "?"}
                       </div>
                       <span className="text-sm font-medium text-text flex-1 truncate">{s.name}</span>

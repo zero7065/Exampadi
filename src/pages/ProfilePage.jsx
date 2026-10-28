@@ -1,4 +1,4 @@
-// src/pages/ProfilePage.jsx — header card, academics, stats, achievements, danger zone.
+﻿// src/pages/ProfilePage.jsx â€” header card, academics, stats, achievements, danger zone.
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
@@ -54,7 +54,7 @@ export default function ProfilePage() {
       setProfile((p) => ({ ...(p || {}), name }));
       toast({ message: "Display name updated", type: "success" });
     } catch {
-      toast({ message: "Could not save name — check connection", type: "error" });
+      toast({ message: "Could not save name â€” check connection", type: "error" });
     } finally {
       setEditingName(false);
     }
@@ -137,9 +137,9 @@ export default function ProfilePage() {
                   const next = !profile?.isPublic;
                   await updateUserProfile(user.uid, { isPublic: next });
                   setProfile((p) => ({ ...(p || {}), isPublic: next }));
-                  toast({ message: next ? "Public profile ON — you appear on the feed & leaderboard 🌍" : "Public profile OFF — only you (and partners) see details", type: "success" });
+                  toast({ message: next ? "Public profile ON â€” you appear on the feed & leaderboard ðŸŒ" : "Public profile OFF â€” only you (and partners) see details", type: "success" });
                 } catch {
-                  toast({ message: "Could not update — check connection", type: "error" });
+                  toast({ message: "Could not update â€” check connection", type: "error" });
                 }
               }}
               title="Show your profile, XP and badges on the community feed"
@@ -162,7 +162,7 @@ export default function ProfilePage() {
                   background: "#fff", left: profile?.isPublic ? 15 : 2, transition: "left 0.2s ease",
                 }} />
               </span>
-              🌍 Public profile {profile?.isPublic ? "ON" : "OFF"}
+              ðŸŒ Public profile {profile?.isPublic ? "ON" : "OFF"}
             </button>
             <div className="flex items-center gap-2 mt-3 justify-center sm:justify-start flex-wrap">
               <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest inline-flex items-center gap-1 ${isPro ? "bg-accent/10 text-accent border border-accent/20" : "bg-subtle text-text-muted border border-border"}`}>
@@ -171,7 +171,7 @@ export default function ProfilePage() {
               {(profile?.exam || profile?.targetScore) && (
                 <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-primary/10 text-primary border border-primary/20">
                   <GraduationCap size={11} style={{ display: "inline", verticalAlign: "-1px", marginRight: 4 }} />
-                  {profile?.exam || "JAMB"}{profile?.targetScore ? ` · ${profile.targetScore}` : ""}
+                  {profile?.exam || "JAMB"}{profile?.targetScore ? ` Â· ${profile.targetScore}` : ""}
                 </span>
               )}
             </div>
@@ -193,23 +193,23 @@ export default function ProfilePage() {
           )}
           <Link to="/settings" className="px-3 py-1.5 rounded-lg border border-dashed border-border text-text-muted text-sm font-semibold">+ Edit</Link>
         </div>
-        {/* Unique sharable ID — friends add you with this */}
+        {/* Unique sharable ID â€” friends add you with this */}
         {user?.uid && (
           <button
             onClick={() => {
               try {
                 navigator.clipboard.writeText(user.uid);
-                toast({ message: "Your ID copied — share it with friends to study together", type: "success" });
+                toast({ message: "Your ID copied â€” share it with friends to study together", type: "success" });
               } catch {
                 toast({ message: user.uid, type: "info" });
               }
             }}
-            title="Tap to copy — friends add you with this ID"
+            title="Tap to copy â€” friends add you with this ID"
             style={{ background: "var(--bg-3)", border: "1px solid var(--border)", borderRadius: 10, padding: "8px 12px", cursor: "pointer", display: "flex", alignItems: "center", gap: 8, fontFamily: "inherit", width: "100%" }}
           >
             <span style={{ fontSize: 11, fontWeight: 800, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: 1 }}>My ID</span>
             <span className="wrap-anywhere" style={{ fontSize: 12, fontFamily: "monospace", color: "var(--primary)", fontWeight: 700 }}>{user.uid}</span>
-            <span style={{ marginLeft: "auto", fontSize: 11, color: "var(--text-muted)" }}>Tap to copy ⧉</span>
+            <span style={{ marginLeft: "auto", fontSize: 11, color: "var(--text-muted)" }}>Tap to copy â§‰</span>
           </button>
         )}
         <div>
@@ -327,10 +327,10 @@ export default function ProfilePage() {
               <button
                 onClick={confirmDelete}
                 disabled={deleting || deleteEmail.trim().toLowerCase() !== (user?.email || "").toLowerCase()}
-                className="flex-1 px-4 py-3 rounded-xl bg-danger text-white font-bold disabled:opacity-40"
+                className="flex-1 px-4 py-3 rounded-xl bg-danger text-ash-900 font-bold disabled:opacity-40"
                 style={{ border: "none", cursor: "pointer" }}
               >
-                {deleting ? "Deleting…" : "Confirm delete"}
+                {deleting ? "Deletingâ€¦" : "Confirm delete"}
               </button>
               <button
                 onClick={() => !deleting && setShowDelete(false)}
@@ -346,3 +346,4 @@ export default function ProfilePage() {
     </div>
   );
 }
+
