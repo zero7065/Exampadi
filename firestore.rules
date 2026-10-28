@@ -6,6 +6,11 @@ service cloud.firestore {
       return request.auth != null && request.auth.token.email == "jadai7065@gmail.com";
     }
 
+    function hasOrgId(orgId) {
+      return request.auth != null
+        && (request.auth.token.orgId == orgId || isAdmin());
+    }
+
     function userDoc() {
       return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
     }
@@ -92,22 +97,36 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
 
-    // ─── USERS ───
+    // ─── TEACHER CODES (seat-cap seat allocation per school) ───
+    // Client cannot read codes (secret). Redemption goes through
+    // /api/redeem-teacher-code (Admin SDK transaction).
+    match /teacherCodes/{code} {
+      allow read: if isAdmin();
+      allow create: if isAdmin();
+      // Seat cap + expiry enforced server-side via transaction
+      allow update: if false;
+      allow delete: if isAdmin();
+    }
+
+    // ─── USERS (multi-tenant: orgId enforced) ───
     match /users/{userId} {
-      allow read: if request.auth != null;
+      allow read: if request.auth != null && (
+        isAdmin()
+        || request.auth.uid == userId
+        || hasOrgId(request.resource.data.orgId)
+      );
       allow create: if (request.auth.uid == userId
                         && request.resource.data.get("role", "user") == "user")
                     || isAdmin();
       // Owners can update their own profile but can never change their role
-      // (blocks client-side privilege escalation). Admin can do anything.
-      // subscription: written after Paystack verification by our server
-      // (/api/verify-payment or the webhook). Client writes only pass when
-      // backed by a verified payment or an active Classroom team.
+      // or orgId (blocks client-side privilege escalation). Admin can do anything.
       allow update: if isAdmin()
         || (request.auth.uid == userId
-            && !request.resource.data.diff(resource.data).affectedKeys().hasAny(["role"])
+            && !request.resource.data.diff(resource.data).affectedKeys().hasAny(["role", "orgId"])
             && usageCountersMonotonic()
-            && subscriptionWriteOk());
+            && subscriptionWriteOk()
+            && (!request.resource.data.diff(resource.data).affectedKeys().has("orgId")
+                || request.auth.token.orgId == request.resource.data.orgId));
       allow delete: if isAdmin();
     }
 
@@ -270,7 +289,7 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
-    // ─── SCHOOLS ───
+    // ─── SCHOOLS (multi-tenant: orgId = schoolId) ───
     match /schools/{schoolId} {
       // Public can file a request (create with status pending only);
       // reads/writes restricted to members, teachers of the school, admin.
@@ -279,32 +298,40 @@ service cloud.firestore {
       allow read: if request.auth != null && (
         isAdmin()
         || resource.data.contactEmail == request.auth.token.email
-        || isTeacherOfSchool(schoolId)
+        || hasOrgId(schoolId)
       );
-      allow update: if isAdmin();
+      allow update: if isAdmin()
+        || (request.auth != null && request.auth.uid == request.resource.data.contactEmail && request.resource.data.orgId == schoolId);
       // Generated exams archive
       match /exams/{examId} {
         allow read, write: if request.auth != null && (
-          isAdmin() || isTeacherOfSchool(schoolId)
+          isAdmin() || hasOrgId(schoolId)
         );
       }
     }
 
-    // ─── CLASSES ───
+    // ─── TEACHER CODES (seat-cap seat allocation per school) ───
+    match /teacherCodes/{code} {
+      allow read: if isAdmin();
+      allow create: if isAdmin();
+      allow update: if false;
+      allow delete: if isAdmin();
+    }
+
+    // ─── CLASSES (multi-tenant: orgId enforced) ───
     match /classes/{classId} {
       // Students in the class, its creator, teachers of the school, admin.
-      // The schoolId clause makes the teacher list query
-      // (where schoolId == X) provable against rules.
       allow read: if request.auth != null && (
         isAdmin()
         || request.auth.uid in resource.data.students
         || (resource.data.keys().hasAny(["createdBy"]) && resource.data.createdBy == request.auth.uid)
         || (resource.data.keys().hasAny(["teacherId"]) && resource.data.teacherId == request.auth.uid)
-        || (resource.data.keys().hasAny(["schoolId"]) && isTeacherOfSchool(resource.data.schoolId))
+        || (resource.data.keys().hasAny(["schoolId", "orgId"]) && hasOrgId(resource.data.orgId || resource.data.schoolId))
       );
       // Teachers create their own classes; admin can create for any teacher.
       allow create: if request.auth != null
         && (isTeacher() || isAdmin())
+        && hasOrgId(request.resource.data.orgId || request.resource.data.schoolId)
         && (isAdmin()
             || (request.resource.data.createdBy == request.auth.uid
                 && request.resource.data.get("teacherId", "") == request.auth.uid));
@@ -313,6 +340,7 @@ service cloud.firestore {
       allow update: if request.auth != null && (
         isAdmin() || resource.data.get("createdBy", "") == request.auth.uid
         || resource.data.get("teacherId", "") == request.auth.uid
+        || hasOrgId(resource.data.orgId || resource.data.schoolId)
       );
       allow delete: if isAdmin() || resource.data.get("createdBy", "") == request.auth.uid;
     }
@@ -330,14 +358,17 @@ service cloud.firestore {
         || (request.auth != null && resource.data.createdBy == request.auth.uid);
     }
 
-    // ─── CLASSROOM LIVE TOOLS (ClassroomMode + TeacherTools) ───
-    // Polls: teacher creates/owns; every signed-in user may read to see it.
+    // ─── CLASS POLLS (multi-tenant) ───
     match /classPolls/{pollId} {
-      allow read: if request.auth != null;
+      allow read: if request.auth != null && (
+        isAdmin() || (resource.data.keys().hasAny(["orgId"]) && hasOrgId(resource.data.orgId))
+      );
       allow create: if request.auth != null
-        && (isAdmin() || request.resource.data.teacherUid == request.auth.uid);
+        && (isAdmin() || request.resource.data.teacherUid == request.auth.uid)
+        && hasOrgId(request.resource.data.orgId);
       allow update, delete: if isAdmin()
-        || (request.auth != null && resource.data.teacherUid == request.auth.uid);
+        || (request.auth != null && resource.data.teacherUid == request.auth.uid)
+        || (resource.data.keys().hasAny(["orgId"]) && hasOrgId(resource.data.orgId) && request.resource.data.teacherUid == request.auth.uid);
     }
 
     // Poll votes: a student writes ONLY their own single vote doc; the teacher
@@ -353,11 +384,11 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
 
-    // "I get it / I'm confused" signals + last-active: owner writes own doc,
-    // teacher/admin read for the live engagement board.
+    // ─── CLASS RESPONSES (multi-tenant) ───
     match /classResponses/{respId} {
       allow read: if request.auth != null && (
         isAdmin() || isTeacher() || isClassMember(resource.data.classId)
+        || (resource.data.keys().hasAny(["orgId"]) && hasOrgId(resource.data.orgId))
       );
       allow create, update: if request.auth != null
         && request.resource.data.studentUid == request.auth.uid
@@ -375,22 +406,28 @@ service cloud.firestore {
       allow update, delete: if isAdmin() || isTeacher();
     }
 
-    // Class announcements: teacher writes (own), everyone signed-in reads.
+    // ─── CLASS ANNOUNCEMENTS (multi-tenant) ───
     match /classAnnouncements/{annId} {
-      allow read: if request.auth != null;
+      allow read: if request.auth != null && (
+        isAdmin() || (resource.data.keys().hasAny(["orgId"]) && hasOrgId(resource.data.orgId))
+      );
       allow create: if request.auth != null
-        && (isAdmin() || request.resource.data.teacherUid == request.auth.uid);
+        && (isAdmin() || request.resource.data.teacherUid == request.auth.uid)
+        && hasOrgId(request.resource.data.orgId);
       allow update, delete: if isAdmin()
-        || (request.auth != null && resource.data.teacherUid == request.auth.uid);
+        || (request.auth != null && resource.data.teacherUid == request.auth.uid)
+        || (resource.data.keys().hasAny(["orgId"]) && hasOrgId(resource.data.orgId) && request.resource.data.teacherUid == request.auth.uid);
     }
 
-    // ─── TEACHER NOTES ───
+    // ─── TEACHER NOTES (multi-tenant) ───
     match /teacherNotes/{noteId} {
       allow read: if request.auth != null && (
         isAdmin() || isTeacherOfSchool(resource.data.schoolId)
+        || (resource.data.keys().hasAny(["orgId"]) && hasOrgId(resource.data.orgId))
       );
       allow create, update: if request.auth != null && (
         isAdmin() || isTeacherOfSchool(request.resource.data.schoolId)
+        || (request.resource.data.keys().hasAny(["orgId"]) && hasOrgId(request.resource.data.orgId))
       );
       allow delete: if isAdmin();
     }
@@ -443,20 +480,16 @@ service cloud.firestore {
       }
     }
 
-    // ─── STUDY ROOMS (open-by-code: anyone with the code joins instantly) ───
-    // Rooms are created "approved" so the host's friends can join right away by
-    // sharing the code. The public listing still just filters approved rooms,
-    // so admins can remove/close abusive rooms.
+    // ─── STUDY ROOMS (multi-tenant: orgId enforced) ───
     match /studyRooms/{code} {
       allow create: if request.auth != null
         && request.auth.uid == request.resource.data.hostUid
-        && request.resource.data.status in ["approved", "pending"];
-      // host + admin always; others read approved rooms (list queries must
-      // filter where status == "approved" to be provable).
+        && request.resource.data.status in ["approved", "pending"]
+        && hasOrgId(request.resource.data.orgId);
       allow read: if request.auth != null && (
         isAdmin()
         || request.auth.uid == resource.data.hostUid
-        || resource.data.status == "approved"
+        || (resource.data.status == "approved" && hasOrgId(resource.data.orgId))
       );
       // Progress is server-owned (api/room-answer.js, Admin SDK bypasses
       // rules): the client never grades itself or writes counters. A client
@@ -632,19 +665,22 @@ service cloud.firestore {
       allow create: if request.auth != null && request.auth.uid == request.resource.data.userId;
     }
 
-    // ─── TEACHER ASSIGNMENTS (teacher write, assigned students read) ───
+    // ─── TEACHER ASSIGNMENTS (multi-tenant: orgId enforced) ───
     match /teacherAssignments/{assignmentId} {
       allow read: if request.auth != null && (
         resource.data.teacherId == request.auth.uid
         || request.auth.uid in resource.data.get("studentIds", [])
         || (resource.data.get("classId", "") in get(/databases/$(database)/documents/users/$(request.auth.uid)).data.get("classIds", []))
         || isAdmin()
+        || (resource.data.keys().hasAny(["orgId"]) && hasOrgId(resource.data.orgId))
       );
       allow create: if request.auth != null
         && request.resource.data.teacherId == request.auth.uid
-        && (isTeacher() || isAdmin());
+        && (isTeacher() || isAdmin())
+        && hasOrgId(request.resource.data.orgId);
       allow update, delete: if request.auth != null && (
         resource.data.teacherId == request.auth.uid || isAdmin()
+        || (resource.data.keys().hasAny(["orgId"]) && hasOrgId(resource.data.orgId) && request.resource.data.teacherId == request.auth.uid)
       );
 
       // Answer keys are teacher-only; students never receive them.
@@ -693,32 +729,32 @@ service cloud.firestore {
       );
     }
 
-    // ─── CLASSROOM SHARED SESSIONS ───
-    // One live session per class; question set + reveal state are shared so
-    // every student sees exactly the teacher's question. Answers live in the
-    // teacher-only `key` subcollection and are copied into the public doc only
-    // when the teacher reveals them.
+    // ─── CLASSROOM SHARED SESSIONS (multi-tenant: orgId enforced) ───
     match /classSessions/{classId} {
       allow read: if request.auth != null && (
         isAdmin() || isClassMember(classId) || isClassTeacher(classId)
+        || (resource.data.keys().hasAny(["orgId"]) && hasOrgId(resource.data.orgId))
       );
       allow create, update, delete: if request.auth != null && (
         isAdmin() || isClassTeacher(classId)
+        || (resource.data.keys().hasAny(["orgId"]) && hasOrgId(resource.data.orgId) && request.resource.data.teacherUid == request.auth.uid)
       );
       match /key/{qid} {
         allow read, write: if request.auth != null && (
           isAdmin() || isClassTeacher(classId)
+          || (resource.data.keys().hasAny(["orgId"]) && hasOrgId(resource.data.orgId) && request.resource.data.teacherUid == request.auth.uid)
         );
       }
     }
 
-    // ─── CLASS SUBMISSIONS (whiteboard attempts) ───
+    // ─── CLASS SUBMISSIONS (multi-tenant) ───
     match /classSubmissions/{submissionId} {
       allow read: if request.auth != null && (
         isAdmin()
         || resource.data.studentUid == request.auth.uid
         || isClassTeacher(resource.data.classId)
         || isClassMember(resource.data.classId)
+        || (resource.data.keys().hasAny(["orgId"]) && hasOrgId(resource.data.orgId))
       );
       allow create: if request.auth != null
         && request.resource.data.studentUid == request.auth.uid
@@ -736,10 +772,11 @@ service cloud.firestore {
       );
     }
 
-    // Reactions + comments on a submission (class members).
+    // Reactions + comments on a submission (class members, multi-tenant).
     match /classSubmissionReactions/{reactionId} {
       allow read: if request.auth != null && (
         isAdmin() || isClassMember(resource.data.classId) || isClassTeacher(resource.data.classId)
+        || (resource.data.keys().hasAny(["orgId"]) && hasOrgId(resource.data.orgId))
       );
       allow create, update: if request.auth != null
         && request.resource.data.uid == request.auth.uid
@@ -749,6 +786,7 @@ service cloud.firestore {
     match /classSubmissionComments/{commentId} {
       allow read: if request.auth != null && (
         isAdmin() || isClassMember(resource.data.classId) || isClassTeacher(resource.data.classId)
+        || (resource.data.keys().hasAny(["orgId"]) && hasOrgId(resource.data.orgId))
       );
       allow create: if request.auth != null
         && request.resource.data.uid == request.auth.uid
@@ -787,14 +825,16 @@ service cloud.firestore {
       }
     }
 
-    // ─── CLASS CHAT + PER-QUESTION DISCUSSIONS ───
+    // ─── CLASS CHAT (multi-tenant) ───
     match /classChat/{classId}/messages/{msgId} {
       allow read: if request.auth != null && (
         isAdmin() || isClassMember(classId) || isClassTeacher(classId)
+        || (resource.data.keys().hasAny(["orgId"]) && hasOrgId(resource.data.orgId))
       );
       allow create: if request.auth != null
         && request.resource.data.fromUid == request.auth.uid
-        && (isClassMember(classId) || isClassTeacher(classId));
+        && (isClassMember(classId) || isClassTeacher(classId)
+        || (resource.data.keys().hasAny(["orgId"]) && hasOrgId(resource.data.orgId)));
       allow delete: if isAdmin() || (request.auth != null && resource.data.fromUid == request.auth.uid);
     }
     match /classDiscussions/{discussionId} {
