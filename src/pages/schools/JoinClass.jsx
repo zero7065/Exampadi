@@ -1,10 +1,12 @@
-// Join a class with an invite code (/join or /join/:code).
-import { useEffect, useState } from "react";
+// Join a class with an invite code OR a school/teacher code (/join or /join/:code).
+// Supports class invites (6 chars) and school codes (8 chars, seat-capped).
+import { useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { useToast } from "../../components/Toast";
 import { acceptClassInvite, getClassByInvite } from "../../lib/schools";
-import { Users, ArrowLeft, CheckCircle, Loader2, AlertCircle } from "lucide-react";
+import { apiUrl } from "../../lib/apiBase";
+import { Users, ArrowLeft, CheckCircle, Loader2, AlertCircle, Building2 } from "lucide-react";
 
 export default function JoinClass() {
   const { user } = useAuth();
@@ -15,6 +17,12 @@ export default function JoinClass() {
   const [busy, setBusy] = useState(false);
   const [status, setStatus] = useState(null); // null, 'success', 'error', 'checking'
   const [classInfo, setClassInfo] = useState(null);
+  const [codeType, setCodeType] = useState(null); // 'class' | 'school'
+
+  function isSchoolCode(c) {
+    const clean = String(c || "").trim();
+    return clean.length === 8 && /^[A-Z0-9]+$/.test(clean);
+  }
 
   async function checkClass(c) {
     const clean = String(c || "").trim().toUpperCase();
@@ -25,6 +33,7 @@ export default function JoinClass() {
       if (info) {
         setClassInfo(info);
         setStatus('success');
+        setCodeType('class');
       } else {
         setStatus('error');
       }
@@ -33,11 +42,44 @@ export default function JoinClass() {
     }
   }
 
+  async function redeemSchoolCode(c) {
+    const clean = String(c || "").trim().toUpperCase();
+    if (!user) { navigate("/auth", { replace: true }); return; }
+    setBusy(true);
+    try {
+      const token = await user.getIdToken();
+      const res = await fetch(apiUrl("/api/redeem-teacher-code"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ code: clean }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Redemption failed");
+      toast({ message: "School code redeemed! Welcome to your school.", type: "success" });
+      setStatus('success');
+      setCodeType('school');
+      navigate("/dashboard", { replace: true });
+    } catch (e) {
+      const msg = e.code || e.message || "Invalid or expired school code";
+      toast({ message: msg, type: "error" });
+      setStatus('error');
+    } finally {
+      setBusy(false);
+    }
+  }
+
   async function join(c) {
     const clean = String(c || "").trim().toUpperCase();
-    if (!clean) { toast({ message: "Enter your class code", type: "warning" }); return; }
-    if (clean.length !== 6) { toast({ message: "Class code must be 6 characters", type: "warning" }); return; }
+    if (!clean) { toast({ message: "Enter your class or school code", type: "warning" }); return; }
     if (!user) { navigate("/auth", { replace: true }); return; }
+
+    if (isSchoolCode(clean)) {
+      await redeemSchoolCode(clean);
+      return;
+    }
+
+    if (clean.length !== 6) { toast({ message: "Class code must be 6 characters", type: "warning" }); return; }
+
     setBusy(true);
     try {
       await acceptClassInvite(clean);
@@ -50,15 +92,6 @@ export default function JoinClass() {
     }
   }
 
-  useEffect(() => {
-    if (paramCode && user && !busy) join(paramCode);
-    if (paramCode) checkClass(paramCode);
-  }, [paramCode, user]);
-
-  useEffect(() => {
-    if (code.length === 6) checkClass(code);
-    else { setStatus(null); setClassInfo(null); }
-  }, [code]);
 
   return (
     <div className="page-content max-w-md mx-auto">
@@ -68,7 +101,7 @@ export default function JoinClass() {
       <div className="glass-card p-8 text-center space-y-6 animate-fade-in">
         <div className="relative">
           <div className="w-16 h-16 mx-auto rounded-2xl flex items-center justify-center shrink-0" style={{ background: "var(--landing-gradient)", color: "var(--text)" }}>
-            <Users size={28} />
+            {codeType === 'school' ? <Building2 size={28} /> : <Users size={28} />}
           </div>
           {status === 'checking' && (
             <div className="absolute inset-0 rounded-2xl flex items-center justify-center bg-black/50">
@@ -86,12 +119,18 @@ export default function JoinClass() {
             </div>
           )}
         </div>
-        
+
         <div className="space-y-3">
-          <h1 className="text-2xl font-black text-text">Join your class</h1>
-          <p className="text-sm text-text-muted">Enter the 6-letter code from your teacher.</p>
-          
-          {classInfo && status === 'success' && (
+          <h1 className="text-2xl font-black text-text">
+            {codeType === 'school' ? "Join your school" : "Join your class"}
+          </h1>
+          <p className="text-sm text-text-muted">
+            {codeType === 'school'
+              ? "Enter the 8-character school code from your teacher"
+              : "Enter the 6-letter class code from your teacher."}
+          </p>
+
+          {classInfo && status === 'success' && codeType === 'class' && (
             <div className="glass-card p-4 text-left space-y-2 animate-slide-up border-l-4 border-green-500">
               <p className="font-semibold text-text">{classInfo.name}</p>
               <p className="text-sm text-text-muted">{classInfo.subject} \uB7 {classInfo.teacherName || "Your teacher"}</p>
@@ -101,29 +140,48 @@ export default function JoinClass() {
 
           <input
             value={code}
-            onChange={(e) => { const v = e.target.value.toUpperCase().slice(0, 6); setCode(v); if (v.length === 6) checkClass(v); }}
-            placeholder="ABC123"
-            maxLength={6}
+            onChange={(e) => {
+              const value = e.target.value.toUpperCase().slice(0, 8);
+              setCode(value);
+              if (value.length === 6) {
+                setCodeType("class");
+                checkClass(value);
+              } else if (isSchoolCode(value)) {
+                setClassInfo(null);
+                setCodeType("school");
+                setStatus("success");
+              } else {
+                setClassInfo(null);
+                setCodeType(null);
+                setStatus(null);
+              }
+            }}
+            placeholder={codeType === 'school' ? "ABCD1234" : "ABC123"}
+            maxLength={8}
             className="input-field text-center"
             style={{ fontSize: 28, fontWeight: 900, letterSpacing: "0.4em", textTransform: "uppercase" }}
             disabled={busy}
             autoComplete="off"
             autoFocus
           />
-          
-          {status === 'error' && code.length === 6 && (
-            <p className="text-sm text-red-500 animate-shake">Invalid class code. Please check and try again.</p>
+
+          {status === 'error' && ((code.length === 6 && codeType === 'class') || codeType === 'school') && (
+            <p className="text-sm text-red-500 animate-shake">
+              {codeType === 'school'
+                ? "Invalid or expired school code. Seat may be full."
+                : "Invalid class code. Please check and try again."}
+            </p>
           )}
 
-          <button 
-            onClick={() => join(code)} 
-            disabled={busy || code.length !== 6 || status === 'checking'}
+          <button
+            onClick={() => join(code)}
+            disabled={busy || !code || (codeType === 'class' && code.length !== 6) || (codeType === 'school' && code.length !== 8) || status === 'checking'}
             className="btn-primary w-full disabled:opacity-60 py-4"
             style={{ fontSize: 16 }}
           >
-            {busy ? <><Loader2 size={18} className="animate-spin" /> Joining\u2026</> : 
-             status === 'success' ? <><CheckCircle size={18} /> Join {classInfo?.name || "Class"}</> : 
-             "Join class"}
+            {busy ? <><Loader2 size={18} className="animate-spin" /> Processing\u2026</> :
+             status === 'success' ? <><CheckCircle size={18} /> {codeType === 'school' ? "Enter School" : `Join ${classInfo?.name || "Class"}`}</> :
+             codeType === 'school' ? "Redeem School Code" : "Join class"}
           </button>
         </div>
       </div>

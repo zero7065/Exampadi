@@ -1,26 +1,11 @@
-// src/components/PresenceBadge.jsx
-import { useEffect, useState } from "react";
-import { useAuth } from "../context/AuthContext";
 import { isOnline } from "../lib/presence";
 
-export default function PresenceBadge({ presence, userId }) {
-  const [status, setStatus] = useState("offline");
-
-  useEffect(() => {
-    if (!userId) return;
-
-    const updateStatus = () => {
-      const online = isOnline(presence[userId]);
-      setStatus(online ? "online" : "offline");
-    };
-
-    updateStatus();
-    const interval = setInterval(updateStatus, 1000);
-
-    return () => clearInterval(interval);
-  }, [presence, userId]);
-
+export default function PresenceBadge({ presence, label = true }) {
+  const online = isOnline(presence);
   return (
-    <div className={`w-3 h-3 rounded-full ${status === "online" ? "bg-green-500" : "bg-gray-500"} ${status === "online" ? "animate-pulse" : ""}`} title={`${userId} is ${status}`} />
+    <span className="inline-flex items-center gap-1.5" aria-label={online ? "Online" : "Offline"}>
+      <span className={`inline-block h-2.5 w-2.5 rounded-full ${online ? "bg-emerald-500" : "bg-zinc-400"}`} />
+      {label && <span className="text-xs text-text-muted">{online ? "Online" : "Offline"}</span>}
+    </span>
   );
 }

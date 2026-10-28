@@ -11,9 +11,10 @@ import {
 } from "../../lib/schools";
 import { collection, query, where, getDocs, limit } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
+import { apiUrl } from "../../lib/apiBase";
 import AvatarDisplay from "../../components/Avatar/AvatarDisplay";
 import {
-  Users, Plus, FileText, MonitorPlay, ClipboardList, X, Send, Trophy, BookOpenCheck, Inbox, Settings2,
+  Users, Plus, FileText, MonitorPlay, ClipboardList, X, Send, Trophy, BookOpenCheck, Inbox, Settings2, Key, Building2, RefreshCw, Loader2,
 } from "lucide-react";
 import { createAssignment } from "../../lib/teacherContent";
 import { getQuestionsFromBank } from "../../data/questions/compat";
@@ -55,6 +56,13 @@ export default function TeacherDashboard() {
     instructions: "", goal: "", lateJoin: true,
   });
 
+  // Teacher code management (school seat codes)
+  const [teacherCode, setTeacherCode] = useState("");
+  const [seatCap, setSeatCap] = useState(20);
+  const [codeExpiryDays, setCodeExpiryDays] = useState(30);
+  const [showCodeModal, setShowCodeModal] = useState(false);
+  const [generatingCode, setGeneratingCode] = useState(false);
+
   useEffect(() => {
     if (user) getUserProfile(user.uid).then(setProfile).catch(() => {});
   }, [user]);
@@ -62,19 +70,56 @@ export default function TeacherDashboard() {
   const schoolId = profile?.schoolId;
 
   useEffect(() => {
-    if (!schoolId) { setLoading(false); return; }
+    if (!schoolId) return;
     listSchoolClasses(schoolId).then((cs) => {
       setClasses(cs);
       if (cs.length > 0) setClassId(cs[0].id);
+      else {
+        setRoster([]);
+        setLessons([]);
+      }
       setLoading(false);
     }).catch((e) => {
       toast({ message: `Failed to load classes: ${e.message}`, type: "error" });
       setLoading(false);
     });
+
   }, [schoolId]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  async function generateTeacherCode() {
+    if (!schoolId) { toast({ message: "No school assigned", type: "error" }); return; }
+    setGeneratingCode(true);
+    try {
+      const token = await user?.getIdToken();
+      const res = await fetch(apiUrl("/api/generate-teacher-code"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        body: JSON.stringify({
+          orgId: schoolId,
+          teacherUid: user?.uid,
+          seatCap: Number(seatCap) || 20,
+          expiresInDays: Number(codeExpiryDays) || 30,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Failed to generate code");
+      setTeacherCode(data.code);
+      toast({ message: `Teacher code generated: ${data.code}`, type: "success" });
+      setShowCodeModal(true);
+    } catch (e) {
+      toast({ message: e.message || "Failed to generate code", type: "error" });
+    } finally {
+      setGeneratingCode(false);
+    }
+  }
+
+  function rotateTeacherCode() {
+    setTeacherCode("");
+    setShowCodeModal(false);
+  }
+
   useEffect(() => {
-    if (!classId) { setRoster([]); return; }
+    if (!classId) return;
     let cancelled = false;
     (async () => {
       setLoading(true);
@@ -154,8 +199,12 @@ export default function TeacherDashboard() {
   }, [classId]);
 
   useEffect(() => {
-    if (!classId) { setLessons([]); return; }
-    listLessonPlans({ classId }).then(setLessons).catch(() => setLessons([]));
+    if (!classId) return;
+    let cancelled = false;
+    listLessonPlans({ classId })
+      .then((rows) => { if (!cancelled) setLessons(rows); })
+      .catch(() => { if (!cancelled) setLessons([]); });
+    return () => { cancelled = true; };
   }, [classId]);
 
   const weakTopics = useMemo(() => {
@@ -174,6 +223,11 @@ export default function TeacherDashboard() {
   }, [roster]);
 
   const leaders = useMemo(() => [...roster].sort((a, b) => b.xp - a.xp).slice(0, 10), [roster]);
+
+  const schoolSeats = useMemo(() => ({
+    used: classes.reduce((acc, c) => acc + (c.students?.length || 0), 0),
+    cap: 100,
+  }), [classes]);
 
   async function handleCreateClass(e) {
     e.preventDefault();
@@ -326,11 +380,7 @@ export default function TeacherDashboard() {
     }
   }
 
-  if (loading && classes.length === 0) {
-    return <div className="page-content" style={{ color: "var(--text-muted)" }}>Loading teacher dashboard…</div>;
-  }
-
-  if (!schoolId) {
+  if (profile && !schoolId) {
     return (
       <div className="page-content max-w-2xl mx-auto text-center space-y-4">
         <h1 className="text-2xl font-black text-text">Teacher Dashboard</h1>
@@ -338,6 +388,10 @@ export default function TeacherDashboard() {
         <Link to="/schools/signup" className="btn-primary inline-flex px-6">Register a school</Link>
       </div>
     );
+  }
+
+  if (loading && classes.length === 0) {
+    return <div className="page-content" style={{ color: "var(--text-muted)" }}>Loading teacher dashboard…</div>;
   }
 
   return (
@@ -586,6 +640,111 @@ export default function TeacherDashboard() {
 
       {schoolId && roster.length > 0 && (
         <TeacherTools schoolId={schoolId} roster={roster} classId={classId} />
+      )}
+
+      {/* Teacher Code Management Section */}
+      {schoolId && (
+        <section className="glass-card p-5 space-y-3 mt-4">
+          <h2 className="font-black text-text flex items-center gap-2">
+            <Building2 size={18} /> School Access Codes
+          </h2>
+          <p className="text-sm text-text-muted">
+            Share this 8-character code with students. They redeem it at
+            <span className="font-mono text-sm">/join</span> to join your school
+            with seat-capped access.
+          </p>
+
+          <div className="grid gap-3 sm:grid-cols-3">
+            <div className="space-y-2">
+              <label className="text-xs font-bold text-text-muted">Seat cap</label>
+              <input
+                type="number"
+                min="1"
+                max="500"
+                value={seatCap}
+                onChange={(e) => setSeatCap(e.target.value)}
+                className="input-field"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-xs font-bold text-text-muted">Expires in (days)</label>
+              <input
+                type="number"
+                min="1"
+                max="365"
+                value={codeExpiryDays}
+                onChange={(e) => setCodeExpiryDays(e.target.value)}
+                className="input-field"
+              />
+            </div>
+            <div className="flex items-end">
+              <button
+                onClick={generateTeacherCode}
+                disabled={generatingCode}
+                className="btn-primary w-full disabled:opacity-60 py-3"
+              >
+                {generatingCode ? <Loader2 size={16} className="animate-spin" /> : <Key size={16} />}
+                {generatingCode ? "Generating…" : "Generate Code"}
+              </button>
+            </div>
+          </div>
+
+          {teacherCode && (
+            <div className="glass-card p-4 border-2 border-primary rounded-xl animate-fade-in">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-black text-text-muted uppercase tracking-wider">Your school code</span>
+                <button
+                  onClick={rotateTeacherCode}
+                  className="text-xs text-primary hover:underline"
+                >
+                  Generate new
+                </button>
+              </div>
+              <div className="flex items-center justify-between p-3 bg-bg-3 rounded-lg border border-border font-mono text-xl font-black text-primary">
+                {teacherCode}
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(teacherCode);
+                    toast({ message: "Code copied to clipboard", type: "success" });
+                  }}
+                  className="text-primary hover:text-primary/80"
+                  title="Copy code"
+                >
+                  <RefreshCw size={16} />
+                </button>
+              </div>
+              <p className="text-xs text-text-muted mt-2">
+                Seat cap: {seatCap} &bull; Expires in {codeExpiryDays} days &bull;
+                Used: {schoolSeats.used} / {schoolSeats.cap}
+              </p>
+            </div>
+          )}
+
+          {showCodeModal && teacherCode && (
+            <div style={{ position: "fixed", inset: 0, zIndex: 70, display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}
+              onClick={(e) => { if (e.target === e.currentTarget) setShowCodeModal(false); }}>
+              <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.6)" }} />
+              <div className="glass-card" style={{ position: "relative", width: "100%", maxWidth: 400, padding: 24, textAlign: "center" }}>
+                <h3 className="font-black text-text mb-4">Teacher Code Generated</h3>
+                <div className="p-4 bg-bg-3 rounded-xl border border-border font-mono text-2xl font-black text-primary mb-4">
+                  {teacherCode}
+                </div>
+                <p className="text-sm text-text-muted mb-6">
+                  Share this code with your students. They enter it at
+                  <span className="font-mono">/join</span> to join your school.
+                  <br />
+                  Seat cap: {seatCap} &bull; Expires in {codeExpiryDays} days.
+                </p>
+                <button
+                  onClick={() => setShowCodeModal(false)}
+                  className="btn-primary w-full py-3"
+                >
+                  Got it
+                </button>
+              </div>
+            </div>
+          )}
+        </section>
       )}
     </div>
   );

@@ -1,196 +1,105 @@
-// src/lib/presence.js
-// Real-time presence tracking for users across different sessions
-import { ref, onValue, query, orderByChild, limitToLast } from "firebase/database";
-import { database } from "../firebaseConfig";
+import { doc, onSnapshot, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
+import { db } from "../firebaseConfig";
 
-// State management for presence
-let presenceTracker = new Map();
-let onlineUsers = new Map();
-let presenceListeners = [];
+const PRESENCE_TTL_MS = 180_000;
 
-// Convert timestamp to readable format
-export function formatTimeAgo(timestamp) {
-  if (!timestamp) return "unknown";
-
-  const now = Date.now();
-  const diff = now - timestamp;
-
-  if (diff < 60000) {
-    return "just now";
-  }
-
-  const minutes = Math.floor(diff / 60000);
-  if (minutes < 60) {
-    return `${minutes}m ago`;
-  }
-
-  const hours = Math.floor(minutes / 60);
-  if (hours < 24) {
-    return `${hours}h ago`;
-  }
-
-  const days = Math.floor(hours / 24);
-  if (days < 7) {
-    return `${days}d ago`;
-  }
-
-  const weeks = Math.floor(days / 7);
-  if (weeks < 4) {
-    return `${weeks}w ago`;
-  }
-
-  const months = Math.floor(days / 30);
-  return `${months}m ago`;
+function timestampValue(value) {
+  if (typeof value === "number") return value;
+  if (value?.toMillis) return value.toMillis();
+  if (value?.toDate) return value.toDate().getTime();
+  if (value instanceof Date) return value.getTime();
+  return 0;
 }
 
-// Check if user is currently online
-export function isOnline(presenceData) {
-  if (!presenceData || !presenceData.state) return false;
-
-  const now = Date.now();
-  const lastActivity = presenceData.timestamp || 0;
-  const timeSinceLastActivity = now - lastActivity;
-
-  return timeSinceLastActivity < 180000; // 3 minutes
+export function timestampMs(value) {
+  return timestampValue(value);
 }
 
-// Subscribe to presence changes
-export function subscribePresence(callback) {
-  if (!database) {
-    console.warn("Database not available for presence tracking");
+export function isOnline(data) {
+  if (!data || data.state !== "online") return false;
+  const updatedAt = timestampValue(data.updatedAt || data.timestamp);
+  return updatedAt > 0 && Date.now() - updatedAt < PRESENCE_TTL_MS;
+}
+
+export function subscribePresenceForUids(uids, callback) {
+  if (!db || !Array.isArray(uids) || typeof callback !== "function") {
+    callback?.({});
     return () => {};
   }
 
-  const presenceRef = ref(database, "presence");
-  const onlineRef = query(ref(database, "presence/online"), orderByChild("timestamp"), limitToLast(100));
+  const entries = new Map();
+  const uniqueUids = [...new Set(uids.filter(Boolean))].slice(0, 60);
+  const unsubs = uniqueUids.map((uid) => onSnapshot(
+    doc(db, "presence", uid),
+    (snapshot) => {
+      if (snapshot.exists()) entries.set(uid, snapshot.data());
+      else entries.delete(uid);
+      callback(Object.fromEntries(entries));
+    },
+    () => {
+      entries.delete(uid);
+      callback(Object.fromEntries(entries));
+    },
+  ));
 
-  const presenceHandler = (snapshot) => {
-    const presenceData = snapshot.val() || {};
-    presenceTracker = new Map(Object.entries(presenceData));
-    updateOnlineUsers();
-  };
-
-  const onlineHandler = (snapshot) => {
-    const onlineData = snapshot.val() || {};
-    onlineUsers = new Map(Object.entries(onlineData));
-    updateOnlineUsers();
-  };
-
-  const presenceUnsub = onValue(presenceRef, presenceHandler);
-  const onlineUnsub = onValue(onlineRef, onlineHandler);
-
-  presenceListeners.push({
-    presenceUnsub,
-    onlineUnsub,
-    callback,
-  });
-
-  // Return initial state
-  updateOnlineUsers();
-
-  return () => {
-    presenceUnsub();
-    onlineUnsub();
-    const index = presenceListeners.findIndex(l => l === presenceListeners[presenceListeners.length - 1]);
-    if (index !== -1) {
-      presenceListeners.splice(index, 1);
-    }
-  };
+  return () => unsubs.forEach((unsubscribe) => unsubscribe());
 }
 
-function updateOnlineUsers() {
-  const allUsers = new Map([...presenceTracker, ...onlineUsers]);
-  const onlineUserList = Array.from(allUsers.entries())
-    .filter(([uid, data]) => isOnline(data))
-    .sort((a, b) => {
-      const aTime = a[1]?.timestamp || 0;
-      const bTime = b[1]?.timestamp || 0;
-      return bTime - aTime;
-    });
-
-  presenceListeners.forEach(listener => {
-    if (listener.callback) {
-      listener.callback(onlineUserList.map(([uid, data]) => ({
-        uid,
-        ...data,
-      })));
-    }
-  });
+export function subscribePresence(callback) {
+  return subscribePresenceForUids([], callback);
 }
 
-// Track user presence
-export function trackPresence(uid, userData = {}) {
-  if (!database || !uid) return () => {};
-
-  const presenceRef = ref(database, `presence/${uid}`);
-
-  const presenceData = {
-    ...userData,
-    state: "online",
-    timestamp: Date.now(),
-    lastSeen: formatTimeAgo(Date.now()),
-  };
-
-  const updatePresence = (state = "online") => {
-    presenceData.state = state;
-    presenceData.timestamp = Date.now();
-    presenceData.lastSeen = formatTimeAgo(Date.now());
-
-    const updateRef = ref(database, `presence/${uid}`);
-    const updateData = { ...presenceData };
-    if (state === "offline") {
-      delete updateData.state;
-    }
-    return import("firebase/database").then(({ update }) => update(updateRef, updateData));
-  };
-
-  // Initialize presence
-  import("firebase/database").then(({ set }) => {
-    set(presenceRef, presenceData);
-  });
-
-  // Set up heartbeat
-  const heartbeat = setInterval(() => {
-    import("firebase/database").then(({ update }) => {
-      update(presenceRef, {
-        timestamp: Date.now(),
-        lastSeen: formatTimeAgo(Date.now()),
-      });
-    });
-  }, 30000);
-
-  // Handle page unload
-  const handleUnload = () => {
-    updatePresence("offline");
-  };
-
-  window.addEventListener("beforeunload", handleUnload);
-
-  return () => {
-    clearInterval(heartbeat);
-    window.removeEventListener("beforeunload", handleUnload);
-    updatePresence("offline");
-  };
-}
-
-// Get online users list
-export function getOnlineUsers() {
-  return Array.from(onlineUsers.entries()).map(([uid, data]) => ({
-    uid,
+export async function setPresence(uid, state = "online", data = {}) {
+  if (!db || !uid) return;
+  const ref = doc(db, "presence", uid);
+  const patch = {
     ...data,
-  }));
+    state,
+    updatedAt: serverTimestamp(),
+  };
+  await setDoc(ref, patch, { merge: true });
 }
 
-// Get specific user presence
-export function getUserPresence(uid) {
-  return presenceTracker.get(uid) || onlineUsers.get(uid) || null;
+export function trackPresence(uid, data = {}) {
+  if (!db || !uid || typeof window === "undefined") return () => {};
+
+  const ref = doc(db, "presence", uid);
+  let stopped = false;
+  const update = (state) => updateDoc(ref, {
+    ...data,
+    state,
+    updatedAt: serverTimestamp(),
+  }).catch(() => {});
+
+  setDoc(ref, { ...data, state: "online", updatedAt: serverTimestamp() }, { merge: true }).catch(() => {});
+  const heartbeat = window.setInterval(() => {
+    if (document.visibilityState === "visible") update("online");
+  }, 45_000);
+  const onVisible = () => {
+    if (document.visibilityState === "visible") update("online");
+  };
+  const onPageHide = () => update("offline");
+  document.addEventListener("visibilitychange", onVisible);
+  window.addEventListener("pagehide", onPageHide);
+
+  return () => {
+    if (stopped) return;
+    stopped = true;
+    window.clearInterval(heartbeat);
+    document.removeEventListener("visibilitychange", onVisible);
+    window.removeEventListener("pagehide", onPageHide);
+    update("offline");
+  };
 }
 
-// Clear all listeners (useful for cleanup)
-export function clearPresenceListeners() {
-  presenceListeners.forEach(listener => {
-    if (listener.presenceUnsub) listener.presenceUnsub();
-    if (listener.onlineUnsub) listener.onlineUnsub();
-  });
-  presenceListeners = [];
+export function formatTimeAgo(value) {
+  const timestamp = timestampValue(value);
+  if (!timestamp) return "unknown";
+  const minutes = Math.max(0, Math.floor((Date.now() - timestamp) / 60_000));
+  if (minutes < 1) return "just now";
+  if (minutes < 60) return `${minutes}m ago`;
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `${hours}h ago`;
+  const days = Math.floor(hours / 24);
+  return `${days}d ago`;
 }
