@@ -38,7 +38,7 @@ export default function NotificationPrompt() {
       </div>
       <button onClick={handleEnable} style={{
         padding: "6px 14px", borderRadius: 8, background: "var(--primary)", border: "none",
-        color: "#fff", fontWeight: 600, fontSize: 12, cursor: "pointer", fontFamily: "inherit",
+        color: "var(--text)", fontWeight: 600, fontSize: 12, cursor: "pointer", fontFamily: "inherit",
       }}>
         Enable
       </button>

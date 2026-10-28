@@ -111,25 +111,25 @@ export default function ProfilePage() {
             <AvatarDisplay user={user} profile={profile} size={96} radius={24} />
           </button>
           <div className="flex-1 text-center sm:text-left">
-            {editingName ? (
-              <div className="flex items-center gap-2 justify-center sm:justify-start">
-                <input
-                  autoFocus
-                  value={nameInput}
-                  onChange={(e) => setNameInput(e.target.value)}
-                  onBlur={saveName}
-                  onKeyDown={(e) => e.key === "Enter" && saveName()}
-                  className="input-field"
-                  style={{ maxWidth: 240, fontWeight: 700 }}
-                />
-                <button onClick={saveName} style={{ background: "none", border: "none", color: "var(--success)", cursor: "pointer" }}><Check size={18} /></button>
-              </div>
-            ) : (
-              <div className="flex items-center gap-2 justify-center sm:justify-start">
-                <h2 className="text-2xl font-black text-text">{profile?.name || user?.displayName || "Student"}</h2>
-                <button onClick={() => setEditingName(true)} style={{ background: "none", border: "none", color: "var(--text-muted)", cursor: "pointer" }}><Pencil size={15} /></button>
-              </div>
-            )}
+{editingName ? (
+                <div className="flex items-center gap-2 justify-center sm:justify-start">
+                  <input
+                    autoFocus
+                    value={nameInput}
+                    onChange={(e) => setNameInput(e.target.value)}
+                    onBlur={saveName}
+                    onKeyDown={(e) => e.key === "Enter" && saveName()}
+                    className="input-field"
+                    style={{ maxWidth: 240, fontWeight: 700, background: "var(--bg-3)", border: "1px solid var(--border)", borderRadius: 8, padding: "8px 12px", color: "var(--text)", fontFamily: "inherit" }}
+                  />
+                  <button onClick={saveName} style={{ background: "none", border: "none", color: "var(--success)", cursor: "pointer" }}><Check size={18} /></button>
+                </div>
+              ) : (
+                <div className="flex items-center gap-2 justify-center sm:justify-start">
+                  <h2 className="text-2xl font-black text-text">{profile?.name || user?.displayName || "Student"}</h2>
+                  <button onClick={() => setEditingName(true)} style={{ background: "none", border: "none", cursor: "pointer", color: "var(--text-muted)", cursor: "pointer" }}><Pencil size={15} /></button>
+                </div>
+              )}
             <p className="text-text-muted text-sm">{user?.email}</p>
             <button
               onClick={async () => {
@@ -157,9 +157,9 @@ export default function ProfilePage() {
                 background: profile?.isPublic ? "var(--primary)" : "var(--border)",
                 transition: "background 0.2s ease", flexShrink: 0,
               }}>
-                <span style={{
+<span style={{
                   position: "absolute", top: 2, width: 13, height: 13, borderRadius: "50%",
-                  background: "#fff", left: profile?.isPublic ? 15 : 2, transition: "left 0.2s ease",
+                  background: "var(--text)", left: profile?.isPublic ? 15 : 2, transition: "left 0.2s ease",
                 }} />
               </span>
               ðŸŒ Public profile {profile?.isPublic ? "ON" : "OFF"}

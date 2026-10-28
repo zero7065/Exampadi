@@ -4,7 +4,10 @@
     "api/export/ai-logs.js": { "maxDuration": 60 }
   },
   "crons": [{ "path": "/api/reminders", "schedule": "0 6 * * *" }],
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/server.js" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
   "headers": [
     {
       "source": "/(.*)",

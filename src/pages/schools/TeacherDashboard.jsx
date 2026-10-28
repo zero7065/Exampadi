@@ -14,7 +14,7 @@ import { db } from "../../firebaseConfig";
 import { apiUrl } from "../../lib/apiBase";
 import AvatarDisplay from "../../components/Avatar/AvatarDisplay";
 import {
-  Users, Plus, FileText, MonitorPlay, ClipboardList, X, Send, Trophy, BookOpenCheck, Inbox, Settings2, Key, Building2, RefreshCw, Loader2,
+  Users, Plus, FileText, MonitorPlay, ClipboardList, X, Send, Trophy, BookOpenCheck, Inbox, Settings2, Key, Building2, RefreshCw, Loader2, UserPlus, Trash2,
 } from "lucide-react";
 import { createAssignment } from "../../lib/teacherContent";
 import { getQuestionsFromBank } from "../../data/questions/compat";
@@ -63,6 +63,12 @@ export default function TeacherDashboard() {
   const [showCodeModal, setShowCodeModal] = useState(false);
   const [generatingCode, setGeneratingCode] = useState(false);
 
+  // Teacher account creation (school admin)
+  const [teacherForm, setTeacherForm] = useState({ name: "", email: "", password: "" });
+  const [showTeacherForm, setShowTeacherForm] = useState(false);
+  const [creatingTeacher, setCreatingTeacher] = useState(false);
+  const [teachersList, setTeachersList] = useState([]);
+
   useEffect(() => {
     if (user) getUserProfile(user.uid).then(setProfile).catch(() => {});
   }, [user]);
@@ -85,6 +91,51 @@ export default function TeacherDashboard() {
     });
 
   }, [schoolId]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Load teachers for this school
+  useEffect(() => {
+    if (!schoolId) return;
+    getDocs(query(collection(db, "users"), where("schoolId", "==", schoolId), where("role", "==", "teacher")))
+      .then((snap) => {
+        const rows = snap.docs.map((d) => ({ uid: d.id, ...d.data() }));
+        setTeachersList(rows);
+      })
+      .catch(() => {});
+  }, [schoolId]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  async function createTeacher() {
+    if (!schoolId) { toast({ message: "No school assigned", type: "error" }); return; }
+    if (!teacherForm.name.trim() || !teacherForm.email.trim() || !teacherForm.password) {
+      toast({ message: "Name, email and password are required", type: "warning" });
+      return;
+    }
+    setCreatingTeacher(true);
+    try {
+      const token = await user?.getIdToken();
+      const res = await fetch(apiUrl("/api/create-teacher"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        body: JSON.stringify({
+          email: teacherForm.email.trim(),
+          password: teacherForm.password,
+          name: teacherForm.name.trim(),
+          schoolId,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Failed to create teacher");
+      toast({ message: `Teacher created: ${data.email} · Password: ${data.password}`, type: "success" });
+      setTeacherForm({ name: "", email: "", password: "" });
+      setShowTeacherForm(false);
+      // refresh list
+      getDocs(query(collection(db, "users"), where("schoolId", "==", schoolId), where("role", "==", "teacher")))
+        .then((snap) => setTeachersList(snap.docs.map((d) => ({ uid: d.id, ...d.data() }))));
+    } catch (e) {
+      toast({ message: e.message || "Failed to create teacher", type: "error" });
+    } finally {
+      setCreatingTeacher(false);
+    }
+  }
 
   async function generateTeacherCode() {
     if (!schoolId) { toast({ message: "No school assigned", type: "error" }); return; }
@@ -745,6 +796,100 @@ export default function TeacherDashboard() {
             </div>
           )}
         </section>
+      )}
+
+      {/* Teacher Account Management */}
+      {schoolId && (
+        <section className="glass-card p-5 space-y-3 mt-4">
+          <div className="flex items-center justify-between gap-3 flex-wrap mb-3">
+            <h2 className="font-black text-text flex items-center gap-2">
+              <UserPlus size={18} /> School Teachers
+            </h2>
+            <button onClick={() => setShowTeacherForm(true)} className="btn-primary px-5 py-3">
+              <Plus size={15} /> Add Teacher
+            </button>
+          </div>
+
+          {teachersList.length > 0 ? (
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse text-left">
+                <thead>
+                  <tr style={{ color: "var(--text-muted)", fontSize: 12, fontWeight: 700 }}>
+                    <th style={{ padding: "10px", borderBottom: "1px solid var(--border)" }}>Name</th>
+                    <th style={{ padding: "10px", borderBottom: "1px solid var(--border)" }}>Email</th>
+                    <th style={{ padding: "10px", borderBottom: "1px solid var(--border)" }}>Role</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {teachersList.map((t) => (
+                    <tr key={t.uid} style={{ borderBottom: "1px solid var(--bg-3)" }}>
+                      <td style={{ padding: "10px", color: "var(--text)", fontWeight: 500 }}>{t.name}</td>
+                      <td style={{ padding: "10px", color: "var(--text-muted)", fontSize: 13 }}>{t.email}</td>
+                      <td style={{ padding: "10px", color: "var(--text-muted)", fontSize: 13 }}>Teacher</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <p className="text-sm text-text-muted">No teachers yet. Click "Add Teacher" to create your first account.</p>
+          )}
+        </section>
+      )}
+
+      {/* Teacher Create Modal */}
+      {showTeacherForm && (
+        <div style={{ position: "fixed", inset: 0, zIndex: 70, display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}
+          onClick={(e) => { if (e.target === e.currentTarget) setShowTeacherForm(false); }}>
+          <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.6)" }} />
+          <div className="glass-card" style={{ position: "relative", width: "100%", maxWidth: 440, padding: 24, textAlign: "left" }}>
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-black text-text mb-0">Create Teacher Account</h3>
+              <button onClick={() => setShowTeacherForm(false)} style={{ background: "none", border: "none", color: "var(--text-muted)", cursor: "pointer" }}><X size={18} /></button>
+            </div>
+            <p className="text-sm text-text-muted mb-4">
+              Generate unique credentials for this teacher. Share the email and password with them privately.
+            </p>
+            <div className="space-y-3 mb-4">
+              <label className="text-xs font-bold text-text-block">Full Name</label>
+              <input
+                value={teacherForm.name}
+                onChange={(e) => setTeacherForm({ ...teacherForm, name: e.target.value })}
+                placeholder="e.g. Mr John Adebayo"
+                className="input-field"
+                style={{ width: "100%", background: "var(--bg-3)", border: "1px solid var(--border)", color: "var(--text)", padding: "10px 12px", borderRadius: 8, fontFamily: "inherit" }}
+              />
+            </div>
+            <div className="space-y-3 mb-4">
+              <label className="text-xs font-bold text-text-block">Email Address</label>
+              <input
+                type="email"
+                value={teacherForm.email}
+                onChange={(e) => setTeacherForm({ ...teacherForm, email: e.target.value })}
+                placeholder="teacher@school.com"
+                className="input-field"
+                style={{ width: "100%", background: "var(--bg-3)", border: "1px solid var(--border)", color: "var(--text)", padding: "10px 12px", borderRadius: 8, fontFamily: "inherit" }}
+              />
+            </div>
+            <div className="space-y-3 mb-6">
+              <label className="text-xs font-bold text-text-block">Password</label>
+              <input
+                type="text"
+                value={teacherForm.password}
+                onChange={(e) => setTeacherForm({ ...teacherForm, password: e.target.value })}
+                placeholder="leave blank to auto-generate"
+                className="input-field"
+                style={{ width: "100%", background: "var(--bg-3)", border: "1px solid var(--border)", color: "var(--text)", padding: "10px 12px", borderRadius: 8, fontFamily: "inherit" }}
+              />
+            </div>
+            <div className="flex gap-3">
+              <button onClick={createTeacher} disabled={creatingTeacher} className="btn-primary flex-1 py-3 disabled:opacity-60">
+                {creatingTeacher ? "Creating…" : "Create Teacher"}
+              </button>
+              <button onClick={() => setShowTeacherForm(false)} className="btn-secondary py-3">Cancel</button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

@@ -75,7 +75,7 @@ function Toggle({ value, onChange }) {  return (
       width: 44, height: 24, borderRadius: 12, border: "none", cursor: "pointer", padding: 2,
       background: value ? "var(--primary)" : "var(--border)", transition: "background 0.2s", position: "relative",
     }}>
-      <div style={{ width: 20, height: 20, borderRadius: "50%", background: "#fff", transition: "transform 0.2s", transform: value ? "translateX(20px)" : "translateX(0)" }} />
+      <div style={{ width: 20, height: 20, borderRadius: "50%", background: "var(--text)", transition: "transform 0.2s", transform: value ? "translateX(20px)" : "translateX(0)" }} />
     </button>
   );
 }
@@ -226,12 +226,12 @@ export default function Settings() {
               {user?.displayName?.[0] || "U"}
             </div>
             <div style={{ flex: 1 }}>
-              {editingName ? (
-                <input autoFocus value={nameInput} onChange={e => setNameInput(e.target.value)} onBlur={handleNameSave} onKeyDown={e => e.key === "Enter" && handleNameSave()} style={{ background: "var(--bg-3)", border: "1px solid #333", borderRadius: 8, padding: "8px 12px", color: "#fff", fontSize: 16, fontWeight: 700, width: "100%", outline: "none", fontFamily: "inherit" }} />
+{editingName ? (
+                <input autoFocus value={nameInput} onChange={e => setNameInput(e.target.value)} onBlur={handleNameSave} onKeyDown={e => e.key === "Enter" && handleNameSave()} style={{ background: "var(--bg-3)", border: "1px solid var(--border)", borderRadius: 8, padding: "8px 12px", color: "var(--text)", fontSize: 16, fontWeight: 700, width: "100%", outline: "none", fontFamily: "inherit" }} />
               ) : (
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ fontSize: 16, fontWeight: 700, color: "#fff" }}>{user?.displayName || "Student"}</span>
-                  <button onClick={() => setEditingName(true)} style={{ background: "none", border: "none", cursor: "pointer", color: "var(--text-muted)" }}><Pencil size={14} /></button>
+                  <h2 className="text-2xl font-black text-text">{profile?.name || user?.displayName || "Student"}</h2>
+                  <button onClick={() => setEditingName(true)} style={{ background: "none", border: "none", cursor: "pointer", color: "var(--text-muted)" }}><Pencil size={15} /></button>
                 </div>
               )}
               <div style={{ fontSize: 13, color: "var(--text-muted)" }}>{user?.email}</div>
@@ -239,7 +239,7 @@ export default function Settings() {
           </div>
           <Row label="Exam" value={profile?.exam || "JAMB"} onClick={() => setShowExamModal(true)} />
           <Row label="Target Score" value={String(profile?.targetScore || 280)}>
-            <input type="number" min={150} max={400} value={targetInput} onChange={e => handleTargetSave(e.target.value)} style={{ width: 80, background: "var(--bg-3)", border: "1px solid #333", borderRadius: 6, padding: "6px 10px", color: "#fff", fontSize: 13, textAlign: "center", outline: "none", fontFamily: "inherit" }} />
+            <input type="number" min={150} max={400} value={targetInput} onChange={e => handleTargetSave(e.target.value)} style={{ width: 80, background: "var(--bg-3)", border: "1px solid var(--border)", borderRadius: 6, padding: "6px 10px", color: "var(--text)", fontSize: 13, textAlign: "center", outline: "none", fontFamily: "inherit" }} />
           </Row>
           <ToggleRow
             label="Show IELTS & SAT in menu"
@@ -261,7 +261,7 @@ export default function Settings() {
             {SUBJECT_OPTIONS.map(s => {
               const sel = selectedSubjects.includes(s);
               return (
-                <button key={s} onClick={() => handleSubjectToggle(s)} style={{ padding: "6px 14px", borderRadius: 8, border: sel ? "2px solid var(--primary)" : "1px solid #333", background: sel ? "rgb(var(--primary-rgb) / 0.2)" : "var(--bg-3)", color: sel ? "#fff" : "var(--text-muted)", fontWeight: sel ? 600 : 400, fontSize: 12, cursor: "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", gap: 4 }}>
+                <button key={s} onClick={() => handleSubjectToggle(s)} style={{ padding: "6px 14px", borderRadius: 8, border: sel ? "2px solid var(--primary)" : "1px solid var(--border)", background: sel ? "rgb(var(--primary-rgb) / 0.2)" : "var(--bg-3)", color: sel ? "var(--text)" : "var(--text-muted)", fontWeight: sel ? 600 : 400, fontSize: 12, cursor: "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", gap: 4 }}>
                   {sel && <Check size={12} />} {s}
                 </button>
               );
@@ -276,7 +276,7 @@ export default function Settings() {
             {ALL_EXAMS.map((ex) => {
               const on = enabledExams.includes(ex);
               return (
-                <button key={ex} onClick={() => handleExamToggle(ex)} style={{ padding: "6px 14px", borderRadius: 8, border: on ? "2px solid var(--primary)" : "1px solid #333", background: on ? "rgb(var(--primary-rgb) / 0.2)" : "var(--bg-3)", color: on ? "#fff" : "var(--text-muted)", fontWeight: on ? 600 : 400, fontSize: 12, cursor: "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", gap: 4 }}>
+                <button key={ex} onClick={() => handleExamToggle(ex)} style={{ padding: "6px 14px", borderRadius: 8, border: on ? "2px solid var(--primary)" : "1px solid var(--border)", background: on ? "rgb(var(--primary-rgb) / 0.2)" : "var(--bg-3)", color: on ? "var(--text)" : "var(--text-muted)", fontWeight: on ? 600 : 400, fontSize: 12, cursor: "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", gap: 4 }}>
                   {on && <Check size={12} />} {ex}
                 </button>
               );
@@ -306,7 +306,7 @@ export default function Settings() {
               <div style={{ fontSize: 12, color: "var(--text-muted)", marginBottom: 12 }}>
                 <div>15 questions/day · 2 subjects · 3 AI messages/day</div>
               </div>
-              <button onClick={() => setShowProModal(true)} style={{ padding: "10px 20px", borderRadius: 10, background: "linear-gradient(135deg, var(--primary), var(--accent))", border: "none", color: "#fff", fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>
+              <button onClick={() => setShowProModal(true)} style={{ padding: "10px 20px", borderRadius: 10, background: "linear-gradient(135deg, var(--primary), var(--accent))", border: "none", color: "var(--text)", fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>
                 Upgrade to Pro →
               </button>
             </>
@@ -319,7 +319,7 @@ export default function Settings() {
             <div style={{ marginBottom: 12 }}>
               <button onClick={requestPermission} style={{
                 padding: "8px 16px", borderRadius: 8, background: "var(--primary)",
-                border: "none", color: "#fff", fontWeight: 600, fontSize: 12,
+                border: "none", color: "var(--text)", fontWeight: 600, fontSize: 12,
                 cursor: "pointer", fontFamily: "inherit",
               }}>
                 Enable Browser Notifications
@@ -330,8 +330,8 @@ export default function Settings() {
           {preferences.dailyReminder && (
             <Row label="Reminder time">
               <select value={preferences.reminderTime || "18:00"} onChange={e => handlePref("reminderTime", e.target.value)} style={{
-                background: "var(--bg-3)", border: "1px solid #333", borderRadius: 6,
-                color: "#fff", padding: "6px 10px", fontSize: 13, outline: "none", fontFamily: "inherit",
+                background: "var(--bg-3)", border: "1px solid var(--border)", borderRadius: 6,
+                color: "var(--text)", padding: "6px 10px", fontSize: 13, outline: "none", fontFamily: "inherit",
               }}>
                 {["09:00","12:00","15:00","18:00","20:00","22:00"].map(t => (
                   <option key={t} value={t}>{t}</option>
@@ -347,12 +347,12 @@ export default function Settings() {
         {/* Study Preferences */}
         <Section title="Study Preferences">
           <Row label="Default session length">
-            <select value={preferences.sessionLength} onChange={e => handlePref("sessionLength", parseInt(e.target.value))} style={{ background: "var(--bg-3)", border: "1px solid #333", borderRadius: 6, color: "#fff", padding: "6px 10px", fontSize: 13, outline: "none", fontFamily: "inherit" }}>
+            <select value={preferences.sessionLength} onChange={e => handlePref("sessionLength", parseInt(e.target.value))} style={{ background: "var(--bg-3)", border: "1px solid var(--border)", borderRadius: 6, color: "var(--text)", padding: "6px 10px", fontSize: 13, outline: "none", fontFamily: "inherit" }}>
               {[10, 20, 30, 50].map(n => <option key={n} value={n}>{n} questions</option>)}
             </select>
           </Row>
           <Row label="Question order">
-            <select value={preferences.questionOrder} onChange={e => handlePref("questionOrder", e.target.value)} style={{ background: "var(--bg-3)", border: "1px solid #333", borderRadius: 6, color: "#fff", padding: "6px 10px", fontSize: 13, outline: "none", fontFamily: "inherit" }}>
+            <select value={preferences.questionOrder} onChange={e => handlePref("questionOrder", e.target.value)} style={{ background: "var(--bg-3)", border: "1px solid var(--border)", borderRadius: 6, color: "var(--text)", padding: "6px 10px", fontSize: 13, outline: "none", fontFamily: "inherit" }}>
               <option value="random">Random</option>
               <option value="newest">By Year (newest first)</option>
               <option value="difficulty">By Difficulty</option>
@@ -390,7 +390,7 @@ export default function Settings() {
 
         {/* Danger zone */}
         <Section title="Danger Zone" danger>
-          <p style={{ color: "#FF6B6B", fontSize: 13, marginBottom: 12 }}>These actions are irreversible.</p>
+          <p style={{ color: "var(--danger)", fontSize: 13, marginBottom: 12 }}>These actions are irreversible.</p>
           {!showResetConfirm ? (
             <button onClick={() => setShowResetConfirm(true)} style={{ padding: "10px 20px", borderRadius: 8, background: "transparent", border: "1px solid #FF4D6A", color: "#FF4D6A", fontWeight: 600, cursor: "pointer", fontFamily: "inherit", fontSize: 13 }}>
               Reset Progress
@@ -398,8 +398,8 @@ export default function Settings() {
           ) : (
             <div>
               <p style={{ color: "#FF6B6B", fontSize: 12, marginBottom: 8 }}>Type "RESET" to confirm:</p>
-              <input value={resetInput} onChange={e => setResetInput(e.target.value)} placeholder="type RESET" style={{ background: "var(--bg-3)", border: "1px solid #FF4D6A", borderRadius: 6, padding: "8px 12px", color: "#fff", fontSize: 13, width: "100%", outline: "none", marginBottom: 8, fontFamily: "inherit" }} />
-              <button disabled={resetInput !== "RESET"} onClick={handleResetProgress} style={{ padding: "8px 16px", borderRadius: 6, background: resetInput === "RESET" ? "#FF4D6A" : "var(--border)", border: "none", color: "#fff", fontWeight: 600, cursor: resetInput === "RESET" ? "pointer" : "not-allowed", fontFamily: "inherit", fontSize: 12 }}>
+              <input value={resetInput} onChange={e => setResetInput(e.target.value)} placeholder="type RESET" style={{ background: "var(--bg-3)", border: "1px solid #FF4D6A", borderRadius: 6, padding: "8px 12px", color: "var(--text)", fontSize: 13, width: "100%", outline: "none", marginBottom: 8, fontFamily: "inherit" }} />
+              <button disabled={resetInput !== "RESET"} onClick={handleResetProgress} style={{ padding: "8px 16px", borderRadius: 6, background: resetInput === "RESET" ? "var(--danger)" : "var(--border)", border: "none", color: "var(--text)", fontWeight: 600, cursor: resetInput === "RESET" ? "pointer" : "not-allowed", fontFamily: "inherit", fontSize: 12 }}>
                 Confirm Reset
               </button>
             </div>
@@ -438,7 +438,7 @@ export default function Settings() {
 function Section({ title, children, danger }) {
   return (
     <div style={{ background: "var(--bg-2)", border: danger ? "1px solid rgba(255,77,106,0.3)" : "1px solid var(--border)", borderRadius: 16, padding: 20, marginBottom: 20 }}>
-      <h3 style={{ fontSize: 16, fontWeight: 700, margin: "0 0 16px", color: danger ? "#FF4D6A" : "#fff" }}>{title}</h3>
+      <h3 style={{ fontSize: 16, fontWeight: 700, margin: "0 0 16px", color: danger ? "var(--danger)" : "var(--text)" }}>{title}</h3>
       {children}
     </div>
   );
@@ -449,7 +449,7 @@ function Row({ label, value, children, onClick }) {
     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 0", borderBottom: "1px solid var(--bg-3)" }}>
       <span style={{ fontSize: 13, color: "var(--text-muted)" }}>{label}</span>
       <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-        {children || <span style={{ fontSize: 13, color: "#fff", fontWeight: 500 }}>{value}</span>}
+        {children || <span style={{ fontSize: 13, color: "var(--text)", fontWeight: 500 }}>{value}</span>}
         {onClick && <button onClick={onClick} style={{ background: "none", border: "none", cursor: "pointer", color: "var(--text-muted)" }}><ChevronRight size={14} /></button>}
       </div>
     </div>
@@ -459,7 +459,7 @@ function Row({ label, value, children, onClick }) {
 function ToggleRow({ label, value, onChange }) {
   return (
     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 0", borderBottom: "1px solid var(--bg-3)" }}>
-      <span style={{ fontSize: 13, color: "#fff" }}>{label}</span>
+      <span style={{ fontSize: 13, color: "var(--text)" }}>{label}</span>
       <Toggle value={value} onChange={onChange} />
     </div>
   );

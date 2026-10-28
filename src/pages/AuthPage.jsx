@@ -413,7 +413,7 @@ export default function AuthPage() {
                   style={{
                     flex: 1, padding: "10px 0", border: "none", borderRadius: 10,
                     background: mode === m ? "var(--primary)" : "transparent",
-                    color: mode === m ? "#fff" : "var(--text-muted)",
+                    color: mode === m ? "var(--text)" : "var(--text-muted)",
                     fontWeight: 700, cursor: "pointer", fontFamily: "inherit",
                     fontSize: 14, transition: "all 0.2s",
                   }}>
@@ -506,7 +506,7 @@ export default function AuthPage() {
               </>
             )}
 
-            {mode === "signin" && (
+{mode === "signin" && (
               <>
                 <input
                   type="text"
@@ -523,7 +523,7 @@ export default function AuthPage() {
                     placeholder="Password"
                     value={form.password}
                     onChange={e => setForm(f => ({ ...f, password: e.target.value }))}
-                    style={{ ...inputStyle("password"), paddingRight: 44 }}
+                    style={inputStyle("password")}
                   />
                   <button
                     type="button"
@@ -548,8 +548,6 @@ export default function AuthPage() {
                     Forgot password?
                   </button>
                 </p>
-              </>
-            )}
 
             {errors.general && (
               <div style={{
@@ -582,23 +580,23 @@ export default function AuthPage() {
                   <div style={{ flex: 1, height: 1, background: "var(--border)" }} />
                 </div>
 
-                <div style={{ marginBottom: 16 }}>
-                  <button
-                    onClick={() => {
-                      setMode("signup");
-                      setErrors({});
-                    }}
-                    style={{
-                      width: "100%", padding: "10px", borderRadius: 10,
-                      border: "none", background: "transparent",
-                      color: "var(--text-muted)", fontSize: 12, cursor: "pointer",
-                      fontFamily: "inherit", textAlign: "left",
-                    }}
-                  >
-                    <HelpCircle size={14} style={{ marginRight: 6 }} />
-                    Don't have a username? Sign up instead
-                  </button>
-                </div>
+                {mode === "signup" && (
+                <>
+                  <div style={{ marginBottom: 16, textAlign: "center" }}>
+                    <button
+                      onClick={() => setMode("signin")}
+                      style={{
+                        width: "100%", padding: "10px", borderRadius: 10,
+                        border: "none", background: "transparent",
+                        color: "var(--text-muted)", fontSize: 12, cursor: "pointer",
+                        fontFamily: "inherit",
+                      }}
+                    >
+                      Already have an account? Sign in with email & password
+                    </button>
+                  </div>
+                </>
+              )}
 
                 <button
                   onClick={handleGoogleSignIn}

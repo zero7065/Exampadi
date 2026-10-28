@@ -23,7 +23,7 @@ export default function ContextualHelp() {
     <>
       <button
         onClick={() => setOpen(true)}
-        style={{ position: "fixed", bottom: 80, right: 16, zIndex: 60, width: 40, height: 40, borderRadius: "50%", background: "var(--primary)", border: "none", color: "#fff", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 4px 12px rgb(var(--primary-rgb) / 0.4)" }}
+        style={{ position: "fixed", bottom: 80, right: 16, zIndex: 60, width: 40, height: 40, borderRadius: "50%", background: "var(--primary)", border: "none", color: "var(--text)", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 4px 12px rgb(var(--primary-rgb) / 0.4)" }}
         title={`Help: ${tour.title}`}
       >
         <HelpCircle size={20} />
@@ -53,7 +53,7 @@ export default function ContextualHelp() {
                   if (step < tour.steps.length - 1) setStep(step + 1);
                   else setOpen(false);
                 }}
-                style={{ padding: "4px 10px", borderRadius: 6, border: "none", background: "var(--primary)", color: "#fff", cursor: "pointer", fontSize: 11, fontWeight: 600 }}
+                style={{ padding: "4px 10px", borderRadius: 6, border: "none", background: "var(--primary)", color: "var(--text)", cursor: "pointer", fontSize: 11, fontWeight: 600 }}
               >
                 {step < tour.steps.length - 1 ? <ChevronRight size={12} /> : "Done"}
               </button>

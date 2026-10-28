@@ -29,6 +29,7 @@ import roomAnswer from "./room-answer.js";
 import image from "./image.js";
 import reminders from "./reminders.js";
 import surveyVote from "./survey-vote.js";
+import createTeacher from "./create-teacher.js";  // NEW
 
 // --- Express app ---
 const app = express();
@@ -73,6 +74,11 @@ app.post("/api/grade-assignment", async (req, res) => {
 // --- Route: POST /api/generate-teacher-code ---
 app.post("/api/generate-teacher-code", async (req, res) => {
   await generateTeacherCode(req, res);
+});
+
+// --- Route: POST /api/create-teacher ---
+app.post("/api/create-teacher", async (req, res) => {
+  await createTeacher(req, res);
 });
 
 // --- Route: POST /api/redeem-teacher-code ---

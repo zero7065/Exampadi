@@ -145,28 +145,20 @@ export default function Dashboard() {
         <ResumeBanner />
         <NotificationPrompt />
 
-        {updates.length > 0 && (
-          <div style={{ background: "var(--bg-2)", border: "1px solid var(--border)", borderRadius: 12, padding: "12px 16px", marginBottom: 16 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 8 }}>
-              <Megaphone size={14} color="var(--primary)" />
-              <span style={{ fontSize: 12, fontWeight: 700, color: "var(--text)", textTransform: "uppercase", letterSpacing: 1 }}>Latest Updates</span>
-            </div>
-            {updates.slice(0, 3).map((u) => (
-              <div key={u.id} style={{ padding: "6px 0", borderBottom: "1px solid var(--border)" }}>
-                <div style={{ fontSize: 13, fontWeight: 600, color: "var(--text)" }}>{u.title}</div>
-                <div style={{ fontSize: 12, color: "var(--text-muted)" }}>{u.body?.slice(0, 100)}…</div>
+{updates.length > 0 && (
+            <div style={{ background: "var(--bg-2)", border: "1px solid var(--border)", borderRadius: 12, padding: "12px 16px", marginBottom: 16 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 8 }}>
+                <Megaphone size={14} color="var(--primary)" />
+                <span style={{ fontSize: 12, fontWeight: 700, color: "var(--text)", textTransform: "uppercase", letterSpacing: 1 }}>Latest Updates</span>
               </div>
-            ))}
-          </div>
-        )}
-
-        {/* Pro Banner (free users only) */}
-        {!isPro && (
-          <div style={{
-            background: "linear-gradient(90deg, #1a0a3a, #0d1a3a)", borderRadius: 16,
-            padding: "14px 16px", marginBottom: 24, display: "flex", alignItems: "center",
-            justifyContent: "space-between", border: "1px solid #2a1a4a", position: "relative",
-            overflow: "hidden", flexWrap: "wrap", gap: 12,
+              {updates.slice(0, 3).map((u) => (
+                <div key={u.id} style={{ padding: "6px 0", borderBottom: "1px solid var(--border)" }}>
+                  <div style={{ fontSize: 13, fontWeight: 600, color: "var(--text)" }}>{u.title}</div>
+                  <div style={{ fontSize: 12, color: "var(--text-muted)" }}>{u.body?.slice(0, 100)}…</div>
+                </div>
+              ))}
+            </div>
+          )}
           }}>
             <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 3, background: "var(--accent)" }} />
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
