@@ -8,6 +8,7 @@ import PresenceBadge from "../components/PresenceBadge";
 import NotepadDrawer from "../components/NotepadDrawer";
 import { askGroq } from "../lib/ai";
 import { isOnline, subscribePresenceForUids } from "../lib/presence";
+import { LiveClassBanner } from "../components/LiveClassroomPanel";
 import {
   advanceRoomTimer, createRoom, deleteRoomChatMessage, formatRoomClock, joinRoom,
   pauseRoomTimer, resetRoomTimer, roomTimerRemaining, sendRoomChat,
@@ -220,7 +221,7 @@ function Lobby() {
 }
 
 function RoomView({ code }) {
-  const { user } = useAuth();
+  const { user, profile } = useAuth();
   const { toast } = useToast();
   const [room, setRoom] = useState(null);
   const [answers, setAnswers] = useState({});
@@ -363,6 +364,7 @@ function RoomView({ code }) {
   }
 
   const timerLabel = timer.phase === "break" ? "Break" : timer.phase === "done" ? "Complete" : "Focus";
+  const liveClassId = profile?.classIds?.[0] || null;
   const timerColor = timer.phase === "break" ? "var(--accent, #f59e0b)" : "var(--primary)";
   const timerPct = timer.phase === "break"
     ? Math.min(100, (remaining / Math.max(1, timer.breakMinutes * 60_000)) * 100)
@@ -370,6 +372,7 @@ function RoomView({ code }) {
 
   return (
     <div className="space-y-4">
+      {liveClassId && <LiveClassBanner classId={liveClassId} />}
       <section className="glass-card p-5">
         <div className="flex items-start gap-3 flex-wrap">
           <div className="min-w-0 flex-1">

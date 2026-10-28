@@ -42,14 +42,18 @@ export async function startClassSession({
   classId, teacherUid, teacherName, subject, questions,
   instructions = "", questionSeconds = 0, mode = "guided",
   allowChat = true, showLeaderboard = true,
+  orgId = null, rules = "", videoProvider = "jitsi", videoUrl = "",
+  pinnedResources = [], status = "live",
 }) {
   needDb();
   const publicQuestions = (questions || []).map((q) => ({
     id: q.id, question: q.question, options: q.options, topic: q.topic,
     exam: q.exam, year: q.year, subject: q.subject,
   }));
+  const provider = videoProvider === "external" ? "external" : "jitsi";
   await setDoc(doc(db, "classSessions", classId), {
     classId,
+    orgId: orgId || null,
     teacherUid,
     teacherName: teacherName || "Teacher",
     subject,
@@ -58,10 +62,11 @@ export async function startClassSession({
     revealed: false,
     revealedAnswer: null,
     revealedExplanation: "",
-    active: true,
-    status: "live",
+    active: status !== "ended",
+    status: ["lobby", "live", "paused", "ended"].includes(status) ? status : "live",
     mode: ["guided", "timed", "discussion"].includes(mode) ? mode : "guided",
     instructions: String(instructions || "").slice(0, 500),
+    rules: String(rules || "").slice(0, 1000),
     allowChat: allowChat !== false,
     showLeaderboard: showLeaderboard !== false,
     questionSeconds: Math.max(0, Math.min(900, Number(questionSeconds) || 0)),
@@ -69,7 +74,20 @@ export async function startClassSession({
     questionEndsAt: Number(questionSeconds) > 0
       ? new Date(Date.now() + Number(questionSeconds) * 1000)
       : null,
+    videoProvider: provider,
+    videoUrl: provider === "external" ? String(videoUrl || "").slice(0, 500) : "",
+    videoRoom: `exampadi-${String(classId).slice(0, 40)}`,
+    recording: false,
+    pinnedResources: (Array.isArray(pinnedResources) ? pinnedResources : [])
+      .slice(0, 3)
+      .map((r) => ({
+        type: ["question", "note", "link"].includes(r?.type) ? r.type : "note",
+        title: String(r?.title || "").slice(0, 120),
+        body: String(r?.body || "").slice(0, 500),
+        url: String(r?.url || "").slice(0, 500),
+      })),
     startedAt: serverTimestamp(),
+    endedAt: null,
     updatedAt: serverTimestamp(),
   });
   // Seed answer keys (teacher-only; students cannot read this subcollection).
@@ -84,6 +102,28 @@ export async function startClassSession({
 export async function updateClassSession(classId, patch) {
   needDb();
   await updateDoc(doc(db, "classSessions", classId), { ...patch, updatedAt: serverTimestamp() });
+}
+
+export async function endClassSession(classId) {
+  needDb();
+  await updateDoc(doc(db, "classSessions", classId), {
+    active: false,
+    status: "ended",
+    endedAt: serverTimestamp(),
+    updatedAt: serverTimestamp(),
+  });
+}
+
+export async function setClassSessionStatus(classId, status) {
+  needDb();
+  const allowed = ["lobby", "live", "paused", "ended"];
+  if (!allowed.includes(status)) throw new Error("Invalid class status");
+  await updateDoc(doc(db, "classSessions", classId), {
+    active: status !== "ended",
+    status,
+    ...(status === "ended" ? { endedAt: serverTimestamp() } : {}),
+    updatedAt: serverTimestamp(),
+  });
 }
 
 export async function revealClassAnswer(classId, questionId) {

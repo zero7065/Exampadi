@@ -14,6 +14,7 @@ import { JAMB_SUBJECTS } from "../../data/subjects";
 import { getClass, listSchoolTeachers, listClassStudents } from "../../lib/schools";
 import {
   subscribeClassSession, startClassSession, updateClassSession, revealClassAnswer,
+  endClassSession,
   subscribeClassSubmissions, subscribeClassChat, sendClassChatMessage,
   subscribeSubmissionReactions, subscribeSubmissionComments, reactToSubmission,
   addSubmissionComment, saveTeacherRemark, notifyUser,
@@ -28,6 +29,7 @@ import AttemptWorkspace from "../../components/AttemptWorkspace";
 import NotepadDrawer from "../../components/NotepadDrawer";
 import StudentAttention from "../../components/StudentAttention";
 import TeacherTools from "../../components/TeacherTools";
+import { LiveVideoPanel, ClassInstructions, ReturnToRoomCard } from "../../components/LiveClassroomPanel";
 import {
   ArrowLeft, ArrowRight, Eye, Users, HelpCircle, MessageSquare,
   ThumbsUp, ThumbsDown, Heart, Play, Square, NotebookPen, Image as ImageIcon,
@@ -71,6 +73,9 @@ export default function ClassroomMode() {
   const [allowChat, setAllowChat] = useState(true);
   const [showLeaderboard, setShowLeaderboard] = useState(true);
   const [now, setNow] = useState(0);
+  const [rules, setRules] = useState("");
+  const [videoProvider, setVideoProvider] = useState("jitsi");
+  const [videoUrl, setVideoUrl] = useState("");
 
   useEffect(() => {
     if (!user) return;
@@ -114,6 +119,7 @@ export default function ClassroomMode() {
   useEffect(() => {
     const cfg = cls?.config;
     if (!cfg) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setQuestionSeconds(Number(cfg.questionSeconds) || 0);
     setAllowChat(cfg.allowChat !== false);
     setShowLeaderboard(cfg.showLeaderboard !== false);
@@ -177,7 +183,7 @@ export default function ClassroomMode() {
     return subscribeClassChat(classId, setChat);
   }, [chatOpen, classId]);
 
-  useEffect(() => { setPicked(null); }, [session?.currentIdx, session?.revealed]);
+  useEffect(() => { setPicked(null); }, [session?.currentIdx, session?.revealed]); // eslint-disable-line react-hooks/set-state-in-effect
 
   async function start() {
     if (!classId || !user) return;
@@ -196,6 +202,10 @@ export default function ClassroomMode() {
         mode,
         allowChat,
         showLeaderboard,
+        orgId: profile?.schoolId || cls?.orgId || cls?.schoolId || null,
+        rules,
+        videoProvider,
+        videoUrl,
       });
       toast({ message: "Live session started ✓", type: "success" });
     } catch (e) {
@@ -288,7 +298,7 @@ export default function ClassroomMode() {
   async function endSession() {
     if (!session) return;
     if (!window.confirm("End the live session for everyone?")) return;
-    await updateClassSession(classId, { active: false });
+    await endClassSession(classId);
   }
 
   async function sendChat() {
@@ -411,6 +421,25 @@ export default function ClassroomMode() {
                 Instructions for students
                 <textarea value={instructions} onChange={(e) => setInstructions(e.target.value)} rows={3} maxLength={600} placeholder="Today we will focus on…" className="input-field mt-1 resize-none" />
               </label>
+              <label className="block text-xs font-bold text-text-muted">
+                Class rules
+                <textarea value={rules} onChange={(e) => setRules(e.target.value)} rows={2} maxLength={1000} placeholder="Be respectful, no pasting answers…" className="input-field mt-1 resize-none" />
+              </label>
+              <div className="grid sm:grid-cols-2 gap-3">
+                <label className="text-xs font-bold text-text-muted">
+                  Video
+                  <select value={videoProvider} onChange={(e) => setVideoProvider(e.target.value)} className="input-field mt-1">
+                    <option value="jitsi">Jitsi (in-app)</option>
+                    <option value="external">Zoom / Meet / Teams link</option>
+                  </select>
+                </label>
+                {videoProvider === "external" && (
+                  <label className="text-xs font-bold text-text-muted">
+                    Video link
+                    <input type="url" value={videoUrl} onChange={(e) => setVideoUrl(e.target.value)} placeholder="https://zoom.us/j/…" className="input-field mt-1" />
+                  </label>
+                )}
+              </div>
               <button onClick={start} disabled={starting} className="btn-primary px-6 w-full">
                 {starting ? <Loader2 size={16} className="animate-spin" /> : <Play size={16} />} Start session
               </button>
@@ -419,16 +448,22 @@ export default function ClassroomMode() {
         </div>
       )}
 
-      {session && !session.active && (
-        <div className="max-w-2xl mx-auto glass-card p-4 mb-4 text-sm text-text-muted">
-          This session has ended. {isTeacher ? "Start a new one when you're ready." : "Ask your teacher to start a new session."}
-        </div>
+      {session && (session.status === "ended" || session.active === false) && (
+        isTeacher ? (
+          <div className="max-w-2xl mx-auto glass-card p-4 mb-4 text-sm text-text-muted">
+            This session has ended. Start a new one when you're ready.
+          </div>
+        ) : (
+          <div className="max-w-5xl mx-auto mb-4">
+            <ReturnToRoomCard session={session} classId={classId} />
+          </div>
+        )
       )}
 
-      {session?.instructions && (
-        <div className="max-w-5xl mx-auto mb-4 rounded-2xl border border-primary/30 bg-primary/10 p-3 text-sm text-text flex gap-2">
-          <Megaphone size={17} className="text-primary shrink-0 mt-0.5" />
-          <span className="whitespace-pre-wrap">{session.instructions}</span>
+      {session && session.status !== "ended" && session.active !== false && (
+        <div className="max-w-5xl mx-auto mb-4 space-y-4">
+          <LiveVideoPanel session={session} classId={classId} isTeacher={isTeacher} />
+          <ClassInstructions session={session} />
         </div>
       )}
 
