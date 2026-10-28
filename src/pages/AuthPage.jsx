@@ -621,14 +621,16 @@ export default function AuthPage() {
             )}
           </>
         )}
+      </>
+    )}
 
-        <p style={{ textAlign: "center", color: "var(--text-muted)", fontSize: 13, marginTop: 20 }}>
-          {mode === "signin" && !loading
-            ? <>Don't have an account? <button onClick={() => { setMode("signup"); setErrors({}); }} style={{ background: "none", border: "none", color: "var(--primary)", fontWeight: 700, cursor: "pointer", fontFamily: "inherit", fontSize: 13 }}>Sign Up free</button></>
-            : mode === "signup" && !loading
-            ? <>Already have an account? <button onClick={() => { setMode("signin"); setErrors({}); }} style={{ background: "none", border: "none", color: "var(--primary)", fontWeight: 700, cursor: "pointer", fontFamily: "inherit", fontSize: 13 }}>Sign In</button></>
-            : null}
-        </p>
+    <p style={{ textAlign: "center", color: "var(--text-muted)", fontSize: 13, marginTop: 20 }}>
+      {mode === "signin" && !loading
+        ? <>Don't have an account? <button onClick={() => { setMode("signup"); setErrors({}); }} style={{ background: "none", border: "none", color: "var(--text)", fontWeight: 700, cursor: "pointer", fontFamily: "inherit", fontSize: 13 }}>Sign Up free</button></>
+        : mode === "signup" && !loading
+        ? <>Already have an account? <button onClick={() => { setMode("signin"); setErrors({}); }} style={{ background: "none", border: "none", color: "var(--text)", fontWeight: 700, cursor: "pointer", fontFamily: "inherit", fontSize: 13 }}>Sign In</button></>
+        : null}
+    </p>
       </div>
     </div>
   );

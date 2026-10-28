@@ -158,30 +158,38 @@ export default function Dashboard() {
                 </div>
               ))}
             </div>
-          )}
-          }}>
-            <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 3, background: "var(--accent)" }} />
-            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-              <Crown size={20} color="var(--accent)" />
-              <div>
-                <div style={{ color: "#fff", fontSize: 14, fontWeight: 600 }}>
-                  🚀 You're on the Free plan
+)}
+
+          {/* Pro Banner (free users only) */}
+          {!isPro && (
+            <div style={{
+              background: "linear-gradient(90deg, #1a0a3a, #0d1a3a)", borderRadius: 16,
+              padding: "14px 16px", marginBottom: 24, display: "flex", alignItems: "center",
+              justifyContent: "space-between", border: "1px solid #2a1a4a", position: "relative",
+              overflow: "hidden", flexWrap: "wrap", gap: 12,
+            }}>
+              <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 3, background: "var(--accent)" }} />
+              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                <Crown size={20} color="var(--accent)" />
+                <div>
+                  <div style={{ color: "#fff", fontSize: 14, fontWeight: 600 }}>
+                    🚀 You're on the Free plan
+                  </div>
+                  <div style={{ color: "var(--text-muted)", fontSize: 12 }}>Unlock everything with Pro</div>
                 </div>
-                <div style={{ color: "var(--text-muted)", fontSize: 12 }}>Unlock everything with Pro</div>
               </div>
+              <button
+                onClick={() => setShowProModal(true)}
+                style={{
+                  background: "transparent", border: "1px solid var(--accent)", color: "var(--accent)",
+                  padding: "8px 16px", borderRadius: 10, fontWeight: 700, fontSize: 13,
+                  cursor: "pointer", fontFamily: "inherit", whiteSpace: "nowrap",
+                }}
+              >
+                Upgrade Now →
+              </button>
             </div>
-            <button
-              onClick={() => setShowProModal(true)}
-              style={{
-                background: "transparent", border: "1px solid var(--accent)", color: "var(--accent)",
-                padding: "8px 16px", borderRadius: 10, fontWeight: 700, fontSize: 13,
-                cursor: "pointer", fontFamily: "inherit", whiteSpace: "nowrap",
-              }}
-            >
-              Upgrade Now →
-            </button>
-          </div>
-        )}
+          )}
 
         {/* Header */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 32, flexWrap: "wrap", gap: 16 }}>
