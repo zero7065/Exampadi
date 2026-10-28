@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { doc, updateDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebaseConfig";
+import { getPartnerCodeForPayment } from "../lib/partner";
 import { apiUrl } from "../lib/apiBase";
 import { PLANS, convertFromNGN } from "../config/plans";
 import { openPaystack } from "../paystack";
@@ -200,7 +201,6 @@ export function usePaystack() {
       let partnerCode = extraMetadata?.partnerCode || null;
       if (!partnerCode && userId) {
         try {
-          const { getPartnerCodeForPayment } = await import("../lib/partner");
           partnerCode = await getPartnerCodeForPayment(userId);
         } catch { /* attribution is best-effort */ }
       }

@@ -6,6 +6,7 @@ import {
 import { db, auth } from "../firebaseConfig";
 import { apiUrl } from "./apiBase";
 import { logActivity } from "./activityLog";
+import { ensurePartnerEnrolled } from "./partner";
 
 function needDb() {
   if (!db) throw new Error("Not available offline");
@@ -76,7 +77,6 @@ export async function setSchoolStatus(schoolId, status, adminUid, teacherUid = n
   if (status === "approved") {
     // Partner Plan: every approved school gets a referral code (idempotent).
     try {
-      const { ensurePartnerEnrolled } = await import("./partner");
       await ensurePartnerEnrolled(schoolId);
     } catch (e) {
       console.warn("Partner enrollment failed (non-fatal):", e?.message);

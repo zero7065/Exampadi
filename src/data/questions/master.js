@@ -31,23 +31,9 @@ export function getAllBankQuestions() {
   return Object.values(BANKS).flat();
 }
 
-// Async loader for NEW code paths. Today resolves immediately (static
-// imports); becomes a dynamic import() per exam file once banks grow.
-const LAZY_LOADERS = {
-  JAMB: () => import("./master-bank/jamb.json"),
-  WAEC: () => import("./master-bank/waec.json"),
-  NECO: () => import("./master-bank/neco.json"),
-  NABTEB: () => import("./master-bank/nabteb.json"),
-  "POST-UTME": () => import("./master-bank/postutme.json"),
-  IELTS: () => import("./master-bank/ielts.json"),
-  SAT: () => import("./master-bank/sat.json"),
-};
-
+// Async loader for NEW code paths. Returns the already-loaded static bank.
 export async function loadBank(exam = "JAMB") {
-  const key = normExam(exam);
-  if (BANKS[key]) return BANKS[key];
-  const mod = await LAZY_LOADERS[key]();
-  return mod.default || [];
+  return BANKS[normExam(exam)] || [];
 }
 
 export function bankCounts() {
