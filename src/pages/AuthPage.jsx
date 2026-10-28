@@ -615,7 +615,6 @@ export default function AuthPage() {
                 >
                   <User size={16} />
                   <span style={{ fontWeight: 600 }}>Continue with Google</span>
-                  <span style={{ marginLeft: "auto", fontSize: 11, opacity: 0.6 }}>More sign-up methods</span>
                 </button>
               </>
             )}

@@ -15,21 +15,21 @@ import "./_plans.js";             // plan constants, endDateFor, isTeamPlan, isP
 import "./_provision.js";         // provisionTeam
 
 // --- Route handlers (each is a named import of the default export) ---
-import health from "./health.js";
-import ai from "./ai.js";
-import verifyPayment from "./verify-payment.js";
-import paystackWebhook from "./paystack-webhook.js";
-import classInvite from "./class-invite.js";
-import gradeAssignment from "./grade-assignment.js";
-import generateTeacherCode from "./generate-teacher-code.js";
-import redeemTeacherCode from "./redeem-teacher-code.js";
-import redeemTeacherInvite from "./redeem-teacher-invite.js";
-import notify from "./notify.js";
-import roomAnswer from "./room-answer.js";
-import image from "./image.js";
-import reminders from "./reminders.js";
-import surveyVote from "./survey-vote.js";
-import createTeacher from "./create-teacher.js";  // NEW
+import health from "./_health.js";
+import ai from "./_ai.js";
+import verifyPayment from "./_verify-payment.js";
+import paystackWebhook from "./_paystack-webhook.js";
+import classInvite from "./_class-invite.js";
+import gradeAssignment from "./_grade-assignment.js";
+import generateTeacherCode from "./_generate-teacher-code.js";
+import redeemTeacherCode from "./_redeem-teacher-code.js";
+import redeemTeacherInvite from "./_redeem-teacher-invite.js";
+import notify from "./_notify.js";
+import roomAnswer from "./_room-answer.js";
+import image from "./_image.js";
+import reminders from "./_reminders.js";
+import surveyVote from "./_survey-vote.js";
+import createTeacher from "./_create-teacher.js";  // NEW
 
 // --- Express app ---
 const app = express();
