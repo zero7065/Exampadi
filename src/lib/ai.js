@@ -1,8 +1,20 @@
 ﻿// src/lib/ai.js - Unified Groq AI client.
 //
 // All model calls go through our own server proxy (POST /api/ai). The Groq
-// key lives only in the server env (GROQ_API_KEY) â€” Vite inlines any
+// key lives only in the server env (GROQ_API_KEY) — Vite inlines any
 // VITE_-prefixed var into the public bundle, so it must never carry a secret.
+
+import {
+  runEngine,
+  SESSION_STATE,
+  SEVERITY,
+} from "../lib/learningEngine";
+import { CONCEPT_MISCONCEPTIONS } from "../harness/misconceptions";
+import { getAnalogies } from "../harness/realLife";
+import {
+  checkAnswerAllowed,
+  applyPromptGuardrails,
+} from "../harness/guardrails";
 
 import { logTrainingEntry } from "./aiTraining";
 import { auth } from "../firebaseConfig";
@@ -467,8 +479,72 @@ Give a clear, friendly explanation in 3-4 sentences. Explain WHY ${correctAnswer
   }
 }
 
-export async function chatWithTutor({ messages, subject, userProfile, memory = null, imageBase64 = null, images = null }) {
+export async function chatWithTutor({ messages, subject, userProfile, memory = null, imageBase64 = null, images = null, engineContext = null }) {
+  // — Step 1: Run deterministic learning engine before any AI call —
+  const context = engineContext || { questionLog: [], mode: "practice", seenCounts: {} };
+  const engine = runEngine({
+    subject,
+    exam: userProfile?.exam || "JAMB",
+    topic: memory?.lastTopic || "General",
+    questionLog: context.questionLog || [],
+    memory,
+    seenCounts: context.seenCounts || {},
+  });
+
+  // — Step 2: Offline fallback — deterministic harness explanation —
+  if (engine.offline) {
+    const { user } = await import("../context/AuthContext").catch(() => ({}));
+    logTrainingEntry({
+      userId: user?.uid || "anonymous",
+      userEmail: user?.email || "",
+      type: "chatWithTutor:offline",
+      messages: [{ role: "user", content: "offline-fallback" }, { role: "assistant", content: engine.explanation }],
+      metadata: { subject, messageCount: messages.length },
+    }).catch(() => {});
+    return engine.explanation;
+  }
+
+  // — Step 3: Build enriched system prompt —
   let systemPrompt = buildTutorSystemPrompt({ subject, userProfile, memory });
+
+  // Inject pattern-detected intervention into the prompt
+  if (engine.intervention?.pattern) {
+    const p = engine.intervention.pattern;
+    systemPrompt += `\n\nLearning pattern detected:\n- ${p.kind}: ${p.detail} (severity: ${p.severity})\nCoach the student on the intervention: ${engine.intervention.rx.body}`;
+  }
+
+  // Inject relevant misconceptions for the concept area
+  const conceptKey = `${subject}::${memory?.lastTopic || "General"}`;
+  const misconceptions = CONCEPT_MISCONCEPTIONS[conceptKey] || [];
+  if (misconceptions.length > 0) {
+    systemPrompt += `\n\nCommon misconceptions to address (cite them when relevant):\n${misconceptions.map((m) => `- ${m.misconception}`).join("\n")}`;
+  }
+
+  // Inject real-life analogy if any exists for the concept
+  const conceptId = memory?.lastTopic;
+  const analogies = getAnalogies(conceptId);
+  if (analogies.length > 0) {
+    systemPrompt += `\n\nReal-life analogies to use: ${analogies.map((a) => a.analogy + " (" + a.context + ")").join("; ")}`;
+  }
+
+  // — Step 4: Guardrails — refuse live-CBT / unpermitted answers —
+  const guardResult = checkAnswerAllowed({
+    kind: context.mode === "practice" ? "practice" : "live-cbt",
+    questionId: (context.questionLog[0] || {}).id || "unknown",
+    source: "practice",
+    mode: context.mode,
+  });
+  if (!guardResult.ok) {
+    const { user } = await import("../context/AuthContext").catch(() => ({}));
+    logTrainingEntry({
+      userId: user?.uid || "anonymous",
+      userEmail: user?.email || "",
+      type: "chatWithTutor:guardrail",
+      messages,
+      metadata: { blocked: true, reason: guardResult.reason },
+    }).catch(() => {});
+    return guardResult.reason;
+  }
 
   // RAG: ground the answer in real bank questions matching the latest message
   try {
@@ -478,7 +554,7 @@ export async function chatWithTutor({ messages, subject, userProfile, memory = n
       systemPrompt += ragContextFor(lastUser.content, { subject });
     }
   } catch {
-    // RAG is best-effort â€” never break the chat
+    // RAG is best-effort — never break the chat
   }
 
   const chatMessages = messages.map(m => ({
@@ -487,7 +563,7 @@ export async function chatWithTutor({ messages, subject, userProfile, memory = n
   }));
 
   try {
-    // Image(s) present â†’ vision path (multimodal model only, no text-model fallback)
+    // Image(s) present → vision path (multimodal model only, no text-model fallback)
     const imgList = images || (imageBase64 ? [imageBase64] : []);
     if (imgList.length > 0) {
       const result = await askGroqVision({ systemPrompt, messages: chatMessages, images: imgList, maxTokens: 1000 });
@@ -502,9 +578,11 @@ export async function chatWithTutor({ messages, subject, userProfile, memory = n
   } catch (e) {
     if (e?.code === "AI_LIMIT") throw e;
     console.warn("chatWithTutor fallback:", e.message);
-    return `I'm ExamPadi Tutor. I can help with ${subject} questions. Please try asking again â€” I'm having temporary connectivity issues. In the meantime, review your notes and past questions on this topic.`;
+    return `I'm ExamPadi Tutor. I can help with ${subject} questions. Please try asking again — I'm having temporary connectivity issues. In the meantime, review your notes and past questions on this topic.`;
   }
 }
+
+// Integrated below — chatWithTutor now runs the engine internally.
 
 export async function getStudyTip(subject, weakTopics) {
   const system = "You are a JAMB/WAEC Nigerian exam coach.";
