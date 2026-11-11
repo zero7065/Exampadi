@@ -105,7 +105,7 @@ export default function Practice() {
           questions,
           subject: subjectName,
           startTime: Date.now(),
-          passage: "",
+          passage: questions.length > 0 ? questions[0].passage : "",
         }
       });
     } catch (e) {
