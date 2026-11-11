@@ -81,7 +81,6 @@ export default function Practice() {
       });
 
       if (questions.length === 0) {
-        // Bank empty for this subject/exam — generate with AI (counts against AI credits)
         const { checkAILimit } = await import("../lib/usageTracker");
         const limit = await checkAILimit(user?.uid);
         if (!limit.allowed) {
@@ -106,6 +105,7 @@ export default function Practice() {
           questions,
           subject: subjectName,
           startTime: Date.now(),
+          passage: "",
         }
       });
     } catch (e) {

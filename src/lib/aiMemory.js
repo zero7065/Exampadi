@@ -55,7 +55,7 @@ export async function getStudentMemory(uid) {
 }
 
 // Buffer one answered question. NOT written to Firestore yet.
-export function bufferInteraction(uid, { topic, subject, correct, questionText }) {
+export function bufferInteraction(uid, { topic, subject, correct, questionText, aiResponse, answerKey }) {
   if (!uid) return;
   const buf = getBuffer(uid);
   buf.interactions.push({
@@ -63,6 +63,8 @@ export function bufferInteraction(uid, { topic, subject, correct, questionText }
     subject: subject || "General",
     correct: !!correct,
     questionText: String(questionText || "").slice(0, 200),
+    aiResponse: aiResponse ? String(aiResponse).slice(0, 500) : null,
+    answerKey,
     at: Date.now(),
   });
   // Safety cap on the buffer itself

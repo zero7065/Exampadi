@@ -27,6 +27,7 @@ export default function PracticeSession() {
   const [showProModal, setShowProModal] = useState(false);
   const [proReason, setProReason] = useState(null);
   const [questions, setQuestions] = useState(sessionData?.questions || []);
+  const [passage, setPassage] = useState(sessionData?.passage || "");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [redirected, setRedirected] = useState(false);
   const [answers, setAnswers] = useState({});
@@ -395,6 +396,26 @@ export default function PracticeSession() {
                   </button>
                 </div>
               </div>
+
+              {/* Passage context */}
+              {typeof passage === "string" && passage.trim().length > 0 && (
+                <div style={{ background: "var(--bg-2)", border: "1px solid var(--border)", borderRadius: 12, padding: "14px 16px", marginBottom: 20, maxHeight: 260, overflowY: "auto" }}>
+                  <div style={{ fontSize: 11, fontWeight: 800, color: "var(--primary)", textTransform: "uppercase", letterSpacing: 1, marginBottom: 8 }}>
+                    Read the passage first
+                  </div>
+                  <p style={{ fontSize: 13, color: "var(--text)", lineHeight: 1.65, margin: 0, whiteSpace: "pre-wrap" }}>{passage}</p>
+                </div>
+              )}
+
+              {/* Passage context */}
+              {typeof passage === "string" && passage.trim().length > 0 && (
+                <div style={{ background: "var(--bg-2)", border: "1px solid var(--border)", borderRadius: 12, padding: "14px 16px", marginBottom: 20, maxHeight: 260, overflowY: "auto" }}>
+                  <div style={{ fontSize: 11, fontWeight: 800, color: "var(--primary)", textTransform: "uppercase", letterSpacing: 1, marginBottom: 8 }}>
+                    Read the passage first
+                  </div>
+                  <p style={{ fontSize: 13, color: "var(--text)", lineHeight: 1.65, margin: 0, whiteSpace: "pre-wrap" }}>{passage}</p>
+                </div>
+              )}
 
               {/* Question text */}
               <h2 style={{ fontSize: 18, fontWeight: 700, lineHeight: 1.6, marginBottom: 24, margin: "0 0 24px", color: "#fff" }}>{current.question}</h2>
