@@ -6,6 +6,7 @@
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
+import { checkRateLimit } from '../src/lib/rateLimiter.js';
 
 // --- Utility imports (kept as modules, not functions) ---
 import "./_firebase.js";          // Firebase Admin SDK
@@ -13,6 +14,30 @@ import "./_auth.js";              // requireUser, parseBody, cors helpers
 import "./_commission.js";        // recordCommission
 import "./_plans.js";             // plan constants, endDateFor, isTeamPlan, isPackPlan
 import "./_provision.js";         // provisionTeam
+
+// --- Server-side rate limiting ---
+// NOTE: Vercel serverless functions are stateless per invocation.
+// This in-memory tracker works within a single cold-start context.
+// For production, replace with Redis-backed limiting (e.g. Upstash Redis).
+const aiRequestTracker = new Map();
+
+function aiRateLimiter(req, res, next) {
+  const key = req.ip || req.connection.remoteAddress || 'unknown';
+  const now = Date.now();
+  const windowStart = now - 60000;
+  const timestamps = (aiRequestTracker.get(key) || []).filter((t) => t > windowStart);
+  if (timestamps.length >= 30) {
+    const retryAfter = Math.ceil((60000 - (now - timestamps[0])) / 1000);
+    return res.status(429).json({
+      error: 'Too many requests',
+      retryAfter,
+      message: `AI rate limit exceeded. Try again in ${retryAfter} seconds.`
+    });
+  }
+  timestamps.push(now);
+  aiRequestTracker.set(key, timestamps);
+  next();
+}
 
 // --- Route handlers (each is a named import of the default export) ---
 import health from "./_health.js";
@@ -46,7 +71,7 @@ app.get("/api/health", async (req, res) => {
 });
 
 // --- Route: POST /api/ai ---
-app.post("/api/ai", async (req, res) => {
+app.post("/api/ai", aiRateLimiter, async (req, res) => {
   await ai(req, res);
 });
 
@@ -72,7 +97,7 @@ app.post("/api/grade-assignment", async (req, res) => {
 });
 
 // --- Route: POST /api/generate-teacher-code ---
-app.post("/api/generate-teacher-code", async (req, res) => {
+app.post("/api/generate-teacher-code", aiRateLimiter, async (req, res) => {
   await generateTeacherCode(req, res);
 });
 

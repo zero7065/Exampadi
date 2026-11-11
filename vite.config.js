@@ -19,6 +19,9 @@ export default defineConfig({
         manualChunks(id) {
           if (id.includes('node_modules/firebase')) return 'firebase';
           if (id.includes('node_modules/react') || id.includes('node_modules/react-dom') || id.includes('node_modules/react-router')) return 'vendor';
+          if (id.includes('node_modules/jspdf') || id.includes('node_modules/html2canvas') || id.includes('node_modules/canvas-confetti') || id.includes('node_modules/katex')) return 'pdf-utils';
+          if (id.includes('node_modules/@sentry')) return 'sentry';
+          if (id.includes('node_modules/@fingerprintjs')) return 'fingerprintjs';
         }
       }
     }
