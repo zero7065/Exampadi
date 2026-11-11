@@ -279,6 +279,7 @@ export async function listGeneratedExams(schoolId) {
 export async function createLessonPlan({
   schoolId, classId, teacherId, teacherName, title, subject, topic,
   objectives = "", activities = "", resources = "", week = "", dueDate = null,
+  assessment = null, curriculum = null, aiMeta = null,
 }) {
   needDb();
   const ref = await addDoc(collection(db, "lessonPlans"), {
@@ -294,6 +295,10 @@ export async function createLessonPlan({
     resources: String(resources || "").slice(0, 2000),
     week: week || "",
     dueDate: dueDate || null,
+    assessment: assessment || null,
+    curriculum: curriculum || null,
+    aiMeta: aiMeta || null,
+    generatedByAI: Boolean(aiMeta),
     status: "published",
     createdAt: serverTimestamp(),
     updatedAt: serverTimestamp(),

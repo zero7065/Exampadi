@@ -4,17 +4,10 @@
 // key lives only in the server env (GROQ_API_KEY) — Vite inlines any
 // VITE_-prefixed var into the public bundle, so it must never carry a secret.
 
-import {
-  runEngine,
-  SESSION_STATE,
-  SEVERITY,
-} from "../lib/learningEngine";
+import { runEngine } from "../lib/learningEngine";
 import { CONCEPT_MISCONCEPTIONS } from "../harness/misconceptions";
 import { getAnalogies } from "../harness/realLife";
-import {
-  checkAnswerAllowed,
-  applyPromptGuardrails,
-} from "../harness/guardrails";
+import { checkAnswerAllowed } from "../harness/guardrails";
 
 import { logTrainingEntry } from "./aiTraining";
 import { auth } from "../firebaseConfig";
@@ -439,6 +432,115 @@ export async function askGroq(systemPrompt, userPrompt, opts = {}) {
     metadata: { maxTokens: opts.maxTokens, temperature: opts.temperature },
   }).catch(() => {});
   return result;
+}
+
+export async function generateTeacherLessonPlan({
+  teacherId,
+  teacherName,
+  classId,
+  schoolId,
+  subject,
+  topic,
+  week = "",
+  durationMinutes = 45,
+  studentCount = 30,
+  exam = "JAMB",
+  targetScore = 300,
+  objectives = [],
+  activities = "",
+  curriculumFocus = "",
+  assessmentGoal = "",
+}) {
+  const system = `You are ExamPadi, an expert Nigerian curriculum teacher for ${exam || "JAMB"} ${subject || "general studies"}. Create a complete teacher lesson plan and assessment strategy. Return ONLY valid JSON, no markdown fences.`;
+  const user = `Create a ${durationMinutes}-minute teacher lesson plan and assessment strategy.
+Subject: ${subject || "General"}
+Exam: ${exam || "JAMB"}
+Target score: ${targetScore || 300}/400
+Topic: ${topic || "General topic"}
+Week: ${week || "Unassigned"}
+Student count: ${studentCount || 30}
+Teacher: ${teacherName || teacherId || "Teacher"}
+Teacher objectives: ${Array.isArray(objectives) ? objectives.join("; ") : String(objectives || "Not specified")}
+Teacher activities/homework: ${activities || "Not specified"}
+Curriculum focus: ${curriculumFocus || "Not specified"}
+Assessment goal: ${assessmentGoal || "Aligned formative and summative checks"}
+
+Return JSON exactly in this shape:
+{
+  "title": "Lesson title",
+  "summary": "2-3 sentence lesson summary",
+  "durationMinutes": <number>,
+  "learningObjectives": [
+    {"objective": "<objective>", "competency": "<cognitive/psychomotor/affective>", "evidence": "<assessment evidence>"}
+  ],
+  "activities": [
+    {"name": "<activity>", "minutes": <number>, "type": "<introduction|guided practice|independent practice|assessment|closure>", "description": "<details>", "materials": ["<material>"]}
+  ],
+  "teachingStrategies": ["<strategy>"],
+  "curriculumAlignment": {
+    "syllabusTopic": "<topic>",
+    "competencies": ["<competency>"],
+    "prerequisites": ["<prerequisite>"],
+    "misconceptions": ["<misconception>"]
+  },
+  "assessment": {
+    "strategy": "<formative + summative strategy>",
+    "formativeChecks": [
+      {"objective": "<objective>", "method": "<method>", "description": "<check>", "successCriteria": "<criteria>"}
+    ],
+    "summativeQuestions": [
+      {"question": "<question>", "type": "<objective>", "marks": <number>, "answer": "<answer>", "bloomLevel": "<level>"}
+    ],
+    "rubric": [{"criterion": "<criterion>", "score": <number>, "description": "<description>"}],
+    "expectedOutcome": "<expected student outcome>"
+  },
+  "differentiation": ["<differentiation>"],
+  "homework": ["<homework>"],
+  "aiMeta": {"source": "teacher-lesson-plan", "generatedAt": <timestamp>}
+}
+
+Cover the full lesson arc: introduction, guided practice, independent practice, assessment, and closure. Align assessment to learning objectives and curriculum. Return 4-7 activities, 2-4 formative checks, 2-4 summative questions, and a practical rubric.`;
+
+  try {
+    const result = await askGroq(system, user, { maxTokens: 4500, temperature: 0.7, source: "teacher-lesson-plan" });
+    const parsed = JSON.parse(stripJsonFences(result));
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) throw new Error("Invalid lesson plan JSON");
+    return {
+      ...parsed,
+      teacherId,
+      teacherName,
+      classId,
+      schoolId,
+      subject,
+      topic,
+      week,
+      durationMinutes,
+      studentCount,
+      exam,
+      targetScore,
+      objectives,
+      activities,
+      curriculumFocus,
+      assessmentGoal,
+      aiMeta: { source: "teacher-lesson-plan", generatedAt: Date.now() },
+    };
+  } catch (err) {
+    if (err?.code === "AI_LIMIT") throw err;
+    console.warn("generateTeacherLessonPlan fallback:", err?.message);
+    return {
+      title: `AI Lesson Plan: ${topic || subject || "General"}`,
+      summary: `A ${durationMinutes}-minute lesson plan for ${subject || "the selected subject"}.`,
+      durationMinutes,
+      learningObjectives: (Array.isArray(objectives) ? objectives : String(objectives || "").split(",").map((v) => v.trim()).filter(Boolean)).map((objective) => ({ objective, competency: "Cognitive", evidence: "Assessment aligned to objective" })),
+      activities: (Array.isArray(activities) ? activities : [String(activities || "Direct instruction, guided practice, independent practice, and closure")]).map((activity) => ({ name: activity, minutes: Math.max(5, Math.round(durationMinutes / Math.max(1, (Array.isArray(activities) ? activities.length : 1)))), type: "guided practice", description: String(activity), materials: [] })),
+      teachingStrategies: ["Direct instruction", "Guided practice", "Independent practice"],
+      curriculumAlignment: { syllabusTopic: topic || subject || "", competencies: ["Cognitive"], prerequisites: [], misconceptions: [] },
+      assessment: { strategy: "Formative checks plus summative quiz aligned to objectives", formativeChecks: [], summativeQuestions: [], rubric: [], expectedOutcome: "Students can demonstrate the lesson objective." },
+      differentiation: [],
+      homework: [],
+      aiMeta: { source: "teacher-lesson-plan", generatedAt: Date.now() },
+    };
+  }
 }
 
 export async function explainAnswer({ question, options, userAnswer, correctAnswer, subject, exam }) {

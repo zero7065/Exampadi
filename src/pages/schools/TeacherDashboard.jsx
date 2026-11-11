@@ -14,9 +14,10 @@ import { db } from "../../firebaseConfig";
 import { apiUrl } from "../../lib/apiBase";
 import AvatarDisplay from "../../components/Avatar/AvatarDisplay";
 import {
-  Users, Plus, FileText, MonitorPlay, ClipboardList, X, Send, Trophy, BookOpenCheck, Inbox, Settings2, Key, Building2, RefreshCw, Loader2, UserPlus, Trash2,
+  Users, Plus, FileText, MonitorPlay, ClipboardList, X, Send, Trophy, BookOpenCheck, Inbox, Settings2, Key, Building2, RefreshCw, Loader2, UserPlus, Sparkles,
 } from "lucide-react";
 import { createAssignment } from "../../lib/teacherContent";
+import { generateTeacherLessonPlan } from "../../lib/ai";
 import { getQuestionsFromBank } from "../../data/questions/compat";
 import TeacherTools from "../../components/TeacherTools";
 
@@ -46,6 +47,21 @@ export default function TeacherDashboard() {
   const [lessons, setLessons] = useState([]);
   const [showLesson, setShowLesson] = useState(false);
   const [newLesson, setNewLesson] = useState({ title: "", topic: "", week: "", objectives: "", activities: "" });
+  const [aiLesson, setAiLesson] = useState({
+    subject: "",
+    topic: "",
+    week: "",
+    durationMinutes: 45,
+    studentCount: 30,
+    exam: "JAMB",
+    targetScore: 300,
+    objectives: "",
+    activities: "",
+    curriculumFocus: "",
+    assessmentGoal: "",
+  });
+  const [generatedLesson, setGeneratedLesson] = useState(null);
+  const [generatingLesson, setGeneratingLesson] = useState(false);
   const [showAssign, setShowAssign] = useState(false);
   const [newAssign, setNewAssign] = useState({ title: "", subject: "", count: 10, dueDate: "" });
   const [creatingAssign, setCreatingAssign] = useState(false);
@@ -90,7 +106,7 @@ export default function TeacherDashboard() {
       setLoading(false);
     });
 
-  }, [schoolId]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [schoolId, toast]);
 
   // Load teachers for this school
   useEffect(() => {
@@ -101,7 +117,7 @@ export default function TeacherDashboard() {
         setTeachersList(rows);
       })
       .catch(() => {});
-  }, [schoolId]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [schoolId]);
 
   async function createTeacher() {
     if (!schoolId) { toast({ message: "No school assigned", type: "error" }); return; }
@@ -357,6 +373,55 @@ export default function TeacherDashboard() {
     }
   }
 
+  async function generateLessonWithAi() {
+    if (!classId) {
+      toast({ message: "Pick a class first", type: "error" });
+      return;
+    }
+    if (!aiLesson.topic.trim()) {
+      toast({ message: "Add a topic before generating", type: "warning" });
+      return;
+    }
+    setGeneratingLesson(true);
+    try {
+      const generated = await generateTeacherLessonPlan({
+        teacherId: user.uid,
+        teacherName: profile?.name || user.displayName || "Teacher",
+        classId,
+        schoolId,
+        subject: aiLesson.subject.trim() || classes.find((c) => c.id === classId)?.subject || "",
+        topic: aiLesson.topic.trim(),
+        week: aiLesson.week.trim(),
+        durationMinutes: Number(aiLesson.durationMinutes) || 45,
+        studentCount: Number(aiLesson.studentCount) || 30,
+        exam: aiLesson.exam || "JAMB",
+        targetScore: Number(aiLesson.targetScore) || 300,
+        objectives: aiLesson.objectives.split(",").map((value) => value.trim()).filter(Boolean),
+        activities: aiLesson.activities,
+        curriculumFocus: aiLesson.curriculumFocus.trim(),
+        assessmentGoal: aiLesson.assessmentGoal.trim(),
+      });
+
+      setGeneratedLesson(generated);
+      setNewLesson({
+        title: generated.title || "",
+        topic: generated.topic || aiLesson.topic,
+        week: generated.week || aiLesson.week,
+        objectives: generated.learningObjectives?.length
+          ? generated.learningObjectives.map((item) => item.objective).join("\n")
+          : aiLesson.objectives,
+        activities: generated.activities?.length
+          ? generated.activities.map((item) => `${item.name} (${item.minutes} min): ${item.description}`).join("\n")
+          : aiLesson.activities,
+      });
+      toast({ message: "AI lesson plan ready ✓", type: "success" });
+    } catch (err) {
+      toast({ message: `AI lesson plan failed: ${err.message}`, type: "error" });
+    } finally {
+      setGeneratingLesson(false);
+    }
+  }
+
   async function handleCreateLesson(e) {
     e.preventDefault();
     if (!classId || !newLesson.title.trim()) {
@@ -364,19 +429,27 @@ export default function TeacherDashboard() {
       return;
     }
     try {
+      const classData = classes.find((c) => c.id === classId);
       await createLessonPlan({
+        ...(generatedLesson || {}),
         schoolId,
         classId,
-        teacherId: user.uid,
-        teacherName: profile?.name || user.displayName || "Teacher",
+        teacherId: generatedLesson?.teacherId || user.uid,
+        teacherName: generatedLesson?.teacherName || profile?.name || user.displayName || "Teacher",
         title: newLesson.title.trim(),
-        subject: classes.find((c) => c.id === classId)?.subject || "",
+        subject: generatedLesson?.subject || classData?.subject || aiLesson.subject || "",
         topic: newLesson.topic.trim(),
         week: newLesson.week.trim(),
         objectives: newLesson.objectives,
         activities: newLesson.activities,
+        resources: generatedLesson?.resources || "",
+        dueDate: null,
+        assessment: generatedLesson?.assessment || null,
+        curriculum: generatedLesson?.curriculumAlignment || null,
+        aiMeta: generatedLesson?.aiMeta || null,
       });
       setNewLesson({ title: "", topic: "", week: "", objectives: "", activities: "" });
+      setGeneratedLesson(null);
       setShowLesson(false);
       setLessons(await listLessonPlans({ classId }));
       toast({ message: "Lesson plan published ✓", type: "success" });
@@ -539,9 +612,22 @@ export default function TeacherDashboard() {
             <input value={newLesson.topic} onChange={(e) => setNewLesson({ ...newLesson, topic: e.target.value })} placeholder="Topic" className="input-field" />
             <input value={newLesson.objectives} onChange={(e) => setNewLesson({ ...newLesson, objectives: e.target.value })} placeholder="Objectives (comma separated)" className="input-field" />
             <textarea value={newLesson.activities} onChange={(e) => setNewLesson({ ...newLesson, activities: e.target.value })} placeholder="Class activities / homework" rows={2} className="input-field sm:col-span-2" />
+            <input value={aiLesson.subject} onChange={(e) => setAiLesson({ ...aiLesson, subject: e.target.value })} placeholder={`Subject (default: ${classes.find((c) => c.id === classId)?.subject || "class subject"})`} className="input-field" />
+            <input value={aiLesson.topic} onChange={(e) => setAiLesson({ ...aiLesson, topic: e.target.value })} placeholder="AI lesson topic" className="input-field" />
+            <input value={aiLesson.week} onChange={(e) => setAiLesson({ ...aiLesson, week: e.target.value })} placeholder="AI lesson week" className="input-field" />
+            <input type="number" min="10" max="240" value={aiLesson.durationMinutes} onChange={(e) => setAiLesson({ ...aiLesson, durationMinutes: Number(e.target.value) || 45 })} placeholder="Duration (minutes)" className="input-field" />
+            <input type="number" min="1" max="120" value={aiLesson.studentCount} onChange={(e) => setAiLesson({ ...aiLesson, studentCount: Number(e.target.value) || 30 })} placeholder="Students" className="input-field" />
+            <select value={aiLesson.exam} onChange={(e) => setAiLesson({ ...aiLesson, exam: e.target.value })} className="input-field">
+              {["JAMB", "WAEC", "NECO", "NABTEB"].map((exam) => <option key={exam} value={exam}>{exam}</option>)}
+            </select>
+            <input value={aiLesson.curriculumFocus} onChange={(e) => setAiLesson({ ...aiLesson, curriculumFocus: e.target.value })} placeholder="Curriculum focus (optional)" className="input-field" />
+            <input value={aiLesson.assessmentGoal} onChange={(e) => setAiLesson({ ...aiLesson, assessmentGoal: e.target.value })} placeholder="Assessment goal (optional)" className="input-field" />
             <div className="flex gap-2 sm:col-span-2">
+              <button type="button" onClick={generateLessonWithAi} disabled={generatingLesson || !aiLesson.topic.trim()} className="btn-secondary px-5 disabled:opacity-60">
+                {generatingLesson ? <Loader2 size={15} className="animate-spin" /> : <Sparkles size={15} />} Generate with AI
+              </button>
               <button type="submit" className="btn-primary px-5">Publish lesson</button>
-              <button type="button" onClick={() => setShowLesson(false)} className="btn-secondary px-5">Cancel</button>
+              <button type="button" onClick={() => { setShowLesson(false); setGeneratedLesson(null); }} className="btn-secondary px-5">Cancel</button>
             </div>
           </form>
         )}
