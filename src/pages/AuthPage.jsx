@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "../components/Toast";
 import { getUserProfile } from "../lib/userProfile";
+import { isTeacherRole } from "../lib/roles";
 import Logo from "../components/Logo";
 import { Eye, EyeOff, HelpCircle, User, Lock, Building2, Key } from "lucide-react";
 import { captureRefCodeFromUrl, attributePartnerRef } from "../lib/partner";
@@ -41,17 +42,20 @@ export default function AuthPage() {
     if (user && !didRedirect.current) {
       didRedirect.current = true;
       attributePartnerRef(user).catch(() => {});
-      getUserProfile(user.uid)
-        .then((profile) => {
-          if (profile?.onboarded) {
-            navigate("/dashboard", { replace: true });
-          } else {
+        getUserProfile(user.uid)
+          .then((profile) => {
+            const isTeacher = isTeacherRole(profile, user);
+            if (isTeacher) {
+              navigate("/teacher", { replace: true });
+            } else if (profile?.onboarded) {
+              navigate("/dashboard", { replace: true });
+            } else {
+              navigate("/onboarding", { replace: true });
+            }
+          })
+          .catch(() => {
             navigate("/onboarding", { replace: true });
-          }
-        })
-        .catch(() => {
-          navigate("/onboarding", { replace: true });
-        });
+          });
     }
   }, [user, navigate]);
 

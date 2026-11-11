@@ -2,10 +2,10 @@
 // Shared live-class video + instructions surface used by ClassroomMode and the
 // study room. Video is never proxied through Vercel: Jitsi runs in an iframe on
 // meet.jit.si, and external providers (Zoom/Meet/Teams) open in a new tab.
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  ArrowLeft, ExternalLink, Info, Pin, Radio, Video, RadioTower,
+  ArrowLeft, ExternalLink, Info, Maximize2, Minimize2, Pin, Radio, Video, RadioTower,
 } from "lucide-react";
 import { subscribeClassSession } from "../lib/classroom";
 
@@ -122,6 +122,27 @@ export function ClassInstructions({ session }) {
 }
 
 export function LiveVideoPanel({ session, classId, isTeacher }) {
+  const containerRef = useRef(null);
+  const iframeRef = useRef(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  useEffect(() => {
+    const onFullscreenChange = () => setIsFullscreen(Boolean(document.fullscreenElement));
+    document.addEventListener("fullscreenchange", onFullscreenChange);
+    return () => document.removeEventListener("fullscreenchange", onFullscreenChange);
+  }, []);
+
+  const toggleFullscreen = async () => {
+    const target = containerRef.current || iframeRef.current;
+    if (!target) return;
+    try {
+      if (document.fullscreenElement) await document.exitFullscreen();
+      else await target.requestFullscreen();
+    } catch (error) {
+      console.warn("Fullscreen toggle failed:", error?.message || error);
+    }
+  };
+
   if (!session || isEnded(session)) return null;
   const provider = session.videoProvider === "external" ? "external" : "jitsi";
   const room = session.videoRoom || `exampadi-${String(classId || "").slice(0, 40)}`;
@@ -156,16 +177,23 @@ export function LiveVideoPanel({ session, classId, isTeacher }) {
           <p className="text-sm text-text-muted">Your teacher has not added a video link yet.</p>
         )
       ) : (
-        <div className="rounded-xl overflow-hidden bg-black" style={{ aspectRatio: "16 / 9" }}>
-          <iframe
-            key={room}
-            src={jitsiSrc}
-            title="Live class video"
-            allow="camera; microphone; fullscreen; display-capture; autoplay; clipboard-write"
-            allowFullScreen
-            style={{ width: "100%", height: "100%", border: 0 }}
-          />
-        </div>
+        <>
+          <div ref={containerRef} className="rounded-xl overflow-hidden bg-black" style={{ aspectRatio: "16 / 9" }}>
+            <iframe
+              ref={iframeRef}
+              key={room}
+              src={jitsiSrc}
+              title="Live class video"
+              allow="camera; microphone; fullscreen; display-capture; autoplay; clipboard-write"
+              allowFullScreen
+              style={{ width: "100%", height: "100%", border: 0 }}
+            />
+          </div>
+          <button onClick={toggleFullscreen} className="btn-secondary inline-flex items-center gap-2 px-4 py-2 text-sm mt-2">
+            {isFullscreen ? <Minimize2 size={14} /> : <Maximize2 size={14} />}
+            {isFullscreen ? "Exit full screen" : "Full screen"}
+          </button>
+        </>
       )}
     </section>
   );
