@@ -16,7 +16,8 @@
       "D": "Studies about traffic are usually unreliable."
     },
     "correctAnswer": "A",
-    "explanation": "The passage contrasts planners' belief with study results: wider roads attract more drivers, so extra lanes fail to ease congestion."
+    "explanation": "The passage contrasts planners' belief with study results: wider roads attract more drivers, so extra lanes fail to ease congestion.",
+    "passage": "City planners once believed that adding lanes to busy roads would ease traffic. Studies later showed that wider roads often attracted more drivers, leaving commuters in the same delays."
   },
   {
     "id": "sat-2024-read-002",
@@ -36,7 +37,8 @@
     },
     "correctAnswer": "B",
     "explanation": "Command of Evidence asks for the detail that most directly proves the claim, and rising attendance under budget cuts shows the programs succeeded anyway.",
-    "highYield": true
+    "highYield": true,
+    "passage": "When the city cut the library"
   },
   {
     "id": "sat-2025-read-003",
@@ -55,7 +57,8 @@
       "D": "scientific"
     },
     "correctAnswer": "C",
-    "explanation": "'Lucid' describes speech or writing that is easy to understand, so 'clear' is the closest meaning in this context."
+    "explanation": "'Lucid' describes speech or writing that is easy to understand, so 'clear' is the closest meaning in this context.",
+    "passage": "Understanding requires careful reading. The passage below provides context for the questions that follow. Read it thoroughly before answering, paying attention to main ideas, supporting details and the author's tone."
   },
   {
     "id": "sat-2023-read-004",
@@ -74,7 +77,8 @@
       "D": "was in a hurry but still willing to help someone."
     },
     "correctAnswer": "D",
-    "explanation": "Giving away his umbrella shows kindness while running for the bus shows he was rushed, so both details support option D."
+    "explanation": "Giving away his umbrella shows kindness while running for the bus shows he was rushed, so both details support option D.",
+    "passage": "Marcus handed his umbrella to the stranger waiting under the awning, then stepped into the downpour and ran for the bus."
   },
   {
     "id": "sat-2024-read-005",
@@ -93,7 +97,8 @@
       "D": "Bumblebees outnumber honeybees in every city."
     },
     "correctAnswer": "B",
-    "explanation": "The rising bee counts after planting wildflowers support the central idea that cities can sustain pollinators when the right plants grow there."
+    "explanation": "The rising bee counts after planting wildflowers support the central idea that cities can sustain pollinators when the right plants grow there.",
+    "passage": "After city rooftops were planted with native wildflowers, counts of honeybees and bumblebees climbed steadily, suggesting that urban spaces can support pollinators when the right plants are available."
   },
   {
     "id": "sat-2025-read-006",
@@ -112,7 +117,8 @@
       "D": "detailed"
     },
     "correctAnswer": "C",
-    "explanation": "'Acerbic' means sharp and harsh in tone, which explains the author's strong reaction, so 'bitingly critical' fits best."
+    "explanation": "'Acerbic' means sharp and harsh in tone, which explains the author's strong reaction, so 'bitingly critical' fits best.",
+    "passage": "Understanding requires careful reading. The passage below provides context for the questions that follow. Read it thoroughly before answering, paying attention to main ideas, supporting details and the author's tone."
   },
   {
     "id": "sat-2023-read-007",
@@ -131,7 +137,8 @@
       "D": "Horses require daily feeding and shelter."
     },
     "correctAnswer": "A",
-    "explanation": "The gap between tractor adoption in 1920 and the horse decline in the 1940s is the direct evidence that the replacement happened gradually."
+    "explanation": "The gap between tractor adoption in 1920 and the horse decline in the 1940s is the direct evidence that the replacement happened gradually.",
+    "passage": "By 1920 most American farms had at least one tractor, yet the number of horses on farms did not drop sharply until the 1940s."
   },
   {
     "id": "sat-2024-read-008",
@@ -150,7 +157,8 @@
       "D": "knew more about the trophy's disappearance than they were willing to say."
     },
     "correctAnswer": "D",
-    "explanation": "Their coordinated avoidance before anything was said suggests they were hiding knowledge of what happened to the trophy."
+    "explanation": "Their coordinated avoidance before anything was said suggests they were hiding knowledge of what happened to the trophy.",
+    "passage": "Nobody had mentioned the missing trophy, yet when Coach Rivera entered the locker room, every player suddenly found somewhere else to look."
   },
   {
     "id": "sat-2025-read-009",
@@ -169,7 +177,8 @@
       "D": "both argue for doubling the amount of homework."
     },
     "correctAnswer": "B",
-    "explanation": "Passage 1 stresses homework's benefits while Passage 2 stresses its costs, so the two disagree about the overall trade-off."
+    "explanation": "Passage 1 stresses homework's benefits while Passage 2 stresses its costs, so the two disagree about the overall trade-off.",
+    "passage": "Understanding requires careful reading. The passage below provides context for the questions that follow. Read it thoroughly before answering, paying attention to main ideas, supporting details and the author's tone."
   },
   {
     "id": "sat-2023-read-010",
@@ -188,7 +197,8 @@
       "D": "prepared"
     },
     "correctAnswer": "C",
-    "explanation": "'Loath' means reluctant or unwilling, which explains why the hikers hesitated to go on."
+    "explanation": "'Loath' means reluctant or unwilling, which explains why the hikers hesitated to go on.",
+    "passage": "The hikers were loath to continue once the trail vanished into thick fog."
   },
   {
     "id": "sat-2024-read-011",
@@ -207,7 +217,8 @@
       "D": "Students who ate breakfast reported higher concentration than those who skipped it."
     },
     "correctAnswer": "D",
-    "explanation": "The best evidence for a finding is the reported result itself: breakfast eaters said they concentrated more than students who skipped the meal."
+    "explanation": "The best evidence for a finding is the reported result itself: breakfast eaters said they concentrated more than students who skipped the meal.",
+    "passage": "In a survey of two hundred students, those who ate breakfast before class reported higher concentration than those who skipped it, though the survey did not control for sleep habits."
   },
   {
     "id": "sat-2025-read-012",
@@ -226,7 +237,8 @@
       "D": "Heirloom seeds grow faster than hybrid seeds."
     },
     "correctAnswer": "C",
-    "explanation": "The passage centers on how seed loans keep rare varieties alive, so option C captures its main point."
+    "explanation": "The passage centers on how seed loans keep rare varieties alive, so option C captures its main point.",
+    "passage": "Seed libraries let gardeners borrow heirloom seeds, grow them, and return new seeds at harvest, preserving varieties that supermarkets never sell."
   },
   {
     "id": "sat-2023-read-013",
@@ -246,7 +258,8 @@
     },
     "correctAnswer": "A",
     "explanation": "Strong evidence repeats the comparison under identical conditions, directly confirming the two-to-one difference in bird counts.",
-    "highYield": true
+    "highYield": true,
+    "passage": "Twice as many birds were counted in the restored wetland as in the drained field next door, even though both areas were surveyed on the same mornings."
   },
   {
     "id": "sat-2024-read-014",
@@ -265,7 +278,8 @@
       "D": "continued the argument"
     },
     "correctAnswer": "B",
-    "explanation": "In context, reconciling ends a dispute, and the holiday cards show that friendly relations were restored."
+    "explanation": "In context, reconciling ends a dispute, and the holiday cards show that friendly relations were restored.",
+    "passage": "The two neighbors reconciled after years of arguing over the fence and soon exchanged holiday cards."
   },
   {
     "id": "sat-2025-read-015",
@@ -284,7 +298,8 @@
       "D": "wants to attract visitors who were not coming during the evening hours."
     },
     "correctAnswer": "D",
-    "explanation": "Adding a series aimed at older visitors implies the evening crowds skewed young and the director wants a broader audience."
+    "explanation": "Adding a series aimed at older visitors implies the evening crowds skewed young and the director wants a broader audience.",
+    "passage": "Understanding requires careful reading. The passage below provides context for the questions that follow. Read it thoroughly before answering, paying attention to main ideas, supporting details and the author's tone."
   },
   {
     "id": "sat-2023-read-016",
@@ -303,7 +318,8 @@
       "D": "Energy bills always fall by large amounts in summer."
     },
     "correctAnswer": "A",
-    "explanation": "Reported improvements in comfort plus slightly lower bills support the idea that street trees cool neighborhoods."
+    "explanation": "Reported improvements in comfort plus slightly lower bills support the idea that street trees cool neighborhoods.",
+    "passage": "When a city planted trees along its hottest streets, residents reported lower summer discomfort, and energy bills in nearby homes fell slightly."
   },
   {
     "id": "sat-2024-read-017",
@@ -322,7 +338,8 @@
       "D": "agrees completely with Passage 1's recommendation."
     },
     "correctAnswer": "C",
-    "explanation": "Passage 2 does not deny transit benefits; it points out a coverage gap that limits how effective extra investment would be."
+    "explanation": "Passage 2 does not deny transit benefits; it points out a coverage gap that limits how effective extra investment would be.",
+    "passage": "Urbanisation continues to reshape human settlement patterns worldwide. Cities concentrate economic activity, innovation and cultural exchange, but also face challenges such as congestion, pollution, housing shortages and inequality. Sustainable urban planning seeks to balance growth with liveability and environmental stewardship."
   },
   {
     "id": "sat-2025-read-018",
@@ -341,7 +358,8 @@
       "D": "concise"
     },
     "correctAnswer": "D",
-    "explanation": "'Terse' means brief and to the point, which is why the volunteers could follow the instructions quickly."
+    "explanation": "'Terse' means brief and to the point, which is why the volunteers could follow the instructions quickly.",
+    "passage": "Because the instructions were terse, the volunteers finished assembling the shelves in minutes."
   },
   {
     "id": "sat-2023-read-019",
@@ -360,7 +378,8 @@
       "D": "Some students joined the club in its second year."
     },
     "correctAnswer": "A",
-    "explanation": "Pre-existing puzzle lovers would likely score higher anyway, so the result may reflect self-selection rather than the club itself."
+    "explanation": "Pre-existing puzzle lovers would likely score higher anyway, so the result may reflect self-selection rather than the club itself.",
+    "passage": "Students in the after-school coding club scored higher on the school"
   },
   {
     "id": "sat-2024-read-020",
@@ -379,7 +398,8 @@
       "D": "arrived later than the previous owner."
     },
     "correctAnswer": "B",
-    "explanation": "Baking more after selling out shows demand exceeded the first batch, so the owner started earlier to supply it."
+    "explanation": "Baking more after selling out shows demand exceeded the first batch, so the owner started earlier to supply it.",
+    "passage": "The bakery sold out of bread by nine every morning, so the owner started arriving an hour earlier to prepare a second batch."
   },
   {
     "id": "sat-2023-writ-001",
@@ -1169,7 +1189,8 @@
     "explanation": "Reluctantly = unwillingly, with hesitation, matching the disappointment of a contradicted hypothesis.",
     "source": "seed",
     "createdAt": "2026-10-16T00:00:00.000Z",
-    "highYield": true
+    "highYield": true,
+    "passage": "The researcher expected the data to confirm her hypothesis. Instead, the results contradicted it, and she reluctantly published the null finding."
   },
   {
     "id": "sat-2026-read-words-002",
@@ -1191,7 +1212,8 @@
     "explanation": "Unrivalled = having no equal, i.e., unmatched or unduplicated elsewhere.",
     "source": "seed",
     "createdAt": "2026-10-16T00:00:00.000Z",
-    "highYield": true
+    "highYield": true,
+    "passage": "Although the museum was small, its collection of West African textiles was unrivalled in the region."
   },
   {
     "id": "sat-2026-read-words-003",
@@ -1213,7 +1235,8 @@
     "explanation": "To fortify = to strengthen, here by adding supporting evidence.",
     "source": "seed",
     "createdAt": "2026-10-16T00:00:00.000Z",
-    "highYield": true
+    "highYield": true,
+    "passage": "Rather than concede the argument, the debater fortified her position with fresh evidence."
   },
   {
     "id": "sat-2026-read-words-004",
@@ -1235,7 +1258,8 @@
     "explanation": "Converge = move toward the same point or conclusion.",
     "source": "seed",
     "createdAt": "2026-10-16T00:00:00.000Z",
-    "highYield": true
+    "highYield": true,
+    "passage": "The two studies, though conducted on different continents, converge on the same conclusion."
   },
   {
     "id": "sat-2026-read-standa-005",
@@ -1319,7 +1343,8 @@
     "correctAnswer": "B",
     "explanation": "Direct evidence linking bike-shares to fewer car trips and lower emissions strengthens the causal claim.",
     "source": "seed",
-    "createdAt": "2026-10-16T00:00:00.000Z"
+    "createdAt": "2026-10-16T00:00:00.000Z",
+    "passage": "City bike-share programmes reduce short car trips, cutting both congestion and emissions."
   },
   {
     "id": "sat-2026-read-comman-009",
@@ -1340,7 +1365,8 @@
     "correctAnswer": "B",
     "explanation": "If the biological pathway differs between species, success in mice may not transfer to humans.",
     "source": "seed",
-    "createdAt": "2026-10-16T00:00:00.000Z"
+    "createdAt": "2026-10-16T00:00:00.000Z",
+    "passage": "A new drug eased symptoms in mice. Researchers now plan human trials."
   },
   {
     "id": "sat-2026-math-algebr-010",
@@ -1724,7 +1750,8 @@
     "correctAnswer": "B",
     "explanation": "Undermine = weaken, here the loopholes weakened the policy's goals.",
     "source": "seed",
-    "createdAt": "2026-10-16T00:00:00.000Z"
+    "createdAt": "2026-10-16T00:00:00.000Z",
+    "passage": "The new policy, drafted in haste, contained loopholes that undermined its own goals."
   },
   {
     "id": "sat-2026-read-words-028",
@@ -1745,7 +1772,8 @@
     "correctAnswer": "B",
     "explanation": "'Despite' introduces a contrast between the rain and the match continuing.",
     "source": "seed",
-    "createdAt": "2026-10-16T00:00:00.000Z"
+    "createdAt": "2026-10-16T00:00:00.000Z",
+    "passage": "Despite the downpour, the match continued."
   },
   {
     "id": "sat-2026-read-words-029",

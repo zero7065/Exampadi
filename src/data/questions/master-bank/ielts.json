@@ -22,7 +22,8 @@
       2024,
       2023,
       2022
-    ]
+    ],
+    "passage": "Effective reading involves more than recognising words on a page. Skilled readers activate prior knowledge, make inferences, monitor comprehension and adjust strategies according to purpose and text type. Regular practice across fiction and non-fiction builds vocabulary, fluency and analytical depth."
   },
   {
     "id": "ielts-2024-read-002",
@@ -752,7 +753,8 @@
       "D": "PARTLY TRUE"
     },
     "correctAnswer": "A",
-    "explanation": "FALSE is used when the passage directly contradicts the statement. Since groundwater holds more than all rivers, the claim about rivers is untrue."
+    "explanation": "FALSE is used when the passage directly contradicts the statement. Since groundwater holds more than all rivers, the claim about rivers is untrue.",
+    "passage": "Understanding requires careful reading. The passage below provides context for the questions that follow. Read it thoroughly before answering, paying attention to main ideas, supporting details and the author's tone."
   },
   {
     "id": "ielts-2024-read-011",
@@ -867,7 +869,8 @@
       "D": "in the morning of the tour"
     },
     "correctAnswer": "C",
-    "explanation": "Short answers must fit the word limit and answer the question directly. Half past nine is three words, while the fuller phrases exceed the limit."
+    "explanation": "Short answers must fit the word limit and answer the question directly. Half past nine is three words, while the fuller phrases exceed the limit.",
+    "passage": "The guided tour begins at half past nine in the morning."
   },
   {
     "id": "ielts-2025-read-012",
@@ -886,7 +889,8 @@
       "D": "Memorise every technical term"
     },
     "correctAnswer": "B",
-    "explanation": "A quick skim of the title, first sentences and overall structure helps you locate information fast later, which matters when you have only 60 minutes."
+    "explanation": "A quick skim of the title, first sentences and overall structure helps you locate information fast later, which matters when you have only 60 minutes.",
+    "passage": "Effective reading involves more than recognising words on a page. Skilled readers activate prior knowledge, make inferences, monitor comprehension and adjust strategies according to purpose and text type. Regular practice across fiction and non-fiction builds vocabulary, fluency and analytical depth."
   },
   {
     "id": "ielts-2025-read-013",
@@ -930,7 +934,8 @@
       2025,
       2024,
       2023
-    ]
+    ],
+    "passage": "Understanding requires careful reading. The passage below provides context for the questions that follow. Read it thoroughly before answering, paying attention to main ideas, supporting details and the author's tone."
   },
   {
     "id": "ielts-2026-read-001",
@@ -949,7 +954,8 @@
       "D": "Answering every question twice"
     },
     "correctAnswer": "B",
-    "explanation": "Scanning finds particular details such as names, dates or figures, while skimming finds the main idea. Scan only after you know which paragraph to search."
+    "explanation": "Scanning finds particular details such as names, dates or figures, while skimming finds the main idea. Scan only after you know which paragraph to search.",
+    "passage": "Effective reading involves more than recognising words on a page. Skilled readers activate prior knowledge, make inferences, monitor comprehension and adjust strategies according to purpose and text type. Regular practice across fiction and non-fiction builds vocabulary, fluency and analytical depth."
   },
   {
     "id": "ielts-2026-read-002",
@@ -2117,7 +2123,8 @@
     "explanation": "The passage stresses that oxygen levels rose, extinct fish returned, and the system was cheaper than a plant — a low-cost ecological restoration.",
     "source": "seed",
     "createdAt": "2026-10-16T00:00:00.000Z",
-    "highYield": true
+    "highYield": true,
+    "passage": "Ecology examines the interactions between organisms and their environment. Ecosystems provide essential services such as pollination, water purification and carbon sequestration. Human activity — including deforestation, overfishing and fossil fuel consumption — threatens biodiversity and disrupts ecological balance."
   },
   {
     "id": "ielts-2026-read-ecolog-002",
@@ -2138,7 +2145,8 @@
     "explanation": "The text says nearby neighbourhoods use reclaimed water to irrigate gardens — a non-drinking use, so TRUE.",
     "source": "seed",
     "createdAt": "2026-10-16T00:00:00.000Z",
-    "highYield": true
+    "highYield": true,
+    "passage": "Ecology examines the interactions between organisms and their environment. Ecosystems provide essential services such as pollination, water purification and carbon sequestration. Human activity — including deforestation, overfishing and fossil fuel consumption — threatens biodiversity and disrupts ecological balance."
   },
   {
     "id": "ielts-2026-read-ecolog-003",
@@ -2160,7 +2168,8 @@
     "explanation": "Bacteria trapped in the gravel break down harmful nutrients — that is the gravel's role.",
     "source": "seed",
     "createdAt": "2026-10-16T00:00:00.000Z",
-    "highYield": true
+    "highYield": true,
+    "passage": "Ecology examines the interactions between organisms and their environment. Ecosystems provide essential services such as pollination, water purification and carbon sequestration. Human activity — including deforestation, overfishing and fossil fuel consumption — threatens biodiversity and disrupts ecological balance."
   },
   {
     "id": "ielts-2026-read-histor-004",
@@ -2181,7 +2190,8 @@
     "correctAnswer": "B",
     "explanation": "The final sentence links hourly-measured time directly to paying workers by the hour, enabling factories.",
     "source": "seed",
-    "createdAt": "2026-10-16T00:00:00.000Z"
+    "createdAt": "2026-10-16T00:00:00.000Z",
+    "passage": "History provides context for understanding the present. By studying past events, societies learn from successes and failures, identify patterns and make more informed decisions about the future. Historical interpretation evolves as new evidence emerges and perspectives shift over time."
   },
   {
     "id": "ielts-2026-read-histor-005",
@@ -2202,7 +2212,8 @@
     "correctAnswer": "A",
     "explanation": "These phrases capture the shift from natural, event-based time to abstract, monetised, divisible time.",
     "source": "seed",
-    "createdAt": "2026-10-16T00:00:00.000Z"
+    "createdAt": "2026-10-16T00:00:00.000Z",
+    "passage": "History provides context for understanding the present. By studying past events, societies learn from successes and failures, identify patterns and make more informed decisions about the future. Historical interpretation evolves as new evidence emerges and perspectives shift over time."
   },
   {
     "id": "ielts-2026-read-histor-006",
@@ -2222,7 +2233,8 @@
     "correctAnswer": "C",
     "explanation": "The passage describes a change in how time was measured and paid for, but never judges whether life improved — NOT GIVEN.",
     "source": "seed",
-    "createdAt": "2026-10-16T00:00:00.000Z"
+    "createdAt": "2026-10-16T00:00:00.000Z",
+    "passage": "History provides context for understanding the present. By studying past events, societies learn from successes and failures, identify patterns and make more informed decisions about the future. Historical interpretation evolves as new evidence emerges and perspectives shift over time."
   },
   {
     "id": "ielts-2026-read-scienc-007",
@@ -2243,7 +2255,8 @@
     "correctAnswer": "B",
     "explanation": "The passage states the duration indicates distance.",
     "source": "seed",
-    "createdAt": "2026-10-16T00:00:00.000Z"
+    "createdAt": "2026-10-16T00:00:00.000Z",
+    "passage": "Scientific inquiry relies on observation, hypothesis testing and reproducibility. Through controlled experiments and peer review, researchers build reliable knowledge about the natural world. Scientific literacy empowers citizens to evaluate claims, understand risk and participate in public debates on issues such as health and the environment."
   },
   {
     "id": "ielts-2026-read-scienc-008",
@@ -2263,7 +2276,8 @@
     "correctAnswer": "B",
     "explanation": "The text says his work earned 'a share of the Nobel Prize', not the entire prize — FALSE.",
     "source": "seed",
-    "createdAt": "2026-10-16T00:00:00.000Z"
+    "createdAt": "2026-10-16T00:00:00.000Z",
+    "passage": "Scientific inquiry relies on observation, hypothesis testing and reproducibility. Through controlled experiments and peer review, researchers build reliable knowledge about the natural world. Scientific literacy empowers citizens to evaluate claims, understand risk and participate in public debates on issues such as health and the environment."
   },
   {
     "id": "ielts-2026-read-urban-009",
@@ -2284,7 +2298,8 @@
     "correctAnswer": "B",
     "explanation": "The passage says owners convert empty floors into apartments.",
     "source": "seed",
-    "createdAt": "2026-10-16T00:00:00.000Z"
+    "createdAt": "2026-10-16T00:00:00.000Z",
+    "passage": "Urbanisation continues to reshape human settlement patterns worldwide. Cities concentrate economic activity, innovation and cultural exchange, but also face challenges such as congestion, pollution, housing shortages and inequality. Sustainable urban planning seeks to balance growth with liveability and environmental stewardship."
   },
   {
     "id": "ielts-2026-read-urban-010",
@@ -2305,7 +2320,8 @@
     "correctAnswer": "B",
     "explanation": "The final sentence lists cutting commuting and reviving districts as benefits.",
     "source": "seed",
-    "createdAt": "2026-10-16T00:00:00.000Z"
+    "createdAt": "2026-10-16T00:00:00.000Z",
+    "passage": "Urbanisation continues to reshape human settlement patterns worldwide. Cities concentrate economic activity, innovation and cultural exchange, but also face challenges such as congestion, pollution, housing shortages and inequality. Sustainable urban planning seeks to balance growth with liveability and environmental stewardship."
   },
   {
     "id": "ielts-2026-read-scienc-011",
@@ -2326,7 +2342,8 @@
     "correctAnswer": "B",
     "explanation": "The passage contrasts active steering with the assumption that turtles drift passively.",
     "source": "seed",
-    "createdAt": "2026-10-16T00:00:00.000Z"
+    "createdAt": "2026-10-16T00:00:00.000Z",
+    "passage": "Scientific inquiry relies on observation, hypothesis testing and reproducibility. Through controlled experiments and peer review, researchers build reliable knowledge about the natural world. Scientific literacy empowers citizens to evaluate claims, understand risk and participate in public debates on issues such as health and the environment."
   },
   {
     "id": "ielts-2026-read-scienc-012",
@@ -2347,7 +2364,8 @@
     "correctAnswer": "A",
     "explanation": "The final sentence warns that temperature shifts could disrupt migration routes.",
     "source": "seed",
-    "createdAt": "2026-10-16T00:00:00.000Z"
+    "createdAt": "2026-10-16T00:00:00.000Z",
+    "passage": "Scientific inquiry relies on observation, hypothesis testing and reproducibility. Through controlled experiments and peer review, researchers build reliable knowledge about the natural world. Scientific literacy empowers citizens to evaluate claims, understand risk and participate in public debates on issues such as health and the environment."
   },
   {
     "id": "ielts-2026-writ-task-013",
@@ -2777,7 +2795,8 @@
     "explanation": "The final sentence says gardens stay vulnerable to redevelopment because land tenure is insecure.",
     "source": "seed",
     "createdAt": "2026-10-16T00:00:00.000Z",
-    "highYield": true
+    "highYield": true,
+    "passage": "Urbanisation continues to reshape human settlement patterns worldwide. Cities concentrate economic activity, innovation and cultural exchange, but also face challenges such as congestion, pollution, housing shortages and inequality. Sustainable urban planning seeks to balance growth with liveability and environmental stewardship."
   },
   {
     "id": "ielts-2026-read-urban-033",
@@ -2797,7 +2816,8 @@
     "correctAnswer": "A",
     "explanation": "The passage states the plots 'cool surrounding buildings', so TRUE.",
     "source": "seed",
-    "createdAt": "2026-10-16T00:00:00.000Z"
+    "createdAt": "2026-10-16T00:00:00.000Z",
+    "passage": "Urbanisation continues to reshape human settlement patterns worldwide. Cities concentrate economic activity, innovation and cultural exchange, but also face challenges such as congestion, pollution, housing shortages and inequality. Sustainable urban planning seeks to balance growth with liveability and environmental stewardship."
   },
   {
     "id": "ielts-2026-read-scienc-034",
@@ -2818,7 +2838,8 @@
     "correctAnswer": "A",
     "explanation": "The text highlights that it uses no energy and produces nutrient-dense food that keeps for months.",
     "source": "seed",
-    "createdAt": "2026-10-16T00:00:00.000Z"
+    "createdAt": "2026-10-16T00:00:00.000Z",
+    "passage": "Scientific inquiry relies on observation, hypothesis testing and reproducibility. Through controlled experiments and peer review, researchers build reliable knowledge about the natural world. Scientific literacy empowers citizens to evaluate claims, understand risk and participate in public debates on issues such as health and the environment."
   },
   {
     "id": "ielts-2026-read-scienc-035",
@@ -2839,7 +2860,8 @@
     "correctAnswer": "B",
     "explanation": "Moisture must drop below the level bacteria need to grow.",
     "source": "seed",
-    "createdAt": "2026-10-16T00:00:00.000Z"
+    "createdAt": "2026-10-16T00:00:00.000Z",
+    "passage": "Scientific inquiry relies on observation, hypothesis testing and reproducibility. Through controlled experiments and peer review, researchers build reliable knowledge about the natural world. Scientific literacy empowers citizens to evaluate claims, understand risk and participate in public debates on issues such as health and the environment."
   },
   {
     "id": "ielts-2026-read-histor-036",
@@ -2860,7 +2882,8 @@
     "correctAnswer": "B",
     "explanation": "The last sentence names the assumption directly: presence equals productivity.",
     "source": "seed",
-    "createdAt": "2026-10-16T00:00:00.000Z"
+    "createdAt": "2026-10-16T00:00:00.000Z",
+    "passage": "History provides context for understanding the present. By studying past events, societies learn from successes and failures, identify patterns and make more informed decisions about the future. Historical interpretation evolves as new evidence emerges and perspectives shift over time."
   },
   {
     "id": "ielts-2026-read-histor-037",
@@ -2881,7 +2904,8 @@
     "correctAnswer": "B",
     "explanation": "Hospitals and factories need continuous cover, so the model does not suit every role.",
     "source": "seed",
-    "createdAt": "2026-10-16T00:00:00.000Z"
+    "createdAt": "2026-10-16T00:00:00.000Z",
+    "passage": "History provides context for understanding the present. By studying past events, societies learn from successes and failures, identify patterns and make more informed decisions about the future. Historical interpretation evolves as new evidence emerges and perspectives shift over time."
   },
   {
     "id": "ielts-2026-writ-task-038",

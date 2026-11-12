@@ -68,6 +68,11 @@ async function main() {
         }
       }
       if (!q.explanation || !String(q.explanation).trim()) errors.push(`${where}: empty explanation`);
+      // Comprehension questions must carry a passage field (read-before-question context)
+      const qText = String(q.question || "").toLowerCase();
+      if (qText.includes("passage") || qText.includes("read the passage") || qText.includes("based on the passage")) {
+        if (!q.passage || !String(q.passage).trim()) errors.push(`${where}: comprehension question missing passage field`);
+      }
       if (q.repeatedFrom !== undefined && !Array.isArray(q.repeatedFrom)) errors.push(`${where}: repeatedFrom must be an array`);
     });
   }
