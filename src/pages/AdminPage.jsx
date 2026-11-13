@@ -9,7 +9,7 @@ import AdminCompliance from "../components/AdminCompliance";
 import AdminTeams from "../components/AdminTeams";
 import AdminContent from "../components/AdminContent";
 const isAdmin = typeof _isAdmin === 'function' ? _isAdmin : () => false;
-import { Shield, Users, Activity, BookOpen, Crown, ArrowLeft, RefreshCw, Search, Zap, CreditCard, ClipboardList, Award, Clock, CheckCircle, XCircle, Eye } from "lucide-react";
+import { Shield, Users, Activity, BookOpen, Crown, ArrowLeft, RefreshCw, Search, Zap, CreditCard, ClipboardList, Award, Clock, CheckCircle, XCircle, Eye, Wifi, WifiOff, Loader2, AlertCircle, CheckCircle2 } from "lucide-react";
 import NetworkDiagnostic from "../components/NetworkDiagnostic";
 import AdminTrainingData from "../components/AdminTrainingData";
 import AdminTeachers from "../components/AdminTeachers";
@@ -51,6 +51,8 @@ export default function AdminPage() {
   const [paymentLogs, setPaymentLogs] = useState([]);
   const [userStats, setUserStats] = useState(null);
   const [roleEdit, setRoleEdit] = useState({ role: "", schoolId: "" });
+  const [lastSync, setLastSync] = useState(null);
+  const [syncStatus, setSyncStatus] = useState("idle"); // idle | syncing | success | error
 
   useEffect(() => {
     if (!user || !isAdmin(user)) { navigate("/dashboard"); return; }
@@ -59,6 +61,7 @@ export default function AdminPage() {
 
   async function fetchData() {
     setLoading(true);
+    setSyncStatus("syncing");
     try {
       const [logResult, userResult, sesResult, mockResult] = await Promise.allSettled([
         getDocs(query(collection(db, "activityLog"), orderBy("timestamp", "desc"), limit(100))),
@@ -96,8 +99,11 @@ export default function AdminPage() {
         totalXP,
         totalPayments: allLogs.filter(l => l.action?.includes("payment")).length,
       });
+      setLastSync(new Date());
+      setSyncStatus("success");
     } catch (e) {
       console.error("Admin fetch error:", e);
+      setSyncStatus("error");
     }
     setLoading(false);
   }
@@ -289,9 +295,28 @@ export default function AdminPage() {
             </div>
           </div>
           <button onClick={fetchData} style={{ background: "var(--border)", border: "none", color: "var(--text-muted)", padding: "10px 14px", borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", gap: 6, fontFamily: "inherit", fontSize: 13 }}>
-            <RefreshCw size={16} /> Refresh
+            <RefreshCw size={16} className={syncStatus === "syncing" ? "spin" : ""} /> Refresh
           </button>
         </div>
+
+        {/* Sync Status Banner */}
+        {syncStatus !== "idle" && (
+          <div style={{ display: "flex", alignItems: "center", gap: 10, background: "var(--bg-2)", border: `1px solid ${syncStatus === "success" ? "rgba(74, 222, 128, 0.4)" : syncStatus === "error" ? "rgba(255, 77, 106, 0.4)" : "var(--border)"}`, borderRadius: 12, padding: "12px 16px", marginBottom: 24 }}>
+            {syncStatus === "syncing" && <Loader2 size={18} color="var(--primary)" style={{ animation: "spin 0.8s linear infinite" }} />}
+            {syncStatus === "success" && <CheckCircle2 size={18} color="#4ADE80" />}
+            {syncStatus === "error" && <AlertCircle size={18} color="#FF4D6A" />}
+            <div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: "var(--text)" }}>
+                {syncStatus === "syncing" ? "Syncing with Firestore…" : syncStatus === "success" ? "Synced ✓ — Data is live from Firestore" : "Sync failed — Check connection & retry"}
+              </div>
+              {lastSync && syncStatus === "success" && (
+                <div style={{ fontSize: 11, color: "var(--text-muted)", marginTop: 2 }}>
+                  Last synced: {lastSync.toLocaleTimeString()} · Status: Real-time
+                </div>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* Stats Cards */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 16, marginBottom: 32 }}>
