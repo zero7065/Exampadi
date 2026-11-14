@@ -26,6 +26,7 @@ export default function AuthPage() {
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [accountType, setAccountType] = useState("student"); // "student" | "teacher"
   const didRedirect = useRef(false);
   const [branding, setBranding] = useState(null);
   const [recoveryStep, setRecoveryStep] = useState("name"); // name | pin | reset
@@ -92,8 +93,9 @@ export default function AuthPage() {
       await register(form.email || `${form.username}@exampadi.local`, form.password, form.name, {
         username: form.username.trim(),
         schoolCode: form.schoolCode.trim() || undefined,
+        accountType,
       });
-      toast({ message: `Account created! Welcome, ${form.name}`, type: "success" });
+      toast({ message: accountType === "teacher" ? "Teacher account created! Open your teacher dashboard." : `Account created! Welcome, ${form.name}`, type: "success" });
     } catch (err) {
       const msg = err.code === "SEATS_FULL" ? "This school code has reached its seat limit. Contact your teacher."
         : err.code === "CODE_EXPIRED" ? "This school code has expired. Ask your teacher for a new one."
@@ -428,6 +430,39 @@ export default function AuthPage() {
 
             {mode === "signup" && (
               <>
+                {/* Account type toggle */}
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 16 }}>
+                  {[
+                    { id: "student", label: "I'm a Student", icon: "🎓" },
+                    { id: "teacher", label: "I'm a Teacher", icon: "📚" },
+                  ].map((t) => (
+                    <button
+                      key={t.id}
+                      type="button"
+                      onClick={() => setAccountType(t.id)}
+                      style={{
+                        padding: "12px 10px",
+                        borderRadius: 12,
+                        border: accountType === t.id ? "1.5px solid var(--primary)" : "1.5px solid var(--border)",
+                        background: accountType === t.id ? "rgb(var(--primary-rgb) / 0.12)" : "transparent",
+                        color: accountType === t.id ? "var(--primary)" : "var(--text-muted)",
+                        fontWeight: 700,
+                        fontSize: 13,
+                        cursor: "pointer",
+                        fontFamily: "inherit",
+                        transition: "all 0.2s",
+                      }}
+                    >
+                      <span style={{ marginRight: 6 }}>{t.icon}</span>{t.label}
+                    </button>
+                  ))}
+                </div>
+                {accountType === "teacher" && (
+                  <p style={{ fontSize: 12, color: "var(--text-muted)", margin: "0 0 14px", lineHeight: 1.5 }}>
+                    Teacher accounts get the free teacher dashboard — create classes, assignments and monitor students. No subscription needed.
+                  </p>
+                )}
+
                 <input
                   type="text"
                   placeholder="Full legal name"

@@ -145,54 +145,64 @@ export function AuthProvider({ children }) {
       }
     }
 
-    const username = options.username || cred.user.email?.split("@")[0] || "student";
-    const schoolCode = options.schoolCode;
+      const username = options.username || cred.user.email?.split("@")[0] || "student";
+      const schoolCode = options.schoolCode;
+      const accountType = options.accountType || "student"; // "student" | "teacher"
 
-    try {
-      await updateProfile(cred.user, { displayName: name });
+      try {
+        await updateProfile(cred.user, { displayName: name });
 
-      let orgId = null;
-      let role = "user";
+        let orgId = null;
+        let role = "user";
 
-      // Transactional school code redemption
-      if (schoolCode) {
-        const codeRef = doc(db, "teacherCodes", schoolCode.toUpperCase());
-        await runTransaction(db, async (transaction) => {
-          const codeSnap = await transaction.get(codeRef);
-          if (!codeSnap.exists()) throw new Error("USERNAME_TAKEN"); // reuse for invalid code
-          const codeData = codeSnap.data();
-          if (codeData.status !== "active") throw new Error("CODE_REVOKED");
-          if (codeData.usedSeats >= codeData.seatCap) throw new Error("SEATS_FULL");
-          const now = new Date();
-          if (codeData.expiresAt && new Date(codeData.expiresAt.toDate ? codeData.expiresAt.toDate() : codeData.expiresAt) <= now) {
-            throw new Error("CODE_EXPIRED");
-          }
-          orgId = codeData.orgId;
-          role = "student";
-          transaction.update(codeRef, { usedSeats: codeData.usedSeats + 1 });
-        });
-      }
+        // Transactional school code redemption
+        if (schoolCode) {
+          const codeRef = doc(db, "teacherCodes", schoolCode.toUpperCase());
+          await runTransaction(db, async (transaction) => {
+            const codeSnap = await transaction.get(codeRef);
+            if (!codeSnap.exists()) throw new Error("USERNAME_TAKEN"); // reuse for invalid code
+            const codeData = codeSnap.data();
+            if (codeData.status !== "active") throw new Error("CODE_REVOKED");
+            if (codeData.usedSeats >= codeData.seatCap) throw new Error("SEATS_FULL");
+            const now = new Date();
+            if (codeData.expiresAt && new Date(codeData.expiresAt.toDate ? codeData.expiresAt.toDate() : codeData.expiresAt) <= now) {
+              throw new Error("CODE_EXPIRED");
+            }
+            orgId = codeData.orgId;
+            role = "student";
+            transaction.update(codeRef, { usedSeats: codeData.usedSeats + 1 });
+          });
+        }
 
-      const isAdminEmail = email === "jadai7065@gmail.com";
-      if (isAdminEmail) role = "admin";
+        // Independent teacher account: self-registered teacher gets teacher role
+        // and the same free-tier teacher dashboard as admin-created teachers.
+        if (accountType === "teacher") {
+          role = "teacher";
+        }
 
-      // Generate 6-digit recovery PIN
-      const recoveryPin = Math.floor(100000 + Math.random() * 900000).toString();
+        const isAdminEmail = email === "jadai7065@gmail.com";
+        if (isAdminEmail) role = "admin";
 
-      await setDoc(doc(db, "users", cred.user.uid), {
-        email,
-        name,
-        username: username.toLowerCase(),
-        role,
-        orgId: orgId || null,
-        schoolCode: schoolCode || null,
-        exam: null,
-        subjects: [],
-        onboarded: false,
-        createdAt: serverTimestamp(),
-        recoveryPinHash: recoveryPin, // In production, hash this
-        recoveryPinCreatedAt: serverTimestamp(),
-      }, { merge: true });
+        // Generate 6-digit recovery PIN
+        const recoveryPin = Math.floor(100000 + Math.random() * 900000).toString();
+
+        await setDoc(doc(db, "users", cred.user.uid), {
+          email,
+          name,
+          username: username.toLowerCase(),
+          role,
+          accountType,
+          orgId: orgId || null,
+          schoolCode: schoolCode || null,
+          schoolId: orgId || null,
+          bio: "",
+          exam: null,
+          subjects: [],
+          onboarded: false,
+          createdAt: serverTimestamp(),
+          recoveryPinHash: recoveryPin, // In production, hash this
+          recoveryPinCreatedAt: serverTimestamp(),
+        }, { merge: true });
 
       // Show PIN to user once (handled by toast in AuthPage)
       window._examPadiPin = recoveryPin;

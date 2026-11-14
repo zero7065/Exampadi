@@ -18,6 +18,8 @@ import AdminBranding from "../components/AdminBranding";
 import AdminUserView from "../components/AdminUserView";
 import AdminAnalytics from "../components/AdminAnalytics";
 import AdminAIUsage from "../components/AdminAIUsage";
+import AdminMessages from "../components/AdminMessages";
+import AdminManagement from "../components/AdminManagement";
 
 const FULL_PRO_FEATURES = {
   notepad: true,
@@ -359,6 +361,8 @@ export default function AdminPage() {
             { id: "branding", label: "Branding" },
             { id: "analytics", label: "Analytics" },
             { id: "aiUsage", label: "AI Usage" },
+            { id: "messages", label: "Messages" },
+            { id: "management", label: "Management" },
             { id: "userDetail", label: "User Details" },
           ].map(tab => (
             <button key={tab.id} onClick={() => setActiveTab(tab.id)} style={{
@@ -692,6 +696,16 @@ export default function AdminPage() {
         {/* AI Usage Tab */}
         {activeTab === "aiUsage" && (
           <AdminAIUsage />
+        )}
+
+        {/* Messages Tab (warnings / maintenance) */}
+        {activeTab === "messages" && (
+          <AdminMessages />
+        )}
+
+        {/* Management Tab (management logins + school oversight) */}
+        {activeTab === "management" && (
+          <AdminManagement />
         )}
 
         {/* Landing Media Tab */}

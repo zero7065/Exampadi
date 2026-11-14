@@ -89,9 +89,11 @@ const Navbar = () => {
     {
       title: "Community",
       items: [
+        { name: "School Community", path: "/community", icon: MessagesSquare },
         { name: "Leaderboard", path: "/leaderboard", icon: Trophy },
         { name: "Feed", path: "/feed", icon: Newspaper },
         { name: "Study Room", path: "/room", icon: MessagesSquare },
+        { name: "Games", path: "/games", icon: Trophy },
         { name: "Partners", path: "/study-partners", icon: Users, requiresPro: true },
         ...(isTeacher ? [{ name: "Teacher", path: "/teacher", icon: GraduationCap }] : []),
         ...(isAdminUser ? [{ name: "Admin", path: "/admin", icon: ShieldCheck }] : []),

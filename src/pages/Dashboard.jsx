@@ -362,6 +362,32 @@ export default function Dashboard() {
           </button>
         </div>
 
+        {/* School Community + Games banner */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 16, marginBottom: 40 }}>
+          <div
+            onClick={() => navigate("/community")}
+            style={{ background: "linear-gradient(135deg, rgba(99,102,241,0.12), rgba(168,85,247,0.06))", border: "1px solid rgba(99,102,241,0.3)", borderRadius: 16, padding: 18, cursor: "pointer", display: "flex", alignItems: "center", gap: 12 }}
+          >
+            <div style={{ fontSize: 26 }}>👥</div>
+            <div style={{ flex: 1 }}>
+              <div style={{ fontWeight: 700, fontSize: 14, color: "#fff" }}>School Community</div>
+              <div style={{ fontSize: 12, color: "var(--text-muted)" }}>Chat with your school · AI assist</div>
+            </div>
+            <ChevronRight size={16} style={{ color: "var(--text-muted)" }} />
+          </div>
+          <div
+            onClick={() => navigate("/games")}
+            style={{ background: "linear-gradient(135deg, rgba(245,158,11,0.12), rgba(239,68,68,0.06))", border: "1px solid rgba(245,158,11,0.3)", borderRadius: 16, padding: 18, cursor: "pointer", display: "flex", alignItems: "center", gap: 12 }}
+          >
+            <div style={{ fontSize: 26 }}>♟️</div>
+            <div style={{ flex: 1 }}>
+              <div style={{ fontWeight: 700, fontSize: 14, color: "#fff" }}>Games & Chess</div>
+              <div style={{ fontSize: 12, color: "var(--text-muted)" }}>10 levels · brain teasers · challenges</div>
+            </div>
+            <ChevronRight size={16} style={{ color: "var(--text-muted)" }} />
+          </div>
+        </div>
+
         {/* AI Tutor & Recent Activity */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}>
           <div

@@ -20,6 +20,7 @@ import { createAssignment } from "../../lib/teacherContent";
 import { generateTeacherLessonPlan } from "../../lib/ai";
 import { getQuestionsFromBank } from "../../data/questions/compat";
 import TeacherTools from "../../components/TeacherTools";
+import { ensureSchoolCommunity, joinCommunity } from "../../lib/schoolCommunity";
 
 function cellColor(acc) {
   if (acc === null) return "var(--bg-3)";
@@ -93,6 +94,10 @@ export default function TeacherDashboard() {
 
   useEffect(() => {
     if (!schoolId) return;
+    // Auto-join the school community group (idempotent)
+    ensureSchoolCommunity({ schoolId, schoolName: profile?.schoolName || "", managementId: schoolId })
+      .then(() => joinCommunity({ groupId: schoolId, uid: user?.uid, name: profile?.name || user?.displayName, role: "teacher" }))
+      .catch(() => {});
     listSchoolClasses(schoolId).then((cs) => {
       setClasses(cs);
       if (cs.length > 0) setClassId(cs[0].id);
