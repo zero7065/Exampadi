@@ -52,6 +52,17 @@ function Lobby() {
   const [busy, setBusy] = useState(false);
   const [showSetup, setShowSetup] = useState(false);
   const [publicRooms, setPublicRooms] = useState([]);
+  const [roomSearch, setRoomSearch] = useState("");
+
+  const filteredRooms = useMemo(() => {
+    const q = roomSearch.trim().toLowerCase();
+    if (!q) return publicRooms;
+    return publicRooms.filter((r) =>
+      [r.code, r.subject, r.exam, r.hostName, r.goal]
+        .filter(Boolean)
+        .some((v) => String(v).toLowerCase().includes(q))
+    );
+  }, [publicRooms, roomSearch]);
 
   useEffect(() => {
     const unsub = subscribeApprovedRooms(setPublicRooms, 30);
@@ -180,15 +191,26 @@ function Lobby() {
 
       {publicRooms.length > 0 && (
         <section className="glass-card p-5">
-          <div className="flex items-center justify-between gap-2 mb-3">
+          <div className="flex items-center justify-between gap-2 mb-3 flex-wrap">
             <div>
               <h2 className="font-black text-text">Live public rooms</h2>
-              <p className="text-sm text-text-muted">Approved rooms with space to learn together.</p>
+              <p className="text-sm text-text-muted">Search and join any open room — no code needed.</p>
             </div>
-            <span className="text-xs font-bold text-green-500">{publicRooms.length} open</span>
+            <span className="text-xs font-bold text-green-500">{filteredRooms.length} of {publicRooms.length} open</span>
           </div>
+          <input
+            value={roomSearch}
+            onChange={(e) => setRoomSearch(e.target.value)}
+            placeholder="Search by subject, exam, host, goal or room code…"
+            className="input-field mb-3"
+          />
           <div className="space-y-2">
-            {publicRooms.map((r) => {
+            {filteredRooms.length === 0 && (
+              <div className="text-center py-8">
+                <p className="text-sm text-text-muted">No rooms match "{roomSearch}". Try another subject or create your own room above.</p>
+              </div>
+            )}
+            {filteredRooms.map((r) => {
               const timer = r.timer || TIMER_DEFAULTS;
               return (
                 <div key={r.id} className="flex items-center gap-3 p-3 rounded-2xl" style={{ background: "var(--bg-3)", border: "1px solid var(--border)" }}>
@@ -391,6 +413,19 @@ function RoomView({ code }) {
           <div className="flex gap-2 flex-wrap">
             <button onClick={copyLink} className="btn-secondary px-3 text-sm">
               {copied ? <Check size={15} /> : <Copy size={15} />} {code}
+            </button>
+            <button
+              onClick={() => {
+                const link = `${window.location.origin}/room/${code}`;
+                const msg = encodeURIComponent(
+                  `Join my ${room.exam} ${room.subject} study room on ExamPadi!\n\nRoom code: ${code}\n${room.goal ? `Goal: ${room.goal}\n` : ""}\nJoin here: ${link}`
+                );
+                window.open(`https://wa.me/?text=${msg}`, "_blank", "noopener,noreferrer");
+              }}
+              className="btn-secondary px-3 text-sm"
+              title="Invite friends on WhatsApp"
+            >
+              <Users size={15} /> Invite friends
             </button>
             {isHost && <button onClick={() => setSettingsOpen(true)} className="btn-secondary px-3 text-sm"><Settings size={15} /></button>}
             <Link to="/room" className="btn-secondary px-3 text-sm"><ArrowLeft size={15} /> Rooms</Link>

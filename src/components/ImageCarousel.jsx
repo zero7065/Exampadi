@@ -1,10 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight, Brain, BookOpen, GraduationCap, Star, TrendingUp, Trophy } from "lucide-react";
+import LandingMedia from "./landing/LandingMedia";
 
 const slides = [
   {
     id: 1,
     type: "question",
+    slot: "practice",
     title: "Real Past Questions 2014–2026",
     description: "Practice with thousands of actual JAMB, WAEC & NABTEB past questions. Every question comes with detailed AI-powered explanations.",
     icon: BookOpen,
@@ -14,6 +16,7 @@ const slides = [
   {
     id: 2,
     type: "chat",
+    slot: "aiTutor",
     title: "AI Tutor — Your 24/7 Study Buddy",
     description: "Stuck on a topic? Ask the AI Tutor for instant, step-by-step explanations. It's like having a personal teacher in your pocket.",
     icon: Brain,
@@ -23,6 +26,7 @@ const slides = [
   {
     id: 3,
     type: "exam",
+    slot: "cbt",
     title: "Exam Mode — Real Exam Feel",
     description: "Experience the actual Computer-Based Test environment. Timed sessions, real JAMB/WAEC interfaces, and instant scoring.",
     icon: GraduationCap,
@@ -32,6 +36,7 @@ const slides = [
   {
     id: 4,
     type: "analytics",
+    slot: "dashboard",
     title: "Smart Progress Tracking",
     description: "Track your improvement with detailed analytics. Know your strengths, weaknesses, and exactly what to study next.",
     icon: TrendingUp,
@@ -262,7 +267,16 @@ export default function ImageCarousel({ autoPlay = true, interval = 4000 }) {
           opacity: 0.1,
           background: `radial-gradient(circle at 50% 50%, ${slide.color}44 0%, transparent 70%)`,
         }} />
-        <MiniPreview type={slide.type} color={slide.color} />
+        {slide.slot ? (
+          <LandingMedia
+            slot={slide.slot}
+            alt={slide.title}
+            mockup={<MiniPreview type={slide.type} color={slide.color} />}
+            imgStyle={{ width: "min(360px, 82vw)", borderRadius: 16, boxShadow: "0 18px 50px rgba(0,0,0,0.28)", position: "relative", zIndex: 1 }}
+          />
+        ) : (
+          <MiniPreview type={slide.type} color={slide.color} />
+        )}
         <h3 style={{
           fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)",
           fontWeight: 800,

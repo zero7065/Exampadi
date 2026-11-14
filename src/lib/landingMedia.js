@@ -19,6 +19,14 @@ let _cache = null;
 let _cacheAt = 0;
 const CACHE_TTL = 10 * 60 * 1000;
 
+// Clear the in-memory + localStorage cache so a fresh upload/revert shows
+// immediately on the landing page (called by AdminMedia after save/revert).
+export function invalidateLandingMediaCache() {
+  _cache = null;
+  _cacheAt = 0;
+  try { localStorage.removeItem("exampadi_landing_media"); } catch { /* private mode */ }
+}
+
 export async function getLandingMedia() {
   if (_cache && Date.now() - _cacheAt < CACHE_TTL) return _cache;
   try {

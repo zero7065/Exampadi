@@ -392,7 +392,7 @@ export default function PracticeSession() {
                     onClick={() => setWhiteboardOpen(true)}
                     style={{ padding: "4px 12px", borderRadius: 8, background: "rgb(var(--primary-rgb) / 0.1)", border: "1px solid rgb(var(--primary-rgb) / 0.3)", color: "var(--primary)", cursor: "pointer", fontSize: 11, fontWeight: 600, fontFamily: "inherit", display: "flex", alignItems: "center", gap: 4 }}
                   >
-                    <PenTool size={12} /> Whiteboard
+                    <PenTool size={12} /> Scratchpad
                   </button>
                 </div>
               </div>
@@ -533,7 +533,7 @@ export default function PracticeSession() {
         )}
       </div>
 
-      {/* Whiteboard toggle FAB */}
+      {/* Scratchpad toggle FAB */}
       <button
         onClick={() => setWhiteboardOpen(true)}
         style={{
@@ -544,7 +544,7 @@ export default function PracticeSession() {
           alignItems: "center", justifyContent: "center",
           boxShadow: "0 4px 20px rgb(var(--primary-rgb) / 0.5)",
         }}
-        title="Whiteboard & Calculator"
+        title="Scratchpad — rough work & calculator"
       >
         <PenTool size={22} />
       </button>

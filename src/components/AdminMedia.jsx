@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db, getAppStorage } from "../firebaseConfig";
-import { LANDING_SLOTS, BUNDLED_SHOTS } from "../lib/landingMedia";
+import { LANDING_SLOTS, BUNDLED_SHOTS, invalidateLandingMediaCache } from "../lib/landingMedia";
 import { useToast } from "./Toast";
 import { ImagePlus, RotateCcw, Loader2, ExternalLink } from "lucide-react";
 
@@ -87,10 +87,8 @@ export default function AdminMedia() {
       const url = await getDownloadURL(ref(storage, path));
       await setDoc(doc(db, "siteContent", "landing"), { [slot]: url, updatedAt: serverTimestamp() }, { merge: true });
       setUrls((prev) => ({ ...prev, [slot]: url }));
-      try {
-        localStorage.removeItem("exampadi_landing_media");
-      } catch { /* intentionally empty */ }
-      toast({ message: `${SLOT_LABELS[slot]} updated ✓`, type: "success" });
+      invalidateLandingMediaCache();
+      toast({ message: `${SLOT_LABELS[slot]} updated ✓ — refresh the landing page to see it`, type: "success" });
     } catch (e) {
       toast({ message: `Upload failed: ${e.message}`, type: "error" });
     } finally {
@@ -104,9 +102,7 @@ export default function AdminMedia() {
       delete next[slot];
       await setDoc(doc(db, "siteContent", "landing"), { [slot]: null, updatedAt: serverTimestamp() }, { merge: true });
       setUrls(next);
-      try {
-        localStorage.removeItem("exampadi_landing_media");
-      } catch { /* intentionally empty */ }
+      invalidateLandingMediaCache();
       toast({ message: `${SLOT_LABELS[slot]} reverted to bundled image`, type: "success" });
     } catch (e) {
       toast({ message: `Revert failed: ${e.message}`, type: "error" });

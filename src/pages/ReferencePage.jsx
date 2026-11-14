@@ -3,7 +3,8 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { REFERENCE_SHEETS } from "../data/reference";
 import { BOOK_RECS, BOOK_SUBJECTS } from "../data/resources";
-import { Search, ArrowLeft, BookOpen, LibraryBig } from "lucide-react";
+import { LEARNING_RESOURCES, formatRSSDate, getCategoryIcon } from "../data/learningRSS";
+import { Search, ArrowLeft, BookOpen, LibraryBig, Newspaper, ExternalLink, Clock, Tag } from "lucide-react";
 
 export default function ReferencePage() {
   const [tab, setTab] = useState("sheets");
@@ -11,6 +12,8 @@ export default function ReferencePage() {
   const [query, setQuery] = useState("");
   const [bookSubject, setBookSubject] = useState("All");
   const [bookQuery, setBookQuery] = useState("");
+  const [feedCategory, setFeedCategory] = useState("All");
+  const [feedQuery, setFeedQuery] = useState("");
 
   const books = BOOK_RECS.filter(
     (b) =>
@@ -20,6 +23,16 @@ export default function ReferencePage() {
   );
 
   const sheet = REFERENCE_SHEETS.find((s) => s.id === sheetId) || REFERENCE_SHEETS[0];
+
+  const feedCategories = ["All", ...new Set(LEARNING_RESOURCES.map((r) => r.category))];
+  const filteredFeed = useMemo(() => {
+    const q = feedQuery.trim().toLowerCase();
+    return LEARNING_RESOURCES.filter((r) => {
+      if (feedCategory !== "All" && r.category !== feedCategory) return false;
+      if (!q) return true;
+      return `${r.title} ${r.description} ${r.category}`.toLowerCase().includes(q);
+    }).sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+  }, [feedCategory, feedQuery]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -44,16 +57,63 @@ export default function ReferencePage() {
         <p className="lead">Formula sheets, constants, tables and grammar rules — searchable offline.</p>
       </header>
 
-      <div className="flex gap-2">
+      <div className="flex gap-2 flex-wrap">
         <button onClick={() => setTab("sheets")} className={tab === "sheets" ? "btn-primary" : "btn-secondary"} style={{ padding: "10px 18px", fontSize: 13 }}>
           <BookOpen size={15} /> Formula Sheets
         </button>
         <button onClick={() => setTab("books")} className={tab === "books" ? "btn-primary" : "btn-secondary"} style={{ padding: "10px 18px", fontSize: 13 }}>
           <LibraryBig size={15} /> Books & Tools
         </button>
+        <button onClick={() => setTab("feed")} className={tab === "feed" ? "btn-primary" : "btn-secondary"} style={{ padding: "10px 18px", fontSize: 13 }}>
+          <Newspaper size={15} /> Learning Feed
+        </button>
       </div>
 
-      {tab === "books" ? (
+      {tab === "feed" ? (
+        <>
+          <div className="flex flex-col sm:flex-row gap-2">
+            <select value={feedCategory} onChange={(e) => setFeedCategory(e.target.value)} className="input-field" style={{ maxWidth: 200 }}>
+              {feedCategories.map((c) => <option key={c} value={c}>{c}</option>)}
+            </select>
+            <div style={{ position: "relative", flex: 1 }}>
+              <Search size={16} style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)" }} />
+              <input value={feedQuery} onChange={(e) => setFeedQuery(e.target.value)} placeholder="Search the learning feed…" className="input-field" style={{ paddingLeft: 40 }} />
+            </div>
+          </div>
+          <div className="flex items-center justify-between flex-wrap gap-2">
+            <p className="text-xs text-text-muted">{filteredFeed.length} article{filteredFeed.length === 1 ? "" : "s"} · Updated regularly</p>
+            <a href="/api/rss/learning" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold" style={{ color: "var(--primary)", display: "inline-flex", alignItems: "center", gap: 4 }}>
+              <Newspaper size={12} /> Subscribe via RSS
+            </a>
+          </div>
+          {filteredFeed.length === 0 && <p className="text-sm text-text-muted">No articles match your search.</p>}
+          <div className="space-y-3">
+            {filteredFeed.map((r) => (
+              <div key={r.id} className="glass-card p-4">
+                <div className="flex items-start gap-3">
+                  <div className="text-2xl shrink-0">{getCategoryIcon(r.category)}</div>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2 flex-wrap mb-1">
+                      <span style={{ fontSize: 10, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--primary)" }}>{r.category}</span>
+                      <span className="text-[10px] text-text-muted inline-flex items-center gap-1"><Clock size={10} /> {formatRSSDate(r.publishedAt)}</span>
+                    </div>
+                    <a href={r.url} target={r.url.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className="font-bold text-text text-sm hover:text-primary transition-colors" style={{ display: "block", marginBottom: 4 }}>
+                      {r.title} {r.url.startsWith("http") && <ExternalLink size={12} style={{ display: "inline", marginLeft: 4 }} />}
+                    </a>
+                    <p className="text-sm text-text-muted" style={{ lineHeight: 1.6, margin: 0 }}>{r.description}</p>
+                    <div className="flex items-center gap-2 mt-2">
+                      <span style={{ fontSize: 10, fontWeight: 700, padding: "2px 8px", borderRadius: 12, background: "var(--bg-3)", color: "var(--text-muted)", border: "1px solid var(--border)", display: "inline-flex", alignItems: "center", gap: 3 }}>
+                        <Tag size={9} /> {r.source}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-text-muted">Fresh JAMB, WAEC, NECO & IELTS news and study tips. Subscribe to the RSS feed in any reader to never miss an update.</p>
+        </>
+      ) : tab === "books" ? (
         <>
           <div className="flex flex-col sm:flex-row gap-2">
             <select value={bookSubject} onChange={(e) => setBookSubject(e.target.value)} className="input-field" style={{ maxWidth: 220 }}>

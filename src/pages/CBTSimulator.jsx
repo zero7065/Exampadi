@@ -8,8 +8,9 @@ import { doc, updateDoc, addDoc, collection, increment, serverTimestamp } from "
 import { db } from "../firebaseConfig";
 import Timer from "../components/Timer";
 import ProGate from "../components/ProGate";
+import Scratchpad from "../components/Scratchpad";
 import { recordSession } from "../lib/aiMemory";
-import { ChevronLeft, ChevronRight, Flag, Send, AlertCircle, Monitor, BookOpen } from "lucide-react";
+import { ChevronLeft, ChevronRight, Flag, Send, AlertCircle, Monitor, BookOpen, Calculator } from "lucide-react";
 
 const CBTSimulator = () => {
   const { user } = useAuth();
@@ -24,6 +25,7 @@ const CBTSimulator = () => {
   const [answers, setAnswers] = useState({});
   const [redirected, setRedirected] = useState(false);
   const [startTime] = useState(Date.now());
+  const [scratchpadOpen, setScratchpadOpen] = useState(false);
 
   useEffect(() => {
     if (!sessionData?.questions?.length && !redirected) {
@@ -287,6 +289,22 @@ const CBTSimulator = () => {
           </button>
         </div>
       </div>
+
+      {/* Scratchpad FAB — movable rough-work panel (never covers the question) */}
+      <button
+        onClick={() => setScratchpadOpen(true)}
+        title="Scratchpad — rough work & calculator"
+        style={{
+          position: "fixed", bottom: 90, right: 24, zIndex: 9998,
+          width: 48, height: 48, borderRadius: "50%",
+          background: "var(--bg-2)", border: "1px solid var(--border)", color: "var(--text)",
+          cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+          boxShadow: "0 4px 20px rgba(0,0,0,0.35)",
+        }}
+      >
+        <Calculator size={20} />
+      </button>
+      <Scratchpad open={scratchpadOpen} onClose={() => setScratchpadOpen(false)} context={currentQuestion?.question || ""} />
     </div>
   );
 };
