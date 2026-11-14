@@ -1,81 +1,5 @@
 [
   {
-    "id": "neco-2019-uoel-001",
-    "subject": "Use of English Language",
-    "topic": "Grammar",
-    "exam": [
-      "NECO"
-    ],
-    "year": 2019,
-    "difficulty": "easy",
-    "question": "Choose the correct option: 'They ___ football yesterday.'",
-    "options": {
-      "A": "play",
-      "B": "played",
-      "C": "playing",
-      "D": "plays"
-    },
-    "correctAnswer": "B",
-    "explanation": "'Yesterday' signals past tense → 'played'.",
-    "source": "seed",
-    "createdAt": "2026-10-11T09:03:36.196Z",
-    "highYield": false,
-    "repeatedFrom": [
-      2019,
-      2024
-    ]
-  },
-  {
-    "id": "neco-2020-uoel-001",
-    "subject": "Use of English Language",
-    "topic": "Synonyms",
-    "exam": [
-      "NECO"
-    ],
-    "year": 2020,
-    "difficulty": "medium",
-    "question": "Closest in meaning to 'verify':",
-    "options": {
-      "A": "Deny",
-      "B": "Confirm",
-      "C": "Forget",
-      "D": "Guess"
-    },
-    "correctAnswer": "B",
-    "explanation": "Verify means to confirm truth or accuracy.",
-    "source": "seed",
-    "createdAt": "2026-10-11T09:03:36.196Z",
-    "highYield": false,
-    "repeatedFrom": [
-      2020
-    ]
-  },
-  {
-    "id": "neco-2021-uoel-001",
-    "subject": "Use of English Language",
-    "topic": "Antonyms",
-    "exam": [
-      "NECO"
-    ],
-    "year": 2021,
-    "difficulty": "easy",
-    "question": "Opposite of 'permit':",
-    "options": {
-      "A": "Allow",
-      "B": "Forbid",
-      "C": "Grant",
-      "D": "Approve"
-    },
-    "correctAnswer": "B",
-    "explanation": "Forbid is the direct opposite of permit.",
-    "source": "seed",
-    "createdAt": "2026-10-11T09:03:36.196Z",
-    "highYield": false,
-    "repeatedFrom": [
-      2021
-    ]
-  },
-  {
     "id": "neco-2019-math-001",
     "subject": "Mathematics",
     "topic": "Algebra",
@@ -389,31 +313,6 @@
     ]
   },
   {
-    "id": "neco-2023-uoel-001",
-    "subject": "Use of English Language",
-    "topic": "Idioms",
-    "exam": [
-      "NECO"
-    ],
-    "year": 2023,
-    "difficulty": "medium",
-    "question": "What does 'to spill the beans' mean?",
-    "options": {
-      "A": "To cook badly",
-      "B": "To reveal a secret",
-      "C": "To waste food",
-      "D": "To farm beans"
-    },
-    "correctAnswer": "B",
-    "explanation": "It means disclosing secret information.",
-    "source": "seed",
-    "createdAt": "2026-10-11T09:03:36.197Z",
-    "highYield": false,
-    "repeatedFrom": [
-      2023
-    ]
-  },
-  {
     "id": "neco-2024-math-001",
     "subject": "Mathematics",
     "topic": "Statistics",
@@ -515,31 +414,6 @@
     ]
   },
   {
-    "id": "neco-2022-uoel-001",
-    "subject": "Use of English Language",
-    "topic": "Comprehension",
-    "exam": [
-      "NECO"
-    ],
-    "year": 2022,
-    "difficulty": "medium",
-    "question": "A 'rhetorical question' is asked mainly to:",
-    "options": {
-      "A": "Get a direct answer",
-      "B": "Make a point without expecting reply",
-      "C": "Confuse readers",
-      "D": "End a story"
-    },
-    "correctAnswer": "B",
-    "explanation": "Rhetorical questions emphasize ideas, not elicit answers.",
-    "source": "seed",
-    "createdAt": "2026-10-11T09:03:36.197Z",
-    "highYield": false,
-    "repeatedFrom": [
-      2022
-    ]
-  },
-  {
     "id": "neco-2023-math-001",
     "subject": "Mathematics",
     "topic": "Trigonometry",
@@ -562,56 +436,6 @@
     "highYield": false,
     "repeatedFrom": [
       2023
-    ]
-  },
-  {
-    "id": "neco-2022-econ-001",
-    "subject": "Economics",
-    "topic": "Money",
-    "exam": [
-      "NECO"
-    ],
-    "year": 2022,
-    "difficulty": "easy",
-    "question": "Barter requires:",
-    "options": {
-      "A": "Double coincidence of wants",
-      "B": "Banks",
-      "C": "Coins",
-      "D": "Internet"
-    },
-    "correctAnswer": "A",
-    "explanation": "Both parties must want what the other offers.",
-    "source": "seed",
-    "createdAt": "2026-10-11T09:03:36.197Z",
-    "highYield": false,
-    "repeatedFrom": [
-      2022
-    ]
-  },
-  {
-    "id": "neco-2024-gove-001",
-    "subject": "Government",
-    "topic": "Arms of Government",
-    "exam": [
-      "NECO"
-    ],
-    "year": 2024,
-    "difficulty": "easy",
-    "question": "The head of the executive at state level is the:",
-    "options": {
-      "A": "President",
-      "B": "Governor",
-      "C": "Speaker",
-      "D": "Chief Judge"
-    },
-    "correctAnswer": "B",
-    "explanation": "Governors head state executives in Nigeria.",
-    "source": "seed",
-    "createdAt": "2026-10-11T09:03:36.197Z",
-    "highYield": false,
-    "repeatedFrom": [
-      2024
     ]
   },
   {
@@ -1055,57 +879,6 @@
     ]
   },
   {
-    "id": "neco-2024-uoel-001",
-    "subject": "Use of English Language",
-    "topic": "Grammar",
-    "exam": [
-      "NECO"
-    ],
-    "year": 2024,
-    "difficulty": "medium",
-    "question": "Choose the correct option: 'The news ___ good.'",
-    "options": {
-      "A": "are",
-      "B": "were",
-      "C": "is",
-      "D": "have been"
-    },
-    "correctAnswer": "C",
-    "explanation": "'News' is singular despite the -s ending.",
-    "source": "seed",
-    "createdAt": "2026-10-11T09:56:07.019Z",
-    "highYield": false,
-    "repeatedFrom": [
-      2019,
-      2024
-    ]
-  },
-  {
-    "id": "neco-2025-uoel-001",
-    "subject": "Use of English Language",
-    "topic": "Oral English",
-    "exam": [
-      "NECO"
-    ],
-    "year": 2025,
-    "difficulty": "easy",
-    "question": "The word 'chair' starts with which sound?",
-    "options": {
-      "A": "/ʃ/",
-      "B": "/tʃ/",
-      "C": "/k/",
-      "D": "/s/"
-    },
-    "correctAnswer": "B",
-    "explanation": "'Ch' in chair is pronounced /tʃ/.",
-    "source": "seed",
-    "createdAt": "2026-10-11T09:56:07.019Z",
-    "highYield": false,
-    "repeatedFrom": [
-      2025
-    ]
-  },
-  {
     "id": "neco-2025-math-001",
     "subject": "Mathematics",
     "topic": "Algebra",
@@ -1155,106 +928,6 @@
     "highYield": false,
     "repeatedFrom": [
       2021,
-      2025
-    ]
-  },
-  {
-    "id": "neco-2021-gove-001",
-    "subject": "Government",
-    "topic": "Democracy",
-    "exam": [
-      "NECO"
-    ],
-    "year": 2021,
-    "difficulty": "medium",
-    "question": "Periodic elections are essential in a democracy to ensure:",
-    "options": {
-      "A": "Life presidency",
-      "B": "Accountability and consent",
-      "C": "Military rule",
-      "D": "One-party dominance"
-    },
-    "correctAnswer": "B",
-    "explanation": "Regular polls let citizens renew or withdraw their mandate.",
-    "source": "seed",
-    "createdAt": "2026-10-11T09:56:07.019Z",
-    "highYield": false,
-    "repeatedFrom": [
-      2021
-    ]
-  },
-  {
-    "id": "neco-2023-gove-001",
-    "subject": "Government",
-    "topic": "Federalism",
-    "exam": [
-      "NECO"
-    ],
-    "year": 2023,
-    "difficulty": "easy",
-    "question": "How many tiers of government does Nigeria have?",
-    "options": {
-      "A": "Two",
-      "B": "Three",
-      "C": "Four",
-      "D": "One"
-    },
-    "correctAnswer": "B",
-    "explanation": "Federal, state and local governments.",
-    "source": "seed",
-    "createdAt": "2026-10-11T09:56:07.019Z",
-    "highYield": false,
-    "repeatedFrom": [
-      2023
-    ]
-  },
-  {
-    "id": "neco-2024-econ-001",
-    "subject": "Economics",
-    "topic": "Demand and Supply",
-    "exam": [
-      "NECO"
-    ],
-    "year": 2024,
-    "difficulty": "medium",
-    "question": "A rise in income (for a normal good) causes demand to:",
-    "options": {
-      "A": "Fall",
-      "B": "Shift right (increase)",
-      "C": "Stay fixed",
-      "D": "Become zero"
-    },
-    "correctAnswer": "B",
-    "explanation": "Higher income raises demand for normal goods at every price.",
-    "source": "seed",
-    "createdAt": "2026-10-11T09:56:07.020Z",
-    "highYield": false,
-    "repeatedFrom": [
-      2024
-    ]
-  },
-  {
-    "id": "neco-2025-econ-001",
-    "subject": "Economics",
-    "topic": "Population",
-    "exam": [
-      "NECO"
-    ],
-    "year": 2025,
-    "difficulty": "easy",
-    "question": "A population pyramid with a wide base shows:",
-    "options": {
-      "A": "Ageing population",
-      "B": "High birth rate",
-      "C": "Zero growth",
-      "D": "High death rate only"
-    },
-    "correctAnswer": "B",
-    "explanation": "Many children at the base means high fertility.",
-    "source": "seed",
-    "createdAt": "2026-10-11T09:56:07.020Z",
-    "highYield": false,
-    "repeatedFrom": [
       2025
     ]
   },
@@ -1334,31 +1007,6 @@
     ]
   },
   {
-    "id": "neco-2020-uoel-002",
-    "subject": "Use of English Language",
-    "topic": "Lexis and Structure",
-    "exam": [
-      "NECO"
-    ],
-    "year": 2020,
-    "difficulty": "easy",
-    "question": "Choose the correctly spelt word:",
-    "options": {
-      "A": "Seperate",
-      "B": "Separate",
-      "C": "Seprate",
-      "D": "Seperete"
-    },
-    "correctAnswer": "B",
-    "explanation": "Separate: s-e-p-a-r-a-t-e ('par' in the middle).",
-    "source": "seed",
-    "createdAt": "2026-10-11T09:56:07.020Z",
-    "highYield": false,
-    "repeatedFrom": [
-      2020
-    ]
-  },
-  {
     "id": "neco-2022-math-001",
     "subject": "Mathematics",
     "topic": "Indices",
@@ -1381,56 +1029,6 @@
     "highYield": false,
     "repeatedFrom": [
       2022
-    ]
-  },
-  {
-    "id": "neco-2025-gove-001",
-    "subject": "Government",
-    "topic": "ECOWAS",
-    "exam": [
-      "NECO"
-    ],
-    "year": 2025,
-    "difficulty": "medium",
-    "question": "Which country is NOT in ECOWAS?",
-    "options": {
-      "A": "Ghana",
-      "B": "Senegal",
-      "C": "Kenya",
-      "D": "Togo"
-    },
-    "correctAnswer": "C",
-    "explanation": "Kenya is in East Africa (EAC), not West Africa.",
-    "source": "seed",
-    "createdAt": "2026-10-11T09:56:07.020Z",
-    "highYield": false,
-    "repeatedFrom": [
-      2025
-    ]
-  },
-  {
-    "id": "neco-2023-econ-001",
-    "subject": "Economics",
-    "topic": "Scale of Preference",
-    "exam": [
-      "NECO"
-    ],
-    "year": 2023,
-    "difficulty": "easy",
-    "question": "Wants are described as insatiable because:",
-    "options": {
-      "A": "They end at death only",
-      "B": "Human wants are unlimited",
-      "C": "Money is scarce",
-      "D": "Goods are free"
-    },
-    "correctAnswer": "B",
-    "explanation": "Human wants exceed available resources — the core economic problem.",
-    "source": "seed",
-    "createdAt": "2026-10-11T09:56:07.020Z",
-    "highYield": false,
-    "repeatedFrom": [
-      2023
     ]
   },
   {
@@ -1756,81 +1354,6 @@
     ]
   },
   {
-    "id": "neco-2024-economics-020",
-    "subject": "Economics",
-    "topic": "The law of demand states that:",
-    "exam": [
-      "NECO"
-    ],
-    "year": 2024,
-    "difficulty": "easy",
-    "question": "The law of demand states that:",
-    "options": {
-      "A": "As price falls, quantity demanded rises",
-      "B": "As price rises, quantity demanded rises",
-      "C": "Price and demand are unrelated",
-      "D": "Demand always equals supply"
-    },
-    "correctAnswer": "A",
-    "explanation": "There is an inverse relationship between price and quantity demanded, ceteris paribus.",
-    "source": "seed",
-    "createdAt": "2026-10-14T23:24:02.781Z",
-    "highYield": false,
-    "repeatedFrom": [
-      2024
-    ]
-  },
-  {
-    "id": "neco-2024-government-021",
-    "subject": "Government",
-    "topic": "The Nigerian constitution was ",
-    "exam": [
-      "NECO"
-    ],
-    "year": 2024,
-    "difficulty": "medium",
-    "question": "The Nigerian constitution was first promulgated in:",
-    "options": {
-      "A": "1960",
-      "B": "1963",
-      "C": "1979",
-      "D": "1999"
-    },
-    "correctAnswer": "C",
-    "explanation": "The 1979 constitution introduced the presidential system in Nigeria.",
-    "source": "seed",
-    "createdAt": "2026-10-14T23:24:02.781Z",
-    "highYield": false,
-    "repeatedFrom": [
-      2024
-    ]
-  },
-  {
-    "id": "neco-2024-english-022",
-    "subject": "English",
-    "topic": "Choose the correct spelling:",
-    "exam": [
-      "NECO"
-    ],
-    "year": 2024,
-    "difficulty": "hard",
-    "question": "Choose the correct spelling:",
-    "options": {
-      "A": "Occurence",
-      "B": "Occurrence",
-      "C": "Occurrance",
-      "D": "Ocurrence"
-    },
-    "correctAnswer": "B",
-    "explanation": "Occurrence has double c and double r. It is one of the most commonly misspelled English words.",
-    "source": "seed",
-    "createdAt": "2026-10-14T23:24:02.781Z",
-    "highYield": false,
-    "repeatedFrom": [
-      2024
-    ]
-  },
-  {
     "id": "neco-2024-mathematics-021",
     "subject": "Mathematics",
     "topic": "Solve for x: 2x + 5 = 17",
@@ -2051,81 +1574,6 @@
     "source": "seed",
     "createdAt": "2026-10-14T23:24:02.781Z",
     "highYield": true,
-    "repeatedFrom": [
-      2024
-    ]
-  },
-  {
-    "id": "neco-2024-economics-030",
-    "subject": "Economics",
-    "topic": "The law of demand states that:",
-    "exam": [
-      "NECO"
-    ],
-    "year": 2024,
-    "difficulty": "easy",
-    "question": "The law of demand states that:",
-    "options": {
-      "A": "As price falls, quantity demanded rises",
-      "B": "As price rises, quantity demanded rises",
-      "C": "Price and demand are unrelated",
-      "D": "Demand always equals supply"
-    },
-    "correctAnswer": "A",
-    "explanation": "There is an inverse relationship between price and quantity demanded, ceteris paribus.",
-    "source": "seed",
-    "createdAt": "2026-10-14T23:24:02.781Z",
-    "highYield": false,
-    "repeatedFrom": [
-      2024
-    ]
-  },
-  {
-    "id": "neco-2024-government-031",
-    "subject": "Government",
-    "topic": "The Nigerian constitution was ",
-    "exam": [
-      "NECO"
-    ],
-    "year": 2024,
-    "difficulty": "medium",
-    "question": "The Nigerian constitution was first promulgated in:",
-    "options": {
-      "A": "1960",
-      "B": "1963",
-      "C": "1979",
-      "D": "1999"
-    },
-    "correctAnswer": "C",
-    "explanation": "The 1979 constitution introduced the presidential system in Nigeria.",
-    "source": "seed",
-    "createdAt": "2026-10-14T23:24:02.781Z",
-    "highYield": false,
-    "repeatedFrom": [
-      2024
-    ]
-  },
-  {
-    "id": "neco-2024-english-032",
-    "subject": "English",
-    "topic": "Choose the correct spelling:",
-    "exam": [
-      "NECO"
-    ],
-    "year": 2024,
-    "difficulty": "hard",
-    "question": "Choose the correct spelling:",
-    "options": {
-      "A": "Occurence",
-      "B": "Occurrence",
-      "C": "Occurrance",
-      "D": "Ocurrence"
-    },
-    "correctAnswer": "B",
-    "explanation": "Occurrence has double c and double r. It is one of the most commonly misspelled English words.",
-    "source": "seed",
-    "createdAt": "2026-10-14T23:24:02.781Z",
-    "highYield": false,
     "repeatedFrom": [
       2024
     ]
@@ -2356,79 +1804,172 @@
     ]
   },
   {
-    "id": "neco-2024-economics-040",
-    "subject": "Economics",
-    "topic": "The law of demand states that:",
+    "id": "neco-2026-useofenglishlanguage-001",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
     "exam": [
       "NECO"
     ],
-    "year": 2024,
+    "year": 2026,
     "difficulty": "easy",
-    "question": "The law of demand states that:",
+    "question": "Choose the word nearest in meaning to 'diligent':",
     "options": {
-      "A": "As price falls, quantity demanded rises",
-      "B": "As price rises, quantity demanded rises",
-      "C": "Price and demand are unrelated",
-      "D": "Demand always equals supply"
+      "A": "Hardworking",
+      "B": "Lazy",
+      "C": "Careless",
+      "D": "Wealthy"
     },
     "correctAnswer": "A",
-    "explanation": "There is an inverse relationship between price and quantity demanded, ceteris paribus.",
-    "source": "seed",
-    "createdAt": "2026-10-14T23:24:02.781Z",
-    "highYield": false,
-    "repeatedFrom": [
-      2024
-    ]
+    "explanation": "Diligent = hardworking.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.171Z"
   },
   {
-    "id": "neco-2024-government-041",
-    "subject": "Government",
-    "topic": "The Nigerian constitution was ",
+    "id": "neco-2026-useofenglishlanguage-002",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
     "exam": [
       "NECO"
     ],
-    "year": 2024,
+    "year": 2026,
     "difficulty": "medium",
-    "question": "The Nigerian constitution was first promulgated in:",
+    "question": "Choose the correct option: 'The team ___ playing well.'",
     "options": {
-      "A": "1960",
-      "B": "1963",
-      "C": "1979",
-      "D": "1999"
+      "A": "is",
+      "B": "are",
+      "C": "were",
+      "D": "have"
     },
-    "correctAnswer": "C",
-    "explanation": "The 1979 constitution introduced the presidential system in Nigeria.",
-    "source": "seed",
-    "createdAt": "2026-10-14T23:24:02.781Z",
-    "highYield": false,
-    "repeatedFrom": [
-      2024
-    ]
+    "correctAnswer": "A",
+    "explanation": "Collective noun 'team' takes a singular verb here.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.184Z"
   },
   {
-    "id": "neco-2024-english-042",
-    "subject": "English",
-    "topic": "Choose the correct spelling:",
+    "id": "neco-2026-useofenglishlanguage-003",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
     "exam": [
       "NECO"
     ],
-    "year": 2024,
+    "year": 2026,
     "difficulty": "hard",
-    "question": "Choose the correct spelling:",
+    "question": "The antonym of 'ancient' is:",
     "options": {
-      "A": "Occurence",
-      "B": "Occurrence",
-      "C": "Occurrance",
-      "D": "Ocurrence"
+      "A": "Modern",
+      "B": "Old",
+      "C": "Historic",
+      "D": "Aged"
     },
-    "correctAnswer": "B",
-    "explanation": "Occurrence has double c and double r. It is one of the most commonly misspelled English words.",
-    "source": "seed",
-    "createdAt": "2026-10-14T23:24:02.781Z",
-    "highYield": false,
-    "repeatedFrom": [
-      2024
-    ]
+    "correctAnswer": "A",
+    "explanation": "Ancient ↔ modern.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.184Z"
+  },
+  {
+    "id": "neco-2026-useofenglishlanguage-004",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Choose the correctly spelt word:",
+    "options": {
+      "A": "Necessary",
+      "B": "Neccessary",
+      "C": "Necesary",
+      "D": "Necessery"
+    },
+    "correctAnswer": "A",
+    "explanation": "Necessary: one c, double s.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.185Z"
+  },
+  {
+    "id": "neco-2026-useofenglishlanguage-005",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "'She sings beautifully.' The word 'beautifully' is a(n):",
+    "options": {
+      "A": "Adverb",
+      "B": "Adjective",
+      "C": "Noun",
+      "D": "Verb"
+    },
+    "correctAnswer": "A",
+    "explanation": "Adverbs modify verbs (sings beautifully).",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.185Z"
+  },
+  {
+    "id": "neco-2026-useofenglishlanguage-006",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "The plural of 'child' is:",
+    "options": {
+      "A": "Children",
+      "B": "Childs",
+      "C": "Childes",
+      "D": "Childrens"
+    },
+    "correctAnswer": "A",
+    "explanation": "Irregular plural: child → children.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.185Z"
+  },
+  {
+    "id": "neco-2026-useofenglishlanguage-007",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Choose the correct question tag: 'They are coming, ___?'",
+    "options": {
+      "A": "aren't they",
+      "B": "isn't it",
+      "C": "don't they",
+      "D": "won't they"
+    },
+    "correctAnswer": "A",
+    "explanation": "Positive statement → negative tag: aren't they?",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.185Z"
+  },
+  {
+    "id": "neco-2026-useofenglishlanguage-008",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "'To break the ice' means to:",
+    "options": {
+      "A": "Start a conversation",
+      "B": "Cause damage",
+      "C": "Cool a drink",
+      "D": "End a friendship"
+    },
+    "correctAnswer": "A",
+    "explanation": "Break the ice = ease initial tension in a conversation.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.185Z"
   },
   {
     "id": "neco-2026-useofenglishlanguage-009",
@@ -2438,18 +1979,18 @@
       "NECO"
     ],
     "year": 2026,
-    "difficulty": "easy",
-    "question": "Use of English Language question 9",
+    "difficulty": "hard",
+    "question": "The passive of 'They built the house' is:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "The house was built by them.",
+      "B": "The house is built by them.",
+      "C": "The house has built them.",
+      "D": "They are building the house."
     },
     "correctAnswer": "A",
-    "explanation": "Explanation for Use of English Language question 9",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.451Z"
+    "explanation": "Passive: object + was/were + past participle + by + agent.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.185Z"
   },
   {
     "id": "neco-2026-useofenglishlanguage-010",
@@ -2459,18 +2000,18 @@
       "NECO"
     ],
     "year": 2026,
-    "difficulty": "medium",
-    "question": "Use of English Language question 10",
+    "difficulty": "easy",
+    "question": "Choose the word that is a preposition:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Under",
+      "B": "Run",
+      "C": "Happy",
+      "D": "Quickly"
     },
-    "correctAnswer": "B",
-    "explanation": "Explanation for Use of English Language question 10",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.463Z"
+    "correctAnswer": "A",
+    "explanation": "Under is a preposition (shows position).",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.185Z"
   },
   {
     "id": "neco-2026-useofenglishlanguage-011",
@@ -2480,18 +2021,18 @@
       "NECO"
     ],
     "year": 2026,
-    "difficulty": "hard",
-    "question": "Use of English Language question 11",
+    "difficulty": "medium",
+    "question": "The noun form of 'describe' is:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Description",
+      "B": "Describe",
+      "C": "Describing",
+      "D": "Described"
     },
-    "correctAnswer": "C",
-    "explanation": "Explanation for Use of English Language question 11",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.463Z"
+    "correctAnswer": "A",
+    "explanation": "Describe (verb) → description (noun).",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.185Z"
   },
   {
     "id": "neco-2026-useofenglishlanguage-012",
@@ -2501,18 +2042,18 @@
       "NECO"
     ],
     "year": 2026,
-    "difficulty": "easy",
-    "question": "Use of English Language question 12",
+    "difficulty": "hard",
+    "question": "Choose the correct option: 'Neither of the girls ___ present.'",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "was",
+      "B": "were",
+      "C": "are",
+      "D": "have"
     },
-    "correctAnswer": "D",
-    "explanation": "Explanation for Use of English Language question 12",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.463Z"
+    "correctAnswer": "A",
+    "explanation": "'Neither of' + singular verb: was.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.185Z"
   },
   {
     "id": "neco-2026-useofenglishlanguage-013",
@@ -2522,18 +2063,18 @@
       "NECO"
     ],
     "year": 2026,
-    "difficulty": "medium",
-    "question": "Use of English Language question 13",
+    "difficulty": "easy",
+    "question": "A group of words with a subject and a verb is a:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Clause",
+      "B": "Phrase",
+      "C": "Sentence",
+      "D": "Paragraph"
     },
     "correctAnswer": "A",
-    "explanation": "Explanation for Use of English Language question 13",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.463Z"
+    "explanation": "A clause has a subject + verb; a phrase lacks one.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.185Z"
   },
   {
     "id": "neco-2026-useofenglishlanguage-014",
@@ -2543,18 +2084,18 @@
       "NECO"
     ],
     "year": 2026,
-    "difficulty": "hard",
-    "question": "Use of English Language question 14",
+    "difficulty": "medium",
+    "question": "Choose the correctly punctuated sentence:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "He said, 'I am tired.'",
+      "B": "He said 'I am tired'.",
+      "C": "He said, I am tired.",
+      "D": "He said 'I am tired'"
     },
-    "correctAnswer": "B",
-    "explanation": "Explanation for Use of English Language question 14",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.463Z"
+    "correctAnswer": "A",
+    "explanation": "Direct speech: comma + capital + terminal punctuation inside quotes.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.185Z"
   },
   {
     "id": "neco-2026-useofenglishlanguage-015",
@@ -2564,123 +2105,165 @@
       "NECO"
     ],
     "year": 2026,
-    "difficulty": "easy",
-    "question": "Use of English Language question 15",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "C",
-    "explanation": "Explanation for Use of English Language question 15",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.463Z"
-  },
-  {
-    "id": "neco-2026-useofenglishlanguage-016",
-    "subject": "Use of English Language",
-    "topic": "Comprehension",
-    "exam": [
-      "NECO"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Use of English Language question 16",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "D",
-    "explanation": "Explanation for Use of English Language question 16",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.463Z"
-  },
-  {
-    "id": "neco-2026-useofenglishlanguage-017",
-    "subject": "Use of English Language",
-    "topic": "Comprehension",
-    "exam": [
-      "NECO"
-    ],
-    "year": 2026,
     "difficulty": "hard",
-    "question": "Use of English Language question 17",
+    "question": "The comparative form of 'good' is:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Better",
+      "B": "Gooder",
+      "C": "More good",
+      "D": "Best"
     },
     "correctAnswer": "A",
-    "explanation": "Explanation for Use of English Language question 17",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.463Z"
+    "explanation": "Good → better → best (irregular).",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.185Z"
   },
   {
-    "id": "neco-2026-useofenglishlanguage-018",
-    "subject": "Use of English Language",
-    "topic": "Comprehension",
+    "id": "neco-2026-economics-001",
+    "subject": "Economics",
+    "topic": "Microeconomics",
     "exam": [
       "NECO"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Use of English Language question 18",
+    "question": "The basic economic problem is:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Scarcity",
+      "B": "Inflation",
+      "C": "Unemployment",
+      "D": "Taxation"
     },
-    "correctAnswer": "B",
-    "explanation": "Explanation for Use of English Language question 18",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "correctAnswer": "A",
+    "explanation": "Unlimited wants vs scarce resources.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.214Z"
   },
   {
-    "id": "neco-2026-useofenglishlanguage-019",
-    "subject": "Use of English Language",
-    "topic": "Comprehension",
+    "id": "neco-2026-economics-002",
+    "subject": "Economics",
+    "topic": "Microeconomics",
     "exam": [
       "NECO"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "Use of English Language question 19",
+    "question": "Opportunity cost is:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "The next best alternative forgone",
+      "B": "The money price",
+      "C": "The cost of production",
+      "D": "The tax paid"
     },
-    "correctAnswer": "C",
-    "explanation": "Explanation for Use of English Language question 19",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "correctAnswer": "A",
+    "explanation": "Opportunity cost = value of the next best alternative given up.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.214Z"
   },
   {
-    "id": "neco-2026-useofenglishlanguage-020",
-    "subject": "Use of English Language",
-    "topic": "Comprehension",
+    "id": "neco-2026-economics-003",
+    "subject": "Economics",
+    "topic": "Microeconomics",
     "exam": [
       "NECO"
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "Use of English Language question 20",
+    "question": "The law of demand states that as price rises, quantity demanded:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Falls",
+      "B": "Rises",
+      "C": "Is constant",
+      "D": "Doubles"
     },
-    "correctAnswer": "D",
-    "explanation": "Explanation for Use of English Language question 20",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "correctAnswer": "A",
+    "explanation": "Inverse relationship between price and quantity demanded.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.214Z"
+  },
+  {
+    "id": "neco-2026-economics-004",
+    "subject": "Economics",
+    "topic": "Microeconomics",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "A market with a single seller is called:",
+    "options": {
+      "A": "Monopoly",
+      "B": "Perfect competition",
+      "C": "Oligopoly",
+      "D": "Duopoly"
+    },
+    "correctAnswer": "A",
+    "explanation": "Monopoly: one seller, unique product.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.214Z"
+  },
+  {
+    "id": "neco-2026-economics-005",
+    "subject": "Economics",
+    "topic": "Microeconomics",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "The reward for labour is:",
+    "options": {
+      "A": "Wages",
+      "B": "Interest",
+      "C": "Rent",
+      "D": "Profit"
+    },
+    "correctAnswer": "A",
+    "explanation": "Wages/salaries reward labour.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.214Z"
+  },
+  {
+    "id": "neco-2026-economics-006",
+    "subject": "Economics",
+    "topic": "Microeconomics",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Inflation is:",
+    "options": {
+      "A": "A sustained rise in the general price level",
+      "B": "A fall in prices",
+      "C": "Rise in unemployment",
+      "D": "Fall in output"
+    },
+    "correctAnswer": "A",
+    "explanation": "Persistent rise in average prices.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.214Z"
+  },
+  {
+    "id": "neco-2026-economics-007",
+    "subject": "Economics",
+    "topic": "Microeconomics",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "The equilibrium price is where:",
+    "options": {
+      "A": "Demand equals supply",
+      "B": "Demand exceeds supply",
+      "C": "Supply exceeds demand",
+      "D": "Price is zero"
+    },
+    "correctAnswer": "A",
+    "explanation": "Market equilibrium: Qd = Qs.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.214Z"
   },
   {
     "id": "neco-2026-economics-008",
@@ -2690,18 +2273,18 @@
       "NECO"
     ],
     "year": 2026,
-    "difficulty": "easy",
-    "question": "Economics question 8",
+    "difficulty": "medium",
+    "question": "Which of these is a function of money?",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Medium of exchange",
+      "B": "Bartering",
+      "C": "Bargaining",
+      "D": "Wastage"
     },
     "correctAnswer": "A",
-    "explanation": "Explanation for Economics question 8",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "explanation": "Medium of exchange, store of value, unit of account.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.214Z"
   },
   {
     "id": "neco-2026-economics-009",
@@ -2711,18 +2294,18 @@
       "NECO"
     ],
     "year": 2026,
-    "difficulty": "medium",
-    "question": "Economics question 9",
+    "difficulty": "hard",
+    "question": "A progressive tax is one that:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Rises as income rises",
+      "B": "Falls as income rises",
+      "C": "Is fixed for all",
+      "D": "Is paid only by firms"
     },
-    "correctAnswer": "B",
-    "explanation": "Explanation for Economics question 9",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "correctAnswer": "A",
+    "explanation": "Higher % from higher incomes.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.214Z"
   },
   {
     "id": "neco-2026-economics-010",
@@ -2732,18 +2315,18 @@
       "NECO"
     ],
     "year": 2026,
-    "difficulty": "hard",
-    "question": "Economics question 10",
+    "difficulty": "easy",
+    "question": "Gross Domestic Product (GDP) measures:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Total output of goods and services",
+      "B": "Money in circulation",
+      "C": "Government spending",
+      "D": "Exports only"
     },
-    "correctAnswer": "C",
-    "explanation": "Explanation for Economics question 10",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "correctAnswer": "A",
+    "explanation": "Market value of all final goods and services produced.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.214Z"
   },
   {
     "id": "neco-2026-economics-011",
@@ -2753,18 +2336,18 @@
       "NECO"
     ],
     "year": 2026,
-    "difficulty": "easy",
-    "question": "Economics question 11",
+    "difficulty": "medium",
+    "question": "A tariff is:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "A tax on imported goods",
+      "B": "A payment to exporters",
+      "C": "A quota on exports",
+      "D": "A subsidy to farmers"
     },
-    "correctAnswer": "D",
-    "explanation": "Explanation for Economics question 11",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "correctAnswer": "A",
+    "explanation": "Tariffs are taxes on imports.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.214Z"
   },
   {
     "id": "neco-2026-economics-012",
@@ -2774,18 +2357,18 @@
       "NECO"
     ],
     "year": 2026,
-    "difficulty": "medium",
-    "question": "Economics question 12",
+    "difficulty": "hard",
+    "question": "The demand curve slopes:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Downward from left to right",
+      "B": "Upward",
+      "C": "Horizontally",
+      "D": "Vertically"
     },
     "correctAnswer": "A",
-    "explanation": "Explanation for Economics question 12",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "explanation": "Demand curve slopes downward.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.214Z"
   },
   {
     "id": "neco-2026-economics-013",
@@ -2795,18 +2378,18 @@
       "NECO"
     ],
     "year": 2026,
-    "difficulty": "hard",
-    "question": "Economics question 13",
+    "difficulty": "easy",
+    "question": "A subsidy is:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Government payment to producers",
+      "B": "A tax on imports",
+      "C": "A fine on firms",
+      "D": "Interest on loans"
     },
-    "correctAnswer": "B",
-    "explanation": "Explanation for Economics question 13",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "correctAnswer": "A",
+    "explanation": "Subsidies reduce producers' costs.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.214Z"
   },
   {
     "id": "neco-2026-economics-014",
@@ -2816,18 +2399,18 @@
       "NECO"
     ],
     "year": 2026,
-    "difficulty": "easy",
-    "question": "Economics question 14",
+    "difficulty": "medium",
+    "question": "Which of these is a direct tax?",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Personal income tax",
+      "B": "Customs duty",
+      "C": "Excise duty",
+      "D": "Sales tax"
     },
-    "correctAnswer": "C",
-    "explanation": "Explanation for Economics question 14",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "correctAnswer": "A",
+    "explanation": "Income tax is a direct tax.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.214Z"
   },
   {
     "id": "neco-2026-economics-015",
@@ -2837,102 +2420,165 @@
       "NECO"
     ],
     "year": 2026,
-    "difficulty": "medium",
-    "question": "Economics question 15",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "D",
-    "explanation": "Explanation for Economics question 15",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
-  },
-  {
-    "id": "neco-2026-economics-016",
-    "subject": "Economics",
-    "topic": "Microeconomics",
-    "exam": [
-      "NECO"
-    ],
-    "year": 2026,
     "difficulty": "hard",
-    "question": "Economics question 16",
+    "question": "The equilibrium of a monopoly is where:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Marginal cost equals marginal revenue",
+      "B": "Price equals zero",
+      "C": "Supply equals demand",
+      "D": "Average cost is highest"
     },
     "correctAnswer": "A",
-    "explanation": "Explanation for Economics question 16",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "explanation": "Profit-maximising output: MC = MR.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.214Z"
   },
   {
-    "id": "neco-2026-economics-017",
-    "subject": "Economics",
-    "topic": "Microeconomics",
+    "id": "neco-2026-government-001",
+    "subject": "Government",
+    "topic": "Constitution",
     "exam": [
       "NECO"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Economics question 17",
+    "question": "The supreme law of a country is the:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Constitution",
+      "B": "Parliament Act",
+      "C": "Judgment",
+      "D": "Bye-law"
     },
-    "correctAnswer": "B",
-    "explanation": "Explanation for Economics question 17",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "correctAnswer": "A",
+    "explanation": "The constitution is the supreme law.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.229Z"
   },
   {
-    "id": "neco-2026-economics-018",
-    "subject": "Economics",
-    "topic": "Microeconomics",
+    "id": "neco-2026-government-002",
+    "subject": "Government",
+    "topic": "Constitution",
     "exam": [
       "NECO"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "Economics question 18",
+    "question": "The arm of government that interprets the law is the:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Judiciary",
+      "B": "Legislature",
+      "C": "Executive",
+      "D": "Press"
     },
-    "correctAnswer": "C",
-    "explanation": "Explanation for Economics question 18",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "correctAnswer": "A",
+    "explanation": "The judiciary interprets and applies the law.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.229Z"
   },
   {
-    "id": "neco-2026-economics-019",
-    "subject": "Economics",
-    "topic": "Microeconomics",
+    "id": "neco-2026-government-003",
+    "subject": "Government",
+    "topic": "Constitution",
     "exam": [
       "NECO"
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "Economics question 19",
+    "question": "A system of government in which power is shared between central and regional units is:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Federalism",
+      "B": "Unitarism",
+      "C": "Confederalism",
+      "D": "Monarchy"
     },
-    "correctAnswer": "D",
-    "explanation": "Explanation for Economics question 19",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "correctAnswer": "A",
+    "explanation": "Federalism: shared sovereignty between levels.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.229Z"
+  },
+  {
+    "id": "neco-2026-government-004",
+    "subject": "Government",
+    "topic": "Constitution",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "The principle of 'separation of powers' was popularised by:",
+    "options": {
+      "A": "Montesquieu",
+      "B": "Machiavelli",
+      "C": "Aristotle",
+      "D": "Plato"
+    },
+    "correctAnswer": "A",
+    "explanation": "Montesquieu's 'Spirit of the Laws' (1748).",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.229Z"
+  },
+  {
+    "id": "neco-2026-government-005",
+    "subject": "Government",
+    "topic": "Constitution",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Universal adult suffrage means:",
+    "options": {
+      "A": "All adults can vote",
+      "B": "Only men can vote",
+      "C": "Only property owners vote",
+      "D": "Only the educated vote"
+    },
+    "correctAnswer": "A",
+    "explanation": "All adults (18+) may vote.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.229Z"
+  },
+  {
+    "id": "neco-2026-government-006",
+    "subject": "Government",
+    "topic": "Constitution",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "The rule of law means:",
+    "options": {
+      "A": "Everyone is equal before the law",
+      "B": "The rich are above the law",
+      "C": "Only leaders obey the law",
+      "D": "Laws apply only to citizens"
+    },
+    "correctAnswer": "A",
+    "explanation": "Supremacy of law + equality before it.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.229Z"
+  },
+  {
+    "id": "neco-2026-government-007",
+    "subject": "Government",
+    "topic": "Constitution",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "The Nigerian legislature at the federal level is the:",
+    "options": {
+      "A": "National Assembly",
+      "B": "House of Chiefs",
+      "C": "Federal Council",
+      "D": "Supreme Court"
+    },
+    "correctAnswer": "A",
+    "explanation": "Senate + House of Representatives.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.229Z"
   },
   {
     "id": "neco-2026-government-008",
@@ -2942,18 +2588,18 @@
       "NECO"
     ],
     "year": 2026,
-    "difficulty": "easy",
-    "question": "Government question 8",
+    "difficulty": "medium",
+    "question": "A one-party state is a system where:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Only one party is legally allowed",
+      "B": "Many parties compete",
+      "C": "No parties exist",
+      "D": "Two parties alternate"
     },
     "correctAnswer": "A",
-    "explanation": "Explanation for Government question 8",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "explanation": "One-party state: only one legal party.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.229Z"
   },
   {
     "id": "neco-2026-government-009",
@@ -2963,18 +2609,18 @@
       "NECO"
     ],
     "year": 2026,
-    "difficulty": "medium",
-    "question": "Government question 9",
+    "difficulty": "hard",
+    "question": "The head of the Nigerian judiciary is the:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Chief Justice",
+      "B": "President",
+      "C": "Senate President",
+      "D": "Attorney-General"
     },
-    "correctAnswer": "B",
-    "explanation": "Explanation for Government question 9",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "correctAnswer": "A",
+    "explanation": "The Chief Justice of the Federation heads the judiciary.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.229Z"
   },
   {
     "id": "neco-2026-government-010",
@@ -2984,18 +2630,18 @@
       "NECO"
     ],
     "year": 2026,
-    "difficulty": "hard",
-    "question": "Government question 10",
+    "difficulty": "easy",
+    "question": "A referendum is:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "A direct vote by the people on a single issue",
+      "B": "An election of representatives",
+      "C": "A court judgment",
+      "D": "A legislative debate"
     },
-    "correctAnswer": "C",
-    "explanation": "Explanation for Government question 10",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "correctAnswer": "A",
+    "explanation": "Referendum: direct popular vote on a specific question.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.229Z"
   },
   {
     "id": "neco-2026-government-011",
@@ -3005,18 +2651,18 @@
       "NECO"
     ],
     "year": 2026,
-    "difficulty": "easy",
-    "question": "Government question 11",
+    "difficulty": "medium",
+    "question": "The local government is the ___ tier of government:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Third",
+      "B": "First",
+      "C": "Second",
+      "D": "Fourth"
     },
-    "correctAnswer": "D",
-    "explanation": "Explanation for Government question 11",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "correctAnswer": "A",
+    "explanation": "Federal, state, local = three tiers.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.229Z"
   },
   {
     "id": "neco-2026-government-012",
@@ -3026,18 +2672,18 @@
       "NECO"
     ],
     "year": 2026,
-    "difficulty": "medium",
-    "question": "Government question 12",
+    "difficulty": "hard",
+    "question": "A bicameral legislature has:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Two chambers",
+      "B": "One chamber",
+      "C": "Three chambers",
+      "D": "No chamber"
     },
     "correctAnswer": "A",
-    "explanation": "Explanation for Government question 12",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "explanation": "Bicameral = two houses.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.229Z"
   },
   {
     "id": "neco-2026-government-013",
@@ -3047,18 +2693,18 @@
       "NECO"
     ],
     "year": 2026,
-    "difficulty": "hard",
-    "question": "Government question 13",
+    "difficulty": "easy",
+    "question": "An 'opposition' in a democracy is:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Parties not in power that scrutinise the government",
+      "B": "Illegal groups",
+      "C": "The judiciary",
+      "D": "The civil service"
     },
-    "correctAnswer": "B",
-    "explanation": "Explanation for Government question 13",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "correctAnswer": "A",
+    "explanation": "The opposition scrutinises the government.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.229Z"
   },
   {
     "id": "neco-2026-government-014",
@@ -3068,18 +2714,18 @@
       "NECO"
     ],
     "year": 2026,
-    "difficulty": "easy",
-    "question": "Government question 14",
+    "difficulty": "medium",
+    "question": "The 'franchise' refers to:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "The right to vote",
+      "B": "The right to rule",
+      "C": "The right to protest",
+      "D": "The right to speech"
     },
-    "correctAnswer": "C",
-    "explanation": "Explanation for Government question 14",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "correctAnswer": "A",
+    "explanation": "Franchise = the right to vote.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.229Z"
   },
   {
     "id": "neco-2026-government-015",
@@ -3089,102 +2735,81 @@
       "NECO"
     ],
     "year": 2026,
-    "difficulty": "medium",
-    "question": "Government question 15",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "D",
-    "explanation": "Explanation for Government question 15",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
-  },
-  {
-    "id": "neco-2026-government-016",
-    "subject": "Government",
-    "topic": "Constitution",
-    "exam": [
-      "NECO"
-    ],
-    "year": 2026,
     "difficulty": "hard",
-    "question": "Government question 16",
+    "question": "Which of these is a source of Nigerian law?",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Received English law",
+      "B": "Public opinion",
+      "C": "Newspapers",
+      "D": "Social media"
     },
     "correctAnswer": "A",
-    "explanation": "Explanation for Government question 16",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "explanation": "Constitution, statutes, received English law, customary law, case law.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.229Z"
   },
   {
-    "id": "neco-2026-government-017",
-    "subject": "Government",
-    "topic": "Constitution",
+    "id": "neco-2026-english-001",
+    "subject": "English",
+    "topic": "Grammar",
     "exam": [
       "NECO"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Government question 17",
+    "question": "Choose the word nearest in meaning to 'diligent':",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Hardworking",
+      "B": "Lazy",
+      "C": "Careless",
+      "D": "Wealthy"
     },
-    "correctAnswer": "B",
-    "explanation": "Explanation for Government question 17",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "correctAnswer": "A",
+    "explanation": "Diligent = hardworking.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.255Z"
   },
   {
-    "id": "neco-2026-government-018",
-    "subject": "Government",
-    "topic": "Constitution",
+    "id": "neco-2026-english-002",
+    "subject": "English",
+    "topic": "Grammar",
     "exam": [
       "NECO"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "Government question 18",
+    "question": "Choose the correct option: 'The team ___ playing well.'",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "is",
+      "B": "are",
+      "C": "were",
+      "D": "have"
     },
-    "correctAnswer": "C",
-    "explanation": "Explanation for Government question 18",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "correctAnswer": "A",
+    "explanation": "Collective noun 'team' takes a singular verb here.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.255Z"
   },
   {
-    "id": "neco-2026-government-019",
-    "subject": "Government",
-    "topic": "Constitution",
+    "id": "neco-2026-english-003",
+    "subject": "English",
+    "topic": "Grammar",
     "exam": [
       "NECO"
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "Government question 19",
+    "question": "The antonym of 'ancient' is:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Modern",
+      "B": "Old",
+      "C": "Historic",
+      "D": "Aged"
     },
-    "correctAnswer": "D",
-    "explanation": "Explanation for Government question 19",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "correctAnswer": "A",
+    "explanation": "Ancient ↔ modern.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.255Z"
   },
   {
     "id": "neco-2026-english-004",
@@ -3195,17 +2820,17 @@
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "English question 4",
+    "question": "Choose the correctly spelt word:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Necessary",
+      "B": "Neccessary",
+      "C": "Necesary",
+      "D": "Necessery"
     },
     "correctAnswer": "A",
-    "explanation": "Explanation for English question 4",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "explanation": "Necessary: one c, double s.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.255Z"
   },
   {
     "id": "neco-2026-english-005",
@@ -3216,17 +2841,17 @@
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "English question 5",
+    "question": "'She sings beautifully.' The word 'beautifully' is a(n):",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Adverb",
+      "B": "Adjective",
+      "C": "Noun",
+      "D": "Verb"
     },
-    "correctAnswer": "B",
-    "explanation": "Explanation for English question 5",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "correctAnswer": "A",
+    "explanation": "Adverbs modify verbs (sings beautifully).",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.255Z"
   },
   {
     "id": "neco-2026-english-006",
@@ -3237,17 +2862,17 @@
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "English question 6",
+    "question": "The plural of 'child' is:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Children",
+      "B": "Childs",
+      "C": "Childes",
+      "D": "Childrens"
     },
-    "correctAnswer": "C",
-    "explanation": "Explanation for English question 6",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "correctAnswer": "A",
+    "explanation": "Irregular plural: child → children.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.255Z"
   },
   {
     "id": "neco-2026-english-007",
@@ -3258,17 +2883,17 @@
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "English question 7",
+    "question": "Choose the correct question tag: 'They are coming, ___?'",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "aren't they",
+      "B": "isn't it",
+      "C": "don't they",
+      "D": "won't they"
     },
-    "correctAnswer": "D",
-    "explanation": "Explanation for English question 7",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "correctAnswer": "A",
+    "explanation": "Positive statement → negative tag: aren't they?",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.255Z"
   },
   {
     "id": "neco-2026-english-008",
@@ -3279,17 +2904,17 @@
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "English question 8",
+    "question": "'To break the ice' means to:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Start a conversation",
+      "B": "Cause damage",
+      "C": "Cool a drink",
+      "D": "End a friendship"
     },
     "correctAnswer": "A",
-    "explanation": "Explanation for English question 8",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "explanation": "Break the ice = ease initial tension in a conversation.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.255Z"
   },
   {
     "id": "neco-2026-english-009",
@@ -3300,17 +2925,17 @@
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "English question 9",
+    "question": "The passive of 'They built the house' is:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "The house was built by them.",
+      "B": "The house is built by them.",
+      "C": "The house has built them.",
+      "D": "They are building the house."
     },
-    "correctAnswer": "B",
-    "explanation": "Explanation for English question 9",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "correctAnswer": "A",
+    "explanation": "Passive: object + was/were + past participle + by + agent.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.256Z"
   },
   {
     "id": "neco-2026-english-010",
@@ -3321,17 +2946,17 @@
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "English question 10",
+    "question": "Choose the word that is a preposition:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Under",
+      "B": "Run",
+      "C": "Happy",
+      "D": "Quickly"
     },
-    "correctAnswer": "C",
-    "explanation": "Explanation for English question 10",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "correctAnswer": "A",
+    "explanation": "Under is a preposition (shows position).",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.256Z"
   },
   {
     "id": "neco-2026-english-011",
@@ -3342,17 +2967,17 @@
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "English question 11",
+    "question": "The noun form of 'describe' is:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Description",
+      "B": "Describe",
+      "C": "Describing",
+      "D": "Described"
     },
-    "correctAnswer": "D",
-    "explanation": "Explanation for English question 11",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "correctAnswer": "A",
+    "explanation": "Describe (verb) → description (noun).",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.256Z"
   },
   {
     "id": "neco-2026-english-012",
@@ -3363,17 +2988,17 @@
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "English question 12",
+    "question": "Choose the correct option: 'Neither of the girls ___ present.'",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "was",
+      "B": "were",
+      "C": "are",
+      "D": "have"
     },
     "correctAnswer": "A",
-    "explanation": "Explanation for English question 12",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "explanation": "'Neither of' + singular verb: was.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.256Z"
   },
   {
     "id": "neco-2026-english-013",
@@ -3384,17 +3009,17 @@
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "English question 13",
+    "question": "A group of words with a subject and a verb is a:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Clause",
+      "B": "Phrase",
+      "C": "Sentence",
+      "D": "Paragraph"
     },
-    "correctAnswer": "B",
-    "explanation": "Explanation for English question 13",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "correctAnswer": "A",
+    "explanation": "A clause has a subject + verb; a phrase lacks one.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.256Z"
   },
   {
     "id": "neco-2026-english-014",
@@ -3405,17 +3030,17 @@
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "English question 14",
+    "question": "Choose the correctly punctuated sentence:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "He said, 'I am tired.'",
+      "B": "He said 'I am tired'.",
+      "C": "He said, I am tired.",
+      "D": "He said 'I am tired'"
     },
-    "correctAnswer": "C",
-    "explanation": "Explanation for English question 14",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "correctAnswer": "A",
+    "explanation": "Direct speech: comma + capital + terminal punctuation inside quotes.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.256Z"
   },
   {
     "id": "neco-2026-english-015",
@@ -3426,16 +3051,16 @@
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "English question 15",
+    "question": "The comparative form of 'good' is:",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "Better",
+      "B": "Gooder",
+      "C": "More good",
+      "D": "Best"
     },
-    "correctAnswer": "D",
-    "explanation": "Explanation for English question 15",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:34:57.464Z"
+    "correctAnswer": "A",
+    "explanation": "Good → better → best (irregular).",
+    "source": "past",
+    "createdAt": "2026-11-14T14:09:39.256Z"
   }
 ]

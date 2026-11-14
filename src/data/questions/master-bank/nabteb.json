@@ -1,38 +1,34 @@
 [
   {
-    "id": "nabteb-2026-ccp-001",
+    "id": "nabteb-2026-computercraftpractice-001",
     "subject": "Computer Craft Practice",
-    "topic": "Database",
+    "topic": "General",
+    "exam": [
+      "NABTEB"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Which SQL command retrieves data from a database?",
+    "options": {
+      "A": "SELECT",
+      "B": "INSERT",
+      "C": "UPDATE",
+      "D": "DELETE"
+    },
+    "correctAnswer": "A",
+    "explanation": "SELECT queries/retrieves data; INSERT adds; UPDATE modifies; DELETE removes.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.668Z"
+  },
+  {
+    "id": "nabteb-2026-computercraftpractice-002",
+    "subject": "Computer Craft Practice",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "Which SQL command is used to retrieve data?",
-    "options": {
-      "A": "INSERT",
-      "B": "UPDATE",
-      "C": "SELECT",
-      "D": "DELETE"
-    },
-    "correctAnswer": "C",
-    "explanation": "SELECT is used to query/retrieve data from a database.",
-    "source": "past",
-    "createdAt": "2026-10-11T08:13:53.582Z",
-    "highYield": false,
-    "repeatedFrom": [
-      2026
-    ]
-  },
-  {
-    "id": "nabteb-2026-ccp-002",
-    "subject": "Computer Craft Practice",
-    "topic": "Programming",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
     "question": "What is the output of: print(type([]))?",
     "options": {
       "A": "<class 'list'>",
@@ -41,5287 +37,2234 @@
       "D": "<class 'set'>"
     },
     "correctAnswer": "A",
-    "explanation": "[] creates an empty list in Python, so type([]) returns <class 'list'>.",
+    "explanation": "[] creates an empty Python list.",
     "source": "past",
-    "createdAt": "2026-10-11T08:13:53.582Z",
-    "highYield": false,
-    "repeatedFrom": [
-      2026
-    ]
-  },
-  {
-    "id": "nabteb-2026-amw-001",
-    "subject": "Auto Mechanics Work",
-    "topic": "Engine",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "The compression ratio in diesel engines is typically:",
-    "options": {
-      "A": "6:1 to 8:1",
-      "B": "15:1 to 20:1",
-      "C": "10:1 to 12:1",
-      "D": "20:1 to 25:1"
-    },
-    "correctAnswer": "B",
-    "explanation": "Diesel engines have high compression ratios, typically 15:1 to 20:1 for efficiency.",
-    "source": "past",
-    "createdAt": "2026-10-11T08:13:53.582Z",
-    "highYield": false,
-    "repeatedFrom": [
-      2026
-    ]
-  },
-  {
-    "id": "nabteb-2026-computercraftpractice-001",
-    "subject": "Computer Craft Practice",
-    "topic": "Database",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Database question 1 for Computer Craft Practice",
-    "options": {
-      "A": "A 1",
-      "B": "B 1",
-      "C": "C 1",
-      "D": "D 1"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Computer Craft Practice explanation 1",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.456Z"
-  },
-  {
-    "id": "nabteb-2026-computercraftpractice-002",
-    "subject": "Computer Craft Practice",
-    "topic": "Programming",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Programming question 2 for Computer Craft Practice",
-    "options": {
-      "A": "A 2",
-      "B": "B 2",
-      "C": "C 2",
-      "D": "D 2"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Computer Craft Practice explanation 2",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.468Z"
+    "createdAt": "2026-11-14T14:10:47.683Z"
   },
   {
     "id": "nabteb-2026-computercraftpractice-003",
     "subject": "Computer Craft Practice",
-    "topic": "Hardware",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "Hardware question 3 for Computer Craft Practice",
+    "question": "Which device connects multiple networks and routes packets?",
     "options": {
-      "A": "A 3",
-      "B": "B 3",
-      "C": "C 3",
-      "D": "D 3"
+      "A": "Router",
+      "B": "Hub",
+      "C": "Repeater",
+      "D": "Switch"
     },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Computer Craft Practice explanation 3",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.468Z"
+    "correctAnswer": "A",
+    "explanation": "A router forwards packets between networks.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.683Z"
   },
   {
     "id": "nabteb-2026-computercraftpractice-004",
     "subject": "Computer Craft Practice",
-    "topic": "Networking",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Networking question 4 for Computer Craft Practice",
+    "question": "The shortcut to copy text is:",
     "options": {
-      "A": "A 4",
-      "B": "B 4",
-      "C": "C 4",
-      "D": "D 4"
+      "A": "Ctrl+C",
+      "B": "Ctrl+V",
+      "C": "Ctrl+X",
+      "D": "Ctrl+Z"
     },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Computer Craft Practice explanation 4",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.468Z"
+    "correctAnswer": "A",
+    "explanation": "Ctrl+C copies; Ctrl+V pastes; Ctrl+X cuts; Ctrl+Z undoes.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.683Z"
   },
   {
     "id": "nabteb-2026-computercraftpractice-005",
     "subject": "Computer Craft Practice",
-    "topic": "Database",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "Database question 5 for Computer Craft Practice",
+    "question": "Which of these is an operating system?",
     "options": {
-      "A": "A 5",
-      "B": "B 5",
-      "C": "C 5",
-      "D": "D 5"
+      "A": "Linux",
+      "B": "Oracle",
+      "C": "Photoshop",
+      "D": "Chrome"
     },
     "correctAnswer": "A",
-    "explanation": "NABTEB Computer Craft Practice explanation 5",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.469Z"
+    "explanation": "Linux is an OS; Oracle is a DBMS; Photoshop is graphics software; Chrome is a browser.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.683Z"
   },
   {
     "id": "nabteb-2026-computercraftpractice-006",
     "subject": "Computer Craft Practice",
-    "topic": "Programming",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "Programming question 6 for Computer Craft Practice",
+    "question": "1 kilobyte equals:",
     "options": {
-      "A": "A 6",
-      "B": "B 6",
-      "C": "C 6",
-      "D": "D 6"
+      "A": "1024 bytes",
+      "B": "1000 bytes",
+      "C": "1024 bits",
+      "D": "1000 bits"
     },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Computer Craft Practice explanation 6",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.469Z"
+    "correctAnswer": "A",
+    "explanation": "1 KB = 1024 bytes (binary).",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.683Z"
   },
   {
     "id": "nabteb-2026-computercraftpractice-007",
     "subject": "Computer Craft Practice",
-    "topic": "Hardware",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Hardware question 7 for Computer Craft Practice",
+    "question": "The physical parts of a computer are called:",
     "options": {
-      "A": "A 7",
-      "B": "B 7",
-      "C": "C 7",
-      "D": "D 7"
+      "A": "Hardware",
+      "B": "Software",
+      "C": "Firmware",
+      "D": "Freeware"
     },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Computer Craft Practice explanation 7",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.469Z"
+    "correctAnswer": "A",
+    "explanation": "Hardware = tangible components.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.685Z"
   },
   {
     "id": "nabteb-2026-computercraftpractice-008",
     "subject": "Computer Craft Practice",
-    "topic": "Networking",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "Networking question 8 for Computer Craft Practice",
+    "question": "Which of these is NOT a programming language?",
     "options": {
-      "A": "A 8",
-      "B": "B 8",
-      "C": "C 8",
-      "D": "D 8"
+      "A": "HTTP",
+      "B": "Python",
+      "C": "Java",
+      "D": "C++"
     },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Computer Craft Practice explanation 8",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.469Z"
+    "correctAnswer": "A",
+    "explanation": "HTTP is a protocol, not a language.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.685Z"
   },
   {
     "id": "nabteb-2026-computercraftpractice-009",
     "subject": "Computer Craft Practice",
-    "topic": "Database",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "Database question 9 for Computer Craft Practice",
+    "question": "CPU stands for:",
     "options": {
-      "A": "A 9",
-      "B": "B 9",
-      "C": "C 9",
-      "D": "D 9"
+      "A": "Central Processing Unit",
+      "B": "Computer Personal Unit",
+      "C": "Central Program Utility",
+      "D": "Core Processing Underlay"
     },
     "correctAnswer": "A",
-    "explanation": "NABTEB Computer Craft Practice explanation 9",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.469Z"
+    "explanation": "CPU = Central Processing Unit, the 'brain'.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.686Z"
   },
   {
     "id": "nabteb-2026-computercraftpractice-010",
     "subject": "Computer Craft Practice",
-    "topic": "Programming",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Programming question 10 for Computer Craft Practice",
+    "question": "A collection of related records is called a:",
     "options": {
-      "A": "A 10",
-      "B": "B 10",
-      "C": "C 10",
-      "D": "D 10"
+      "A": "File",
+      "B": "Field",
+      "C": "Byte",
+      "D": "Bit"
     },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Computer Craft Practice explanation 10",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.469Z"
+    "correctAnswer": "A",
+    "explanation": "A file contains records; a record contains fields.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.686Z"
   },
   {
     "id": "nabteb-2026-computercraftpractice-011",
     "subject": "Computer Craft Practice",
-    "topic": "Hardware",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "Hardware question 11 for Computer Craft Practice",
+    "question": "Which key combination saves a document?",
     "options": {
-      "A": "A 11",
-      "B": "B 11",
-      "C": "C 11",
-      "D": "D 11"
+      "A": "Ctrl+S",
+      "B": "Ctrl+P",
+      "C": "Ctrl+O",
+      "D": "Ctrl+N"
     },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Computer Craft Practice explanation 11",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.469Z"
+    "correctAnswer": "A",
+    "explanation": "Ctrl+S saves; Ctrl+P prints.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.686Z"
   },
   {
     "id": "nabteb-2026-computercraftpractice-012",
     "subject": "Computer Craft Practice",
-    "topic": "Networking",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "Networking question 12 for Computer Craft Practice",
+    "question": "The main circuit board of a computer is the:",
     "options": {
-      "A": "A 12",
-      "B": "B 12",
-      "C": "C 12",
-      "D": "D 12"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Computer Craft Practice explanation 12",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.469Z"
-  },
-  {
-    "id": "nabteb-2026-computercraftpractice-013",
-    "subject": "Computer Craft Practice",
-    "topic": "Database",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Database question 13 for Computer Craft Practice",
-    "options": {
-      "A": "A 13",
-      "B": "B 13",
-      "C": "C 13",
-      "D": "D 13"
+      "A": "Motherboard",
+      "B": "Hard disk",
+      "C": "Monitor",
+      "D": "Keyboard"
     },
     "correctAnswer": "A",
-    "explanation": "NABTEB Computer Craft Practice explanation 13",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.469Z"
-  },
-  {
-    "id": "nabteb-2026-computercraftpractice-014",
-    "subject": "Computer Craft Practice",
-    "topic": "Programming",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Programming question 14 for Computer Craft Practice",
-    "options": {
-      "A": "A 14",
-      "B": "B 14",
-      "C": "C 14",
-      "D": "D 14"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Computer Craft Practice explanation 14",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.469Z"
-  },
-  {
-    "id": "nabteb-2026-computercraftpractice-015",
-    "subject": "Computer Craft Practice",
-    "topic": "Hardware",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Hardware question 15 for Computer Craft Practice",
-    "options": {
-      "A": "A 15",
-      "B": "B 15",
-      "C": "C 15",
-      "D": "D 15"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Computer Craft Practice explanation 15",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.469Z"
-  },
-  {
-    "id": "nabteb-2026-computercraftpractice-016",
-    "subject": "Computer Craft Practice",
-    "topic": "Networking",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Networking question 16 for Computer Craft Practice",
-    "options": {
-      "A": "A 16",
-      "B": "B 16",
-      "C": "C 16",
-      "D": "D 16"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Computer Craft Practice explanation 16",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.469Z"
-  },
-  {
-    "id": "nabteb-2026-computercraftpractice-017",
-    "subject": "Computer Craft Practice",
-    "topic": "Database",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Database question 17 for Computer Craft Practice",
-    "options": {
-      "A": "A 17",
-      "B": "B 17",
-      "C": "C 17",
-      "D": "D 17"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Computer Craft Practice explanation 17",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.469Z"
-  },
-  {
-    "id": "nabteb-2026-computercraftpractice-018",
-    "subject": "Computer Craft Practice",
-    "topic": "Programming",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Programming question 18 for Computer Craft Practice",
-    "options": {
-      "A": "A 18",
-      "B": "B 18",
-      "C": "C 18",
-      "D": "D 18"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Computer Craft Practice explanation 18",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.469Z"
-  },
-  {
-    "id": "nabteb-2026-computercraftpractice-019",
-    "subject": "Computer Craft Practice",
-    "topic": "Hardware",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Hardware question 19 for Computer Craft Practice",
-    "options": {
-      "A": "A 19",
-      "B": "B 19",
-      "C": "C 19",
-      "D": "D 19"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Computer Craft Practice explanation 19",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.469Z"
-  },
-  {
-    "id": "nabteb-2026-computercraftpractice-020",
-    "subject": "Computer Craft Practice",
-    "topic": "Networking",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Networking question 20 for Computer Craft Practice",
-    "options": {
-      "A": "A 20",
-      "B": "B 20",
-      "C": "C 20",
-      "D": "D 20"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Computer Craft Practice explanation 20",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.469Z"
-  },
-  {
-    "id": "nabteb-2026-computercraftpractice-021",
-    "subject": "Computer Craft Practice",
-    "topic": "Database",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Database question 21 for Computer Craft Practice",
-    "options": {
-      "A": "A 21",
-      "B": "B 21",
-      "C": "C 21",
-      "D": "D 21"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Computer Craft Practice explanation 21",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.469Z"
-  },
-  {
-    "id": "nabteb-2026-computercraftpractice-022",
-    "subject": "Computer Craft Practice",
-    "topic": "Programming",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Programming question 22 for Computer Craft Practice",
-    "options": {
-      "A": "A 22",
-      "B": "B 22",
-      "C": "C 22",
-      "D": "D 22"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Computer Craft Practice explanation 22",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.469Z"
-  },
-  {
-    "id": "nabteb-2026-computercraftpractice-023",
-    "subject": "Computer Craft Practice",
-    "topic": "Hardware",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Hardware question 23 for Computer Craft Practice",
-    "options": {
-      "A": "A 23",
-      "B": "B 23",
-      "C": "C 23",
-      "D": "D 23"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Computer Craft Practice explanation 23",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.469Z"
-  },
-  {
-    "id": "nabteb-2026-computercraftpractice-024",
-    "subject": "Computer Craft Practice",
-    "topic": "Networking",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Networking question 24 for Computer Craft Practice",
-    "options": {
-      "A": "A 24",
-      "B": "B 24",
-      "C": "C 24",
-      "D": "D 24"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Computer Craft Practice explanation 24",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.469Z"
-  },
-  {
-    "id": "nabteb-2026-computercraftpractice-025",
-    "subject": "Computer Craft Practice",
-    "topic": "Database",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Database question 25 for Computer Craft Practice",
-    "options": {
-      "A": "A 25",
-      "B": "B 25",
-      "C": "C 25",
-      "D": "D 25"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Computer Craft Practice explanation 25",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.469Z"
-  },
-  {
-    "id": "nabteb-2026-automechanicswork-001",
-    "subject": "Auto Mechanics Work",
-    "topic": "Engine",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Engine question 1 for Auto Mechanics Work",
-    "options": {
-      "A": "A 1",
-      "B": "B 1",
-      "C": "C 1",
-      "D": "D 1"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Auto Mechanics Work explanation 1",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.469Z"
-  },
-  {
-    "id": "nabteb-2026-automechanicswork-002",
-    "subject": "Auto Mechanics Work",
-    "topic": "Electrical",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Electrical question 2 for Auto Mechanics Work",
-    "options": {
-      "A": "A 2",
-      "B": "B 2",
-      "C": "C 2",
-      "D": "D 2"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Auto Mechanics Work explanation 2",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.469Z"
-  },
-  {
-    "id": "nabteb-2026-automechanicswork-003",
-    "subject": "Auto Mechanics Work",
-    "topic": "Brakes",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Brakes question 3 for Auto Mechanics Work",
-    "options": {
-      "A": "A 3",
-      "B": "B 3",
-      "C": "C 3",
-      "D": "D 3"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Auto Mechanics Work explanation 3",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.469Z"
-  },
-  {
-    "id": "nabteb-2026-automechanicswork-004",
-    "subject": "Auto Mechanics Work",
-    "topic": "Steering",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Steering question 4 for Auto Mechanics Work",
-    "options": {
-      "A": "A 4",
-      "B": "B 4",
-      "C": "C 4",
-      "D": "D 4"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Auto Mechanics Work explanation 4",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.469Z"
-  },
-  {
-    "id": "nabteb-2026-automechanicswork-005",
-    "subject": "Auto Mechanics Work",
-    "topic": "Engine",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Engine question 5 for Auto Mechanics Work",
-    "options": {
-      "A": "A 5",
-      "B": "B 5",
-      "C": "C 5",
-      "D": "D 5"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Auto Mechanics Work explanation 5",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.469Z"
-  },
-  {
-    "id": "nabteb-2026-automechanicswork-006",
-    "subject": "Auto Mechanics Work",
-    "topic": "Electrical",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Electrical question 6 for Auto Mechanics Work",
-    "options": {
-      "A": "A 6",
-      "B": "B 6",
-      "C": "C 6",
-      "D": "D 6"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Auto Mechanics Work explanation 6",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.469Z"
-  },
-  {
-    "id": "nabteb-2026-automechanicswork-007",
-    "subject": "Auto Mechanics Work",
-    "topic": "Brakes",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Brakes question 7 for Auto Mechanics Work",
-    "options": {
-      "A": "A 7",
-      "B": "B 7",
-      "C": "C 7",
-      "D": "D 7"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Auto Mechanics Work explanation 7",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.469Z"
-  },
-  {
-    "id": "nabteb-2026-automechanicswork-008",
-    "subject": "Auto Mechanics Work",
-    "topic": "Steering",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Steering question 8 for Auto Mechanics Work",
-    "options": {
-      "A": "A 8",
-      "B": "B 8",
-      "C": "C 8",
-      "D": "D 8"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Auto Mechanics Work explanation 8",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
-  },
-  {
-    "id": "nabteb-2026-automechanicswork-009",
-    "subject": "Auto Mechanics Work",
-    "topic": "Engine",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Engine question 9 for Auto Mechanics Work",
-    "options": {
-      "A": "A 9",
-      "B": "B 9",
-      "C": "C 9",
-      "D": "D 9"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Auto Mechanics Work explanation 9",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
-  },
-  {
-    "id": "nabteb-2026-automechanicswork-010",
-    "subject": "Auto Mechanics Work",
-    "topic": "Electrical",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Electrical question 10 for Auto Mechanics Work",
-    "options": {
-      "A": "A 10",
-      "B": "B 10",
-      "C": "C 10",
-      "D": "D 10"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Auto Mechanics Work explanation 10",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
-  },
-  {
-    "id": "nabteb-2026-automechanicswork-011",
-    "subject": "Auto Mechanics Work",
-    "topic": "Brakes",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Brakes question 11 for Auto Mechanics Work",
-    "options": {
-      "A": "A 11",
-      "B": "B 11",
-      "C": "C 11",
-      "D": "D 11"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Auto Mechanics Work explanation 11",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
-  },
-  {
-    "id": "nabteb-2026-automechanicswork-012",
-    "subject": "Auto Mechanics Work",
-    "topic": "Steering",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Steering question 12 for Auto Mechanics Work",
-    "options": {
-      "A": "A 12",
-      "B": "B 12",
-      "C": "C 12",
-      "D": "D 12"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Auto Mechanics Work explanation 12",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
-  },
-  {
-    "id": "nabteb-2026-automechanicswork-013",
-    "subject": "Auto Mechanics Work",
-    "topic": "Engine",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Engine question 13 for Auto Mechanics Work",
-    "options": {
-      "A": "A 13",
-      "B": "B 13",
-      "C": "C 13",
-      "D": "D 13"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Auto Mechanics Work explanation 13",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
-  },
-  {
-    "id": "nabteb-2026-automechanicswork-014",
-    "subject": "Auto Mechanics Work",
-    "topic": "Electrical",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Electrical question 14 for Auto Mechanics Work",
-    "options": {
-      "A": "A 14",
-      "B": "B 14",
-      "C": "C 14",
-      "D": "D 14"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Auto Mechanics Work explanation 14",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
-  },
-  {
-    "id": "nabteb-2026-automechanicswork-015",
-    "subject": "Auto Mechanics Work",
-    "topic": "Brakes",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Brakes question 15 for Auto Mechanics Work",
-    "options": {
-      "A": "A 15",
-      "B": "B 15",
-      "C": "C 15",
-      "D": "D 15"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Auto Mechanics Work explanation 15",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
-  },
-  {
-    "id": "nabteb-2026-automechanicswork-016",
-    "subject": "Auto Mechanics Work",
-    "topic": "Steering",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Steering question 16 for Auto Mechanics Work",
-    "options": {
-      "A": "A 16",
-      "B": "B 16",
-      "C": "C 16",
-      "D": "D 16"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Auto Mechanics Work explanation 16",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
-  },
-  {
-    "id": "nabteb-2026-automechanicswork-017",
-    "subject": "Auto Mechanics Work",
-    "topic": "Engine",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Engine question 17 for Auto Mechanics Work",
-    "options": {
-      "A": "A 17",
-      "B": "B 17",
-      "C": "C 17",
-      "D": "D 17"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Auto Mechanics Work explanation 17",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
-  },
-  {
-    "id": "nabteb-2026-automechanicswork-018",
-    "subject": "Auto Mechanics Work",
-    "topic": "Electrical",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Electrical question 18 for Auto Mechanics Work",
-    "options": {
-      "A": "A 18",
-      "B": "B 18",
-      "C": "C 18",
-      "D": "D 18"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Auto Mechanics Work explanation 18",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
-  },
-  {
-    "id": "nabteb-2026-automechanicswork-019",
-    "subject": "Auto Mechanics Work",
-    "topic": "Brakes",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Brakes question 19 for Auto Mechanics Work",
-    "options": {
-      "A": "A 19",
-      "B": "B 19",
-      "C": "C 19",
-      "D": "D 19"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Auto Mechanics Work explanation 19",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
-  },
-  {
-    "id": "nabteb-2026-automechanicswork-020",
-    "subject": "Auto Mechanics Work",
-    "topic": "Steering",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Steering question 20 for Auto Mechanics Work",
-    "options": {
-      "A": "A 20",
-      "B": "B 20",
-      "C": "C 20",
-      "D": "D 20"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Auto Mechanics Work explanation 20",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
-  },
-  {
-    "id": "nabteb-2026-automechanicswork-021",
-    "subject": "Auto Mechanics Work",
-    "topic": "Engine",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Engine question 21 for Auto Mechanics Work",
-    "options": {
-      "A": "A 21",
-      "B": "B 21",
-      "C": "C 21",
-      "D": "D 21"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Auto Mechanics Work explanation 21",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
-  },
-  {
-    "id": "nabteb-2026-automechanicswork-022",
-    "subject": "Auto Mechanics Work",
-    "topic": "Electrical",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Electrical question 22 for Auto Mechanics Work",
-    "options": {
-      "A": "A 22",
-      "B": "B 22",
-      "C": "C 22",
-      "D": "D 22"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Auto Mechanics Work explanation 22",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
-  },
-  {
-    "id": "nabteb-2026-automechanicswork-023",
-    "subject": "Auto Mechanics Work",
-    "topic": "Brakes",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Brakes question 23 for Auto Mechanics Work",
-    "options": {
-      "A": "A 23",
-      "B": "B 23",
-      "C": "C 23",
-      "D": "D 23"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Auto Mechanics Work explanation 23",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
-  },
-  {
-    "id": "nabteb-2026-automechanicswork-024",
-    "subject": "Auto Mechanics Work",
-    "topic": "Steering",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Steering question 24 for Auto Mechanics Work",
-    "options": {
-      "A": "A 24",
-      "B": "B 24",
-      "C": "C 24",
-      "D": "D 24"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Auto Mechanics Work explanation 24",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
-  },
-  {
-    "id": "nabteb-2026-automechanicswork-025",
-    "subject": "Auto Mechanics Work",
-    "topic": "Engine",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Engine question 25 for Auto Mechanics Work",
-    "options": {
-      "A": "A 25",
-      "B": "B 25",
-      "C": "C 25",
-      "D": "D 25"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Auto Mechanics Work explanation 25",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
+    "explanation": "The motherboard connects all components.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.686Z"
   },
   {
     "id": "nabteb-2026-electricalinstallation-001",
     "subject": "Electrical Installation",
-    "topic": "Wiring",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Wiring question 1 for Electrical Installation",
+    "question": "The unit of electrical resistance is the:",
     "options": {
-      "A": "A 1",
-      "B": "B 1",
-      "C": "C 1",
-      "D": "D 1"
+      "A": "Ohm",
+      "B": "Volt",
+      "C": "Ampere",
+      "D": "Watt"
     },
     "correctAnswer": "A",
-    "explanation": "NABTEB Electrical Installation explanation 1",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
+    "explanation": "Resistance is measured in ohms (Ω).",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.686Z"
   },
   {
     "id": "nabteb-2026-electricalinstallation-002",
     "subject": "Electrical Installation",
-    "topic": "Circuit",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "Circuit question 2 for Electrical Installation",
+    "question": "Ohm's law states that V =",
     "options": {
-      "A": "A 2",
-      "B": "B 2",
-      "C": "C 2",
-      "D": "D 2"
+      "A": "I × R",
+      "B": "I ÷ R",
+      "C": "R ÷ I",
+      "D": "I + R"
     },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Electrical Installation explanation 2",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
+    "correctAnswer": "A",
+    "explanation": "V = IR (voltage = current × resistance).",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.686Z"
   },
   {
     "id": "nabteb-2026-electricalinstallation-003",
     "subject": "Electrical Installation",
-    "topic": "Power",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "Power question 3 for Electrical Installation",
+    "question": "The colour code for the live wire in a plug is:",
     "options": {
-      "A": "A 3",
-      "B": "B 3",
-      "C": "C 3",
-      "D": "D 3"
+      "A": "Brown",
+      "B": "Blue",
+      "C": "Green/Yellow",
+      "D": "Black"
     },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Electrical Installation explanation 3",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
+    "correctAnswer": "A",
+    "explanation": "IEC: live = brown; neutral = blue; earth = green/yellow.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.686Z"
   },
   {
     "id": "nabteb-2026-electricalinstallation-004",
     "subject": "Electrical Installation",
-    "topic": "Safety",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Safety question 4 for Electrical Installation",
+    "question": "A device that protects a circuit from excessive current is a:",
     "options": {
-      "A": "A 4",
-      "B": "B 4",
-      "C": "C 4",
-      "D": "D 4"
+      "A": "Fuse",
+      "B": "Capacitor",
+      "C": "Resistor",
+      "D": "Diode"
     },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Electrical Installation explanation 4",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
+    "correctAnswer": "A",
+    "explanation": "A fuse melts and breaks the circuit when current is too high.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.686Z"
   },
   {
     "id": "nabteb-2026-electricalinstallation-005",
     "subject": "Electrical Installation",
-    "topic": "Wiring",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "Wiring question 5 for Electrical Installation",
+    "question": "The unit of electrical power is the:",
     "options": {
-      "A": "A 5",
-      "B": "B 5",
-      "C": "C 5",
-      "D": "D 5"
+      "A": "Watt",
+      "B": "Joule",
+      "C": "Coulomb",
+      "D": "Farad"
     },
     "correctAnswer": "A",
-    "explanation": "NABTEB Electrical Installation explanation 5",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
+    "explanation": "Power is measured in watts (W).",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.686Z"
   },
   {
     "id": "nabteb-2026-electricalinstallation-006",
     "subject": "Electrical Installation",
-    "topic": "Circuit",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "Circuit question 6 for Electrical Installation",
+    "question": "Which instrument measures current?",
     "options": {
-      "A": "A 6",
-      "B": "B 6",
-      "C": "C 6",
-      "D": "D 6"
+      "A": "Ammeter",
+      "B": "Voltmeter",
+      "C": "Ohmmeter",
+      "D": "Wattmeter"
     },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Electrical Installation explanation 6",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
+    "correctAnswer": "A",
+    "explanation": "An ammeter measures current (connected in series).",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.686Z"
   },
   {
     "id": "nabteb-2026-electricalinstallation-007",
     "subject": "Electrical Installation",
-    "topic": "Power",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Power question 7 for Electrical Installation",
+    "question": "A circuit that has more than one path for current is:",
     "options": {
-      "A": "A 7",
-      "B": "B 7",
-      "C": "C 7",
-      "D": "D 7"
+      "A": "Parallel circuit",
+      "B": "Series circuit",
+      "C": "Open circuit",
+      "D": "Short circuit"
     },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Electrical Installation explanation 7",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
+    "correctAnswer": "A",
+    "explanation": "Parallel circuits have multiple paths.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.686Z"
   },
   {
     "id": "nabteb-2026-electricalinstallation-008",
     "subject": "Electrical Installation",
-    "topic": "Safety",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "Safety question 8 for Electrical Installation",
+    "question": "The process of joining two wires permanently is:",
     "options": {
-      "A": "A 8",
-      "B": "B 8",
-      "C": "C 8",
-      "D": "D 8"
+      "A": "Soldering",
+      "B": "Insulation",
+      "C": "Stripping",
+      "D": "Bending"
     },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Electrical Installation explanation 8",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
+    "correctAnswer": "A",
+    "explanation": "Soldering joins wires with molten alloy.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.686Z"
   },
   {
     "id": "nabteb-2026-electricalinstallation-009",
     "subject": "Electrical Installation",
-    "topic": "Wiring",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "Wiring question 9 for Electrical Installation",
+    "question": "The device that stores charge is a:",
     "options": {
-      "A": "A 9",
-      "B": "B 9",
-      "C": "C 9",
-      "D": "D 9"
+      "A": "Capacitor",
+      "B": "Resistor",
+      "C": "Inductor",
+      "D": "Fuse"
     },
     "correctAnswer": "A",
-    "explanation": "NABTEB Electrical Installation explanation 9",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
+    "explanation": "A capacitor stores electric charge.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.686Z"
   },
   {
     "id": "nabteb-2026-electricalinstallation-010",
     "subject": "Electrical Installation",
-    "topic": "Circuit",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Circuit question 10 for Electrical Installation",
+    "question": "Earthing is provided to:",
     "options": {
-      "A": "A 10",
-      "B": "B 10",
-      "C": "C 10",
-      "D": "D 10"
+      "A": "Protect against electric shock",
+      "B": "Increase voltage",
+      "C": "Reduce resistance",
+      "D": "Store energy"
     },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Electrical Installation explanation 10",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
+    "correctAnswer": "A",
+    "explanation": "Earthing provides a safe path for fault current.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.686Z"
   },
   {
     "id": "nabteb-2026-electricalinstallation-011",
     "subject": "Electrical Installation",
-    "topic": "Power",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "Power question 11 for Electrical Installation",
+    "question": "A transformer works on the principle of:",
     "options": {
-      "A": "A 11",
-      "B": "B 11",
-      "C": "C 11",
-      "D": "D 11"
+      "A": "Electromagnetic induction",
+      "B": "Ohm's law",
+      "C": "Static electricity",
+      "D": "Chemical reaction"
     },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Electrical Installation explanation 11",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
+    "correctAnswer": "A",
+    "explanation": "Mutual induction between coils.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.686Z"
   },
   {
     "id": "nabteb-2026-electricalinstallation-012",
     "subject": "Electrical Installation",
-    "topic": "Safety",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "Safety question 12 for Electrical Installation",
+    "question": "The unit of capacitance is the:",
     "options": {
-      "A": "A 12",
-      "B": "B 12",
-      "C": "C 12",
-      "D": "D 12"
+      "A": "Farad",
+      "B": "Henry",
+      "C": "Weber",
+      "D": "Tesla"
     },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Electrical Installation explanation 12",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
+    "correctAnswer": "A",
+    "explanation": "Capacitance is measured in farads (F).",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.686Z"
   },
   {
-    "id": "nabteb-2026-electricalinstallation-013",
-    "subject": "Electrical Installation",
-    "topic": "Wiring",
+    "id": "nabteb-2026-automechanicswork-001",
+    "subject": "Auto Mechanics Work",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Wiring question 13 for Electrical Installation",
+    "question": "The compression ratio of a diesel engine is typically:",
     "options": {
-      "A": "A 13",
-      "B": "B 13",
-      "C": "C 13",
-      "D": "D 13"
+      "A": "15:1 to 20:1",
+      "B": "6:1 to 8:1",
+      "C": "10:1 to 12:1",
+      "D": "2:1 to 4:1"
     },
     "correctAnswer": "A",
-    "explanation": "NABTEB Electrical Installation explanation 13",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
+    "explanation": "Diesel engines use high compression (15–20:1).",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.686Z"
   },
   {
-    "id": "nabteb-2026-electricalinstallation-014",
-    "subject": "Electrical Installation",
-    "topic": "Circuit",
+    "id": "nabteb-2026-automechanicswork-002",
+    "subject": "Auto Mechanics Work",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "Circuit question 14 for Electrical Installation",
+    "question": "The four strokes of a petrol engine are:",
     "options": {
-      "A": "A 14",
-      "B": "B 14",
-      "C": "C 14",
-      "D": "D 14"
+      "A": "Intake, compression, power, exhaust",
+      "B": "Intake, exhaust, power, compression",
+      "C": "Compression, intake, exhaust, power",
+      "D": "Power, exhaust, intake, compression"
     },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Electrical Installation explanation 14",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
+    "correctAnswer": "A",
+    "explanation": "The Otto cycle: intake → compression → power → exhaust.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.686Z"
   },
   {
-    "id": "nabteb-2026-electricalinstallation-015",
-    "subject": "Electrical Installation",
-    "topic": "Power",
+    "id": "nabteb-2026-automechanicswork-003",
+    "subject": "Auto Mechanics Work",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "Power question 15 for Electrical Installation",
+    "question": "The component that steps up voltage for the spark plug is the:",
     "options": {
-      "A": "A 15",
-      "B": "B 15",
-      "C": "C 15",
-      "D": "D 15"
+      "A": "Ignition coil",
+      "B": "Alternator",
+      "C": "Radiator",
+      "D": "Carburettor"
     },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Electrical Installation explanation 15",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
+    "correctAnswer": "A",
+    "explanation": "The ignition coil produces the high voltage spark.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.686Z"
   },
   {
-    "id": "nabteb-2026-electricalinstallation-016",
-    "subject": "Electrical Installation",
-    "topic": "Safety",
+    "id": "nabteb-2026-automechanicswork-004",
+    "subject": "Auto Mechanics Work",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Safety question 16 for Electrical Installation",
+    "question": "Engine oil's main function is to:",
     "options": {
-      "A": "A 16",
-      "B": "B 16",
-      "C": "C 16",
-      "D": "D 16"
+      "A": "Lubricate moving parts",
+      "B": "Cool the driver",
+      "C": "Clean the exhaust",
+      "D": "Charge the battery"
     },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Electrical Installation explanation 16",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
+    "correctAnswer": "A",
+    "explanation": "Oil reduces friction and wear.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
-    "id": "nabteb-2026-electricalinstallation-017",
-    "subject": "Electrical Installation",
-    "topic": "Wiring",
+    "id": "nabteb-2026-automechanicswork-005",
+    "subject": "Auto Mechanics Work",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "Wiring question 17 for Electrical Installation",
+    "question": "The device that charges the battery while the engine runs is the:",
     "options": {
-      "A": "A 17",
-      "B": "B 17",
-      "C": "C 17",
-      "D": "D 17"
+      "A": "Alternator",
+      "B": "Starter",
+      "C": "Distributor",
+      "D": "Radiator"
     },
     "correctAnswer": "A",
-    "explanation": "NABTEB Electrical Installation explanation 17",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
+    "explanation": "The alternator generates electricity to charge the battery.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
-    "id": "nabteb-2026-electricalinstallation-018",
-    "subject": "Electrical Installation",
-    "topic": "Circuit",
+    "id": "nabteb-2026-automechanicswork-006",
+    "subject": "Auto Mechanics Work",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "Circuit question 18 for Electrical Installation",
+    "question": "A diesel engine ignites fuel by:",
     "options": {
-      "A": "A 18",
-      "B": "B 18",
-      "C": "C 18",
-      "D": "D 18"
+      "A": "Compression heat",
+      "B": "Spark plug",
+      "C": "Glow plug only",
+      "D": "Battery"
     },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Electrical Installation explanation 18",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
+    "correctAnswer": "A",
+    "explanation": "Diesel fuel self-ignites from compression heat.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
-    "id": "nabteb-2026-electricalinstallation-019",
-    "subject": "Electrical Installation",
-    "topic": "Power",
+    "id": "nabteb-2026-automechanicswork-007",
+    "subject": "Auto Mechanics Work",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Power question 19 for Electrical Installation",
+    "question": "The purpose of the radiator is to:",
     "options": {
-      "A": "A 19",
-      "B": "B 19",
-      "C": "C 19",
-      "D": "D 19"
+      "A": "Cool the engine",
+      "B": "Filter oil",
+      "C": "Charge the battery",
+      "D": "Start the engine"
     },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Electrical Installation explanation 19",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
+    "correctAnswer": "A",
+    "explanation": "The radiator dissipates heat from the coolant.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
-    "id": "nabteb-2026-electricalinstallation-020",
-    "subject": "Electrical Installation",
-    "topic": "Safety",
+    "id": "nabteb-2026-automechanicswork-008",
+    "subject": "Auto Mechanics Work",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "Safety question 20 for Electrical Installation",
+    "question": "Which of these is a friction-reducing component?",
     "options": {
-      "A": "A 20",
-      "B": "B 20",
-      "C": "C 20",
-      "D": "D 20"
+      "A": "Ball bearing",
+      "B": "Piston",
+      "C": "Spark plug",
+      "D": "Radiator"
     },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Electrical Installation explanation 20",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
+    "correctAnswer": "A",
+    "explanation": "Bearings reduce friction between moving parts.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
-    "id": "nabteb-2026-electricalinstallation-021",
-    "subject": "Electrical Installation",
-    "topic": "Wiring",
+    "id": "nabteb-2026-automechanicswork-009",
+    "subject": "Auto Mechanics Work",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "Wiring question 21 for Electrical Installation",
+    "question": "The fuel-air mixture in a petrol engine is prepared by the:",
     "options": {
-      "A": "A 21",
-      "B": "B 21",
-      "C": "C 21",
-      "D": "D 21"
+      "A": "Carburettor",
+      "B": "Radiator",
+      "C": "Alternator",
+      "D": "Clutch"
     },
     "correctAnswer": "A",
-    "explanation": "NABTEB Electrical Installation explanation 21",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.470Z"
+    "explanation": "The carburettor (or fuel injector) mixes fuel and air.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
-    "id": "nabteb-2026-electricalinstallation-022",
-    "subject": "Electrical Installation",
-    "topic": "Circuit",
+    "id": "nabteb-2026-automechanicswork-010",
+    "subject": "Auto Mechanics Work",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Circuit question 22 for Electrical Installation",
+    "question": "Brake fluid is an example of a:",
     "options": {
-      "A": "A 22",
-      "B": "B 22",
-      "C": "C 22",
-      "D": "D 22"
+      "A": "Hydraulic fluid",
+      "B": "Lubricant",
+      "C": "Coolant",
+      "D": "Fuel"
     },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Electrical Installation explanation 22",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
+    "correctAnswer": "A",
+    "explanation": "Brake fluid transmits force hydraulically.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
-    "id": "nabteb-2026-electricalinstallation-023",
-    "subject": "Electrical Installation",
-    "topic": "Power",
+    "id": "nabteb-2026-automechanicswork-011",
+    "subject": "Auto Mechanics Work",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "Power question 23 for Electrical Installation",
+    "question": "The clutch disconnects the:",
     "options": {
-      "A": "A 23",
-      "B": "B 23",
-      "C": "C 23",
-      "D": "D 23"
+      "A": "Engine from the gearbox",
+      "B": "Battery from the starter",
+      "C": "Wheels from the axle",
+      "D": "Radiator from the engine"
     },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Electrical Installation explanation 23",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
+    "correctAnswer": "A",
+    "explanation": "The clutch engages/disengages engine and transmission.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
-    "id": "nabteb-2026-electricalinstallation-024",
-    "subject": "Electrical Installation",
-    "topic": "Safety",
+    "id": "nabteb-2026-automechanicswork-012",
+    "subject": "Auto Mechanics Work",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "Safety question 24 for Electrical Installation",
+    "question": "Spark plugs are used in:",
     "options": {
-      "A": "A 24",
-      "B": "B 24",
-      "C": "C 24",
-      "D": "D 24"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Electrical Installation explanation 24",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
-  },
-  {
-    "id": "nabteb-2026-electricalinstallation-025",
-    "subject": "Electrical Installation",
-    "topic": "Wiring",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Wiring question 25 for Electrical Installation",
-    "options": {
-      "A": "A 25",
-      "B": "B 25",
-      "C": "C 25",
-      "D": "D 25"
+      "A": "Petrol engines",
+      "B": "Diesel engines",
+      "C": "Steam engines",
+      "D": "Electric motors"
     },
     "correctAnswer": "A",
-    "explanation": "NABTEB Electrical Installation explanation 25",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
+    "explanation": "Petrol engines use spark ignition.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-buildingconstruction-001",
     "subject": "Building/Construction",
-    "topic": "Construction",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Construction question 1 for Building/Construction",
+    "question": "The standard size of a concrete block in Nigeria is:",
     "options": {
-      "A": "A 1",
-      "B": "B 1",
-      "C": "C 1",
-      "D": "D 1"
+      "A": "450mm × 225mm × 225mm",
+      "B": "600mm × 300mm × 300mm",
+      "C": "300mm × 150mm × 150mm",
+      "D": "1000mm × 500mm × 500mm"
     },
     "correctAnswer": "A",
-    "explanation": "NABTEB Building/Construction explanation 1",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
+    "explanation": "The 9-inch block: 450 × 225 × 225 mm.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-buildingconstruction-002",
     "subject": "Building/Construction",
-    "topic": "Materials",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "Materials question 2 for Building/Construction",
+    "question": "The ratio of cement to sand in mortar for blockwork is typically:",
     "options": {
-      "A": "A 2",
-      "B": "B 2",
-      "C": "C 2",
-      "D": "D 2"
+      "A": "1:6",
+      "B": "1:2",
+      "C": "1:12",
+      "D": "1:20"
     },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Building/Construction explanation 2",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
+    "correctAnswer": "A",
+    "explanation": "A common mortar mix is 1 part cement : 6 parts sand.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-buildingconstruction-003",
     "subject": "Building/Construction",
-    "topic": "Masonry",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "Masonry question 3 for Building/Construction",
+    "question": "The instrument used to check vertical alignment is the:",
     "options": {
-      "A": "A 3",
-      "B": "B 3",
-      "C": "C 3",
-      "D": "D 3"
+      "A": "Plumb bob",
+      "B": "Spirit level",
+      "C": "Tape measure",
+      "D": "Builder's square"
     },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Building/Construction explanation 3",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
+    "correctAnswer": "A",
+    "explanation": "A plumb bob establishes a vertical reference.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-buildingconstruction-004",
     "subject": "Building/Construction",
-    "topic": "Finishing",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Finishing question 4 for Building/Construction",
+    "question": "Curing of concrete means:",
     "options": {
-      "A": "A 4",
-      "B": "B 4",
-      "C": "C 4",
-      "D": "D 4"
+      "A": "Keeping it moist to gain strength",
+      "B": "Breaking it up",
+      "C": "Painting it",
+      "D": "Heating it"
     },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Building/Construction explanation 4",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
+    "correctAnswer": "A",
+    "explanation": "Curing retains moisture so hydration completes.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-buildingconstruction-005",
     "subject": "Building/Construction",
-    "topic": "Construction",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "Construction question 5 for Building/Construction",
+    "question": "The foundation that spreads the load over a wide area is the:",
     "options": {
-      "A": "A 5",
-      "B": "B 5",
-      "C": "C 5",
-      "D": "D 5"
+      "A": "Raft foundation",
+      "B": "Pad foundation",
+      "C": "Pile foundation",
+      "D": "Strip foundation"
     },
     "correctAnswer": "A",
-    "explanation": "NABTEB Building/Construction explanation 5",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
+    "explanation": "A raft (mat) spreads loads over a large area.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-buildingconstruction-006",
     "subject": "Building/Construction",
-    "topic": "Materials",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "Materials question 6 for Building/Construction",
+    "question": "The main purpose of a damp-proof course (DPC) is to:",
     "options": {
-      "A": "A 6",
-      "B": "B 6",
-      "C": "C 6",
-      "D": "D 6"
+      "A": "Prevent rising damp",
+      "B": "Insulate sound",
+      "C": "Strengthen walls",
+      "D": "Decorate walls"
     },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Building/Construction explanation 6",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
+    "correctAnswer": "A",
+    "explanation": "DPC blocks moisture rising through walls.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-buildingconstruction-007",
     "subject": "Building/Construction",
-    "topic": "Masonry",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Masonry question 7 for Building/Construction",
+    "question": "The tool used for cutting bricks is the:",
     "options": {
-      "A": "A 7",
-      "B": "B 7",
-      "C": "C 7",
-      "D": "D 7"
+      "A": "Bolster chisel",
+      "B": "Screwdriver",
+      "C": "Hacksaw",
+      "D": "Pliers"
     },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Building/Construction explanation 7",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
+    "correctAnswer": "A",
+    "explanation": "A bolster (cold chisel) cuts bricks/blocks.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-buildingconstruction-008",
     "subject": "Building/Construction",
-    "topic": "Finishing",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "Finishing question 8 for Building/Construction",
+    "question": "The setting time of ordinary Portland cement is about:",
     "options": {
-      "A": "A 8",
-      "B": "B 8",
-      "C": "C 8",
-      "D": "D 8"
+      "A": "30 minutes",
+      "B": "5 minutes",
+      "C": "3 hours",
+      "D": "24 hours"
     },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Building/Construction explanation 8",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
+    "correctAnswer": "A",
+    "explanation": "Initial setting ≈ 30 min for OPC.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-buildingconstruction-009",
     "subject": "Building/Construction",
-    "topic": "Construction",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "Construction question 9 for Building/Construction",
+    "question": "Which of these is a load-bearing wall?",
     "options": {
-      "A": "A 9",
-      "B": "B 9",
-      "C": "C 9",
-      "D": "D 9"
+      "A": "External wall supporting the roof",
+      "B": "Partition between rooms",
+      "C": "Decorative wall",
+      "D": "Boundary fence"
     },
     "correctAnswer": "A",
-    "explanation": "NABTEB Building/Construction explanation 9",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
+    "explanation": "Load-bearing walls carry structural loads.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-buildingconstruction-010",
     "subject": "Building/Construction",
-    "topic": "Materials",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Materials question 10 for Building/Construction",
+    "question": "The finish applied to a wall before painting is:",
     "options": {
-      "A": "A 10",
-      "B": "B 10",
-      "C": "C 10",
-      "D": "D 10"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Building/Construction explanation 10",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
-  },
-  {
-    "id": "nabteb-2026-buildingconstruction-011",
-    "subject": "Building/Construction",
-    "topic": "Masonry",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Masonry question 11 for Building/Construction",
-    "options": {
-      "A": "A 11",
-      "B": "B 11",
-      "C": "C 11",
-      "D": "D 11"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Building/Construction explanation 11",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
-  },
-  {
-    "id": "nabteb-2026-buildingconstruction-012",
-    "subject": "Building/Construction",
-    "topic": "Finishing",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Finishing question 12 for Building/Construction",
-    "options": {
-      "A": "A 12",
-      "B": "B 12",
-      "C": "C 12",
-      "D": "D 12"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Building/Construction explanation 12",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
-  },
-  {
-    "id": "nabteb-2026-buildingconstruction-013",
-    "subject": "Building/Construction",
-    "topic": "Construction",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Construction question 13 for Building/Construction",
-    "options": {
-      "A": "A 13",
-      "B": "B 13",
-      "C": "C 13",
-      "D": "D 13"
+      "A": "Plastering",
+      "B": "Tiling",
+      "C": "Roofing",
+      "D": "Flooring"
     },
     "correctAnswer": "A",
-    "explanation": "NABTEB Building/Construction explanation 13",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
-  },
-  {
-    "id": "nabteb-2026-buildingconstruction-014",
-    "subject": "Building/Construction",
-    "topic": "Materials",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Materials question 14 for Building/Construction",
-    "options": {
-      "A": "A 14",
-      "B": "B 14",
-      "C": "C 14",
-      "D": "D 14"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Building/Construction explanation 14",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
-  },
-  {
-    "id": "nabteb-2026-buildingconstruction-015",
-    "subject": "Building/Construction",
-    "topic": "Masonry",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Masonry question 15 for Building/Construction",
-    "options": {
-      "A": "A 15",
-      "B": "B 15",
-      "C": "C 15",
-      "D": "D 15"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Building/Construction explanation 15",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
-  },
-  {
-    "id": "nabteb-2026-buildingconstruction-016",
-    "subject": "Building/Construction",
-    "topic": "Finishing",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Finishing question 16 for Building/Construction",
-    "options": {
-      "A": "A 16",
-      "B": "B 16",
-      "C": "C 16",
-      "D": "D 16"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Building/Construction explanation 16",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
-  },
-  {
-    "id": "nabteb-2026-buildingconstruction-017",
-    "subject": "Building/Construction",
-    "topic": "Construction",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Construction question 17 for Building/Construction",
-    "options": {
-      "A": "A 17",
-      "B": "B 17",
-      "C": "C 17",
-      "D": "D 17"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Building/Construction explanation 17",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
-  },
-  {
-    "id": "nabteb-2026-buildingconstruction-018",
-    "subject": "Building/Construction",
-    "topic": "Materials",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Materials question 18 for Building/Construction",
-    "options": {
-      "A": "A 18",
-      "B": "B 18",
-      "C": "C 18",
-      "D": "D 18"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Building/Construction explanation 18",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
-  },
-  {
-    "id": "nabteb-2026-buildingconstruction-019",
-    "subject": "Building/Construction",
-    "topic": "Masonry",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Masonry question 19 for Building/Construction",
-    "options": {
-      "A": "A 19",
-      "B": "B 19",
-      "C": "C 19",
-      "D": "D 19"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Building/Construction explanation 19",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
-  },
-  {
-    "id": "nabteb-2026-buildingconstruction-020",
-    "subject": "Building/Construction",
-    "topic": "Finishing",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Finishing question 20 for Building/Construction",
-    "options": {
-      "A": "A 20",
-      "B": "B 20",
-      "C": "C 20",
-      "D": "D 20"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Building/Construction explanation 20",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
-  },
-  {
-    "id": "nabteb-2026-buildingconstruction-021",
-    "subject": "Building/Construction",
-    "topic": "Construction",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Construction question 21 for Building/Construction",
-    "options": {
-      "A": "A 21",
-      "B": "B 21",
-      "C": "C 21",
-      "D": "D 21"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Building/Construction explanation 21",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
-  },
-  {
-    "id": "nabteb-2026-buildingconstruction-022",
-    "subject": "Building/Construction",
-    "topic": "Materials",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Materials question 22 for Building/Construction",
-    "options": {
-      "A": "A 22",
-      "B": "B 22",
-      "C": "C 22",
-      "D": "D 22"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Building/Construction explanation 22",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
-  },
-  {
-    "id": "nabteb-2026-buildingconstruction-023",
-    "subject": "Building/Construction",
-    "topic": "Masonry",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Masonry question 23 for Building/Construction",
-    "options": {
-      "A": "A 23",
-      "B": "B 23",
-      "C": "C 23",
-      "D": "D 23"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Building/Construction explanation 23",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
-  },
-  {
-    "id": "nabteb-2026-buildingconstruction-024",
-    "subject": "Building/Construction",
-    "topic": "Finishing",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Finishing question 24 for Building/Construction",
-    "options": {
-      "A": "A 24",
-      "B": "B 24",
-      "C": "C 24",
-      "D": "D 24"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Building/Construction explanation 24",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
-  },
-  {
-    "id": "nabteb-2026-buildingconstruction-025",
-    "subject": "Building/Construction",
-    "topic": "Construction",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Construction question 25 for Building/Construction",
-    "options": {
-      "A": "A 25",
-      "B": "B 25",
-      "C": "C 25",
-      "D": "D 25"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Building/Construction explanation 25",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
-  },
-  {
-    "id": "nabteb-2026-plumbingsanitation-001",
-    "subject": "Plumbing/Sanitation",
-    "topic": "Pipes",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Pipes question 1 for Plumbing/Sanitation",
-    "options": {
-      "A": "A 1",
-      "B": "B 1",
-      "C": "C 1",
-      "D": "D 1"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Plumbing/Sanitation explanation 1",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
-  },
-  {
-    "id": "nabteb-2026-plumbingsanitation-002",
-    "subject": "Plumbing/Sanitation",
-    "topic": "Fittings",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Fittings question 2 for Plumbing/Sanitation",
-    "options": {
-      "A": "A 2",
-      "B": "B 2",
-      "C": "C 2",
-      "D": "D 2"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Plumbing/Sanitation explanation 2",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
-  },
-  {
-    "id": "nabteb-2026-plumbingsanitation-003",
-    "subject": "Plumbing/Sanitation",
-    "topic": "Drainage",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Drainage question 3 for Plumbing/Sanitation",
-    "options": {
-      "A": "A 3",
-      "B": "B 3",
-      "C": "C 3",
-      "D": "D 3"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Plumbing/Sanitation explanation 3",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
-  },
-  {
-    "id": "nabteb-2026-plumbingsanitation-004",
-    "subject": "Plumbing/Sanitation",
-    "topic": "Water Supply",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Water Supply question 4 for Plumbing/Sanitation",
-    "options": {
-      "A": "A 4",
-      "B": "B 4",
-      "C": "C 4",
-      "D": "D 4"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Plumbing/Sanitation explanation 4",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
-  },
-  {
-    "id": "nabteb-2026-plumbingsanitation-005",
-    "subject": "Plumbing/Sanitation",
-    "topic": "Pipes",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Pipes question 5 for Plumbing/Sanitation",
-    "options": {
-      "A": "A 5",
-      "B": "B 5",
-      "C": "C 5",
-      "D": "D 5"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Plumbing/Sanitation explanation 5",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
-  },
-  {
-    "id": "nabteb-2026-plumbingsanitation-006",
-    "subject": "Plumbing/Sanitation",
-    "topic": "Fittings",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Fittings question 6 for Plumbing/Sanitation",
-    "options": {
-      "A": "A 6",
-      "B": "B 6",
-      "C": "C 6",
-      "D": "D 6"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Plumbing/Sanitation explanation 6",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.471Z"
-  },
-  {
-    "id": "nabteb-2026-plumbingsanitation-007",
-    "subject": "Plumbing/Sanitation",
-    "topic": "Drainage",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Drainage question 7 for Plumbing/Sanitation",
-    "options": {
-      "A": "A 7",
-      "B": "B 7",
-      "C": "C 7",
-      "D": "D 7"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Plumbing/Sanitation explanation 7",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-plumbingsanitation-008",
-    "subject": "Plumbing/Sanitation",
-    "topic": "Water Supply",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Water Supply question 8 for Plumbing/Sanitation",
-    "options": {
-      "A": "A 8",
-      "B": "B 8",
-      "C": "C 8",
-      "D": "D 8"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Plumbing/Sanitation explanation 8",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-plumbingsanitation-009",
-    "subject": "Plumbing/Sanitation",
-    "topic": "Pipes",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Pipes question 9 for Plumbing/Sanitation",
-    "options": {
-      "A": "A 9",
-      "B": "B 9",
-      "C": "C 9",
-      "D": "D 9"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Plumbing/Sanitation explanation 9",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-plumbingsanitation-010",
-    "subject": "Plumbing/Sanitation",
-    "topic": "Fittings",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Fittings question 10 for Plumbing/Sanitation",
-    "options": {
-      "A": "A 10",
-      "B": "B 10",
-      "C": "C 10",
-      "D": "D 10"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Plumbing/Sanitation explanation 10",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-plumbingsanitation-011",
-    "subject": "Plumbing/Sanitation",
-    "topic": "Drainage",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Drainage question 11 for Plumbing/Sanitation",
-    "options": {
-      "A": "A 11",
-      "B": "B 11",
-      "C": "C 11",
-      "D": "D 11"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Plumbing/Sanitation explanation 11",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-plumbingsanitation-012",
-    "subject": "Plumbing/Sanitation",
-    "topic": "Water Supply",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Water Supply question 12 for Plumbing/Sanitation",
-    "options": {
-      "A": "A 12",
-      "B": "B 12",
-      "C": "C 12",
-      "D": "D 12"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Plumbing/Sanitation explanation 12",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-plumbingsanitation-013",
-    "subject": "Plumbing/Sanitation",
-    "topic": "Pipes",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Pipes question 13 for Plumbing/Sanitation",
-    "options": {
-      "A": "A 13",
-      "B": "B 13",
-      "C": "C 13",
-      "D": "D 13"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Plumbing/Sanitation explanation 13",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-plumbingsanitation-014",
-    "subject": "Plumbing/Sanitation",
-    "topic": "Fittings",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Fittings question 14 for Plumbing/Sanitation",
-    "options": {
-      "A": "A 14",
-      "B": "B 14",
-      "C": "C 14",
-      "D": "D 14"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Plumbing/Sanitation explanation 14",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-plumbingsanitation-015",
-    "subject": "Plumbing/Sanitation",
-    "topic": "Drainage",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Drainage question 15 for Plumbing/Sanitation",
-    "options": {
-      "A": "A 15",
-      "B": "B 15",
-      "C": "C 15",
-      "D": "D 15"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Plumbing/Sanitation explanation 15",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-plumbingsanitation-016",
-    "subject": "Plumbing/Sanitation",
-    "topic": "Water Supply",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Water Supply question 16 for Plumbing/Sanitation",
-    "options": {
-      "A": "A 16",
-      "B": "B 16",
-      "C": "C 16",
-      "D": "D 16"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Plumbing/Sanitation explanation 16",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-plumbingsanitation-017",
-    "subject": "Plumbing/Sanitation",
-    "topic": "Pipes",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Pipes question 17 for Plumbing/Sanitation",
-    "options": {
-      "A": "A 17",
-      "B": "B 17",
-      "C": "C 17",
-      "D": "D 17"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Plumbing/Sanitation explanation 17",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-plumbingsanitation-018",
-    "subject": "Plumbing/Sanitation",
-    "topic": "Fittings",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Fittings question 18 for Plumbing/Sanitation",
-    "options": {
-      "A": "A 18",
-      "B": "B 18",
-      "C": "C 18",
-      "D": "D 18"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Plumbing/Sanitation explanation 18",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-plumbingsanitation-019",
-    "subject": "Plumbing/Sanitation",
-    "topic": "Drainage",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Drainage question 19 for Plumbing/Sanitation",
-    "options": {
-      "A": "A 19",
-      "B": "B 19",
-      "C": "C 19",
-      "D": "D 19"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Plumbing/Sanitation explanation 19",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-plumbingsanitation-020",
-    "subject": "Plumbing/Sanitation",
-    "topic": "Water Supply",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Water Supply question 20 for Plumbing/Sanitation",
-    "options": {
-      "A": "A 20",
-      "B": "B 20",
-      "C": "C 20",
-      "D": "D 20"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Plumbing/Sanitation explanation 20",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-plumbingsanitation-021",
-    "subject": "Plumbing/Sanitation",
-    "topic": "Pipes",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Pipes question 21 for Plumbing/Sanitation",
-    "options": {
-      "A": "A 21",
-      "B": "B 21",
-      "C": "C 21",
-      "D": "D 21"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Plumbing/Sanitation explanation 21",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-plumbingsanitation-022",
-    "subject": "Plumbing/Sanitation",
-    "topic": "Fittings",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Fittings question 22 for Plumbing/Sanitation",
-    "options": {
-      "A": "A 22",
-      "B": "B 22",
-      "C": "C 22",
-      "D": "D 22"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Plumbing/Sanitation explanation 22",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-plumbingsanitation-023",
-    "subject": "Plumbing/Sanitation",
-    "topic": "Drainage",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Drainage question 23 for Plumbing/Sanitation",
-    "options": {
-      "A": "A 23",
-      "B": "B 23",
-      "C": "C 23",
-      "D": "D 23"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Plumbing/Sanitation explanation 23",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-plumbingsanitation-024",
-    "subject": "Plumbing/Sanitation",
-    "topic": "Water Supply",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Water Supply question 24 for Plumbing/Sanitation",
-    "options": {
-      "A": "A 24",
-      "B": "B 24",
-      "C": "C 24",
-      "D": "D 24"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Plumbing/Sanitation explanation 24",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-plumbingsanitation-025",
-    "subject": "Plumbing/Sanitation",
-    "topic": "Pipes",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Pipes question 25 for Plumbing/Sanitation",
-    "options": {
-      "A": "A 25",
-      "B": "B 25",
-      "C": "C 25",
-      "D": "D 25"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Plumbing/Sanitation explanation 25",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-paintingdecorating-001",
-    "subject": "Painting/Decorating",
-    "topic": "Preparation",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Preparation question 1 for Painting/Decorating",
-    "options": {
-      "A": "A 1",
-      "B": "B 1",
-      "C": "C 1",
-      "D": "D 1"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Painting/Decorating explanation 1",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-paintingdecorating-002",
-    "subject": "Painting/Decorating",
-    "topic": "Application",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Application question 2 for Painting/Decorating",
-    "options": {
-      "A": "A 2",
-      "B": "B 2",
-      "C": "C 2",
-      "D": "D 2"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Painting/Decorating explanation 2",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-paintingdecorating-003",
-    "subject": "Painting/Decorating",
-    "topic": "Finishes",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Finishes question 3 for Painting/Decorating",
-    "options": {
-      "A": "A 3",
-      "B": "B 3",
-      "C": "C 3",
-      "D": "D 3"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Painting/Decorating explanation 3",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-paintingdecorating-004",
-    "subject": "Painting/Decorating",
-    "topic": "Tools",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Tools question 4 for Painting/Decorating",
-    "options": {
-      "A": "A 4",
-      "B": "B 4",
-      "C": "C 4",
-      "D": "D 4"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Painting/Decorating explanation 4",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-paintingdecorating-005",
-    "subject": "Painting/Decorating",
-    "topic": "Preparation",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Preparation question 5 for Painting/Decorating",
-    "options": {
-      "A": "A 5",
-      "B": "B 5",
-      "C": "C 5",
-      "D": "D 5"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Painting/Decorating explanation 5",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-paintingdecorating-006",
-    "subject": "Painting/Decorating",
-    "topic": "Application",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Application question 6 for Painting/Decorating",
-    "options": {
-      "A": "A 6",
-      "B": "B 6",
-      "C": "C 6",
-      "D": "D 6"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Painting/Decorating explanation 6",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-paintingdecorating-007",
-    "subject": "Painting/Decorating",
-    "topic": "Finishes",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Finishes question 7 for Painting/Decorating",
-    "options": {
-      "A": "A 7",
-      "B": "B 7",
-      "C": "C 7",
-      "D": "D 7"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Painting/Decorating explanation 7",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-paintingdecorating-008",
-    "subject": "Painting/Decorating",
-    "topic": "Tools",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Tools question 8 for Painting/Decorating",
-    "options": {
-      "A": "A 8",
-      "B": "B 8",
-      "C": "C 8",
-      "D": "D 8"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Painting/Decorating explanation 8",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-paintingdecorating-009",
-    "subject": "Painting/Decorating",
-    "topic": "Preparation",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Preparation question 9 for Painting/Decorating",
-    "options": {
-      "A": "A 9",
-      "B": "B 9",
-      "C": "C 9",
-      "D": "D 9"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Painting/Decorating explanation 9",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-paintingdecorating-010",
-    "subject": "Painting/Decorating",
-    "topic": "Application",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Application question 10 for Painting/Decorating",
-    "options": {
-      "A": "A 10",
-      "B": "B 10",
-      "C": "C 10",
-      "D": "D 10"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Painting/Decorating explanation 10",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-paintingdecorating-011",
-    "subject": "Painting/Decorating",
-    "topic": "Finishes",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Finishes question 11 for Painting/Decorating",
-    "options": {
-      "A": "A 11",
-      "B": "B 11",
-      "C": "C 11",
-      "D": "D 11"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Painting/Decorating explanation 11",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-paintingdecorating-012",
-    "subject": "Painting/Decorating",
-    "topic": "Tools",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Tools question 12 for Painting/Decorating",
-    "options": {
-      "A": "A 12",
-      "B": "B 12",
-      "C": "C 12",
-      "D": "D 12"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Painting/Decorating explanation 12",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-paintingdecorating-013",
-    "subject": "Painting/Decorating",
-    "topic": "Preparation",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Preparation question 13 for Painting/Decorating",
-    "options": {
-      "A": "A 13",
-      "B": "B 13",
-      "C": "C 13",
-      "D": "D 13"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Painting/Decorating explanation 13",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-paintingdecorating-014",
-    "subject": "Painting/Decorating",
-    "topic": "Application",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Application question 14 for Painting/Decorating",
-    "options": {
-      "A": "A 14",
-      "B": "B 14",
-      "C": "C 14",
-      "D": "D 14"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Painting/Decorating explanation 14",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-paintingdecorating-015",
-    "subject": "Painting/Decorating",
-    "topic": "Finishes",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Finishes question 15 for Painting/Decorating",
-    "options": {
-      "A": "A 15",
-      "B": "B 15",
-      "C": "C 15",
-      "D": "D 15"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Painting/Decorating explanation 15",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-paintingdecorating-016",
-    "subject": "Painting/Decorating",
-    "topic": "Tools",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Tools question 16 for Painting/Decorating",
-    "options": {
-      "A": "A 16",
-      "B": "B 16",
-      "C": "C 16",
-      "D": "D 16"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Painting/Decorating explanation 16",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-paintingdecorating-017",
-    "subject": "Painting/Decorating",
-    "topic": "Preparation",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Preparation question 17 for Painting/Decorating",
-    "options": {
-      "A": "A 17",
-      "B": "B 17",
-      "C": "C 17",
-      "D": "D 17"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Painting/Decorating explanation 17",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-paintingdecorating-018",
-    "subject": "Painting/Decorating",
-    "topic": "Application",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Application question 18 for Painting/Decorating",
-    "options": {
-      "A": "A 18",
-      "B": "B 18",
-      "C": "C 18",
-      "D": "D 18"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Painting/Decorating explanation 18",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-paintingdecorating-019",
-    "subject": "Painting/Decorating",
-    "topic": "Finishes",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Finishes question 19 for Painting/Decorating",
-    "options": {
-      "A": "A 19",
-      "B": "B 19",
-      "C": "C 19",
-      "D": "D 19"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Painting/Decorating explanation 19",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-paintingdecorating-020",
-    "subject": "Painting/Decorating",
-    "topic": "Tools",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Tools question 20 for Painting/Decorating",
-    "options": {
-      "A": "A 20",
-      "B": "B 20",
-      "C": "C 20",
-      "D": "D 20"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Painting/Decorating explanation 20",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-paintingdecorating-021",
-    "subject": "Painting/Decorating",
-    "topic": "Preparation",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Preparation question 21 for Painting/Decorating",
-    "options": {
-      "A": "A 21",
-      "B": "B 21",
-      "C": "C 21",
-      "D": "D 21"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Painting/Decorating explanation 21",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-paintingdecorating-022",
-    "subject": "Painting/Decorating",
-    "topic": "Application",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Application question 22 for Painting/Decorating",
-    "options": {
-      "A": "A 22",
-      "B": "B 22",
-      "C": "C 22",
-      "D": "D 22"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Painting/Decorating explanation 22",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-paintingdecorating-023",
-    "subject": "Painting/Decorating",
-    "topic": "Finishes",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Finishes question 23 for Painting/Decorating",
-    "options": {
-      "A": "A 23",
-      "B": "B 23",
-      "C": "C 23",
-      "D": "D 23"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Painting/Decorating explanation 23",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-paintingdecorating-024",
-    "subject": "Painting/Decorating",
-    "topic": "Tools",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Tools question 24 for Painting/Decorating",
-    "options": {
-      "A": "A 24",
-      "B": "B 24",
-      "C": "C 24",
-      "D": "D 24"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Painting/Decorating explanation 24",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-paintingdecorating-025",
-    "subject": "Painting/Decorating",
-    "topic": "Preparation",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Preparation question 25 for Painting/Decorating",
-    "options": {
-      "A": "A 25",
-      "B": "B 25",
-      "C": "C 25",
-      "D": "D 25"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Painting/Decorating explanation 25",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
+    "explanation": "Plaster provides a smooth base for paint.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-foodtechnology-001",
     "subject": "Food Technology",
-    "topic": "Nutrition",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Nutrition question 1 for Food Technology",
+    "question": "Which nutrient is the body's main source of energy?",
     "options": {
-      "A": "A 1",
-      "B": "B 1",
-      "C": "C 1",
-      "D": "D 1"
+      "A": "Carbohydrates",
+      "B": "Proteins",
+      "C": "Vitamins",
+      "D": "Minerals"
     },
     "correctAnswer": "A",
-    "explanation": "NABTEB Food Technology explanation 1",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
+    "explanation": "Carbohydrates are the primary energy source.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-foodtechnology-002",
     "subject": "Food Technology",
-    "topic": "Hygiene",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "Hygiene question 2 for Food Technology",
+    "question": "The process of preserving food by removing moisture is:",
     "options": {
-      "A": "A 2",
-      "B": "B 2",
-      "C": "C 2",
-      "D": "D 2"
+      "A": "Drying",
+      "B": "Boiling",
+      "C": "Freezing",
+      "D": "Frying"
     },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Food Technology explanation 2",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
+    "correctAnswer": "A",
+    "explanation": "Drying removes water, inhibiting microbial growth.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-foodtechnology-003",
     "subject": "Food Technology",
-    "topic": "Processing",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "Processing question 3 for Food Technology",
+    "question": "Which vitamin is produced when skin is exposed to sunlight?",
     "options": {
-      "A": "A 3",
-      "B": "B 3",
-      "C": "C 3",
-      "D": "D 3"
+      "A": "Vitamin D",
+      "B": "Vitamin C",
+      "C": "Vitamin A",
+      "D": "Vitamin K"
     },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Food Technology explanation 3",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
+    "correctAnswer": "A",
+    "explanation": "UV light triggers vitamin D synthesis in skin.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-foodtechnology-004",
     "subject": "Food Technology",
-    "topic": "Storage",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Storage question 4 for Food Technology",
+    "question": "Food poisoning is most commonly caused by:",
     "options": {
-      "A": "A 4",
-      "B": "B 4",
-      "C": "C 4",
-      "D": "D 4"
+      "A": "Bacteria",
+      "B": "Vitamins",
+      "C": "Minerals",
+      "D": "Fats"
     },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Food Technology explanation 4",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
+    "correctAnswer": "A",
+    "explanation": "Pathogenic bacteria (e.g. Salmonella) cause most food poisoning.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-foodtechnology-005",
     "subject": "Food Technology",
-    "topic": "Nutrition",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "Nutrition question 5 for Food Technology",
+    "question": "The nutrient that builds and repairs body tissue is:",
     "options": {
-      "A": "A 5",
-      "B": "B 5",
-      "C": "C 5",
-      "D": "D 5"
+      "A": "Protein",
+      "B": "Carbohydrate",
+      "C": "Fat",
+      "D": "Water"
     },
     "correctAnswer": "A",
-    "explanation": "NABTEB Food Technology explanation 5",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
+    "explanation": "Proteins supply amino acids for growth and repair.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-foodtechnology-006",
     "subject": "Food Technology",
-    "topic": "Hygiene",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "Hygiene question 6 for Food Technology",
+    "question": "Pasteurisation involves heating food to:",
     "options": {
-      "A": "A 6",
-      "B": "B 6",
-      "C": "C 6",
-      "D": "D 6"
+      "A": "Kill harmful bacteria",
+      "B": "Add flavour",
+      "C": "Increase fat",
+      "D": "Remove colour"
     },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Food Technology explanation 6",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
+    "correctAnswer": "A",
+    "explanation": "Pasteurisation kills pathogens without sterilising.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-foodtechnology-007",
     "subject": "Food Technology",
-    "topic": "Processing",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Processing question 7 for Food Technology",
+    "question": "A balanced diet contains:",
     "options": {
-      "A": "A 7",
-      "B": "B 7",
-      "C": "C 7",
-      "D": "D 7"
+      "A": "All food groups in correct proportions",
+      "B": "Only proteins",
+      "C": "Only carbohydrates",
+      "D": "Only fats"
     },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Food Technology explanation 7",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
+    "correctAnswer": "A",
+    "explanation": "Balance = carbohydrates, proteins, fats, vitamins, minerals, water, fibre.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-foodtechnology-008",
     "subject": "Food Technology",
-    "topic": "Storage",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "Storage question 8 for Food Technology",
+    "question": "Which of these is a source of dietary fibre?",
     "options": {
-      "A": "A 8",
-      "B": "B 8",
-      "C": "C 8",
-      "D": "D 8"
+      "A": "Whole grains",
+      "B": "Butter",
+      "C": "Sugar",
+      "D": "Egg yolk"
     },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Food Technology explanation 8",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
+    "correctAnswer": "A",
+    "explanation": "Whole grains, fruits and vegetables supply fibre.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-foodtechnology-009",
     "subject": "Food Technology",
-    "topic": "Nutrition",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "Nutrition question 9 for Food Technology",
+    "question": "The best method to preserve nutrients when boiling vegetables is to:",
     "options": {
-      "A": "A 9",
-      "B": "B 9",
-      "C": "C 9",
-      "D": "D 9"
+      "A": "Use minimal water and short cooking time",
+      "B": "Boil for hours",
+      "C": "Use lots of water",
+      "D": "Re-boil the water"
     },
     "correctAnswer": "A",
-    "explanation": "NABTEB Food Technology explanation 9",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
+    "explanation": "Short cooking in little water retains water-soluble vitamins.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-foodtechnology-010",
     "subject": "Food Technology",
-    "topic": "Hygiene",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Hygiene question 10 for Food Technology",
+    "question": "Kwashiorkor is caused by deficiency of:",
     "options": {
-      "A": "A 10",
-      "B": "B 10",
-      "C": "C 10",
-      "D": "D 10"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Food Technology explanation 10",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-foodtechnology-011",
-    "subject": "Food Technology",
-    "topic": "Processing",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Processing question 11 for Food Technology",
-    "options": {
-      "A": "A 11",
-      "B": "B 11",
-      "C": "C 11",
-      "D": "D 11"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Food Technology explanation 11",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-foodtechnology-012",
-    "subject": "Food Technology",
-    "topic": "Storage",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Storage question 12 for Food Technology",
-    "options": {
-      "A": "A 12",
-      "B": "B 12",
-      "C": "C 12",
-      "D": "D 12"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Food Technology explanation 12",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.472Z"
-  },
-  {
-    "id": "nabteb-2026-foodtechnology-013",
-    "subject": "Food Technology",
-    "topic": "Nutrition",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Nutrition question 13 for Food Technology",
-    "options": {
-      "A": "A 13",
-      "B": "B 13",
-      "C": "C 13",
-      "D": "D 13"
+      "A": "Protein",
+      "B": "Vitamin C",
+      "C": "Iron",
+      "D": "Calcium"
     },
     "correctAnswer": "A",
-    "explanation": "NABTEB Food Technology explanation 13",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-foodtechnology-014",
-    "subject": "Food Technology",
-    "topic": "Hygiene",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Hygiene question 14 for Food Technology",
-    "options": {
-      "A": "A 14",
-      "B": "B 14",
-      "C": "C 14",
-      "D": "D 14"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Food Technology explanation 14",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-foodtechnology-015",
-    "subject": "Food Technology",
-    "topic": "Processing",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Processing question 15 for Food Technology",
-    "options": {
-      "A": "A 15",
-      "B": "B 15",
-      "C": "C 15",
-      "D": "D 15"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Food Technology explanation 15",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-foodtechnology-016",
-    "subject": "Food Technology",
-    "topic": "Storage",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Storage question 16 for Food Technology",
-    "options": {
-      "A": "A 16",
-      "B": "B 16",
-      "C": "C 16",
-      "D": "D 16"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Food Technology explanation 16",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-foodtechnology-017",
-    "subject": "Food Technology",
-    "topic": "Nutrition",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Nutrition question 17 for Food Technology",
-    "options": {
-      "A": "A 17",
-      "B": "B 17",
-      "C": "C 17",
-      "D": "D 17"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Food Technology explanation 17",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-foodtechnology-018",
-    "subject": "Food Technology",
-    "topic": "Hygiene",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Hygiene question 18 for Food Technology",
-    "options": {
-      "A": "A 18",
-      "B": "B 18",
-      "C": "C 18",
-      "D": "D 18"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Food Technology explanation 18",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-foodtechnology-019",
-    "subject": "Food Technology",
-    "topic": "Processing",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Processing question 19 for Food Technology",
-    "options": {
-      "A": "A 19",
-      "B": "B 19",
-      "C": "C 19",
-      "D": "D 19"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Food Technology explanation 19",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-foodtechnology-020",
-    "subject": "Food Technology",
-    "topic": "Storage",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Storage question 20 for Food Technology",
-    "options": {
-      "A": "A 20",
-      "B": "B 20",
-      "C": "C 20",
-      "D": "D 20"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Food Technology explanation 20",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-foodtechnology-021",
-    "subject": "Food Technology",
-    "topic": "Nutrition",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Nutrition question 21 for Food Technology",
-    "options": {
-      "A": "A 21",
-      "B": "B 21",
-      "C": "C 21",
-      "D": "D 21"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Food Technology explanation 21",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-foodtechnology-022",
-    "subject": "Food Technology",
-    "topic": "Hygiene",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Hygiene question 22 for Food Technology",
-    "options": {
-      "A": "A 22",
-      "B": "B 22",
-      "C": "C 22",
-      "D": "D 22"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Food Technology explanation 22",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-foodtechnology-023",
-    "subject": "Food Technology",
-    "topic": "Processing",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Processing question 23 for Food Technology",
-    "options": {
-      "A": "A 23",
-      "B": "B 23",
-      "C": "C 23",
-      "D": "D 23"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Food Technology explanation 23",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-foodtechnology-024",
-    "subject": "Food Technology",
-    "topic": "Storage",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Storage question 24 for Food Technology",
-    "options": {
-      "A": "A 24",
-      "B": "B 24",
-      "C": "C 24",
-      "D": "D 24"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Food Technology explanation 24",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-foodtechnology-025",
-    "subject": "Food Technology",
-    "topic": "Nutrition",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Nutrition question 25 for Food Technology",
-    "options": {
-      "A": "A 25",
-      "B": "B 25",
-      "C": "C 25",
-      "D": "D 25"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Food Technology explanation 25",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
+    "explanation": "Kwashiorkor = severe protein deficiency (common in children).",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-fashionandtextile-001",
     "subject": "Fashion and Textile",
-    "topic": "Pattern",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Pattern question 1 for Fashion and Textile",
+    "question": "The process of joining fabric pieces with thread is:",
     "options": {
-      "A": "A 1",
-      "B": "B 1",
-      "C": "C 1",
-      "D": "D 1"
+      "A": "Sewing",
+      "B": "Cutting",
+      "C": "Dyeing",
+      "D": "Weaving"
     },
     "correctAnswer": "A",
-    "explanation": "NABTEB Fashion and Textile explanation 1",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
+    "explanation": "Sewing joins fabric using stitches.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-fashionandtextile-002",
     "subject": "Fashion and Textile",
-    "topic": "Cutting",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "Cutting question 2 for Fashion and Textile",
+    "question": "A pattern used to cut fabric is called a:",
     "options": {
-      "A": "A 2",
-      "B": "B 2",
-      "C": "C 2",
-      "D": "D 2"
+      "A": "Template",
+      "B": "Swatch",
+      "C": "Bobbin",
+      "D": "Selvage"
     },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Fashion and Textile explanation 2",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
+    "correctAnswer": "A",
+    "explanation": "A pattern/template guides cutting.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-fashionandtextile-003",
     "subject": "Fashion and Textile",
-    "topic": "Sewing",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "Sewing question 3 for Fashion and Textile",
+    "question": "The raw material for cotton fabric is:",
     "options": {
-      "A": "A 3",
-      "B": "B 3",
-      "C": "C 3",
-      "D": "D 3"
+      "A": "Cotton fibre",
+      "B": "Wool",
+      "C": "Silk",
+      "D": "Polyester"
     },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Fashion and Textile explanation 3",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
+    "correctAnswer": "A",
+    "explanation": "Cotton comes from the cotton plant's seed fibres.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-fashionandtextile-004",
     "subject": "Fashion and Textile",
-    "topic": "Finishes",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Finishes question 4 for Fashion and Textile",
+    "question": "The direction of fabric threads is called the:",
     "options": {
-      "A": "A 4",
-      "B": "B 4",
-      "C": "C 4",
-      "D": "D 4"
+      "A": "Grain",
+      "B": "Weft",
+      "C": "Pile",
+      "D": "Nap"
     },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Fashion and Textile explanation 4",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
+    "correctAnswer": "A",
+    "explanation": "Grain = thread direction; weft = crosswise threads.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-fashionandtextile-005",
     "subject": "Fashion and Textile",
-    "topic": "Pattern",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "Pattern question 5 for Fashion and Textile",
+    "question": "Which stitch is used to prevent fabric edges from fraying?",
     "options": {
-      "A": "A 5",
-      "B": "B 5",
-      "C": "C 5",
-      "D": "D 5"
+      "A": "Overcasting stitch",
+      "B": "Buttonhole stitch",
+      "C": "Hemming stitch",
+      "D": "Running stitch"
     },
     "correctAnswer": "A",
-    "explanation": "NABTEB Fashion and Textile explanation 5",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
+    "explanation": "Overcasting finishes raw edges.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-fashionandtextile-006",
     "subject": "Fashion and Textile",
-    "topic": "Cutting",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "Cutting question 6 for Fashion and Textile",
+    "question": "The tool that holds the fabric in place while sewing is the:",
     "options": {
-      "A": "A 6",
-      "B": "B 6",
-      "C": "C 6",
-      "D": "D 6"
+      "A": "Pin",
+      "B": "Thimble",
+      "C": "Seam ripper",
+      "D": "Tape measure"
     },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Fashion and Textile explanation 6",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
+    "correctAnswer": "A",
+    "explanation": "Pins hold layers before stitching.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-fashionandtextile-007",
     "subject": "Fashion and Textile",
-    "topic": "Sewing",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Sewing question 7 for Fashion and Textile",
+    "question": "A garment that fits closely to the body is described as:",
     "options": {
-      "A": "A 7",
-      "B": "B 7",
-      "C": "C 7",
-      "D": "D 7"
+      "A": "Fitted",
+      "B": "Loose",
+      "C": "Oversized",
+      "D": "Baggy"
     },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Fashion and Textile explanation 7",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
+    "correctAnswer": "A",
+    "explanation": "Fitted = shaped to the body.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-fashionandtextile-008",
     "subject": "Fashion and Textile",
-    "topic": "Finishes",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "Finishes question 8 for Fashion and Textile",
+    "question": "The process of decorating fabric with colour is:",
     "options": {
-      "A": "A 8",
-      "B": "B 8",
-      "C": "C 8",
-      "D": "D 8"
+      "A": "Dyeing",
+      "B": "Printing",
+      "C": "Embroidery",
+      "D": "Weaving"
     },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Fashion and Textile explanation 8",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
+    "correctAnswer": "A",
+    "explanation": "Dyeing applies colour to the whole fabric.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-fashionandtextile-009",
     "subject": "Fashion and Textile",
-    "topic": "Pattern",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "Pattern question 9 for Fashion and Textile",
+    "question": "Which measurement is taken around the fullest part of the bust?",
     "options": {
-      "A": "A 9",
-      "B": "B 9",
-      "C": "C 9",
-      "D": "D 9"
+      "A": "Bust",
+      "B": "Waist",
+      "C": "Hip",
+      "D": "Shoulder"
     },
     "correctAnswer": "A",
-    "explanation": "NABTEB Fashion and Textile explanation 9",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
+    "explanation": "Bust measurement is around the fullest part of the chest.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-fashionandtextile-010",
     "subject": "Fashion and Textile",
-    "topic": "Cutting",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Cutting question 10 for Fashion and Textile",
+    "question": "A seam is:",
     "options": {
-      "A": "A 10",
-      "B": "B 10",
-      "C": "C 10",
-      "D": "D 10"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Fashion and Textile explanation 10",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-fashionandtextile-011",
-    "subject": "Fashion and Textile",
-    "topic": "Sewing",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Sewing question 11 for Fashion and Textile",
-    "options": {
-      "A": "A 11",
-      "B": "B 11",
-      "C": "C 11",
-      "D": "D 11"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Fashion and Textile explanation 11",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-fashionandtextile-012",
-    "subject": "Fashion and Textile",
-    "topic": "Finishes",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Finishes question 12 for Fashion and Textile",
-    "options": {
-      "A": "A 12",
-      "B": "B 12",
-      "C": "C 12",
-      "D": "D 12"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Fashion and Textile explanation 12",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-fashionandtextile-013",
-    "subject": "Fashion and Textile",
-    "topic": "Pattern",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Pattern question 13 for Fashion and Textile",
-    "options": {
-      "A": "A 13",
-      "B": "B 13",
-      "C": "C 13",
-      "D": "D 13"
+      "A": "A line of stitching joining fabric",
+      "B": "A type of button",
+      "C": "A fabric pattern",
+      "D": "A cutting tool"
     },
     "correctAnswer": "A",
-    "explanation": "NABTEB Fashion and Textile explanation 13",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-fashionandtextile-014",
-    "subject": "Fashion and Textile",
-    "topic": "Cutting",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Cutting question 14 for Fashion and Textile",
-    "options": {
-      "A": "A 14",
-      "B": "B 14",
-      "C": "C 14",
-      "D": "D 14"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Fashion and Textile explanation 14",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-fashionandtextile-015",
-    "subject": "Fashion and Textile",
-    "topic": "Sewing",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Sewing question 15 for Fashion and Textile",
-    "options": {
-      "A": "A 15",
-      "B": "B 15",
-      "C": "C 15",
-      "D": "D 15"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Fashion and Textile explanation 15",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-fashionandtextile-016",
-    "subject": "Fashion and Textile",
-    "topic": "Finishes",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Finishes question 16 for Fashion and Textile",
-    "options": {
-      "A": "A 16",
-      "B": "B 16",
-      "C": "C 16",
-      "D": "D 16"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Fashion and Textile explanation 16",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-fashionandtextile-017",
-    "subject": "Fashion and Textile",
-    "topic": "Pattern",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Pattern question 17 for Fashion and Textile",
-    "options": {
-      "A": "A 17",
-      "B": "B 17",
-      "C": "C 17",
-      "D": "D 17"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Fashion and Textile explanation 17",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-fashionandtextile-018",
-    "subject": "Fashion and Textile",
-    "topic": "Cutting",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Cutting question 18 for Fashion and Textile",
-    "options": {
-      "A": "A 18",
-      "B": "B 18",
-      "C": "C 18",
-      "D": "D 18"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Fashion and Textile explanation 18",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-fashionandtextile-019",
-    "subject": "Fashion and Textile",
-    "topic": "Sewing",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Sewing question 19 for Fashion and Textile",
-    "options": {
-      "A": "A 19",
-      "B": "B 19",
-      "C": "C 19",
-      "D": "D 19"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Fashion and Textile explanation 19",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-fashionandtextile-020",
-    "subject": "Fashion and Textile",
-    "topic": "Finishes",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Finishes question 20 for Fashion and Textile",
-    "options": {
-      "A": "A 20",
-      "B": "B 20",
-      "C": "C 20",
-      "D": "D 20"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Fashion and Textile explanation 20",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-fashionandtextile-021",
-    "subject": "Fashion and Textile",
-    "topic": "Pattern",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Pattern question 21 for Fashion and Textile",
-    "options": {
-      "A": "A 21",
-      "B": "B 21",
-      "C": "C 21",
-      "D": "D 21"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Fashion and Textile explanation 21",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-fashionandtextile-022",
-    "subject": "Fashion and Textile",
-    "topic": "Cutting",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Cutting question 22 for Fashion and Textile",
-    "options": {
-      "A": "A 22",
-      "B": "B 22",
-      "C": "C 22",
-      "D": "D 22"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Fashion and Textile explanation 22",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-fashionandtextile-023",
-    "subject": "Fashion and Textile",
-    "topic": "Sewing",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Sewing question 23 for Fashion and Textile",
-    "options": {
-      "A": "A 23",
-      "B": "B 23",
-      "C": "C 23",
-      "D": "D 23"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Fashion and Textile explanation 23",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-fashionandtextile-024",
-    "subject": "Fashion and Textile",
-    "topic": "Finishes",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Finishes question 24 for Fashion and Textile",
-    "options": {
-      "A": "A 24",
-      "B": "B 24",
-      "C": "C 24",
-      "D": "D 24"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Fashion and Textile explanation 24",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-fashionandtextile-025",
-    "subject": "Fashion and Textile",
-    "topic": "Pattern",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Pattern question 25 for Fashion and Textile",
-    "options": {
-      "A": "A 25",
-      "B": "B 25",
-      "C": "C 25",
-      "D": "D 25"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Fashion and Textile explanation 25",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-paintinganddecorating-001",
-    "subject": "Painting and Decorating",
-    "topic": "Surface Prep",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Surface Prep question 1 for Painting and Decorating",
-    "options": {
-      "A": "A 1",
-      "B": "B 1",
-      "C": "C 1",
-      "D": "D 1"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Painting and Decorating explanation 1",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-paintinganddecorating-002",
-    "subject": "Painting and Decorating",
-    "topic": "Paint Application",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Paint Application question 2 for Painting and Decorating",
-    "options": {
-      "A": "A 2",
-      "B": "B 2",
-      "C": "C 2",
-      "D": "D 2"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Painting and Decorating explanation 2",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-paintinganddecorating-003",
-    "subject": "Painting and Decorating",
-    "topic": "Wallpaper",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Wallpaper question 3 for Painting and Decorating",
-    "options": {
-      "A": "A 3",
-      "B": "B 3",
-      "C": "C 3",
-      "D": "D 3"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Painting and Decorating explanation 3",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-paintinganddecorating-004",
-    "subject": "Painting and Decorating",
-    "topic": "Tools",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Tools question 4 for Painting and Decorating",
-    "options": {
-      "A": "A 4",
-      "B": "B 4",
-      "C": "C 4",
-      "D": "D 4"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Painting and Decorating explanation 4",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.473Z"
-  },
-  {
-    "id": "nabteb-2026-paintinganddecorating-005",
-    "subject": "Painting and Decorating",
-    "topic": "Surface Prep",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Surface Prep question 5 for Painting and Decorating",
-    "options": {
-      "A": "A 5",
-      "B": "B 5",
-      "C": "C 5",
-      "D": "D 5"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Painting and Decorating explanation 5",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.475Z"
-  },
-  {
-    "id": "nabteb-2026-paintinganddecorating-006",
-    "subject": "Painting and Decorating",
-    "topic": "Paint Application",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Paint Application question 6 for Painting and Decorating",
-    "options": {
-      "A": "A 6",
-      "B": "B 6",
-      "C": "C 6",
-      "D": "D 6"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Painting and Decorating explanation 6",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.475Z"
-  },
-  {
-    "id": "nabteb-2026-paintinganddecorating-007",
-    "subject": "Painting and Decorating",
-    "topic": "Wallpaper",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Wallpaper question 7 for Painting and Decorating",
-    "options": {
-      "A": "A 7",
-      "B": "B 7",
-      "C": "C 7",
-      "D": "D 7"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Painting and Decorating explanation 7",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.475Z"
-  },
-  {
-    "id": "nabteb-2026-paintinganddecorating-008",
-    "subject": "Painting and Decorating",
-    "topic": "Tools",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Tools question 8 for Painting and Decorating",
-    "options": {
-      "A": "A 8",
-      "B": "B 8",
-      "C": "C 8",
-      "D": "D 8"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Painting and Decorating explanation 8",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.476Z"
-  },
-  {
-    "id": "nabteb-2026-paintinganddecorating-009",
-    "subject": "Painting and Decorating",
-    "topic": "Surface Prep",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Surface Prep question 9 for Painting and Decorating",
-    "options": {
-      "A": "A 9",
-      "B": "B 9",
-      "C": "C 9",
-      "D": "D 9"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Painting and Decorating explanation 9",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.476Z"
-  },
-  {
-    "id": "nabteb-2026-paintinganddecorating-010",
-    "subject": "Painting and Decorating",
-    "topic": "Paint Application",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Paint Application question 10 for Painting and Decorating",
-    "options": {
-      "A": "A 10",
-      "B": "B 10",
-      "C": "C 10",
-      "D": "D 10"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Painting and Decorating explanation 10",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.476Z"
-  },
-  {
-    "id": "nabteb-2026-paintinganddecorating-011",
-    "subject": "Painting and Decorating",
-    "topic": "Wallpaper",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Wallpaper question 11 for Painting and Decorating",
-    "options": {
-      "A": "A 11",
-      "B": "B 11",
-      "C": "C 11",
-      "D": "D 11"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Painting and Decorating explanation 11",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.476Z"
-  },
-  {
-    "id": "nabteb-2026-paintinganddecorating-012",
-    "subject": "Painting and Decorating",
-    "topic": "Tools",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Tools question 12 for Painting and Decorating",
-    "options": {
-      "A": "A 12",
-      "B": "B 12",
-      "C": "C 12",
-      "D": "D 12"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Painting and Decorating explanation 12",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.476Z"
-  },
-  {
-    "id": "nabteb-2026-paintinganddecorating-013",
-    "subject": "Painting and Decorating",
-    "topic": "Surface Prep",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Surface Prep question 13 for Painting and Decorating",
-    "options": {
-      "A": "A 13",
-      "B": "B 13",
-      "C": "C 13",
-      "D": "D 13"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Painting and Decorating explanation 13",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.479Z"
-  },
-  {
-    "id": "nabteb-2026-paintinganddecorating-014",
-    "subject": "Painting and Decorating",
-    "topic": "Paint Application",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Paint Application question 14 for Painting and Decorating",
-    "options": {
-      "A": "A 14",
-      "B": "B 14",
-      "C": "C 14",
-      "D": "D 14"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Painting and Decorating explanation 14",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.479Z"
-  },
-  {
-    "id": "nabteb-2026-paintinganddecorating-015",
-    "subject": "Painting and Decorating",
-    "topic": "Wallpaper",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Wallpaper question 15 for Painting and Decorating",
-    "options": {
-      "A": "A 15",
-      "B": "B 15",
-      "C": "C 15",
-      "D": "D 15"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Painting and Decorating explanation 15",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.479Z"
-  },
-  {
-    "id": "nabteb-2026-paintinganddecorating-016",
-    "subject": "Painting and Decorating",
-    "topic": "Tools",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Tools question 16 for Painting and Decorating",
-    "options": {
-      "A": "A 16",
-      "B": "B 16",
-      "C": "C 16",
-      "D": "D 16"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Painting and Decorating explanation 16",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.479Z"
-  },
-  {
-    "id": "nabteb-2026-paintinganddecorating-017",
-    "subject": "Painting and Decorating",
-    "topic": "Surface Prep",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Surface Prep question 17 for Painting and Decorating",
-    "options": {
-      "A": "A 17",
-      "B": "B 17",
-      "C": "C 17",
-      "D": "D 17"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Painting and Decorating explanation 17",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.479Z"
-  },
-  {
-    "id": "nabteb-2026-paintinganddecorating-018",
-    "subject": "Painting and Decorating",
-    "topic": "Paint Application",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Paint Application question 18 for Painting and Decorating",
-    "options": {
-      "A": "A 18",
-      "B": "B 18",
-      "C": "C 18",
-      "D": "D 18"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Painting and Decorating explanation 18",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.479Z"
-  },
-  {
-    "id": "nabteb-2026-paintinganddecorating-019",
-    "subject": "Painting and Decorating",
-    "topic": "Wallpaper",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Wallpaper question 19 for Painting and Decorating",
-    "options": {
-      "A": "A 19",
-      "B": "B 19",
-      "C": "C 19",
-      "D": "D 19"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Painting and Decorating explanation 19",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.479Z"
-  },
-  {
-    "id": "nabteb-2026-paintinganddecorating-020",
-    "subject": "Painting and Decorating",
-    "topic": "Tools",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Tools question 20 for Painting and Decorating",
-    "options": {
-      "A": "A 20",
-      "B": "B 20",
-      "C": "C 20",
-      "D": "D 20"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Painting and Decorating explanation 20",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.479Z"
-  },
-  {
-    "id": "nabteb-2026-paintinganddecorating-021",
-    "subject": "Painting and Decorating",
-    "topic": "Surface Prep",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Surface Prep question 21 for Painting and Decorating",
-    "options": {
-      "A": "A 21",
-      "B": "B 21",
-      "C": "C 21",
-      "D": "D 21"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Painting and Decorating explanation 21",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.479Z"
-  },
-  {
-    "id": "nabteb-2026-paintinganddecorating-022",
-    "subject": "Painting and Decorating",
-    "topic": "Paint Application",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Paint Application question 22 for Painting and Decorating",
-    "options": {
-      "A": "A 22",
-      "B": "B 22",
-      "C": "C 22",
-      "D": "D 22"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Painting and Decorating explanation 22",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.479Z"
-  },
-  {
-    "id": "nabteb-2026-paintinganddecorating-023",
-    "subject": "Painting and Decorating",
-    "topic": "Wallpaper",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Wallpaper question 23 for Painting and Decorating",
-    "options": {
-      "A": "A 23",
-      "B": "B 23",
-      "C": "C 23",
-      "D": "D 23"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Painting and Decorating explanation 23",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.479Z"
-  },
-  {
-    "id": "nabteb-2026-paintinganddecorating-024",
-    "subject": "Painting and Decorating",
-    "topic": "Tools",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Tools question 24 for Painting and Decorating",
-    "options": {
-      "A": "A 24",
-      "B": "B 24",
-      "C": "C 24",
-      "D": "D 24"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Painting and Decorating explanation 24",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.479Z"
-  },
-  {
-    "id": "nabteb-2026-paintinganddecorating-025",
-    "subject": "Painting and Decorating",
-    "topic": "Surface Prep",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Surface Prep question 25 for Painting and Decorating",
-    "options": {
-      "A": "A 25",
-      "B": "B 25",
-      "C": "C 25",
-      "D": "D 25"
-    },
-    "correctAnswer": "A",
-    "explanation": "NABTEB Painting and Decorating explanation 25",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.479Z"
+    "explanation": "A seam joins two fabric pieces.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-weldingandfabrication-001",
     "subject": "Welding and Fabrication",
-    "topic": "Welding",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Welding question 1 for Welding and Fabrication",
+    "question": "The most common welding process for steel is:",
     "options": {
-      "A": "A 1",
-      "B": "B 1",
-      "C": "C 1",
-      "D": "D 1"
+      "A": "Arc welding",
+      "B": "Soldering",
+      "C": "Brazing",
+      "D": "Riveting"
     },
     "correctAnswer": "A",
-    "explanation": "NABTEB Welding and Fabrication explanation 1",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.479Z"
+    "explanation": "Arc welding (MMA/MIG) is standard for steel.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-weldingandfabrication-002",
     "subject": "Welding and Fabrication",
-    "topic": "Cutting",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "Cutting question 2 for Welding and Fabrication",
+    "question": "The purpose of flux in welding is to:",
     "options": {
-      "A": "A 2",
-      "B": "B 2",
-      "C": "C 2",
-      "D": "D 2"
+      "A": "Prevent oxidation of the weld",
+      "B": "Increase heat",
+      "C": "Cool the metal",
+      "D": "Colour the weld"
     },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Welding and Fabrication explanation 2",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.479Z"
+    "correctAnswer": "A",
+    "explanation": "Flux shields the molten metal from oxygen/nitrogen.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-weldingandfabrication-003",
     "subject": "Welding and Fabrication",
-    "topic": "Brazing",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "Brazing question 3 for Welding and Fabrication",
+    "question": "A fillet weld joins two pieces at:",
     "options": {
-      "A": "A 3",
-      "B": "B 3",
-      "C": "C 3",
-      "D": "D 3"
+      "A": "A right angle (T-joint)",
+      "B": "A flat surface",
+      "C": "A curved edge",
+      "D": "A butt end"
     },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Welding and Fabrication explanation 3",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.479Z"
+    "correctAnswer": "A",
+    "explanation": "Fillet welds join T-joints and lap joints.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-weldingandfabrication-004",
     "subject": "Welding and Fabrication",
-    "topic": "Safety",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Safety question 4 for Welding and Fabrication",
+    "question": "The temperature of an oxy-acetylene flame is about:",
     "options": {
-      "A": "A 4",
-      "B": "B 4",
-      "C": "C 4",
-      "D": "D 4"
+      "A": "3,200°C",
+      "B": "1,000°C",
+      "C": "500°C",
+      "D": "10,000°C"
     },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Welding and Fabrication explanation 4",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.479Z"
+    "correctAnswer": "A",
+    "explanation": "Oxy-acetylene neutral flame ≈ 3,200°C.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-weldingandfabrication-005",
     "subject": "Welding and Fabrication",
-    "topic": "Welding",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "Welding question 5 for Welding and Fabrication",
+    "question": "Before welding, metal surfaces must be:",
     "options": {
-      "A": "A 5",
-      "B": "B 5",
-      "C": "C 5",
-      "D": "D 5"
+      "A": "Cleaned of rust, oil and paint",
+      "B": "Painted",
+      "C": "Oiled",
+      "D": "Wet"
     },
     "correctAnswer": "A",
-    "explanation": "NABTEB Welding and Fabrication explanation 5",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.479Z"
+    "explanation": "Clean surfaces prevent porosity and weak welds.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-weldingandfabrication-006",
     "subject": "Welding and Fabrication",
-    "topic": "Cutting",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "Cutting question 6 for Welding and Fabrication",
+    "question": "The electrode in arc welding is:",
     "options": {
-      "A": "A 6",
-      "B": "B 6",
-      "C": "C 6",
-      "D": "D 6"
+      "A": "A consumable metal rod",
+      "B": "A permanent tungsten rod",
+      "C": "A ceramic tube",
+      "D": "A gas nozzle"
     },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Welding and Fabrication explanation 6",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.479Z"
+    "correctAnswer": "A",
+    "explanation": "In MMA, the electrode melts and becomes filler metal.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-weldingandfabrication-007",
     "subject": "Welding and Fabrication",
-    "topic": "Brazing",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Brazing question 7 for Welding and Fabrication",
+    "question": "A weld defect caused by trapped gas is:",
     "options": {
-      "A": "A 7",
-      "B": "B 7",
-      "C": "C 7",
-      "D": "D 7"
+      "A": "Porosity",
+      "B": "Undercut",
+      "C": "Crack",
+      "D": "Slag inclusion"
     },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Welding and Fabrication explanation 7",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.479Z"
+    "correctAnswer": "A",
+    "explanation": "Porosity = gas pockets in the weld metal.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-weldingandfabrication-008",
     "subject": "Welding and Fabrication",
-    "topic": "Safety",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "Safety question 8 for Welding and Fabrication",
+    "question": "The process of joining metals by melting a filler rod without melting the base metal is:",
     "options": {
-      "A": "A 8",
-      "B": "B 8",
-      "C": "C 8",
-      "D": "D 8"
+      "A": "Brazing",
+      "B": "Fusion welding",
+      "C": "Riveting",
+      "D": "Forging"
     },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Welding and Fabrication explanation 8",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.479Z"
+    "correctAnswer": "A",
+    "explanation": "Brazing melts filler only (above 450°C); soldering below 450°C.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-weldingandfabrication-009",
     "subject": "Welding and Fabrication",
-    "topic": "Welding",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "Welding question 9 for Welding and Fabrication",
+    "question": "Which safety equipment protects the eyes during arc welding?",
     "options": {
-      "A": "A 9",
-      "B": "B 9",
-      "C": "C 9",
-      "D": "D 9"
+      "A": "Welding helmet with dark filter",
+      "B": "Safety goggles",
+      "C": "Face mask",
+      "D": "Reading glasses"
     },
     "correctAnswer": "A",
-    "explanation": "NABTEB Welding and Fabrication explanation 9",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.479Z"
+    "explanation": "A welding helmet with a dark filter lens protects against UV/IR.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
     "id": "nabteb-2026-weldingandfabrication-010",
     "subject": "Welding and Fabrication",
-    "topic": "Cutting",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Cutting question 10 for Welding and Fabrication",
+    "question": "A butt weld joins two pieces:",
     "options": {
-      "A": "A 10",
-      "B": "B 10",
-      "C": "C 10",
-      "D": "D 10"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Welding and Fabrication explanation 10",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.480Z"
-  },
-  {
-    "id": "nabteb-2026-weldingandfabrication-011",
-    "subject": "Welding and Fabrication",
-    "topic": "Brazing",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Brazing question 11 for Welding and Fabrication",
-    "options": {
-      "A": "A 11",
-      "B": "B 11",
-      "C": "C 11",
-      "D": "D 11"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Welding and Fabrication explanation 11",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.480Z"
-  },
-  {
-    "id": "nabteb-2026-weldingandfabrication-012",
-    "subject": "Welding and Fabrication",
-    "topic": "Safety",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Safety question 12 for Welding and Fabrication",
-    "options": {
-      "A": "A 12",
-      "B": "B 12",
-      "C": "C 12",
-      "D": "D 12"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Welding and Fabrication explanation 12",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.480Z"
-  },
-  {
-    "id": "nabteb-2026-weldingandfabrication-013",
-    "subject": "Welding and Fabrication",
-    "topic": "Welding",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Welding question 13 for Welding and Fabrication",
-    "options": {
-      "A": "A 13",
-      "B": "B 13",
-      "C": "C 13",
-      "D": "D 13"
+      "A": "Edge to edge in the same plane",
+      "B": "At a right angle",
+      "C": "Overlapping",
+      "D": "With a gap"
     },
     "correctAnswer": "A",
-    "explanation": "NABTEB Welding and Fabrication explanation 13",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.480Z"
+    "explanation": "A butt weld joins edges in the same plane.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:10:47.687Z"
   },
   {
-    "id": "nabteb-2026-weldingandfabrication-014",
-    "subject": "Welding and Fabrication",
-    "topic": "Cutting",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Cutting question 14 for Welding and Fabrication",
-    "options": {
-      "A": "A 14",
-      "B": "B 14",
-      "C": "C 14",
-      "D": "D 14"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Welding and Fabrication explanation 14",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.480Z"
-  },
-  {
-    "id": "nabteb-2026-weldingandfabrication-015",
-    "subject": "Welding and Fabrication",
-    "topic": "Brazing",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Brazing question 15 for Welding and Fabrication",
-    "options": {
-      "A": "A 15",
-      "B": "B 15",
-      "C": "C 15",
-      "D": "D 15"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Welding and Fabrication explanation 15",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.480Z"
-  },
-  {
-    "id": "nabteb-2026-weldingandfabrication-016",
-    "subject": "Welding and Fabrication",
-    "topic": "Safety",
+    "id": "nabteb-2026-plumbingsanitation-001",
+    "subject": "Plumbing/Sanitation",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Safety question 16 for Welding and Fabrication",
+    "question": "The standard size of a PVC pipe for water supply is measured by its:",
     "options": {
-      "A": "A 16",
-      "B": "B 16",
-      "C": "C 16",
-      "D": "D 16"
-    },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Welding and Fabrication explanation 16",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.480Z"
-  },
-  {
-    "id": "nabteb-2026-weldingandfabrication-017",
-    "subject": "Welding and Fabrication",
-    "topic": "Welding",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Welding question 17 for Welding and Fabrication",
-    "options": {
-      "A": "A 17",
-      "B": "B 17",
-      "C": "C 17",
-      "D": "D 17"
+      "A": "Diameter",
+      "B": "Length",
+      "C": "Colour",
+      "D": "Weight"
     },
     "correctAnswer": "A",
-    "explanation": "NABTEB Welding and Fabrication explanation 17",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.480Z"
+    "explanation": "Pipes are sized by nominal diameter (mm/inches).",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.135Z"
   },
   {
-    "id": "nabteb-2026-weldingandfabrication-018",
-    "subject": "Welding and Fabrication",
-    "topic": "Cutting",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Cutting question 18 for Welding and Fabrication",
-    "options": {
-      "A": "A 18",
-      "B": "B 18",
-      "C": "C 18",
-      "D": "D 18"
-    },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Welding and Fabrication explanation 18",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.480Z"
-  },
-  {
-    "id": "nabteb-2026-weldingandfabrication-019",
-    "subject": "Welding and Fabrication",
-    "topic": "Brazing",
-    "exam": [
-      "NABTEB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Brazing question 19 for Welding and Fabrication",
-    "options": {
-      "A": "A 19",
-      "B": "B 19",
-      "C": "C 19",
-      "D": "D 19"
-    },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Welding and Fabrication explanation 19",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.480Z"
-  },
-  {
-    "id": "nabteb-2026-weldingandfabrication-020",
-    "subject": "Welding and Fabrication",
-    "topic": "Safety",
+    "id": "nabteb-2026-plumbingsanitation-002",
+    "subject": "Plumbing/Sanitation",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "Safety question 20 for Welding and Fabrication",
+    "question": "A trap in plumbing is used to:",
     "options": {
-      "A": "A 20",
-      "B": "B 20",
-      "C": "C 20",
-      "D": "D 20"
+      "A": "Prevent sewer gases from entering the building",
+      "B": "Increase water pressure",
+      "C": "Store water",
+      "D": "Filter water"
     },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Welding and Fabrication explanation 20",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.480Z"
+    "correctAnswer": "A",
+    "explanation": "A water-seal trap blocks foul gases.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.138Z"
   },
   {
-    "id": "nabteb-2026-weldingandfabrication-021",
-    "subject": "Welding and Fabrication",
-    "topic": "Welding",
+    "id": "nabteb-2026-plumbingsanitation-003",
+    "subject": "Plumbing/Sanitation",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "Welding question 21 for Welding and Fabrication",
+    "question": "The tool used to cut metal pipes is the:",
     "options": {
-      "A": "A 21",
-      "B": "B 21",
-      "C": "C 21",
-      "D": "D 21"
+      "A": "Hacksaw",
+      "B": "Pipe wrench",
+      "C": "Plunger",
+      "D": "Basin wrench"
     },
     "correctAnswer": "A",
-    "explanation": "NABTEB Welding and Fabrication explanation 21",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.480Z"
+    "explanation": "A hacksaw cuts metal pipes.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.138Z"
   },
   {
-    "id": "nabteb-2026-weldingandfabrication-022",
-    "subject": "Welding and Fabrication",
-    "topic": "Cutting",
+    "id": "nabteb-2026-plumbingsanitation-004",
+    "subject": "Plumbing/Sanitation",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Cutting question 22 for Welding and Fabrication",
+    "question": "The device that mixes hot and cold water is a:",
     "options": {
-      "A": "A 22",
-      "B": "B 22",
-      "C": "C 22",
-      "D": "D 22"
+      "A": "Mixer tap",
+      "B": "Stop valve",
+      "C": "Gate valve",
+      "D": "Check valve"
     },
-    "correctAnswer": "B",
-    "explanation": "NABTEB Welding and Fabrication explanation 22",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.480Z"
+    "correctAnswer": "A",
+    "explanation": "A mixer tap blends hot and cold supplies.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.138Z"
   },
   {
-    "id": "nabteb-2026-weldingandfabrication-023",
-    "subject": "Welding and Fabrication",
-    "topic": "Brazing",
+    "id": "nabteb-2026-plumbingsanitation-005",
+    "subject": "Plumbing/Sanitation",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "Brazing question 23 for Welding and Fabrication",
+    "question": "A one-way valve that prevents backflow is a:",
     "options": {
-      "A": "A 23",
-      "B": "B 23",
-      "C": "C 23",
-      "D": "D 23"
+      "A": "Check valve",
+      "B": "Gate valve",
+      "C": "Globe valve",
+      "D": "Ball valve"
     },
-    "correctAnswer": "C",
-    "explanation": "NABTEB Welding and Fabrication explanation 23",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.480Z"
+    "correctAnswer": "A",
+    "explanation": "A check valve allows flow in one direction only.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.138Z"
   },
   {
-    "id": "nabteb-2026-weldingandfabrication-024",
-    "subject": "Welding and Fabrication",
-    "topic": "Safety",
+    "id": "nabteb-2026-plumbingsanitation-006",
+    "subject": "Plumbing/Sanitation",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "Safety question 24 for Welding and Fabrication",
+    "question": "The main pipe that carries water from the source to the building is the:",
     "options": {
-      "A": "A 24",
-      "B": "B 24",
-      "C": "C 24",
-      "D": "D 24"
+      "A": "Mains",
+      "B": "Waste pipe",
+      "C": "Vent pipe",
+      "D": "Soil pipe"
     },
-    "correctAnswer": "D",
-    "explanation": "NABTEB Welding and Fabrication explanation 24",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.480Z"
+    "correctAnswer": "A",
+    "explanation": "The mains supplies water to the building.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.138Z"
   },
   {
-    "id": "nabteb-2026-weldingandfabrication-025",
-    "subject": "Welding and Fabrication",
-    "topic": "Welding",
+    "id": "nabteb-2026-plumbingsanitation-007",
+    "subject": "Plumbing/Sanitation",
+    "topic": "General",
     "exam": [
       "NABTEB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "Welding question 25 for Welding and Fabrication",
+    "question": "The bend in a pipe that changes direction by 90° is a(n):",
     "options": {
-      "A": "A 25",
-      "B": "B 25",
-      "C": "C 25",
-      "D": "D 25"
+      "A": "Elbow",
+      "B": "Tee",
+      "C": "Coupling",
+      "D": "Union"
     },
     "correctAnswer": "A",
-    "explanation": "NABTEB Welding and Fabrication explanation 25",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:36:55.480Z"
+    "explanation": "An elbow changes pipe direction by 90°.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.138Z"
+  },
+  {
+    "id": "nabteb-2026-plumbingsanitation-008",
+    "subject": "Plumbing/Sanitation",
+    "topic": "General",
+    "exam": [
+      "NABTEB"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "A blockage in a drain can be cleared with a:",
+    "options": {
+      "A": "Plunger",
+      "B": "Screwdriver",
+      "C": "Hacksaw",
+      "D": "Pliers"
+    },
+    "correctAnswer": "A",
+    "explanation": "A plunger uses pressure to clear blockages.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.138Z"
+  },
+  {
+    "id": "nabteb-2026-plumbingsanitation-009",
+    "subject": "Plumbing/Sanitation",
+    "topic": "General",
+    "exam": [
+      "NABTEB"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "The pipe that carries waste water from a building is the:",
+    "options": {
+      "A": "Soil pipe",
+      "B": "Supply pipe",
+      "C": "Gas pipe",
+      "D": "Vent pipe"
+    },
+    "correctAnswer": "A",
+    "explanation": "Soil pipes carry foul waste to the sewer.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.138Z"
+  },
+  {
+    "id": "nabteb-2026-plumbingsanitation-010",
+    "subject": "Plumbing/Sanitation",
+    "topic": "General",
+    "exam": [
+      "NABTEB"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "A water closet (WC) is connected to the:",
+    "options": {
+      "A": "Soil pipe",
+      "B": "Supply pipe",
+      "C": "Gas pipe",
+      "D": "Rain pipe"
+    },
+    "correctAnswer": "A",
+    "explanation": "A WC flushes waste into the soil pipe.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.138Z"
+  },
+  {
+    "id": "nabteb-2026-plumbingsanitation-011",
+    "subject": "Plumbing/Sanitation",
+    "topic": "General",
+    "exam": [
+      "NABTEB"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Which of these is used to join two pipes of the same size?",
+    "options": {
+      "A": "Coupling",
+      "B": "Reducer",
+      "C": "Tee",
+      "D": "Elbow"
+    },
+    "correctAnswer": "A",
+    "explanation": "A coupling joins two equal pipes.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.138Z"
+  },
+  {
+    "id": "nabteb-2026-plumbingsanitation-012",
+    "subject": "Plumbing/Sanitation",
+    "topic": "General",
+    "exam": [
+      "NABTEB"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "The pressure of the water supply is measured with a:",
+    "options": {
+      "A": "Pressure gauge",
+      "B": "Thermometer",
+      "C": "Flow meter",
+      "D": "Level gauge"
+    },
+    "correctAnswer": "A",
+    "explanation": "A pressure gauge reads water pressure.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.138Z"
+  },
+  {
+    "id": "nabteb-2026-paintingdecorating-001",
+    "subject": "Painting/Decorating",
+    "topic": "General",
+    "exam": [
+      "NABTEB"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "The first coat of paint applied to a new surface is the:",
+    "options": {
+      "A": "Primer",
+      "B": "Top coat",
+      "C": "Varnish",
+      "D": "Sealer wax"
+    },
+    "correctAnswer": "A",
+    "explanation": "Primer prepares the surface and promotes adhesion.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.138Z"
+  },
+  {
+    "id": "nabteb-2026-paintingdecorating-002",
+    "subject": "Painting/Decorating",
+    "topic": "General",
+    "exam": [
+      "NABTEB"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "The tool used to apply paint to large flat surfaces is the:",
+    "options": {
+      "A": "Roller",
+      "B": "Brush",
+      "C": "Pad",
+      "D": "Spray gun"
+    },
+    "correctAnswer": "A",
+    "explanation": "Rollers cover large areas quickly.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.138Z"
+  },
+  {
+    "id": "nabteb-2026-paintingdecorating-003",
+    "subject": "Painting/Decorating",
+    "topic": "General",
+    "exam": [
+      "NABTEB"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Before painting, a greasy surface must be:",
+    "options": {
+      "A": "Cleaned and degreased",
+      "B": "Painted directly",
+      "C": "Wetted only",
+      "D": "Heated"
+    },
+    "correctAnswer": "A",
+    "explanation": "Grease prevents paint adhesion.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.138Z"
+  },
+  {
+    "id": "nabteb-2026-paintingdecorating-004",
+    "subject": "Painting/Decorating",
+    "topic": "General",
+    "exam": [
+      "NABTEB"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "The paint finish that gives a shiny surface is:",
+    "options": {
+      "A": "Gloss",
+      "B": "Matte",
+      "C": "Eggshell",
+      "D": "Flat"
+    },
+    "correctAnswer": "A",
+    "explanation": "Gloss reflects light → shiny.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.138Z"
+  },
+  {
+    "id": "nabteb-2026-paintingdecorating-005",
+    "subject": "Painting/Decorating",
+    "topic": "General",
+    "exam": [
+      "NABTEB"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Sanding a surface before painting is done to:",
+    "options": {
+      "A": "Make it smooth for adhesion",
+      "B": "Add colour",
+      "C": "Make it waterproof",
+      "D": "Increase gloss"
+    },
+    "correctAnswer": "A",
+    "explanation": "Sanding creates a key and removes roughness.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.138Z"
+  },
+  {
+    "id": "nabteb-2026-paintingdecorating-006",
+    "subject": "Painting/Decorating",
+    "topic": "General",
+    "exam": [
+      "NABTEB"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Wallpaper paste is applied to:",
+    "options": {
+      "A": "The wall or the paper backing",
+      "B": "The ceiling only",
+      "C": "The floor",
+      "D": "The window"
+    },
+    "correctAnswer": "A",
+    "explanation": "Paste is applied to the wall or paper depending on type.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.138Z"
+  },
+  {
+    "id": "nabteb-2026-paintingdecorating-007",
+    "subject": "Painting/Decorating",
+    "topic": "General",
+    "exam": [
+      "NABTEB"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "The tool used to cut wallpaper is the:",
+    "options": {
+      "A": "Snap-off knife",
+      "B": "Hammer",
+      "C": "Screwdriver",
+      "D": "Saw"
+    },
+    "correctAnswer": "A",
+    "explanation": "A snap-off (utility) knife cuts wallpaper cleanly.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.138Z"
+  },
+  {
+    "id": "nabteb-2026-paintingdecorating-008",
+    "subject": "Painting/Decorating",
+    "topic": "General",
+    "exam": [
+      "NABTEB"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Which of these is a water-based paint?",
+    "options": {
+      "A": "Emulsion",
+      "B": "Oil paint",
+      "C": "Varnish",
+      "D": "Enamel"
+    },
+    "correctAnswer": "A",
+    "explanation": "Emulsion (latex) paint is water-based.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.138Z"
+  },
+  {
+    "id": "nabteb-2026-paintingdecorating-009",
+    "subject": "Painting/Decorating",
+    "topic": "General",
+    "exam": [
+      "NABTEB"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "A brush should be cleaned after use with:",
+    "options": {
+      "A": "Water (for water-based paint)",
+      "B": "Sand",
+      "C": "Oil only",
+      "D": "Nothing"
+    },
+    "correctAnswer": "A",
+    "explanation": "Water-based paints clean with water; oil paints with thinner.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.138Z"
+  },
+  {
+    "id": "nabteb-2026-paintingdecorating-010",
+    "subject": "Painting/Decorating",
+    "topic": "General",
+    "exam": [
+      "NABTEB"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "The process of applying a second coat after the first dries is called:",
+    "options": {
+      "A": "Recoating",
+      "B": "Stripping",
+      "C": "Sanding",
+      "D": "Priming"
+    },
+    "correctAnswer": "A",
+    "explanation": "Recoating builds opacity and durability.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.138Z"
+  },
+  {
+    "id": "nabteb-2026-paintinganddecorating-001",
+    "subject": "Painting and Decorating",
+    "topic": "General",
+    "exam": [
+      "NABTEB"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "The covering applied to walls for decoration is called:",
+    "options": {
+      "A": "Wall covering",
+      "B": "Wallpaper",
+      "C": "Plaster",
+      "D": "Primer"
+    },
+    "correctAnswer": "A",
+    "explanation": "Wall coverings include paint, wallpaper and tiles.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.138Z"
+  },
+  {
+    "id": "nabteb-2026-paintinganddecorating-002",
+    "subject": "Painting and Decorating",
+    "topic": "General",
+    "exam": [
+      "NABTEB"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Which tool removes old paint from a surface?",
+    "options": {
+      "A": "Paint scraper",
+      "B": "Paint brush",
+      "C": "Roller",
+      "D": "Trowel"
+    },
+    "correctAnswer": "A",
+    "explanation": "A scraper removes loose or old paint.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.138Z"
+  },
+  {
+    "id": "nabteb-2026-paintinganddecorating-003",
+    "subject": "Painting and Decorating",
+    "topic": "General",
+    "exam": [
+      "NABTEB"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "The ratio of paint to thinner for a spray gun is usually:",
+    "options": {
+      "A": "1:1",
+      "B": "4:1",
+      "C": "10:1",
+      "D": "No thinner"
+    },
+    "correctAnswer": "A",
+    "explanation": "Spray application typically thins paint ~1:1 for atomisation.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.138Z"
+  },
+  {
+    "id": "nabteb-2026-paintinganddecorating-004",
+    "subject": "Painting and Decorating",
+    "topic": "General",
+    "exam": [
+      "NABTEB"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "The best lighting for checking paint coverage is:",
+    "options": {
+      "A": "Natural daylight",
+      "B": "Candle light",
+      "C": "Dim lamp",
+      "D": "No light"
+    },
+    "correctAnswer": "A",
+    "explanation": "Daylight reveals missed spots and streaks.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.138Z"
+  },
+  {
+    "id": "nabteb-2026-paintinganddecorating-005",
+    "subject": "Painting and Decorating",
+    "topic": "General",
+    "exam": [
+      "NABTEB"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "A dust sheet is used to:",
+    "options": {
+      "A": "Protect floors and furniture",
+      "B": "Paint the ceiling",
+      "C": "Clean brushes",
+      "D": "Mix paint"
+    },
+    "correctAnswer": "A",
+    "explanation": "Dust sheets catch drips and spills.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.138Z"
+  },
+  {
+    "id": "nabteb-2026-paintinganddecorating-006",
+    "subject": "Painting and Decorating",
+    "topic": "General",
+    "exam": [
+      "NABTEB"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "The final protective coat over a decorative finish is the:",
+    "options": {
+      "A": "Top coat / varnish",
+      "B": "Primer",
+      "C": "Undercoat",
+      "D": "Sealer"
+    },
+    "correctAnswer": "A",
+    "explanation": "A top coat protects the decorated surface.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.138Z"
+  },
+  {
+    "id": "nabteb-2026-paintinganddecorating-007",
+    "subject": "Painting and Decorating",
+    "topic": "General",
+    "exam": [
+      "NABTEB"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Which of these is a defect caused by painting in direct sunlight?",
+    "options": {
+      "A": "Cracking / blistering",
+      "B": "Better adhesion",
+      "C": "Faster drying only",
+      "D": "Higher gloss"
+    },
+    "correctAnswer": "A",
+    "explanation": "Fast drying in hot sun causes blistering and poor flow.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.138Z"
+  },
+  {
+    "id": "nabteb-2026-paintinganddecorating-008",
+    "subject": "Painting and Decorating",
+    "topic": "General",
+    "exam": [
+      "NABTEB"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Masking tape is used to:",
+    "options": {
+      "A": "Cover areas that must not be painted",
+      "B": "Sand walls",
+      "C": "Clean brushes",
+      "D": "Mix colours"
+    },
+    "correctAnswer": "A",
+    "explanation": "Masking tape creates clean paint edges.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.138Z"
+  },
+  {
+    "id": "nabteb-2026-paintinganddecorating-009",
+    "subject": "Painting and Decorating",
+    "topic": "General",
+    "exam": [
+      "NABTEB"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "The colour wheel helps decorators choose:",
+    "options": {
+      "A": "Harmonious colour combinations",
+      "B": "Paint prices",
+      "C": "Brush sizes",
+      "D": "Room dimensions"
+    },
+    "correctAnswer": "A",
+    "explanation": "Complementary/analogous colours come from the wheel.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.138Z"
+  },
+  {
+    "id": "nabteb-2026-paintinganddecorating-010",
+    "subject": "Painting and Decorating",
+    "topic": "General",
+    "exam": [
+      "NABTEB"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "An undercoat is applied to:",
+    "options": {
+      "A": "Seal the surface and build opacity",
+      "B": "Add gloss",
+      "C": "Remove stains",
+      "D": "Clean the wall"
+    },
+    "correctAnswer": "A",
+    "explanation": "Undercoat seals and evens the surface before the top coat.",
+    "source": "past",
+    "createdAt": "2026-11-14T14:11:25.138Z"
   }
 ]

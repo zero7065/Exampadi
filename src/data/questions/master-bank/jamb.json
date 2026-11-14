@@ -19361,637 +19361,7 @@
     ]
   },
   {
-    "id": "jamb-2026-fre-001",
-    "subject": "French",
-    "topic": "Comprehension",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "French comprehension/exercise question 1",
-    "options": {
-      "A": "Option A for French question 1",
-      "B": "Option B for French question 1",
-      "C": "Option C for French question 1",
-      "D": "Option D for French question 1"
-    },
-    "correctAnswer": "A",
-    "explanation": "Explanation for French question 1",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:25:22.369Z"
-  },
-  {
-    "id": "jamb-2026-fre-002",
-    "subject": "French",
-    "topic": "Grammar",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "French comprehension/exercise question 2",
-    "options": {
-      "A": "Option A for French question 2",
-      "B": "Option B for French question 2",
-      "C": "Option C for French question 2",
-      "D": "Option D for French question 2"
-    },
-    "correctAnswer": "B",
-    "explanation": "Explanation for French question 2",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:25:22.375Z"
-  },
-  {
-    "id": "jamb-2026-fre-003",
-    "subject": "French",
-    "topic": "Vocabulary",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "French comprehension/exercise question 3",
-    "options": {
-      "A": "Option A for French question 3",
-      "B": "Option B for French question 3",
-      "C": "Option C for French question 3",
-      "D": "Option D for French question 3"
-    },
-    "correctAnswer": "C",
-    "explanation": "Explanation for French question 3",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:25:22.375Z"
-  },
-  {
-    "id": "jamb-2026-fre-004",
-    "subject": "French",
-    "topic": "Translation",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "French comprehension/exercise question 4",
-    "options": {
-      "A": "Option A for French question 4",
-      "B": "Option B for French question 4",
-      "C": "Option C for French question 4",
-      "D": "Option D for French question 4"
-    },
-    "correctAnswer": "D",
-    "explanation": "Explanation for French question 4",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:25:22.375Z"
-  },
-  {
-    "id": "jamb-2026-fre-005",
-    "subject": "French",
-    "topic": "Comprehension",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "French comprehension/exercise question 5",
-    "options": {
-      "A": "Option A for French question 5",
-      "B": "Option B for French question 5",
-      "C": "Option C for French question 5",
-      "D": "Option D for French question 5"
-    },
-    "correctAnswer": "A",
-    "explanation": "Explanation for French question 5",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:25:22.375Z"
-  },
-  {
-    "id": "jamb-2026-fre-006",
-    "subject": "French",
-    "topic": "Grammar",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "French comprehension/exercise question 6",
-    "options": {
-      "A": "Option A for French question 6",
-      "B": "Option B for French question 6",
-      "C": "Option C for French question 6",
-      "D": "Option D for French question 6"
-    },
-    "correctAnswer": "B",
-    "explanation": "Explanation for French question 6",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:25:22.375Z"
-  },
-  {
-    "id": "jamb-2026-fre-007",
-    "subject": "French",
-    "topic": "Vocabulary",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "French comprehension/exercise question 7",
-    "options": {
-      "A": "Option A for French question 7",
-      "B": "Option B for French question 7",
-      "C": "Option C for French question 7",
-      "D": "Option D for French question 7"
-    },
-    "correctAnswer": "C",
-    "explanation": "Explanation for French question 7",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:25:22.376Z"
-  },
-  {
-    "id": "jamb-2026-fre-008",
-    "subject": "French",
-    "topic": "Translation",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "French comprehension/exercise question 8",
-    "options": {
-      "A": "Option A for French question 8",
-      "B": "Option B for French question 8",
-      "C": "Option C for French question 8",
-      "D": "Option D for French question 8"
-    },
-    "correctAnswer": "D",
-    "explanation": "Explanation for French question 8",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:25:22.376Z"
-  },
-  {
-    "id": "jamb-2026-fre-009",
-    "subject": "French",
-    "topic": "Comprehension",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "French comprehension/exercise question 9",
-    "options": {
-      "A": "Option A for French question 9",
-      "B": "Option B for French question 9",
-      "C": "Option C for French question 9",
-      "D": "Option D for French question 9"
-    },
-    "correctAnswer": "A",
-    "explanation": "Explanation for French question 9",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:25:22.376Z"
-  },
-  {
-    "id": "jamb-2026-fre-010",
-    "subject": "French",
-    "topic": "Grammar",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "French comprehension/exercise question 10",
-    "options": {
-      "A": "Option A for French question 10",
-      "B": "Option B for French question 10",
-      "C": "Option C for French question 10",
-      "D": "Option D for French question 10"
-    },
-    "correctAnswer": "B",
-    "explanation": "Explanation for French question 10",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:25:22.376Z"
-  },
-  {
-    "id": "jamb-2026-fre-011",
-    "subject": "French",
-    "topic": "Vocabulary",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "French comprehension/exercise question 11",
-    "options": {
-      "A": "Option A for French question 11",
-      "B": "Option B for French question 11",
-      "C": "Option C for French question 11",
-      "D": "Option D for French question 11"
-    },
-    "correctAnswer": "C",
-    "explanation": "Explanation for French question 11",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:25:22.376Z"
-  },
-  {
-    "id": "jamb-2026-fre-012",
-    "subject": "French",
-    "topic": "Translation",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "French comprehension/exercise question 12",
-    "options": {
-      "A": "Option A for French question 12",
-      "B": "Option B for French question 12",
-      "C": "Option C for French question 12",
-      "D": "Option D for French question 12"
-    },
-    "correctAnswer": "D",
-    "explanation": "Explanation for French question 12",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:25:22.376Z"
-  },
-  {
-    "id": "jamb-2026-fre-013",
-    "subject": "French",
-    "topic": "Comprehension",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "French comprehension/exercise question 13",
-    "options": {
-      "A": "Option A for French question 13",
-      "B": "Option B for French question 13",
-      "C": "Option C for French question 13",
-      "D": "Option D for French question 13"
-    },
-    "correctAnswer": "A",
-    "explanation": "Explanation for French question 13",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:25:22.376Z"
-  },
-  {
-    "id": "jamb-2026-fre-014",
-    "subject": "French",
-    "topic": "Grammar",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "French comprehension/exercise question 14",
-    "options": {
-      "A": "Option A for French question 14",
-      "B": "Option B for French question 14",
-      "C": "Option C for French question 14",
-      "D": "Option D for French question 14"
-    },
-    "correctAnswer": "B",
-    "explanation": "Explanation for French question 14",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:25:22.376Z"
-  },
-  {
-    "id": "jamb-2026-fre-015",
-    "subject": "French",
-    "topic": "Vocabulary",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "French comprehension/exercise question 15",
-    "options": {
-      "A": "Option A for French question 15",
-      "B": "Option B for French question 15",
-      "C": "Option C for French question 15",
-      "D": "Option D for French question 15"
-    },
-    "correctAnswer": "C",
-    "explanation": "Explanation for French question 15",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:25:22.376Z"
-  },
-  {
-    "id": "jamb-2026-fre-016",
-    "subject": "French",
-    "topic": "Translation",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "French comprehension/exercise question 16",
-    "options": {
-      "A": "Option A for French question 16",
-      "B": "Option B for French question 16",
-      "C": "Option C for French question 16",
-      "D": "Option D for French question 16"
-    },
-    "correctAnswer": "D",
-    "explanation": "Explanation for French question 16",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:25:22.376Z"
-  },
-  {
-    "id": "jamb-2026-fre-017",
-    "subject": "French",
-    "topic": "Comprehension",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "French comprehension/exercise question 17",
-    "options": {
-      "A": "Option A for French question 17",
-      "B": "Option B for French question 17",
-      "C": "Option C for French question 17",
-      "D": "Option D for French question 17"
-    },
-    "correctAnswer": "A",
-    "explanation": "Explanation for French question 17",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:25:22.376Z"
-  },
-  {
-    "id": "jamb-2026-fre-018",
-    "subject": "French",
-    "topic": "Grammar",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "French comprehension/exercise question 18",
-    "options": {
-      "A": "Option A for French question 18",
-      "B": "Option B for French question 18",
-      "C": "Option C for French question 18",
-      "D": "Option D for French question 18"
-    },
-    "correctAnswer": "B",
-    "explanation": "Explanation for French question 18",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:25:22.376Z"
-  },
-  {
-    "id": "jamb-2026-fre-019",
-    "subject": "French",
-    "topic": "Vocabulary",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "French comprehension/exercise question 19",
-    "options": {
-      "A": "Option A for French question 19",
-      "B": "Option B for French question 19",
-      "C": "Option C for French question 19",
-      "D": "Option D for French question 19"
-    },
-    "correctAnswer": "C",
-    "explanation": "Explanation for French question 19",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:25:22.376Z"
-  },
-  {
-    "id": "jamb-2026-fre-020",
-    "subject": "French",
-    "topic": "Translation",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "French comprehension/exercise question 20",
-    "options": {
-      "A": "Option A for French question 20",
-      "B": "Option B for French question 20",
-      "C": "Option C for French question 20",
-      "D": "Option D for French question 20"
-    },
-    "correctAnswer": "D",
-    "explanation": "Explanation for French question 20",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:25:22.376Z"
-  },
-  {
-    "id": "jamb-2026-fre-021",
-    "subject": "French",
-    "topic": "Comprehension",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "French comprehension/exercise question 21",
-    "options": {
-      "A": "Option A for French question 21",
-      "B": "Option B for French question 21",
-      "C": "Option C for French question 21",
-      "D": "Option D for French question 21"
-    },
-    "correctAnswer": "A",
-    "explanation": "Explanation for French question 21",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:25:22.376Z"
-  },
-  {
-    "id": "jamb-2026-fre-022",
-    "subject": "French",
-    "topic": "Grammar",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "French comprehension/exercise question 22",
-    "options": {
-      "A": "Option A for French question 22",
-      "B": "Option B for French question 22",
-      "C": "Option C for French question 22",
-      "D": "Option D for French question 22"
-    },
-    "correctAnswer": "B",
-    "explanation": "Explanation for French question 22",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:25:22.376Z"
-  },
-  {
-    "id": "jamb-2026-fre-023",
-    "subject": "French",
-    "topic": "Vocabulary",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "French comprehension/exercise question 23",
-    "options": {
-      "A": "Option A for French question 23",
-      "B": "Option B for French question 23",
-      "C": "Option C for French question 23",
-      "D": "Option D for French question 23"
-    },
-    "correctAnswer": "C",
-    "explanation": "Explanation for French question 23",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:25:22.376Z"
-  },
-  {
-    "id": "jamb-2026-fre-024",
-    "subject": "French",
-    "topic": "Translation",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "French comprehension/exercise question 24",
-    "options": {
-      "A": "Option A for French question 24",
-      "B": "Option B for French question 24",
-      "C": "Option C for French question 24",
-      "D": "Option D for French question 24"
-    },
-    "correctAnswer": "D",
-    "explanation": "Explanation for French question 24",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:25:22.376Z"
-  },
-  {
-    "id": "jamb-2026-fre-025",
-    "subject": "French",
-    "topic": "Comprehension",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "French comprehension/exercise question 25",
-    "options": {
-      "A": "Option A for French question 25",
-      "B": "Option B for French question 25",
-      "C": "Option C for French question 25",
-      "D": "Option D for French question 25"
-    },
-    "correctAnswer": "A",
-    "explanation": "Explanation for French question 25",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:25:22.376Z"
-  },
-  {
-    "id": "jamb-2026-fre-026",
-    "subject": "French",
-    "topic": "Grammar",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Choose the correct form: French grammar question 26",
-    "options": {
-      "A": "Form A",
-      "B": "Form B",
-      "C": "Form C",
-      "D": "Form D"
-    },
-    "correctAnswer": "A",
-    "explanation": "Grammar explanation for French question 26",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:25:22.376Z"
-  },
-  {
-    "id": "jamb-2026-fre-027",
-    "subject": "French",
-    "topic": "Grammar",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Choose the correct form: French grammar question 27",
-    "options": {
-      "A": "Form A",
-      "B": "Form B",
-      "C": "Form C",
-      "D": "Form D"
-    },
-    "correctAnswer": "A",
-    "explanation": "Grammar explanation for French question 27",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:25:22.377Z"
-  },
-  {
-    "id": "jamb-2026-fre-028",
-    "subject": "French",
-    "topic": "Grammar",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Choose the correct form: French grammar question 28",
-    "options": {
-      "A": "Form A",
-      "B": "Form B",
-      "C": "Form C",
-      "D": "Form D"
-    },
-    "correctAnswer": "A",
-    "explanation": "Grammar explanation for French question 28",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:25:22.377Z"
-  },
-  {
-    "id": "jamb-2026-fre-029",
-    "subject": "French",
-    "topic": "Grammar",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Choose the correct form: French grammar question 29",
-    "options": {
-      "A": "Form A",
-      "B": "Form B",
-      "C": "Form C",
-      "D": "Form D"
-    },
-    "correctAnswer": "A",
-    "explanation": "Grammar explanation for French question 29",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:25:22.377Z"
-  },
-  {
-    "id": "jamb-2026-fre-030",
-    "subject": "French",
-    "topic": "Grammar",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Choose the correct form: French grammar question 30",
-    "options": {
-      "A": "Form A",
-      "B": "Form B",
-      "C": "Form C",
-      "D": "Form D"
-    },
-    "correctAnswer": "A",
-    "explanation": "Grammar explanation for French question 30",
-    "source": "generated",
-    "createdAt": "2026-11-14T12:25:22.377Z"
-  },
-  {
-    "id": "jamb-2026-fm-001-1794663349324-697",
+    "id": "jamb-2026-fm-001-2",
     "subject": "Further Mathematics",
     "topic": "Matrices",
     "exam": [
@@ -20012,7 +19382,7 @@
     "createdAt": "2026-11-14T12:30:09.495Z"
   },
   {
-    "id": "jamb-2026-fm-002-1794663349324-698",
+    "id": "jamb-2026-fm-002-2",
     "subject": "Further Mathematics",
     "topic": "Matrices",
     "exam": [
@@ -20033,7 +19403,7 @@
     "createdAt": "2026-11-14T12:30:09.499Z"
   },
   {
-    "id": "jamb-2026-fm-003-1794663349324-699",
+    "id": "jamb-2026-fm-003-2",
     "subject": "Further Mathematics",
     "topic": "Calculus",
     "exam": [
@@ -20054,7 +19424,7 @@
     "createdAt": "2026-11-14T12:30:09.499Z"
   },
   {
-    "id": "jamb-2026-fm-004-1794663349324-700",
+    "id": "jamb-2026-fm-004-2",
     "subject": "Further Mathematics",
     "topic": "Calculus",
     "exam": [
@@ -20075,7 +19445,7 @@
     "createdAt": "2026-11-14T12:30:09.499Z"
   },
   {
-    "id": "jamb-2026-fm-005-1794663349324-701",
+    "id": "jamb-2026-fm-005-2",
     "subject": "Further Mathematics",
     "topic": "Calculus",
     "exam": [
@@ -20516,1263 +19886,612 @@
     "createdAt": "2026-11-14T12:30:09.499Z"
   },
   {
-    "id": "jamb-2026-geography-019",
-    "subject": "Geography",
-    "topic": "Physical Geography",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Geography question 19",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "A",
-    "explanation": "Explanation for Geography question 19",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.921Z"
-  },
-  {
-    "id": "jamb-2026-geography-020",
-    "subject": "Geography",
-    "topic": "Physical Geography",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Geography question 20",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "B",
-    "explanation": "Explanation for Geography question 20",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.924Z"
-  },
-  {
-    "id": "jamb-2026-geography-021",
-    "subject": "Geography",
-    "topic": "Physical Geography",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Geography question 21",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "C",
-    "explanation": "Explanation for Geography question 21",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.924Z"
-  },
-  {
-    "id": "jamb-2026-geography-022",
-    "subject": "Geography",
-    "topic": "Physical Geography",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Geography question 22",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "D",
-    "explanation": "Explanation for Geography question 22",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.924Z"
-  },
-  {
-    "id": "jamb-2026-geography-023",
-    "subject": "Geography",
-    "topic": "Physical Geography",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Geography question 23",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "A",
-    "explanation": "Explanation for Geography question 23",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.924Z"
-  },
-  {
-    "id": "jamb-2026-geography-024",
-    "subject": "Geography",
-    "topic": "Physical Geography",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Geography question 24",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "B",
-    "explanation": "Explanation for Geography question 24",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.924Z"
-  },
-  {
-    "id": "jamb-2026-geography-025",
-    "subject": "Geography",
-    "topic": "Physical Geography",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Geography question 25",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "C",
-    "explanation": "Explanation for Geography question 25",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.924Z"
-  },
-  {
-    "id": "jamb-2026-geography-026",
-    "subject": "Geography",
-    "topic": "Physical Geography",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Geography question 26",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "D",
-    "explanation": "Explanation for Geography question 26",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.924Z"
-  },
-  {
-    "id": "jamb-2026-geography-027",
-    "subject": "Geography",
-    "topic": "Physical Geography",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Geography question 27",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "A",
-    "explanation": "Explanation for Geography question 27",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.924Z"
-  },
-  {
-    "id": "jamb-2026-geography-028",
-    "subject": "Geography",
-    "topic": "Physical Geography",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Geography question 28",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "B",
-    "explanation": "Explanation for Geography question 28",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.924Z"
-  },
-  {
-    "id": "jamb-2026-agriculturalscience-018",
-    "subject": "Agricultural Science",
-    "topic": "Animal Husbandry",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Agricultural Science question 18",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "A",
-    "explanation": "Explanation for Agricultural Science question 18",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.924Z"
-  },
-  {
-    "id": "jamb-2026-agriculturalscience-019",
-    "subject": "Agricultural Science",
-    "topic": "Animal Husbandry",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Agricultural Science question 19",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "B",
-    "explanation": "Explanation for Agricultural Science question 19",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-agriculturalscience-020",
-    "subject": "Agricultural Science",
-    "topic": "Animal Husbandry",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Agricultural Science question 20",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "C",
-    "explanation": "Explanation for Agricultural Science question 20",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-agriculturalscience-021",
-    "subject": "Agricultural Science",
-    "topic": "Animal Husbandry",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Agricultural Science question 21",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "D",
-    "explanation": "Explanation for Agricultural Science question 21",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-agriculturalscience-022",
-    "subject": "Agricultural Science",
-    "topic": "Animal Husbandry",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Agricultural Science question 22",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "A",
-    "explanation": "Explanation for Agricultural Science question 22",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-agriculturalscience-023",
-    "subject": "Agricultural Science",
-    "topic": "Animal Husbandry",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Agricultural Science question 23",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "B",
-    "explanation": "Explanation for Agricultural Science question 23",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-agriculturalscience-024",
-    "subject": "Agricultural Science",
-    "topic": "Animal Husbandry",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Agricultural Science question 24",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "C",
-    "explanation": "Explanation for Agricultural Science question 24",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-agriculturalscience-025",
-    "subject": "Agricultural Science",
-    "topic": "Animal Husbandry",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Agricultural Science question 25",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "D",
-    "explanation": "Explanation for Agricultural Science question 25",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-agriculturalscience-026",
-    "subject": "Agricultural Science",
-    "topic": "Animal Husbandry",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Agricultural Science question 26",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "A",
-    "explanation": "Explanation for Agricultural Science question 26",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-agriculturalscience-027",
-    "subject": "Agricultural Science",
-    "topic": "Animal Husbandry",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Agricultural Science question 27",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "B",
-    "explanation": "Explanation for Agricultural Science question 27",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-literatureinenglish-017",
-    "subject": "Literature-in-English",
-    "topic": "Prose",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Literature-in-English question 17",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "A",
-    "explanation": "Explanation for Literature-in-English question 17",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-literatureinenglish-018",
-    "subject": "Literature-in-English",
-    "topic": "Prose",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Literature-in-English question 18",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "B",
-    "explanation": "Explanation for Literature-in-English question 18",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-literatureinenglish-019",
-    "subject": "Literature-in-English",
-    "topic": "Prose",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Literature-in-English question 19",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "C",
-    "explanation": "Explanation for Literature-in-English question 19",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-literatureinenglish-020",
-    "subject": "Literature-in-English",
-    "topic": "Prose",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Literature-in-English question 20",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "D",
-    "explanation": "Explanation for Literature-in-English question 20",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-literatureinenglish-021",
-    "subject": "Literature-in-English",
-    "topic": "Prose",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Literature-in-English question 21",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "A",
-    "explanation": "Explanation for Literature-in-English question 21",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-literatureinenglish-022",
-    "subject": "Literature-in-English",
-    "topic": "Prose",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Literature-in-English question 22",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "B",
-    "explanation": "Explanation for Literature-in-English question 22",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-literatureinenglish-023",
-    "subject": "Literature-in-English",
-    "topic": "Prose",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Literature-in-English question 23",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "C",
-    "explanation": "Explanation for Literature-in-English question 23",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-literatureinenglish-024",
-    "subject": "Literature-in-English",
-    "topic": "Prose",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Literature-in-English question 24",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "D",
-    "explanation": "Explanation for Literature-in-English question 24",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-literatureinenglish-025",
-    "subject": "Literature-in-English",
-    "topic": "Prose",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Literature-in-English question 25",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "A",
-    "explanation": "Explanation for Literature-in-English question 25",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-literatureinenglish-026",
-    "subject": "Literature-in-English",
-    "topic": "Prose",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Literature-in-English question 26",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "B",
-    "explanation": "Explanation for Literature-in-English question 26",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-commerce-016",
-    "subject": "Commerce",
-    "topic": "Principles",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Commerce question 16",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "A",
-    "explanation": "Explanation for Commerce question 16",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-commerce-017",
-    "subject": "Commerce",
-    "topic": "Principles",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Commerce question 17",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "B",
-    "explanation": "Explanation for Commerce question 17",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-commerce-018",
-    "subject": "Commerce",
-    "topic": "Principles",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Commerce question 18",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "C",
-    "explanation": "Explanation for Commerce question 18",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-commerce-019",
-    "subject": "Commerce",
-    "topic": "Principles",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Commerce question 19",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "D",
-    "explanation": "Explanation for Commerce question 19",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-commerce-020",
-    "subject": "Commerce",
-    "topic": "Principles",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Commerce question 20",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "A",
-    "explanation": "Explanation for Commerce question 20",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-commerce-021",
-    "subject": "Commerce",
-    "topic": "Principles",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Commerce question 21",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "B",
-    "explanation": "Explanation for Commerce question 21",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-commerce-022",
-    "subject": "Commerce",
-    "topic": "Principles",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Commerce question 22",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "C",
-    "explanation": "Explanation for Commerce question 22",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-commerce-023",
-    "subject": "Commerce",
-    "topic": "Principles",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Commerce question 23",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "D",
-    "explanation": "Explanation for Commerce question 23",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-commerce-024",
-    "subject": "Commerce",
-    "topic": "Principles",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Commerce question 24",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "A",
-    "explanation": "Explanation for Commerce question 24",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-commerce-025",
-    "subject": "Commerce",
-    "topic": "Principles",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Commerce question 25",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "B",
-    "explanation": "Explanation for Commerce question 25",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-christianreligiousknowledge-016",
-    "subject": "Christian Religious Knowledge",
-    "topic": "Old Testament",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Christian Religious Knowledge question 16",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "A",
-    "explanation": "Explanation for Christian Religious Knowledge question 16",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-christianreligiousknowledge-017",
-    "subject": "Christian Religious Knowledge",
-    "topic": "Old Testament",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Christian Religious Knowledge question 17",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "B",
-    "explanation": "Explanation for Christian Religious Knowledge question 17",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-christianreligiousknowledge-018",
-    "subject": "Christian Religious Knowledge",
-    "topic": "Old Testament",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Christian Religious Knowledge question 18",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "C",
-    "explanation": "Explanation for Christian Religious Knowledge question 18",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-christianreligiousknowledge-019",
-    "subject": "Christian Religious Knowledge",
-    "topic": "Old Testament",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Christian Religious Knowledge question 19",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "D",
-    "explanation": "Explanation for Christian Religious Knowledge question 19",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-christianreligiousknowledge-020",
-    "subject": "Christian Religious Knowledge",
-    "topic": "Old Testament",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Christian Religious Knowledge question 20",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "A",
-    "explanation": "Explanation for Christian Religious Knowledge question 20",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-christianreligiousknowledge-021",
-    "subject": "Christian Religious Knowledge",
-    "topic": "Old Testament",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Christian Religious Knowledge question 21",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "B",
-    "explanation": "Explanation for Christian Religious Knowledge question 21",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-christianreligiousknowledge-022",
-    "subject": "Christian Religious Knowledge",
-    "topic": "Old Testament",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Christian Religious Knowledge question 22",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "C",
-    "explanation": "Explanation for Christian Religious Knowledge question 22",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-christianreligiousknowledge-023",
-    "subject": "Christian Religious Knowledge",
-    "topic": "Old Testament",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "medium",
-    "question": "Christian Religious Knowledge question 23",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "D",
-    "explanation": "Explanation for Christian Religious Knowledge question 23",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-christianreligiousknowledge-024",
-    "subject": "Christian Religious Knowledge",
-    "topic": "Old Testament",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "Christian Religious Knowledge question 24",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "A",
-    "explanation": "Explanation for Christian Religious Knowledge question 24",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-christianreligiousknowledge-025",
-    "subject": "Christian Religious Knowledge",
-    "topic": "Old Testament",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "Christian Religious Knowledge question 25",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "B",
-    "explanation": "Explanation for Christian Religious Knowledge question 25",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-english-013",
-    "subject": "English",
+    "id": "jamb-2026-fre-001",
+    "subject": "French",
     "topic": "Grammar",
     "exam": [
       "JAMB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "English question 13",
+    "question": "Complétez : « Je ___ au marché hier. »",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "vais",
+      "B": "suis allé",
+      "C": "irai",
+      "D": "allais"
     },
-    "correctAnswer": "A",
-    "explanation": "Explanation for English question 13",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
+    "correctAnswer": "B",
+    "explanation": "Passé composé avec 'être' : je suis allé(e). 'Hier' marque le passé.",
+    "source": "past",
+    "createdAt": "2026-11-14T13:59:02.742Z"
   },
   {
-    "id": "jamb-2026-english-014",
-    "subject": "English",
+    "id": "jamb-2026-fre-002",
+    "subject": "French",
+    "topic": "Vocabulary",
+    "exam": [
+      "JAMB"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "« Comment tu t'appelles ? » — « Je ___ Jean. »",
+    "options": {
+      "A": "m'appelle",
+      "B": "t'appelles",
+      "C": "s'appelle",
+      "D": "appelle"
+    },
+    "correctAnswer": "A",
+    "explanation": "Verbe pronominal 's'appeler' à la 1re personne : je m'appelle.",
+    "source": "past",
+    "createdAt": "2026-11-14T13:59:02.809Z"
+  },
+  {
+    "id": "jamb-2026-fre-003",
+    "subject": "French",
+    "topic": "Translation",
+    "exam": [
+      "JAMB"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Le féminin de « acteur » est :",
+    "options": {
+      "A": "actrice",
+      "B": "acteure",
+      "C": "acteureuse",
+      "D": "actriceuse"
+    },
+    "correctAnswer": "A",
+    "explanation": "Les noms en -teur font leur féminin en -trice : acteur → actrice.",
+    "source": "past",
+    "createdAt": "2026-11-14T13:59:02.809Z"
+  },
+  {
+    "id": "jamb-2026-fre-004",
+    "subject": "French",
+    "topic": "Comprehension",
+    "exam": [
+      "JAMB"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Complétez : « Nous ___ français. »",
+    "options": {
+      "A": "sommes",
+      "B": "avons",
+      "C": "êtes",
+      "D": "sont"
+    },
+    "correctAnswer": "A",
+    "explanation": "Être à la 1re personne du pluriel : nous sommes.",
+    "source": "past",
+    "createdAt": "2026-11-14T13:59:02.809Z"
+  },
+  {
+    "id": "jamb-2026-fre-005",
+    "subject": "French",
     "topic": "Grammar",
     "exam": [
       "JAMB"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "English question 14",
+    "question": "« Le chien » est de genre :",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "masculin",
+      "B": "féminin",
+      "C": "neutre",
+      "D": "pluriel"
     },
-    "correctAnswer": "B",
-    "explanation": "Explanation for English question 14",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
+    "correctAnswer": "A",
+    "explanation": "'Le' est l'article masculin singulier.",
+    "source": "past",
+    "createdAt": "2026-11-14T13:59:02.809Z"
   },
   {
-    "id": "jamb-2026-english-015",
-    "subject": "English",
+    "id": "jamb-2026-fre-006",
+    "subject": "French",
+    "topic": "Vocabulary",
+    "exam": [
+      "JAMB"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Complétez : « Elle ___ une pomme. »",
+    "options": {
+      "A": "mange",
+      "B": "manges",
+      "C": "mangeons",
+      "D": "mangent"
+    },
+    "correctAnswer": "A",
+    "explanation": "Manger à la 3e personne du singulier : il/elle mange.",
+    "source": "past",
+    "createdAt": "2026-11-14T13:59:02.809Z"
+  },
+  {
+    "id": "jamb-2026-fre-007",
+    "subject": "French",
+    "topic": "Translation",
+    "exam": [
+      "JAMB"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Le contraire de « grand » est :",
+    "options": {
+      "A": "petit",
+      "B": "haut",
+      "C": "long",
+      "D": "large"
+    },
+    "correctAnswer": "A",
+    "explanation": "Antonyme : grand ↔ petit.",
+    "source": "past",
+    "createdAt": "2026-11-14T13:59:02.809Z"
+  },
+  {
+    "id": "jamb-2026-fre-008",
+    "subject": "French",
+    "topic": "Comprehension",
+    "exam": [
+      "JAMB"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "« Où est la gare ? » signifie :",
+    "options": {
+      "A": "Where is the station?",
+      "B": "Where is the market?",
+      "C": "Where is the school?",
+      "D": "Where is the bank?"
+    },
+    "correctAnswer": "A",
+    "explanation": "'Gare' = station (de train).",
+    "source": "past",
+    "createdAt": "2026-11-14T13:59:02.809Z"
+  },
+  {
+    "id": "jamb-2026-fre-009",
+    "subject": "French",
     "topic": "Grammar",
     "exam": [
       "JAMB"
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "English question 15",
+    "question": "Complétez : « Les enfants ___ à l'école. »",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "vont",
+      "B": "va",
+      "C": "allez",
+      "D": "allons"
     },
-    "correctAnswer": "C",
-    "explanation": "Explanation for English question 15",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
+    "correctAnswer": "A",
+    "explanation": "Aller à la 3e personne du pluriel : ils/elles vont.",
+    "source": "past",
+    "createdAt": "2026-11-14T13:59:02.809Z"
   },
   {
-    "id": "jamb-2026-english-016",
-    "subject": "English",
+    "id": "jamb-2026-fre-010",
+    "subject": "French",
+    "topic": "Vocabulary",
+    "exam": [
+      "JAMB"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "« Merci beaucoup » veut dire :",
+    "options": {
+      "A": "Thank you very much",
+      "B": "Good morning",
+      "C": "See you later",
+      "D": "How are you"
+    },
+    "correctAnswer": "A",
+    "explanation": "Expression de politesse : merci beaucoup = thank you very much.",
+    "source": "past",
+    "createdAt": "2026-11-14T13:59:02.809Z"
+  },
+  {
+    "id": "jamb-2026-fre-011",
+    "subject": "French",
+    "topic": "Translation",
+    "exam": [
+      "JAMB"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Complétez : « J'ai ___ livres. » (plusieurs)",
+    "options": {
+      "A": "des",
+      "B": "du",
+      "C": "de la",
+      "D": "l'"
+    },
+    "correctAnswer": "A",
+    "explanation": "Article indéfini pluriel : des livres.",
+    "source": "past",
+    "createdAt": "2026-11-14T13:59:02.809Z"
+  },
+  {
+    "id": "jamb-2026-fre-012",
+    "subject": "French",
+    "topic": "Comprehension",
+    "exam": [
+      "JAMB"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Le pluriel de « journal » est :",
+    "options": {
+      "A": "journaux",
+      "B": "journals",
+      "C": "journales",
+      "D": "journalx"
+    },
+    "correctAnswer": "A",
+    "explanation": "Les mots en -al font leur pluriel en -aux : journal → journaux.",
+    "source": "past",
+    "createdAt": "2026-11-14T13:59:02.809Z"
+  },
+  {
+    "id": "jamb-2026-fre-013",
+    "subject": "French",
     "topic": "Grammar",
     "exam": [
       "JAMB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "English question 16",
+    "question": "« Quelle heure est-il ? » demande :",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "the time",
+      "B": "the date",
+      "C": "the weather",
+      "D": "the price"
     },
-    "correctAnswer": "D",
-    "explanation": "Explanation for English question 16",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
+    "correctAnswer": "A",
+    "explanation": "Question sur l'heure : what time is it?",
+    "source": "past",
+    "createdAt": "2026-11-14T13:59:02.809Z"
   },
   {
-    "id": "jamb-2026-english-017",
-    "subject": "English",
+    "id": "jamb-2026-fre-014",
+    "subject": "French",
+    "topic": "Vocabulary",
+    "exam": [
+      "JAMB"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Complétez : « Tu ___ tes devoirs. »",
+    "options": {
+      "A": "fais",
+      "B": "fait",
+      "C": "faisons",
+      "D": "font"
+    },
+    "correctAnswer": "A",
+    "explanation": "Faire à la 2e personne du singulier : tu fais.",
+    "source": "past",
+    "createdAt": "2026-11-14T13:59:02.809Z"
+  },
+  {
+    "id": "jamb-2026-fre-015",
+    "subject": "French",
+    "topic": "Translation",
+    "exam": [
+      "JAMB"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "« Bon appétit ! » se dit :",
+    "options": {
+      "A": "before a meal",
+      "B": "at night",
+      "C": "in the morning",
+      "D": "when leaving"
+    },
+    "correctAnswer": "A",
+    "explanation": "On dit 'bon appétit' avant de commencer un repas.",
+    "source": "past",
+    "createdAt": "2026-11-14T13:59:02.809Z"
+  },
+  {
+    "id": "jamb-2026-fre-016",
+    "subject": "French",
+    "topic": "Comprehension",
+    "exam": [
+      "JAMB"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Complétez : « Nous ___ au cinéma. »",
+    "options": {
+      "A": "allons",
+      "B": "allez",
+      "C": "vont",
+      "D": "va"
+    },
+    "correctAnswer": "A",
+    "explanation": "Aller à la 1re personne du pluriel : nous allons.",
+    "source": "past",
+    "createdAt": "2026-11-14T13:59:02.809Z"
+  },
+  {
+    "id": "jamb-2026-fre-017",
+    "subject": "French",
     "topic": "Grammar",
     "exam": [
       "JAMB"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "English question 17",
+    "question": "Le contraire de « chaud » est :",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "froid",
+      "B": "tiède",
+      "C": "brûlant",
+      "D": "doux"
     },
     "correctAnswer": "A",
-    "explanation": "Explanation for English question 17",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
+    "explanation": "Antonyme : chaud ↔ froid.",
+    "source": "past",
+    "createdAt": "2026-11-14T13:59:02.809Z"
   },
   {
-    "id": "jamb-2026-english-018",
-    "subject": "English",
+    "id": "jamb-2026-fre-018",
+    "subject": "French",
+    "topic": "Vocabulary",
+    "exam": [
+      "JAMB"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "« Je voudrais un café, s'il vous plaît » est :",
+    "options": {
+      "A": "poli",
+      "B": "impoli",
+      "C": "familier",
+      "D": "vulgaire"
+    },
+    "correctAnswer": "A",
+    "explanation": "'Je voudrais' et 's'il vous plaît' sont des formules de politesse.",
+    "source": "past",
+    "createdAt": "2026-11-14T13:59:02.809Z"
+  },
+  {
+    "id": "jamb-2026-fre-019",
+    "subject": "French",
+    "topic": "Translation",
+    "exam": [
+      "JAMB"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Complétez : « Elles ___ la porte. » (ouvrir)",
+    "options": {
+      "A": "ouvrent",
+      "B": "ouvre",
+      "C": "ouvrons",
+      "D": "ouvrez"
+    },
+    "correctAnswer": "A",
+    "explanation": "Ouvrir à la 3e personne du pluriel : elles ouvrent.",
+    "source": "past",
+    "createdAt": "2026-11-14T13:59:02.809Z"
+  },
+  {
+    "id": "jamb-2026-fre-020",
+    "subject": "French",
+    "topic": "Comprehension",
+    "exam": [
+      "JAMB"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "« Lundi », « mardi », « mercredi » sont des :",
+    "options": {
+      "A": "jours",
+      "B": "mois",
+      "C": "saisons",
+      "D": "couleurs"
+    },
+    "correctAnswer": "A",
+    "explanation": "Ce sont les jours de la semaine.",
+    "source": "past",
+    "createdAt": "2026-11-14T13:59:02.809Z"
+  },
+  {
+    "id": "jamb-2026-fre-021",
+    "subject": "French",
     "topic": "Grammar",
     "exam": [
       "JAMB"
     ],
     "year": 2026,
     "difficulty": "hard",
-    "question": "English question 18",
+    "question": "Complétez : « Il ___ faim. »",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "a",
+      "B": "est",
+      "C": "va",
+      "D": "fait"
     },
-    "correctAnswer": "B",
-    "explanation": "Explanation for English question 18",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
+    "correctAnswer": "A",
+    "explanation": "Avoir faim : il a faim (verbe avoir).",
+    "source": "past",
+    "createdAt": "2026-11-14T13:59:02.809Z"
   },
   {
-    "id": "jamb-2026-english-019",
-    "subject": "English",
+    "id": "jamb-2026-fre-022",
+    "subject": "French",
+    "topic": "Vocabulary",
+    "exam": [
+      "JAMB"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Le synonyme de « content » est :",
+    "options": {
+      "A": "heureux",
+      "B": "triste",
+      "C": "fâché",
+      "D": "fatigué"
+    },
+    "correctAnswer": "A",
+    "explanation": "Content = heureux.",
+    "source": "past",
+    "createdAt": "2026-11-14T13:59:02.809Z"
+  },
+  {
+    "id": "jamb-2026-fre-023",
+    "subject": "French",
+    "topic": "Translation",
+    "exam": [
+      "JAMB"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "« Je ___ le français. » (aimer)",
+    "options": {
+      "A": "aime",
+      "B": "aimes",
+      "C": "aimons",
+      "D": "aiment"
+    },
+    "correctAnswer": "A",
+    "explanation": "Aimer à la 1re personne du singulier : j'aime.",
+    "source": "past",
+    "createdAt": "2026-11-14T13:59:02.809Z"
+  },
+  {
+    "id": "jamb-2026-fre-024",
+    "subject": "French",
+    "topic": "Comprehension",
+    "exam": [
+      "JAMB"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Complétez : « Vous ___ anglais. » (parler)",
+    "options": {
+      "A": "parlez",
+      "B": "parle",
+      "C": "parlons",
+      "D": "parlent"
+    },
+    "correctAnswer": "A",
+    "explanation": "Parler à la 2e personne du pluriel : vous parlez.",
+    "source": "past",
+    "createdAt": "2026-11-14T13:59:02.809Z"
+  },
+  {
+    "id": "jamb-2026-fre-025",
+    "subject": "French",
     "topic": "Grammar",
     "exam": [
       "JAMB"
     ],
     "year": 2026,
     "difficulty": "easy",
-    "question": "English question 19",
+    "question": "« Quel temps fait-il ? » concerne :",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "la météo",
+      "B": "l'heure",
+      "C": "le prix",
+      "D": "la direction"
     },
-    "correctAnswer": "C",
-    "explanation": "Explanation for English question 19",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
+    "correctAnswer": "A",
+    "explanation": "Question sur la météo : how is the weather?",
+    "source": "past",
+    "createdAt": "2026-11-14T13:59:02.809Z"
   },
   {
-    "id": "jamb-2026-english-020",
-    "subject": "English",
+    "id": "jamb-2026-fre-026",
+    "subject": "French",
+    "topic": "Vocabulary",
+    "exam": [
+      "JAMB"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Le féminin de « chanteur » est :",
+    "options": {
+      "A": "chanteuse",
+      "B": "chanteure",
+      "C": "chanteuse",
+      "D": "chantreuse"
+    },
+    "correctAnswer": "A",
+    "explanation": "Les noms en -eur font leur féminin en -euse : chanteur → chanteuse.",
+    "source": "past",
+    "createdAt": "2026-11-14T13:59:02.809Z"
+  },
+  {
+    "id": "jamb-2026-fre-027",
+    "subject": "French",
+    "topic": "Translation",
+    "exam": [
+      "JAMB"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Complétez : « Nous ___ deux enfants. »",
+    "options": {
+      "A": "chanteuse",
+      "B": "chanteure",
+      "C": "chanteresse",
+      "D": "actrice"
+    },
+    "correctAnswer": "A",
+    "explanation": "Les noms en -eur font leur féminin en -euse : chanteur → chanteuse.",
+    "source": "past",
+    "createdAt": "2026-11-14T13:59:02.809Z"
+  },
+  {
+    "id": "jamb-2026-fre-028",
+    "subject": "French",
+    "topic": "Comprehension",
+    "exam": [
+      "JAMB"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "« Au revoir » signifie :",
+    "options": {
+      "A": "Goodbye",
+      "B": "Hello",
+      "C": "Please",
+      "D": "Sorry"
+    },
+    "correctAnswer": "A",
+    "explanation": "Formule d'adieu : au revoir = goodbye.",
+    "source": "past",
+    "createdAt": "2026-11-14T13:59:02.809Z"
+  },
+  {
+    "id": "jamb-2026-fre-029",
+    "subject": "French",
     "topic": "Grammar",
     "exam": [
       "JAMB"
     ],
     "year": 2026,
     "difficulty": "medium",
-    "question": "English question 20",
+    "question": "Complétez : « Les filles ___ contentes. » (être)",
     "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "D",
-    "explanation": "Explanation for English question 20",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-english-021",
-    "subject": "English",
-    "topic": "Grammar",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "hard",
-    "question": "English question 21",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
+      "A": "sont",
+      "B": "est",
+      "C": "sommes",
+      "D": "êtes"
     },
     "correctAnswer": "A",
-    "explanation": "Explanation for English question 21",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
-  },
-  {
-    "id": "jamb-2026-english-022",
-    "subject": "English",
-    "topic": "Grammar",
-    "exam": [
-      "JAMB"
-    ],
-    "year": 2026,
-    "difficulty": "easy",
-    "question": "English question 22",
-    "options": {
-      "A": "Option A",
-      "B": "Option B",
-      "C": "Option C",
-      "D": "Option D"
-    },
-    "correctAnswer": "B",
-    "explanation": "Explanation for English question 22",
-    "source": "generated",
-    "createdAt": "2026-11-14T13:33:28.925Z"
+    "explanation": "Être à la 3e personne du pluriel : ils/elles sont.",
+    "source": "past",
+    "createdAt": "2026-11-14T13:59:02.809Z"
   }
 ]
