@@ -909,6 +909,24 @@ service cloud.firestore {
       }
     }
 
+    // ─── GAME CHALLENGES (account-vs-account) ───
+    match /gameChallenges/{challengeId} {
+      allow read: if request.auth != null && (
+        resource.data.fromUid == request.auth.uid
+        || resource.data.toUid == request.auth.uid
+        || isAdmin()
+        || resource.data.status == "completed"
+      );
+      allow create: if request.auth != null
+        && request.resource.data.fromUid == request.auth.uid;
+      allow update: if request.auth != null && (
+        resource.data.toUid == request.auth.uid
+        || resource.data.fromUid == request.auth.uid
+        || isAdmin()
+      );
+      allow delete: if isAdmin();
+    }
+
     // ─── NOTIFICATIONS (server fan-out; owner reads/marks read) ───
     match /notifications/{uid}/items/{itemId} {
       allow read, update, delete: if request.auth != null && (
