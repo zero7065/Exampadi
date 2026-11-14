@@ -1,1 +1,527 @@
-[]
+[
+  {
+    "id": "postutme-2026-useofenglishlanguage-001",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "POST-UTME"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Comprehension question 1 for POST-UTME Use of English Language",
+    "options": {
+      "A": "A 1",
+      "B": "B 1",
+      "C": "C 1",
+      "D": "D 1"
+    },
+    "correctAnswer": "A",
+    "explanation": "POST-UTME Use of English Language explanation 1",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:51:09.190Z"
+  },
+  {
+    "id": "postutme-2026-mathematics-002",
+    "subject": "Mathematics",
+    "topic": "Lexis and Structure",
+    "exam": [
+      "POST-UTME"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Lexis and Structure question 2 for POST-UTME Mathematics",
+    "options": {
+      "A": "A 2",
+      "B": "B 2",
+      "C": "C 2",
+      "D": "D 2"
+    },
+    "correctAnswer": "B",
+    "explanation": "POST-UTME Mathematics explanation 2",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:51:09.195Z"
+  },
+  {
+    "id": "postutme-2026-physics-003",
+    "subject": "Physics",
+    "topic": "Algebra",
+    "exam": [
+      "POST-UTME"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Algebra question 3 for POST-UTME Physics",
+    "options": {
+      "A": "A 3",
+      "B": "B 3",
+      "C": "C 3",
+      "D": "D 3"
+    },
+    "correctAnswer": "C",
+    "explanation": "POST-UTME Physics explanation 3",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:51:09.195Z"
+  },
+  {
+    "id": "postutme-2026-chemistry-004",
+    "subject": "Chemistry",
+    "topic": "Geometry",
+    "exam": [
+      "POST-UTME"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Geometry question 4 for POST-UTME Chemistry",
+    "options": {
+      "A": "A 4",
+      "B": "B 4",
+      "C": "C 4",
+      "D": "D 4"
+    },
+    "correctAnswer": "D",
+    "explanation": "POST-UTME Chemistry explanation 4",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:51:09.195Z"
+  },
+  {
+    "id": "postutme-2026-biology-005",
+    "subject": "Biology",
+    "topic": "Mechanics",
+    "exam": [
+      "POST-UTME"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Mechanics question 5 for POST-UTME Biology",
+    "options": {
+      "A": "A 5",
+      "B": "B 5",
+      "C": "C 5",
+      "D": "D 5"
+    },
+    "correctAnswer": "A",
+    "explanation": "POST-UTME Biology explanation 5",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:51:09.195Z"
+  },
+  {
+    "id": "postutme-2026-useofenglishlanguage-006",
+    "subject": "Use of English Language",
+    "topic": "Organic",
+    "exam": [
+      "POST-UTME"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Organic question 6 for POST-UTME Use of English Language",
+    "options": {
+      "A": "A 6",
+      "B": "B 6",
+      "C": "C 6",
+      "D": "D 6"
+    },
+    "correctAnswer": "B",
+    "explanation": "POST-UTME Use of English Language explanation 6",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:51:09.195Z"
+  },
+  {
+    "id": "postutme-2026-mathematics-007",
+    "subject": "Mathematics",
+    "topic": "Cell Biology",
+    "exam": [
+      "POST-UTME"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Cell Biology question 7 for POST-UTME Mathematics",
+    "options": {
+      "A": "A 7",
+      "B": "B 7",
+      "C": "C 7",
+      "D": "D 7"
+    },
+    "correctAnswer": "C",
+    "explanation": "POST-UTME Mathematics explanation 7",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:51:09.195Z"
+  },
+  {
+    "id": "postutme-2026-physics-008",
+    "subject": "Physics",
+    "topic": "Comprehension",
+    "exam": [
+      "POST-UTME"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Comprehension question 8 for POST-UTME Physics",
+    "options": {
+      "A": "A 8",
+      "B": "B 8",
+      "C": "C 8",
+      "D": "D 8"
+    },
+    "correctAnswer": "D",
+    "explanation": "POST-UTME Physics explanation 8",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:51:09.195Z"
+  },
+  {
+    "id": "postutme-2026-chemistry-009",
+    "subject": "Chemistry",
+    "topic": "Lexis and Structure",
+    "exam": [
+      "POST-UTME"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Lexis and Structure question 9 for POST-UTME Chemistry",
+    "options": {
+      "A": "A 9",
+      "B": "B 9",
+      "C": "C 9",
+      "D": "D 9"
+    },
+    "correctAnswer": "A",
+    "explanation": "POST-UTME Chemistry explanation 9",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:51:09.195Z"
+  },
+  {
+    "id": "postutme-2026-biology-010",
+    "subject": "Biology",
+    "topic": "Algebra",
+    "exam": [
+      "POST-UTME"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Algebra question 10 for POST-UTME Biology",
+    "options": {
+      "A": "A 10",
+      "B": "B 10",
+      "C": "C 10",
+      "D": "D 10"
+    },
+    "correctAnswer": "B",
+    "explanation": "POST-UTME Biology explanation 10",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:51:09.195Z"
+  },
+  {
+    "id": "postutme-2026-useofenglishlanguage-011",
+    "subject": "Use of English Language",
+    "topic": "Geometry",
+    "exam": [
+      "POST-UTME"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Geometry question 11 for POST-UTME Use of English Language",
+    "options": {
+      "A": "A 11",
+      "B": "B 11",
+      "C": "C 11",
+      "D": "D 11"
+    },
+    "correctAnswer": "C",
+    "explanation": "POST-UTME Use of English Language explanation 11",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:51:09.195Z"
+  },
+  {
+    "id": "postutme-2026-mathematics-012",
+    "subject": "Mathematics",
+    "topic": "Mechanics",
+    "exam": [
+      "POST-UTME"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Mechanics question 12 for POST-UTME Mathematics",
+    "options": {
+      "A": "A 12",
+      "B": "B 12",
+      "C": "C 12",
+      "D": "D 12"
+    },
+    "correctAnswer": "D",
+    "explanation": "POST-UTME Mathematics explanation 12",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:51:09.196Z"
+  },
+  {
+    "id": "postutme-2026-physics-013",
+    "subject": "Physics",
+    "topic": "Organic",
+    "exam": [
+      "POST-UTME"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Organic question 13 for POST-UTME Physics",
+    "options": {
+      "A": "A 13",
+      "B": "B 13",
+      "C": "C 13",
+      "D": "D 13"
+    },
+    "correctAnswer": "A",
+    "explanation": "POST-UTME Physics explanation 13",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:51:09.196Z"
+  },
+  {
+    "id": "postutme-2026-chemistry-014",
+    "subject": "Chemistry",
+    "topic": "Cell Biology",
+    "exam": [
+      "POST-UTME"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Cell Biology question 14 for POST-UTME Chemistry",
+    "options": {
+      "A": "A 14",
+      "B": "B 14",
+      "C": "C 14",
+      "D": "D 14"
+    },
+    "correctAnswer": "B",
+    "explanation": "POST-UTME Chemistry explanation 14",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:51:09.196Z"
+  },
+  {
+    "id": "postutme-2026-biology-015",
+    "subject": "Biology",
+    "topic": "Comprehension",
+    "exam": [
+      "POST-UTME"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Comprehension question 15 for POST-UTME Biology",
+    "options": {
+      "A": "A 15",
+      "B": "B 15",
+      "C": "C 15",
+      "D": "D 15"
+    },
+    "correctAnswer": "C",
+    "explanation": "POST-UTME Biology explanation 15",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:51:09.196Z"
+  },
+  {
+    "id": "postutme-2026-useofenglishlanguage-016",
+    "subject": "Use of English Language",
+    "topic": "Lexis and Structure",
+    "exam": [
+      "POST-UTME"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Lexis and Structure question 16 for POST-UTME Use of English Language",
+    "options": {
+      "A": "A 16",
+      "B": "B 16",
+      "C": "C 16",
+      "D": "D 16"
+    },
+    "correctAnswer": "D",
+    "explanation": "POST-UTME Use of English Language explanation 16",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:51:09.196Z"
+  },
+  {
+    "id": "postutme-2026-mathematics-017",
+    "subject": "Mathematics",
+    "topic": "Algebra",
+    "exam": [
+      "POST-UTME"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Algebra question 17 for POST-UTME Mathematics",
+    "options": {
+      "A": "A 17",
+      "B": "B 17",
+      "C": "C 17",
+      "D": "D 17"
+    },
+    "correctAnswer": "A",
+    "explanation": "POST-UTME Mathematics explanation 17",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:51:09.196Z"
+  },
+  {
+    "id": "postutme-2026-physics-018",
+    "subject": "Physics",
+    "topic": "Geometry",
+    "exam": [
+      "POST-UTME"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Geometry question 18 for POST-UTME Physics",
+    "options": {
+      "A": "A 18",
+      "B": "B 18",
+      "C": "C 18",
+      "D": "D 18"
+    },
+    "correctAnswer": "B",
+    "explanation": "POST-UTME Physics explanation 18",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:51:09.196Z"
+  },
+  {
+    "id": "postutme-2026-chemistry-019",
+    "subject": "Chemistry",
+    "topic": "Mechanics",
+    "exam": [
+      "POST-UTME"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Mechanics question 19 for POST-UTME Chemistry",
+    "options": {
+      "A": "A 19",
+      "B": "B 19",
+      "C": "C 19",
+      "D": "D 19"
+    },
+    "correctAnswer": "C",
+    "explanation": "POST-UTME Chemistry explanation 19",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:51:09.196Z"
+  },
+  {
+    "id": "postutme-2026-biology-020",
+    "subject": "Biology",
+    "topic": "Organic",
+    "exam": [
+      "POST-UTME"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Organic question 20 for POST-UTME Biology",
+    "options": {
+      "A": "A 20",
+      "B": "B 20",
+      "C": "C 20",
+      "D": "D 20"
+    },
+    "correctAnswer": "D",
+    "explanation": "POST-UTME Biology explanation 20",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:51:09.196Z"
+  },
+  {
+    "id": "postutme-2026-useofenglishlanguage-021",
+    "subject": "Use of English Language",
+    "topic": "Cell Biology",
+    "exam": [
+      "POST-UTME"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Cell Biology question 21 for POST-UTME Use of English Language",
+    "options": {
+      "A": "A 21",
+      "B": "B 21",
+      "C": "C 21",
+      "D": "D 21"
+    },
+    "correctAnswer": "A",
+    "explanation": "POST-UTME Use of English Language explanation 21",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:51:09.196Z"
+  },
+  {
+    "id": "postutme-2026-mathematics-022",
+    "subject": "Mathematics",
+    "topic": "Comprehension",
+    "exam": [
+      "POST-UTME"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Comprehension question 22 for POST-UTME Mathematics",
+    "options": {
+      "A": "A 22",
+      "B": "B 22",
+      "C": "C 22",
+      "D": "D 22"
+    },
+    "correctAnswer": "B",
+    "explanation": "POST-UTME Mathematics explanation 22",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:51:09.196Z"
+  },
+  {
+    "id": "postutme-2026-physics-023",
+    "subject": "Physics",
+    "topic": "Lexis and Structure",
+    "exam": [
+      "POST-UTME"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Lexis and Structure question 23 for POST-UTME Physics",
+    "options": {
+      "A": "A 23",
+      "B": "B 23",
+      "C": "C 23",
+      "D": "D 23"
+    },
+    "correctAnswer": "C",
+    "explanation": "POST-UTME Physics explanation 23",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:51:09.196Z"
+  },
+  {
+    "id": "postutme-2026-chemistry-024",
+    "subject": "Chemistry",
+    "topic": "Algebra",
+    "exam": [
+      "POST-UTME"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Algebra question 24 for POST-UTME Chemistry",
+    "options": {
+      "A": "A 24",
+      "B": "B 24",
+      "C": "C 24",
+      "D": "D 24"
+    },
+    "correctAnswer": "D",
+    "explanation": "POST-UTME Chemistry explanation 24",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:51:09.196Z"
+  },
+  {
+    "id": "postutme-2026-biology-025",
+    "subject": "Biology",
+    "topic": "Geometry",
+    "exam": [
+      "POST-UTME"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Geometry question 25 for POST-UTME Biology",
+    "options": {
+      "A": "A 25",
+      "B": "B 25",
+      "C": "C 25",
+      "D": "D 25"
+    },
+    "correctAnswer": "A",
+    "explanation": "POST-UTME Biology explanation 25",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:51:09.196Z"
+  }
+]

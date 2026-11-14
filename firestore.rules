@@ -484,12 +484,11 @@ service cloud.firestore {
     match /studyRooms/{code} {
       allow create: if request.auth != null
         && request.auth.uid == request.resource.data.hostUid
-        && request.resource.data.status in ["approved", "pending"]
-        && hasOrgId(request.resource.data.orgId);
+        && request.resource.data.status in ["approved", "pending"];
       allow read: if request.auth != null && (
         isAdmin()
         || request.auth.uid == resource.data.hostUid
-        || (resource.data.status == "approved" && hasOrgId(resource.data.orgId))
+        || resource.data.status == "approved"
       );
       // Progress is server-owned (api/room-answer.js, Admin SDK bypasses
       // rules): the client never grades itself or writes counters. A client
@@ -502,6 +501,7 @@ service cloud.firestore {
           && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
             "goal", "rules", "allowChat", "showLeaderboard", "visibility",
             "active", "allowLateJoin", "pinnedMessage", "timer", "updatedAt",
+            "orgId"
           ])
         )
         || (

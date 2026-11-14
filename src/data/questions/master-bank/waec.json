@@ -4014,5 +4014,5465 @@
     "repeatedFrom": [
       2024
     ]
+  },
+  {
+    "id": "waec-2026-geography-001",
+    "subject": "Geography",
+    "topic": "Physical Geography",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Physical Geography question 1 for Geography",
+    "options": {
+      "A": "A 1",
+      "B": "B 1",
+      "C": "C 1",
+      "D": "D 1"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Geography question 1",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.501Z"
+  },
+  {
+    "id": "waec-2026-geography-002",
+    "subject": "Geography",
+    "topic": "Human Geography",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Human Geography question 2 for Geography",
+    "options": {
+      "A": "A 2",
+      "B": "B 2",
+      "C": "C 2",
+      "D": "D 2"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Geography question 2",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.506Z"
+  },
+  {
+    "id": "waec-2026-geography-003",
+    "subject": "Geography",
+    "topic": "Map Reading",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Map Reading question 3 for Geography",
+    "options": {
+      "A": "A 3",
+      "B": "B 3",
+      "C": "C 3",
+      "D": "D 3"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Geography question 3",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.506Z"
+  },
+  {
+    "id": "waec-2026-geography-004",
+    "subject": "Geography",
+    "topic": "Regional Geography",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Regional Geography question 4 for Geography",
+    "options": {
+      "A": "A 4",
+      "B": "B 4",
+      "C": "C 4",
+      "D": "D 4"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Geography question 4",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.506Z"
+  },
+  {
+    "id": "waec-2026-geography-005",
+    "subject": "Geography",
+    "topic": "Physical Geography",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Physical Geography question 5 for Geography",
+    "options": {
+      "A": "A 5",
+      "B": "B 5",
+      "C": "C 5",
+      "D": "D 5"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Geography question 5",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.506Z"
+  },
+  {
+    "id": "waec-2026-geography-006",
+    "subject": "Geography",
+    "topic": "Human Geography",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Human Geography question 6 for Geography",
+    "options": {
+      "A": "A 6",
+      "B": "B 6",
+      "C": "C 6",
+      "D": "D 6"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Geography question 6",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.506Z"
+  },
+  {
+    "id": "waec-2026-geography-007",
+    "subject": "Geography",
+    "topic": "Map Reading",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Map Reading question 7 for Geography",
+    "options": {
+      "A": "A 7",
+      "B": "B 7",
+      "C": "C 7",
+      "D": "D 7"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Geography question 7",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.506Z"
+  },
+  {
+    "id": "waec-2026-geography-008",
+    "subject": "Geography",
+    "topic": "Regional Geography",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Regional Geography question 8 for Geography",
+    "options": {
+      "A": "A 8",
+      "B": "B 8",
+      "C": "C 8",
+      "D": "D 8"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Geography question 8",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.506Z"
+  },
+  {
+    "id": "waec-2026-geography-009",
+    "subject": "Geography",
+    "topic": "Physical Geography",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Physical Geography question 9 for Geography",
+    "options": {
+      "A": "A 9",
+      "B": "B 9",
+      "C": "C 9",
+      "D": "D 9"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Geography question 9",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.506Z"
+  },
+  {
+    "id": "waec-2026-geography-010",
+    "subject": "Geography",
+    "topic": "Human Geography",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Human Geography question 10 for Geography",
+    "options": {
+      "A": "A 10",
+      "B": "B 10",
+      "C": "C 10",
+      "D": "D 10"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Geography question 10",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.506Z"
+  },
+  {
+    "id": "waec-2026-geography-011",
+    "subject": "Geography",
+    "topic": "Map Reading",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Map Reading question 11 for Geography",
+    "options": {
+      "A": "A 11",
+      "B": "B 11",
+      "C": "C 11",
+      "D": "D 11"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Geography question 11",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.506Z"
+  },
+  {
+    "id": "waec-2026-geography-012",
+    "subject": "Geography",
+    "topic": "Regional Geography",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Regional Geography question 12 for Geography",
+    "options": {
+      "A": "A 12",
+      "B": "B 12",
+      "C": "C 12",
+      "D": "D 12"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Geography question 12",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.506Z"
+  },
+  {
+    "id": "waec-2026-geography-013",
+    "subject": "Geography",
+    "topic": "Physical Geography",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Physical Geography question 13 for Geography",
+    "options": {
+      "A": "A 13",
+      "B": "B 13",
+      "C": "C 13",
+      "D": "D 13"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Geography question 13",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.506Z"
+  },
+  {
+    "id": "waec-2026-geography-014",
+    "subject": "Geography",
+    "topic": "Human Geography",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Human Geography question 14 for Geography",
+    "options": {
+      "A": "A 14",
+      "B": "B 14",
+      "C": "C 14",
+      "D": "D 14"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Geography question 14",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.506Z"
+  },
+  {
+    "id": "waec-2026-geography-015",
+    "subject": "Geography",
+    "topic": "Map Reading",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Map Reading question 15 for Geography",
+    "options": {
+      "A": "A 15",
+      "B": "B 15",
+      "C": "C 15",
+      "D": "D 15"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Geography question 15",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.506Z"
+  },
+  {
+    "id": "waec-2026-geography-016",
+    "subject": "Geography",
+    "topic": "Regional Geography",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Regional Geography question 16 for Geography",
+    "options": {
+      "A": "A 16",
+      "B": "B 16",
+      "C": "C 16",
+      "D": "D 16"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Geography question 16",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.506Z"
+  },
+  {
+    "id": "waec-2026-geography-017",
+    "subject": "Geography",
+    "topic": "Physical Geography",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Physical Geography question 17 for Geography",
+    "options": {
+      "A": "A 17",
+      "B": "B 17",
+      "C": "C 17",
+      "D": "D 17"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Geography question 17",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.506Z"
+  },
+  {
+    "id": "waec-2026-geography-018",
+    "subject": "Geography",
+    "topic": "Human Geography",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Human Geography question 18 for Geography",
+    "options": {
+      "A": "A 18",
+      "B": "B 18",
+      "C": "C 18",
+      "D": "D 18"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Geography question 18",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.506Z"
+  },
+  {
+    "id": "waec-2026-geography-019",
+    "subject": "Geography",
+    "topic": "Map Reading",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Map Reading question 19 for Geography",
+    "options": {
+      "A": "A 19",
+      "B": "B 19",
+      "C": "C 19",
+      "D": "D 19"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Geography question 19",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.506Z"
+  },
+  {
+    "id": "waec-2026-geography-020",
+    "subject": "Geography",
+    "topic": "Regional Geography",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Regional Geography question 20 for Geography",
+    "options": {
+      "A": "A 20",
+      "B": "B 20",
+      "C": "C 20",
+      "D": "D 20"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Geography question 20",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.506Z"
+  },
+  {
+    "id": "waec-2026-geography-021",
+    "subject": "Geography",
+    "topic": "Physical Geography",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Physical Geography question 21 for Geography",
+    "options": {
+      "A": "A 21",
+      "B": "B 21",
+      "C": "C 21",
+      "D": "D 21"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Geography question 21",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.506Z"
+  },
+  {
+    "id": "waec-2026-geography-022",
+    "subject": "Geography",
+    "topic": "Human Geography",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Human Geography question 22 for Geography",
+    "options": {
+      "A": "A 22",
+      "B": "B 22",
+      "C": "C 22",
+      "D": "D 22"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Geography question 22",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.506Z"
+  },
+  {
+    "id": "waec-2026-geography-023",
+    "subject": "Geography",
+    "topic": "Map Reading",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Map Reading question 23 for Geography",
+    "options": {
+      "A": "A 23",
+      "B": "B 23",
+      "C": "C 23",
+      "D": "D 23"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Geography question 23",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.506Z"
+  },
+  {
+    "id": "waec-2026-geography-024",
+    "subject": "Geography",
+    "topic": "Regional Geography",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Regional Geography question 24 for Geography",
+    "options": {
+      "A": "A 24",
+      "B": "B 24",
+      "C": "C 24",
+      "D": "D 24"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Geography question 24",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.506Z"
+  },
+  {
+    "id": "waec-2026-geography-025",
+    "subject": "Geography",
+    "topic": "Physical Geography",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Physical Geography question 25 for Geography",
+    "options": {
+      "A": "A 25",
+      "B": "B 25",
+      "C": "C 25",
+      "D": "D 25"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Geography question 25",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.506Z"
+  },
+  {
+    "id": "waec-2026-commerce-001",
+    "subject": "Commerce",
+    "topic": "Principles",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Principles question 1 for Commerce",
+    "options": {
+      "A": "A 1",
+      "B": "B 1",
+      "C": "C 1",
+      "D": "D 1"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Commerce question 1",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.506Z"
+  },
+  {
+    "id": "waec-2026-commerce-002",
+    "subject": "Commerce",
+    "topic": "Business",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Business question 2 for Commerce",
+    "options": {
+      "A": "A 2",
+      "B": "B 2",
+      "C": "C 2",
+      "D": "D 2"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Commerce question 2",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.506Z"
+  },
+  {
+    "id": "waec-2026-commerce-003",
+    "subject": "Commerce",
+    "topic": "Economics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Economics question 3 for Commerce",
+    "options": {
+      "A": "A 3",
+      "B": "B 3",
+      "C": "C 3",
+      "D": "D 3"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Commerce question 3",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.506Z"
+  },
+  {
+    "id": "waec-2026-commerce-004",
+    "subject": "Commerce",
+    "topic": "Marketing",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Marketing question 4 for Commerce",
+    "options": {
+      "A": "A 4",
+      "B": "B 4",
+      "C": "C 4",
+      "D": "D 4"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Commerce question 4",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-commerce-005",
+    "subject": "Commerce",
+    "topic": "Principles",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Principles question 5 for Commerce",
+    "options": {
+      "A": "A 5",
+      "B": "B 5",
+      "C": "C 5",
+      "D": "D 5"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Commerce question 5",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-commerce-006",
+    "subject": "Commerce",
+    "topic": "Business",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Business question 6 for Commerce",
+    "options": {
+      "A": "A 6",
+      "B": "B 6",
+      "C": "C 6",
+      "D": "D 6"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Commerce question 6",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-commerce-007",
+    "subject": "Commerce",
+    "topic": "Economics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Economics question 7 for Commerce",
+    "options": {
+      "A": "A 7",
+      "B": "B 7",
+      "C": "C 7",
+      "D": "D 7"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Commerce question 7",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-commerce-008",
+    "subject": "Commerce",
+    "topic": "Marketing",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Marketing question 8 for Commerce",
+    "options": {
+      "A": "A 8",
+      "B": "B 8",
+      "C": "C 8",
+      "D": "D 8"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Commerce question 8",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-commerce-009",
+    "subject": "Commerce",
+    "topic": "Principles",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Principles question 9 for Commerce",
+    "options": {
+      "A": "A 9",
+      "B": "B 9",
+      "C": "C 9",
+      "D": "D 9"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Commerce question 9",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-commerce-010",
+    "subject": "Commerce",
+    "topic": "Business",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Business question 10 for Commerce",
+    "options": {
+      "A": "A 10",
+      "B": "B 10",
+      "C": "C 10",
+      "D": "D 10"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Commerce question 10",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-commerce-011",
+    "subject": "Commerce",
+    "topic": "Economics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Economics question 11 for Commerce",
+    "options": {
+      "A": "A 11",
+      "B": "B 11",
+      "C": "C 11",
+      "D": "D 11"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Commerce question 11",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-commerce-012",
+    "subject": "Commerce",
+    "topic": "Marketing",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Marketing question 12 for Commerce",
+    "options": {
+      "A": "A 12",
+      "B": "B 12",
+      "C": "C 12",
+      "D": "D 12"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Commerce question 12",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-commerce-013",
+    "subject": "Commerce",
+    "topic": "Principles",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Principles question 13 for Commerce",
+    "options": {
+      "A": "A 13",
+      "B": "B 13",
+      "C": "C 13",
+      "D": "D 13"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Commerce question 13",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-commerce-014",
+    "subject": "Commerce",
+    "topic": "Business",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Business question 14 for Commerce",
+    "options": {
+      "A": "A 14",
+      "B": "B 14",
+      "C": "C 14",
+      "D": "D 14"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Commerce question 14",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-commerce-015",
+    "subject": "Commerce",
+    "topic": "Economics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Economics question 15 for Commerce",
+    "options": {
+      "A": "A 15",
+      "B": "B 15",
+      "C": "C 15",
+      "D": "D 15"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Commerce question 15",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-commerce-016",
+    "subject": "Commerce",
+    "topic": "Marketing",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Marketing question 16 for Commerce",
+    "options": {
+      "A": "A 16",
+      "B": "B 16",
+      "C": "C 16",
+      "D": "D 16"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Commerce question 16",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-commerce-017",
+    "subject": "Commerce",
+    "topic": "Principles",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Principles question 17 for Commerce",
+    "options": {
+      "A": "A 17",
+      "B": "B 17",
+      "C": "C 17",
+      "D": "D 17"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Commerce question 17",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-commerce-018",
+    "subject": "Commerce",
+    "topic": "Business",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Business question 18 for Commerce",
+    "options": {
+      "A": "A 18",
+      "B": "B 18",
+      "C": "C 18",
+      "D": "D 18"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Commerce question 18",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-commerce-019",
+    "subject": "Commerce",
+    "topic": "Economics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Economics question 19 for Commerce",
+    "options": {
+      "A": "A 19",
+      "B": "B 19",
+      "C": "C 19",
+      "D": "D 19"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Commerce question 19",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-commerce-020",
+    "subject": "Commerce",
+    "topic": "Marketing",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Marketing question 20 for Commerce",
+    "options": {
+      "A": "A 20",
+      "B": "B 20",
+      "C": "C 20",
+      "D": "D 20"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Commerce question 20",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-commerce-021",
+    "subject": "Commerce",
+    "topic": "Principles",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Principles question 21 for Commerce",
+    "options": {
+      "A": "A 21",
+      "B": "B 21",
+      "C": "C 21",
+      "D": "D 21"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Commerce question 21",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-commerce-022",
+    "subject": "Commerce",
+    "topic": "Business",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Business question 22 for Commerce",
+    "options": {
+      "A": "A 22",
+      "B": "B 22",
+      "C": "C 22",
+      "D": "D 22"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Commerce question 22",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-commerce-023",
+    "subject": "Commerce",
+    "topic": "Economics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Economics question 23 for Commerce",
+    "options": {
+      "A": "A 23",
+      "B": "B 23",
+      "C": "C 23",
+      "D": "D 23"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Commerce question 23",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-commerce-024",
+    "subject": "Commerce",
+    "topic": "Marketing",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Marketing question 24 for Commerce",
+    "options": {
+      "A": "A 24",
+      "B": "B 24",
+      "C": "C 24",
+      "D": "D 24"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Commerce question 24",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-commerce-025",
+    "subject": "Commerce",
+    "topic": "Principles",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Principles question 25 for Commerce",
+    "options": {
+      "A": "A 25",
+      "B": "B 25",
+      "C": "C 25",
+      "D": "D 25"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Commerce question 25",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-financialaccounting-001",
+    "subject": "Financial Accounting",
+    "topic": "Book-keeping",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Book-keeping question 1 for Financial Accounting",
+    "options": {
+      "A": "A 1",
+      "B": "B 1",
+      "C": "C 1",
+      "D": "D 1"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Financial Accounting question 1",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-financialaccounting-002",
+    "subject": "Financial Accounting",
+    "topic": "Accounts",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Accounts question 2 for Financial Accounting",
+    "options": {
+      "A": "A 2",
+      "B": "B 2",
+      "C": "C 2",
+      "D": "D 2"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Financial Accounting question 2",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-financialaccounting-003",
+    "subject": "Financial Accounting",
+    "topic": "Balance Sheet",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Balance Sheet question 3 for Financial Accounting",
+    "options": {
+      "A": "A 3",
+      "B": "B 3",
+      "C": "C 3",
+      "D": "D 3"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Financial Accounting question 3",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-financialaccounting-004",
+    "subject": "Financial Accounting",
+    "topic": "Profit & Loss",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Profit & Loss question 4 for Financial Accounting",
+    "options": {
+      "A": "A 4",
+      "B": "B 4",
+      "C": "C 4",
+      "D": "D 4"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Financial Accounting question 4",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-financialaccounting-005",
+    "subject": "Financial Accounting",
+    "topic": "Book-keeping",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Book-keeping question 5 for Financial Accounting",
+    "options": {
+      "A": "A 5",
+      "B": "B 5",
+      "C": "C 5",
+      "D": "D 5"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Financial Accounting question 5",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-financialaccounting-006",
+    "subject": "Financial Accounting",
+    "topic": "Accounts",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Accounts question 6 for Financial Accounting",
+    "options": {
+      "A": "A 6",
+      "B": "B 6",
+      "C": "C 6",
+      "D": "D 6"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Financial Accounting question 6",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-financialaccounting-007",
+    "subject": "Financial Accounting",
+    "topic": "Balance Sheet",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Balance Sheet question 7 for Financial Accounting",
+    "options": {
+      "A": "A 7",
+      "B": "B 7",
+      "C": "C 7",
+      "D": "D 7"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Financial Accounting question 7",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-financialaccounting-008",
+    "subject": "Financial Accounting",
+    "topic": "Profit & Loss",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Profit & Loss question 8 for Financial Accounting",
+    "options": {
+      "A": "A 8",
+      "B": "B 8",
+      "C": "C 8",
+      "D": "D 8"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Financial Accounting question 8",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-financialaccounting-009",
+    "subject": "Financial Accounting",
+    "topic": "Book-keeping",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Book-keeping question 9 for Financial Accounting",
+    "options": {
+      "A": "A 9",
+      "B": "B 9",
+      "C": "C 9",
+      "D": "D 9"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Financial Accounting question 9",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-financialaccounting-010",
+    "subject": "Financial Accounting",
+    "topic": "Accounts",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Accounts question 10 for Financial Accounting",
+    "options": {
+      "A": "A 10",
+      "B": "B 10",
+      "C": "C 10",
+      "D": "D 10"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Financial Accounting question 10",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-financialaccounting-011",
+    "subject": "Financial Accounting",
+    "topic": "Balance Sheet",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Balance Sheet question 11 for Financial Accounting",
+    "options": {
+      "A": "A 11",
+      "B": "B 11",
+      "C": "C 11",
+      "D": "D 11"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Financial Accounting question 11",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-financialaccounting-012",
+    "subject": "Financial Accounting",
+    "topic": "Profit & Loss",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Profit & Loss question 12 for Financial Accounting",
+    "options": {
+      "A": "A 12",
+      "B": "B 12",
+      "C": "C 12",
+      "D": "D 12"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Financial Accounting question 12",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-financialaccounting-013",
+    "subject": "Financial Accounting",
+    "topic": "Book-keeping",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Book-keeping question 13 for Financial Accounting",
+    "options": {
+      "A": "A 13",
+      "B": "B 13",
+      "C": "C 13",
+      "D": "D 13"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Financial Accounting question 13",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-financialaccounting-014",
+    "subject": "Financial Accounting",
+    "topic": "Accounts",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Accounts question 14 for Financial Accounting",
+    "options": {
+      "A": "A 14",
+      "B": "B 14",
+      "C": "C 14",
+      "D": "D 14"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Financial Accounting question 14",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-financialaccounting-015",
+    "subject": "Financial Accounting",
+    "topic": "Balance Sheet",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Balance Sheet question 15 for Financial Accounting",
+    "options": {
+      "A": "A 15",
+      "B": "B 15",
+      "C": "C 15",
+      "D": "D 15"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Financial Accounting question 15",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-financialaccounting-016",
+    "subject": "Financial Accounting",
+    "topic": "Profit & Loss",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Profit & Loss question 16 for Financial Accounting",
+    "options": {
+      "A": "A 16",
+      "B": "B 16",
+      "C": "C 16",
+      "D": "D 16"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Financial Accounting question 16",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-financialaccounting-017",
+    "subject": "Financial Accounting",
+    "topic": "Book-keeping",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Book-keeping question 17 for Financial Accounting",
+    "options": {
+      "A": "A 17",
+      "B": "B 17",
+      "C": "C 17",
+      "D": "D 17"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Financial Accounting question 17",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-financialaccounting-018",
+    "subject": "Financial Accounting",
+    "topic": "Accounts",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Accounts question 18 for Financial Accounting",
+    "options": {
+      "A": "A 18",
+      "B": "B 18",
+      "C": "C 18",
+      "D": "D 18"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Financial Accounting question 18",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-financialaccounting-019",
+    "subject": "Financial Accounting",
+    "topic": "Balance Sheet",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Balance Sheet question 19 for Financial Accounting",
+    "options": {
+      "A": "A 19",
+      "B": "B 19",
+      "C": "C 19",
+      "D": "D 19"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Financial Accounting question 19",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-financialaccounting-020",
+    "subject": "Financial Accounting",
+    "topic": "Profit & Loss",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Profit & Loss question 20 for Financial Accounting",
+    "options": {
+      "A": "A 20",
+      "B": "B 20",
+      "C": "C 20",
+      "D": "D 20"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Financial Accounting question 20",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-financialaccounting-021",
+    "subject": "Financial Accounting",
+    "topic": "Book-keeping",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Book-keeping question 21 for Financial Accounting",
+    "options": {
+      "A": "A 21",
+      "B": "B 21",
+      "C": "C 21",
+      "D": "D 21"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Financial Accounting question 21",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-financialaccounting-022",
+    "subject": "Financial Accounting",
+    "topic": "Accounts",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Accounts question 22 for Financial Accounting",
+    "options": {
+      "A": "A 22",
+      "B": "B 22",
+      "C": "C 22",
+      "D": "D 22"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Financial Accounting question 22",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-financialaccounting-023",
+    "subject": "Financial Accounting",
+    "topic": "Balance Sheet",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Balance Sheet question 23 for Financial Accounting",
+    "options": {
+      "A": "A 23",
+      "B": "B 23",
+      "C": "C 23",
+      "D": "D 23"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Financial Accounting question 23",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-financialaccounting-024",
+    "subject": "Financial Accounting",
+    "topic": "Profit & Loss",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Profit & Loss question 24 for Financial Accounting",
+    "options": {
+      "A": "A 24",
+      "B": "B 24",
+      "C": "C 24",
+      "D": "D 24"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Financial Accounting question 24",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-financialaccounting-025",
+    "subject": "Financial Accounting",
+    "topic": "Book-keeping",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Book-keeping question 25 for Financial Accounting",
+    "options": {
+      "A": "A 25",
+      "B": "B 25",
+      "C": "C 25",
+      "D": "D 25"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Financial Accounting question 25",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-christianreligiousstudies-001",
+    "subject": "Christian Religious Studies",
+    "topic": "Old Testament",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Old Testament question 1 for Christian Religious Studies",
+    "options": {
+      "A": "A 1",
+      "B": "B 1",
+      "C": "C 1",
+      "D": "D 1"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Christian Religious Studies question 1",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-christianreligiousstudies-002",
+    "subject": "Christian Religious Studies",
+    "topic": "New Testament",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "New Testament question 2 for Christian Religious Studies",
+    "options": {
+      "A": "A 2",
+      "B": "B 2",
+      "C": "C 2",
+      "D": "D 2"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Christian Religious Studies question 2",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-christianreligiousstudies-003",
+    "subject": "Christian Religious Studies",
+    "topic": "Biblical Interpretation",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Biblical Interpretation question 3 for Christian Religious Studies",
+    "options": {
+      "A": "A 3",
+      "B": "B 3",
+      "C": "C 3",
+      "D": "D 3"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Christian Religious Studies question 3",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-christianreligiousstudies-004",
+    "subject": "Christian Religious Studies",
+    "topic": "Religious Practices",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Religious Practices question 4 for Christian Religious Studies",
+    "options": {
+      "A": "A 4",
+      "B": "B 4",
+      "C": "C 4",
+      "D": "D 4"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Christian Religious Studies question 4",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-christianreligiousstudies-005",
+    "subject": "Christian Religious Studies",
+    "topic": "Old Testament",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Old Testament question 5 for Christian Religious Studies",
+    "options": {
+      "A": "A 5",
+      "B": "B 5",
+      "C": "C 5",
+      "D": "D 5"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Christian Religious Studies question 5",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-christianreligiousstudies-006",
+    "subject": "Christian Religious Studies",
+    "topic": "New Testament",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "New Testament question 6 for Christian Religious Studies",
+    "options": {
+      "A": "A 6",
+      "B": "B 6",
+      "C": "C 6",
+      "D": "D 6"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Christian Religious Studies question 6",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-christianreligiousstudies-007",
+    "subject": "Christian Religious Studies",
+    "topic": "Biblical Interpretation",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Biblical Interpretation question 7 for Christian Religious Studies",
+    "options": {
+      "A": "A 7",
+      "B": "B 7",
+      "C": "C 7",
+      "D": "D 7"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Christian Religious Studies question 7",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-christianreligiousstudies-008",
+    "subject": "Christian Religious Studies",
+    "topic": "Religious Practices",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Religious Practices question 8 for Christian Religious Studies",
+    "options": {
+      "A": "A 8",
+      "B": "B 8",
+      "C": "C 8",
+      "D": "D 8"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Christian Religious Studies question 8",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-christianreligiousstudies-009",
+    "subject": "Christian Religious Studies",
+    "topic": "Old Testament",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Old Testament question 9 for Christian Religious Studies",
+    "options": {
+      "A": "A 9",
+      "B": "B 9",
+      "C": "C 9",
+      "D": "D 9"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Christian Religious Studies question 9",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-christianreligiousstudies-010",
+    "subject": "Christian Religious Studies",
+    "topic": "New Testament",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "New Testament question 10 for Christian Religious Studies",
+    "options": {
+      "A": "A 10",
+      "B": "B 10",
+      "C": "C 10",
+      "D": "D 10"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Christian Religious Studies question 10",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-christianreligiousstudies-011",
+    "subject": "Christian Religious Studies",
+    "topic": "Biblical Interpretation",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Biblical Interpretation question 11 for Christian Religious Studies",
+    "options": {
+      "A": "A 11",
+      "B": "B 11",
+      "C": "C 11",
+      "D": "D 11"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Christian Religious Studies question 11",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-christianreligiousstudies-012",
+    "subject": "Christian Religious Studies",
+    "topic": "Religious Practices",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Religious Practices question 12 for Christian Religious Studies",
+    "options": {
+      "A": "A 12",
+      "B": "B 12",
+      "C": "C 12",
+      "D": "D 12"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Christian Religious Studies question 12",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.507Z"
+  },
+  {
+    "id": "waec-2026-christianreligiousstudies-013",
+    "subject": "Christian Religious Studies",
+    "topic": "Old Testament",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Old Testament question 13 for Christian Religious Studies",
+    "options": {
+      "A": "A 13",
+      "B": "B 13",
+      "C": "C 13",
+      "D": "D 13"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Christian Religious Studies question 13",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-christianreligiousstudies-014",
+    "subject": "Christian Religious Studies",
+    "topic": "New Testament",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "New Testament question 14 for Christian Religious Studies",
+    "options": {
+      "A": "A 14",
+      "B": "B 14",
+      "C": "C 14",
+      "D": "D 14"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Christian Religious Studies question 14",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-christianreligiousstudies-015",
+    "subject": "Christian Religious Studies",
+    "topic": "Biblical Interpretation",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Biblical Interpretation question 15 for Christian Religious Studies",
+    "options": {
+      "A": "A 15",
+      "B": "B 15",
+      "C": "C 15",
+      "D": "D 15"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Christian Religious Studies question 15",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-christianreligiousstudies-016",
+    "subject": "Christian Religious Studies",
+    "topic": "Religious Practices",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Religious Practices question 16 for Christian Religious Studies",
+    "options": {
+      "A": "A 16",
+      "B": "B 16",
+      "C": "C 16",
+      "D": "D 16"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Christian Religious Studies question 16",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-christianreligiousstudies-017",
+    "subject": "Christian Religious Studies",
+    "topic": "Old Testament",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Old Testament question 17 for Christian Religious Studies",
+    "options": {
+      "A": "A 17",
+      "B": "B 17",
+      "C": "C 17",
+      "D": "D 17"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Christian Religious Studies question 17",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-christianreligiousstudies-018",
+    "subject": "Christian Religious Studies",
+    "topic": "New Testament",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "New Testament question 18 for Christian Religious Studies",
+    "options": {
+      "A": "A 18",
+      "B": "B 18",
+      "C": "C 18",
+      "D": "D 18"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Christian Religious Studies question 18",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-christianreligiousstudies-019",
+    "subject": "Christian Religious Studies",
+    "topic": "Biblical Interpretation",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Biblical Interpretation question 19 for Christian Religious Studies",
+    "options": {
+      "A": "A 19",
+      "B": "B 19",
+      "C": "C 19",
+      "D": "D 19"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Christian Religious Studies question 19",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-christianreligiousstudies-020",
+    "subject": "Christian Religious Studies",
+    "topic": "Religious Practices",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Religious Practices question 20 for Christian Religious Studies",
+    "options": {
+      "A": "A 20",
+      "B": "B 20",
+      "C": "C 20",
+      "D": "D 20"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Christian Religious Studies question 20",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-christianreligiousstudies-021",
+    "subject": "Christian Religious Studies",
+    "topic": "Old Testament",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Old Testament question 21 for Christian Religious Studies",
+    "options": {
+      "A": "A 21",
+      "B": "B 21",
+      "C": "C 21",
+      "D": "D 21"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Christian Religious Studies question 21",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-christianreligiousstudies-022",
+    "subject": "Christian Religious Studies",
+    "topic": "New Testament",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "New Testament question 22 for Christian Religious Studies",
+    "options": {
+      "A": "A 22",
+      "B": "B 22",
+      "C": "C 22",
+      "D": "D 22"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Christian Religious Studies question 22",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-christianreligiousstudies-023",
+    "subject": "Christian Religious Studies",
+    "topic": "Biblical Interpretation",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Biblical Interpretation question 23 for Christian Religious Studies",
+    "options": {
+      "A": "A 23",
+      "B": "B 23",
+      "C": "C 23",
+      "D": "D 23"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Christian Religious Studies question 23",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-christianreligiousstudies-024",
+    "subject": "Christian Religious Studies",
+    "topic": "Religious Practices",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Religious Practices question 24 for Christian Religious Studies",
+    "options": {
+      "A": "A 24",
+      "B": "B 24",
+      "C": "C 24",
+      "D": "D 24"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Christian Religious Studies question 24",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-christianreligiousstudies-025",
+    "subject": "Christian Religious Studies",
+    "topic": "Old Testament",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Old Testament question 25 for Christian Religious Studies",
+    "options": {
+      "A": "A 25",
+      "B": "B 25",
+      "C": "C 25",
+      "D": "D 25"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Christian Religious Studies question 25",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-agriculturalscience-001",
+    "subject": "Agricultural Science",
+    "topic": "Animal Husbandry",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Animal Husbandry question 1 for Agricultural Science",
+    "options": {
+      "A": "A 1",
+      "B": "B 1",
+      "C": "C 1",
+      "D": "D 1"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Agricultural Science question 1",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-agriculturalscience-002",
+    "subject": "Agricultural Science",
+    "topic": "Crop Production",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Crop Production question 2 for Agricultural Science",
+    "options": {
+      "A": "A 2",
+      "B": "B 2",
+      "C": "C 2",
+      "D": "D 2"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Agricultural Science question 2",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-agriculturalscience-003",
+    "subject": "Agricultural Science",
+    "topic": "Soil Science",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Soil Science question 3 for Agricultural Science",
+    "options": {
+      "A": "A 3",
+      "B": "B 3",
+      "C": "C 3",
+      "D": "D 3"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Agricultural Science question 3",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-agriculturalscience-004",
+    "subject": "Agricultural Science",
+    "topic": "Agricultural Economics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Agricultural Economics question 4 for Agricultural Science",
+    "options": {
+      "A": "A 4",
+      "B": "B 4",
+      "C": "C 4",
+      "D": "D 4"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Agricultural Science question 4",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-agriculturalscience-005",
+    "subject": "Agricultural Science",
+    "topic": "Animal Husbandry",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Animal Husbandry question 5 for Agricultural Science",
+    "options": {
+      "A": "A 5",
+      "B": "B 5",
+      "C": "C 5",
+      "D": "D 5"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Agricultural Science question 5",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-agriculturalscience-006",
+    "subject": "Agricultural Science",
+    "topic": "Crop Production",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Crop Production question 6 for Agricultural Science",
+    "options": {
+      "A": "A 6",
+      "B": "B 6",
+      "C": "C 6",
+      "D": "D 6"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Agricultural Science question 6",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-agriculturalscience-007",
+    "subject": "Agricultural Science",
+    "topic": "Soil Science",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Soil Science question 7 for Agricultural Science",
+    "options": {
+      "A": "A 7",
+      "B": "B 7",
+      "C": "C 7",
+      "D": "D 7"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Agricultural Science question 7",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-agriculturalscience-008",
+    "subject": "Agricultural Science",
+    "topic": "Agricultural Economics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Agricultural Economics question 8 for Agricultural Science",
+    "options": {
+      "A": "A 8",
+      "B": "B 8",
+      "C": "C 8",
+      "D": "D 8"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Agricultural Science question 8",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-agriculturalscience-009",
+    "subject": "Agricultural Science",
+    "topic": "Animal Husbandry",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Animal Husbandry question 9 for Agricultural Science",
+    "options": {
+      "A": "A 9",
+      "B": "B 9",
+      "C": "C 9",
+      "D": "D 9"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Agricultural Science question 9",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-agriculturalscience-010",
+    "subject": "Agricultural Science",
+    "topic": "Crop Production",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Crop Production question 10 for Agricultural Science",
+    "options": {
+      "A": "A 10",
+      "B": "B 10",
+      "C": "C 10",
+      "D": "D 10"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Agricultural Science question 10",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-agriculturalscience-011",
+    "subject": "Agricultural Science",
+    "topic": "Soil Science",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Soil Science question 11 for Agricultural Science",
+    "options": {
+      "A": "A 11",
+      "B": "B 11",
+      "C": "C 11",
+      "D": "D 11"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Agricultural Science question 11",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-agriculturalscience-012",
+    "subject": "Agricultural Science",
+    "topic": "Agricultural Economics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Agricultural Economics question 12 for Agricultural Science",
+    "options": {
+      "A": "A 12",
+      "B": "B 12",
+      "C": "C 12",
+      "D": "D 12"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Agricultural Science question 12",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-agriculturalscience-013",
+    "subject": "Agricultural Science",
+    "topic": "Animal Husbandry",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Animal Husbandry question 13 for Agricultural Science",
+    "options": {
+      "A": "A 13",
+      "B": "B 13",
+      "C": "C 13",
+      "D": "D 13"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Agricultural Science question 13",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-agriculturalscience-014",
+    "subject": "Agricultural Science",
+    "topic": "Crop Production",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Crop Production question 14 for Agricultural Science",
+    "options": {
+      "A": "A 14",
+      "B": "B 14",
+      "C": "C 14",
+      "D": "D 14"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Agricultural Science question 14",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-agriculturalscience-015",
+    "subject": "Agricultural Science",
+    "topic": "Soil Science",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Soil Science question 15 for Agricultural Science",
+    "options": {
+      "A": "A 15",
+      "B": "B 15",
+      "C": "C 15",
+      "D": "D 15"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Agricultural Science question 15",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-agriculturalscience-016",
+    "subject": "Agricultural Science",
+    "topic": "Agricultural Economics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Agricultural Economics question 16 for Agricultural Science",
+    "options": {
+      "A": "A 16",
+      "B": "B 16",
+      "C": "C 16",
+      "D": "D 16"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Agricultural Science question 16",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-agriculturalscience-017",
+    "subject": "Agricultural Science",
+    "topic": "Animal Husbandry",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Animal Husbandry question 17 for Agricultural Science",
+    "options": {
+      "A": "A 17",
+      "B": "B 17",
+      "C": "C 17",
+      "D": "D 17"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Agricultural Science question 17",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-agriculturalscience-018",
+    "subject": "Agricultural Science",
+    "topic": "Crop Production",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Crop Production question 18 for Agricultural Science",
+    "options": {
+      "A": "A 18",
+      "B": "B 18",
+      "C": "C 18",
+      "D": "D 18"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Agricultural Science question 18",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-agriculturalscience-019",
+    "subject": "Agricultural Science",
+    "topic": "Soil Science",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Soil Science question 19 for Agricultural Science",
+    "options": {
+      "A": "A 19",
+      "B": "B 19",
+      "C": "C 19",
+      "D": "D 19"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Agricultural Science question 19",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-agriculturalscience-020",
+    "subject": "Agricultural Science",
+    "topic": "Agricultural Economics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Agricultural Economics question 20 for Agricultural Science",
+    "options": {
+      "A": "A 20",
+      "B": "B 20",
+      "C": "C 20",
+      "D": "D 20"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Agricultural Science question 20",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-agriculturalscience-021",
+    "subject": "Agricultural Science",
+    "topic": "Animal Husbandry",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Animal Husbandry question 21 for Agricultural Science",
+    "options": {
+      "A": "A 21",
+      "B": "B 21",
+      "C": "C 21",
+      "D": "D 21"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Agricultural Science question 21",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-agriculturalscience-022",
+    "subject": "Agricultural Science",
+    "topic": "Crop Production",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Crop Production question 22 for Agricultural Science",
+    "options": {
+      "A": "A 22",
+      "B": "B 22",
+      "C": "C 22",
+      "D": "D 22"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Agricultural Science question 22",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-agriculturalscience-023",
+    "subject": "Agricultural Science",
+    "topic": "Soil Science",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Soil Science question 23 for Agricultural Science",
+    "options": {
+      "A": "A 23",
+      "B": "B 23",
+      "C": "C 23",
+      "D": "D 23"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Agricultural Science question 23",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-agriculturalscience-024",
+    "subject": "Agricultural Science",
+    "topic": "Agricultural Economics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Agricultural Economics question 24 for Agricultural Science",
+    "options": {
+      "A": "A 24",
+      "B": "B 24",
+      "C": "C 24",
+      "D": "D 24"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Agricultural Science question 24",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-agriculturalscience-025",
+    "subject": "Agricultural Science",
+    "topic": "Animal Husbandry",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Animal Husbandry question 25 for Agricultural Science",
+    "options": {
+      "A": "A 25",
+      "B": "B 25",
+      "C": "C 25",
+      "D": "D 25"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Agricultural Science question 25",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-literatureinenglish-001",
+    "subject": "Literature-in-English",
+    "topic": "Prose",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Prose question 1 for Literature-in-English",
+    "options": {
+      "A": "A 1",
+      "B": "B 1",
+      "C": "C 1",
+      "D": "D 1"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Literature-in-English question 1",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-literatureinenglish-002",
+    "subject": "Literature-in-English",
+    "topic": "Poetry",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Poetry question 2 for Literature-in-English",
+    "options": {
+      "A": "A 2",
+      "B": "B 2",
+      "C": "C 2",
+      "D": "D 2"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Literature-in-English question 2",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-literatureinenglish-003",
+    "subject": "Literature-in-English",
+    "topic": "Drama",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Drama question 3 for Literature-in-English",
+    "options": {
+      "A": "A 3",
+      "B": "B 3",
+      "C": "C 3",
+      "D": "D 3"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Literature-in-English question 3",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-literatureinenglish-004",
+    "subject": "Literature-in-English",
+    "topic": "Literary Devices",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Literary Devices question 4 for Literature-in-English",
+    "options": {
+      "A": "A 4",
+      "B": "B 4",
+      "C": "C 4",
+      "D": "D 4"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Literature-in-English question 4",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-literatureinenglish-005",
+    "subject": "Literature-in-English",
+    "topic": "Prose",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Prose question 5 for Literature-in-English",
+    "options": {
+      "A": "A 5",
+      "B": "B 5",
+      "C": "C 5",
+      "D": "D 5"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Literature-in-English question 5",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-literatureinenglish-006",
+    "subject": "Literature-in-English",
+    "topic": "Poetry",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Poetry question 6 for Literature-in-English",
+    "options": {
+      "A": "A 6",
+      "B": "B 6",
+      "C": "C 6",
+      "D": "D 6"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Literature-in-English question 6",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-literatureinenglish-007",
+    "subject": "Literature-in-English",
+    "topic": "Drama",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Drama question 7 for Literature-in-English",
+    "options": {
+      "A": "A 7",
+      "B": "B 7",
+      "C": "C 7",
+      "D": "D 7"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Literature-in-English question 7",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-literatureinenglish-008",
+    "subject": "Literature-in-English",
+    "topic": "Literary Devices",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Literary Devices question 8 for Literature-in-English",
+    "options": {
+      "A": "A 8",
+      "B": "B 8",
+      "C": "C 8",
+      "D": "D 8"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Literature-in-English question 8",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-literatureinenglish-009",
+    "subject": "Literature-in-English",
+    "topic": "Prose",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Prose question 9 for Literature-in-English",
+    "options": {
+      "A": "A 9",
+      "B": "B 9",
+      "C": "C 9",
+      "D": "D 9"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Literature-in-English question 9",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-literatureinenglish-010",
+    "subject": "Literature-in-English",
+    "topic": "Poetry",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Poetry question 10 for Literature-in-English",
+    "options": {
+      "A": "A 10",
+      "B": "B 10",
+      "C": "C 10",
+      "D": "D 10"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Literature-in-English question 10",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-literatureinenglish-011",
+    "subject": "Literature-in-English",
+    "topic": "Drama",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Drama question 11 for Literature-in-English",
+    "options": {
+      "A": "A 11",
+      "B": "B 11",
+      "C": "C 11",
+      "D": "D 11"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Literature-in-English question 11",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-literatureinenglish-012",
+    "subject": "Literature-in-English",
+    "topic": "Literary Devices",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Literary Devices question 12 for Literature-in-English",
+    "options": {
+      "A": "A 12",
+      "B": "B 12",
+      "C": "C 12",
+      "D": "D 12"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Literature-in-English question 12",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-literatureinenglish-013",
+    "subject": "Literature-in-English",
+    "topic": "Prose",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Prose question 13 for Literature-in-English",
+    "options": {
+      "A": "A 13",
+      "B": "B 13",
+      "C": "C 13",
+      "D": "D 13"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Literature-in-English question 13",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-literatureinenglish-014",
+    "subject": "Literature-in-English",
+    "topic": "Poetry",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Poetry question 14 for Literature-in-English",
+    "options": {
+      "A": "A 14",
+      "B": "B 14",
+      "C": "C 14",
+      "D": "D 14"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Literature-in-English question 14",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-literatureinenglish-015",
+    "subject": "Literature-in-English",
+    "topic": "Drama",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Drama question 15 for Literature-in-English",
+    "options": {
+      "A": "A 15",
+      "B": "B 15",
+      "C": "C 15",
+      "D": "D 15"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Literature-in-English question 15",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-literatureinenglish-016",
+    "subject": "Literature-in-English",
+    "topic": "Literary Devices",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Literary Devices question 16 for Literature-in-English",
+    "options": {
+      "A": "A 16",
+      "B": "B 16",
+      "C": "C 16",
+      "D": "D 16"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Literature-in-English question 16",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.508Z"
+  },
+  {
+    "id": "waec-2026-literatureinenglish-017",
+    "subject": "Literature-in-English",
+    "topic": "Prose",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Prose question 17 for Literature-in-English",
+    "options": {
+      "A": "A 17",
+      "B": "B 17",
+      "C": "C 17",
+      "D": "D 17"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Literature-in-English question 17",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.509Z"
+  },
+  {
+    "id": "waec-2026-literatureinenglish-018",
+    "subject": "Literature-in-English",
+    "topic": "Poetry",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Poetry question 18 for Literature-in-English",
+    "options": {
+      "A": "A 18",
+      "B": "B 18",
+      "C": "C 18",
+      "D": "D 18"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Literature-in-English question 18",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.509Z"
+  },
+  {
+    "id": "waec-2026-literatureinenglish-019",
+    "subject": "Literature-in-English",
+    "topic": "Drama",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Drama question 19 for Literature-in-English",
+    "options": {
+      "A": "A 19",
+      "B": "B 19",
+      "C": "C 19",
+      "D": "D 19"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Literature-in-English question 19",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.509Z"
+  },
+  {
+    "id": "waec-2026-literatureinenglish-020",
+    "subject": "Literature-in-English",
+    "topic": "Literary Devices",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Literary Devices question 20 for Literature-in-English",
+    "options": {
+      "A": "A 20",
+      "B": "B 20",
+      "C": "C 20",
+      "D": "D 20"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Literature-in-English question 20",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.509Z"
+  },
+  {
+    "id": "waec-2026-literatureinenglish-021",
+    "subject": "Literature-in-English",
+    "topic": "Prose",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Prose question 21 for Literature-in-English",
+    "options": {
+      "A": "A 21",
+      "B": "B 21",
+      "C": "C 21",
+      "D": "D 21"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Literature-in-English question 21",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.509Z"
+  },
+  {
+    "id": "waec-2026-literatureinenglish-022",
+    "subject": "Literature-in-English",
+    "topic": "Poetry",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Poetry question 22 for Literature-in-English",
+    "options": {
+      "A": "A 22",
+      "B": "B 22",
+      "C": "C 22",
+      "D": "D 22"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Literature-in-English question 22",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.509Z"
+  },
+  {
+    "id": "waec-2026-literatureinenglish-023",
+    "subject": "Literature-in-English",
+    "topic": "Drama",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Drama question 23 for Literature-in-English",
+    "options": {
+      "A": "A 23",
+      "B": "B 23",
+      "C": "C 23",
+      "D": "D 23"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Literature-in-English question 23",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.509Z"
+  },
+  {
+    "id": "waec-2026-literatureinenglish-024",
+    "subject": "Literature-in-English",
+    "topic": "Literary Devices",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Literary Devices question 24 for Literature-in-English",
+    "options": {
+      "A": "A 24",
+      "B": "B 24",
+      "C": "C 24",
+      "D": "D 24"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Literature-in-English question 24",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.509Z"
+  },
+  {
+    "id": "waec-2026-literatureinenglish-025",
+    "subject": "Literature-in-English",
+    "topic": "Prose",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Prose question 25 for Literature-in-English",
+    "options": {
+      "A": "A 25",
+      "B": "B 25",
+      "C": "C 25",
+      "D": "D 25"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Literature-in-English question 25",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.509Z"
+  },
+  {
+    "id": "waec-2026-furthermath-001",
+    "subject": "Further Mathematics",
+    "topic": "Matrices",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Further Mathematics Matrices question 1",
+    "options": {
+      "A": "A 1",
+      "B": "B 1",
+      "C": "C 1",
+      "D": "D 1"
+    },
+    "correctAnswer": "A",
+    "explanation": "FM explanation 1",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.509Z"
+  },
+  {
+    "id": "waec-2026-furthermath-002",
+    "subject": "Further Mathematics",
+    "topic": "Calculus",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Further Mathematics Calculus question 2",
+    "options": {
+      "A": "A 2",
+      "B": "B 2",
+      "C": "C 2",
+      "D": "D 2"
+    },
+    "correctAnswer": "B",
+    "explanation": "FM explanation 2",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.509Z"
+  },
+  {
+    "id": "waec-2026-furthermath-003",
+    "subject": "Further Mathematics",
+    "topic": "Complex Numbers",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Further Mathematics Complex Numbers question 3",
+    "options": {
+      "A": "A 3",
+      "B": "B 3",
+      "C": "C 3",
+      "D": "D 3"
+    },
+    "correctAnswer": "C",
+    "explanation": "FM explanation 3",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.509Z"
+  },
+  {
+    "id": "waec-2026-furthermath-004",
+    "subject": "Further Mathematics",
+    "topic": "Vectors",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Further Mathematics Vectors question 4",
+    "options": {
+      "A": "A 4",
+      "B": "B 4",
+      "C": "C 4",
+      "D": "D 4"
+    },
+    "correctAnswer": "D",
+    "explanation": "FM explanation 4",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.509Z"
+  },
+  {
+    "id": "waec-2026-furthermath-005",
+    "subject": "Further Mathematics",
+    "topic": "Statistics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Further Mathematics Statistics question 5",
+    "options": {
+      "A": "A 5",
+      "B": "B 5",
+      "C": "C 5",
+      "D": "D 5"
+    },
+    "correctAnswer": "A",
+    "explanation": "FM explanation 5",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.509Z"
+  },
+  {
+    "id": "waec-2026-furthermath-006",
+    "subject": "Further Mathematics",
+    "topic": "Matrices",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Further Mathematics Matrices question 6",
+    "options": {
+      "A": "A 6",
+      "B": "B 6",
+      "C": "C 6",
+      "D": "D 6"
+    },
+    "correctAnswer": "B",
+    "explanation": "FM explanation 6",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.509Z"
+  },
+  {
+    "id": "waec-2026-furthermath-007",
+    "subject": "Further Mathematics",
+    "topic": "Calculus",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Further Mathematics Calculus question 7",
+    "options": {
+      "A": "A 7",
+      "B": "B 7",
+      "C": "C 7",
+      "D": "D 7"
+    },
+    "correctAnswer": "C",
+    "explanation": "FM explanation 7",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.509Z"
+  },
+  {
+    "id": "waec-2026-furthermath-008",
+    "subject": "Further Mathematics",
+    "topic": "Complex Numbers",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Further Mathematics Complex Numbers question 8",
+    "options": {
+      "A": "A 8",
+      "B": "B 8",
+      "C": "C 8",
+      "D": "D 8"
+    },
+    "correctAnswer": "D",
+    "explanation": "FM explanation 8",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.509Z"
+  },
+  {
+    "id": "waec-2026-furthermath-009",
+    "subject": "Further Mathematics",
+    "topic": "Vectors",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Further Mathematics Vectors question 9",
+    "options": {
+      "A": "A 9",
+      "B": "B 9",
+      "C": "C 9",
+      "D": "D 9"
+    },
+    "correctAnswer": "A",
+    "explanation": "FM explanation 9",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.509Z"
+  },
+  {
+    "id": "waec-2026-furthermath-010",
+    "subject": "Further Mathematics",
+    "topic": "Statistics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Further Mathematics Statistics question 10",
+    "options": {
+      "A": "A 10",
+      "B": "B 10",
+      "C": "C 10",
+      "D": "D 10"
+    },
+    "correctAnswer": "B",
+    "explanation": "FM explanation 10",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.509Z"
+  },
+  {
+    "id": "waec-2026-furthermath-011",
+    "subject": "Further Mathematics",
+    "topic": "Matrices",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Further Mathematics Matrices question 11",
+    "options": {
+      "A": "A 11",
+      "B": "B 11",
+      "C": "C 11",
+      "D": "D 11"
+    },
+    "correctAnswer": "C",
+    "explanation": "FM explanation 11",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.509Z"
+  },
+  {
+    "id": "waec-2026-furthermath-012",
+    "subject": "Further Mathematics",
+    "topic": "Calculus",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Further Mathematics Calculus question 12",
+    "options": {
+      "A": "A 12",
+      "B": "B 12",
+      "C": "C 12",
+      "D": "D 12"
+    },
+    "correctAnswer": "D",
+    "explanation": "FM explanation 12",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.509Z"
+  },
+  {
+    "id": "waec-2026-furthermath-013",
+    "subject": "Further Mathematics",
+    "topic": "Complex Numbers",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Further Mathematics Complex Numbers question 13",
+    "options": {
+      "A": "A 13",
+      "B": "B 13",
+      "C": "C 13",
+      "D": "D 13"
+    },
+    "correctAnswer": "A",
+    "explanation": "FM explanation 13",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.509Z"
+  },
+  {
+    "id": "waec-2026-furthermath-014",
+    "subject": "Further Mathematics",
+    "topic": "Vectors",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Further Mathematics Vectors question 14",
+    "options": {
+      "A": "A 14",
+      "B": "B 14",
+      "C": "C 14",
+      "D": "D 14"
+    },
+    "correctAnswer": "B",
+    "explanation": "FM explanation 14",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.509Z"
+  },
+  {
+    "id": "waec-2026-furthermath-015",
+    "subject": "Further Mathematics",
+    "topic": "Statistics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Further Mathematics Statistics question 15",
+    "options": {
+      "A": "A 15",
+      "B": "B 15",
+      "C": "C 15",
+      "D": "D 15"
+    },
+    "correctAnswer": "C",
+    "explanation": "FM explanation 15",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.509Z"
+  },
+  {
+    "id": "waec-2026-furthermath-016",
+    "subject": "Further Mathematics",
+    "topic": "Matrices",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Further Mathematics Matrices question 16",
+    "options": {
+      "A": "A 16",
+      "B": "B 16",
+      "C": "C 16",
+      "D": "D 16"
+    },
+    "correctAnswer": "D",
+    "explanation": "FM explanation 16",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.509Z"
+  },
+  {
+    "id": "waec-2026-furthermath-017",
+    "subject": "Further Mathematics",
+    "topic": "Calculus",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Further Mathematics Calculus question 17",
+    "options": {
+      "A": "A 17",
+      "B": "B 17",
+      "C": "C 17",
+      "D": "D 17"
+    },
+    "correctAnswer": "A",
+    "explanation": "FM explanation 17",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.509Z"
+  },
+  {
+    "id": "waec-2026-furthermath-018",
+    "subject": "Further Mathematics",
+    "topic": "Complex Numbers",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Further Mathematics Complex Numbers question 18",
+    "options": {
+      "A": "A 18",
+      "B": "B 18",
+      "C": "C 18",
+      "D": "D 18"
+    },
+    "correctAnswer": "B",
+    "explanation": "FM explanation 18",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.509Z"
+  },
+  {
+    "id": "waec-2026-furthermath-019",
+    "subject": "Further Mathematics",
+    "topic": "Vectors",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Further Mathematics Vectors question 19",
+    "options": {
+      "A": "A 19",
+      "B": "B 19",
+      "C": "C 19",
+      "D": "D 19"
+    },
+    "correctAnswer": "C",
+    "explanation": "FM explanation 19",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.509Z"
+  },
+  {
+    "id": "waec-2026-furthermath-020",
+    "subject": "Further Mathematics",
+    "topic": "Statistics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Further Mathematics Statistics question 20",
+    "options": {
+      "A": "A 20",
+      "B": "B 20",
+      "C": "C 20",
+      "D": "D 20"
+    },
+    "correctAnswer": "D",
+    "explanation": "FM explanation 20",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.509Z"
+  },
+  {
+    "id": "waec-2026-furthermath-021",
+    "subject": "Further Mathematics",
+    "topic": "Matrices",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Further Mathematics Matrices question 21",
+    "options": {
+      "A": "A 21",
+      "B": "B 21",
+      "C": "C 21",
+      "D": "D 21"
+    },
+    "correctAnswer": "A",
+    "explanation": "FM explanation 21",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.510Z"
+  },
+  {
+    "id": "waec-2026-furthermath-022",
+    "subject": "Further Mathematics",
+    "topic": "Calculus",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Further Mathematics Calculus question 22",
+    "options": {
+      "A": "A 22",
+      "B": "B 22",
+      "C": "C 22",
+      "D": "D 22"
+    },
+    "correctAnswer": "B",
+    "explanation": "FM explanation 22",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.510Z"
+  },
+  {
+    "id": "waec-2026-furthermath-023",
+    "subject": "Further Mathematics",
+    "topic": "Complex Numbers",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Further Mathematics Complex Numbers question 23",
+    "options": {
+      "A": "A 23",
+      "B": "B 23",
+      "C": "C 23",
+      "D": "D 23"
+    },
+    "correctAnswer": "C",
+    "explanation": "FM explanation 23",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.510Z"
+  },
+  {
+    "id": "waec-2026-furthermath-024",
+    "subject": "Further Mathematics",
+    "topic": "Vectors",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Further Mathematics Vectors question 24",
+    "options": {
+      "A": "A 24",
+      "B": "B 24",
+      "C": "C 24",
+      "D": "D 24"
+    },
+    "correctAnswer": "D",
+    "explanation": "FM explanation 24",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.510Z"
+  },
+  {
+    "id": "waec-2026-furthermath-025",
+    "subject": "Further Mathematics",
+    "topic": "Statistics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Further Mathematics Statistics question 25",
+    "options": {
+      "A": "A 25",
+      "B": "B 25",
+      "C": "C 25",
+      "D": "D 25"
+    },
+    "correctAnswer": "A",
+    "explanation": "FM explanation 25",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.510Z"
+  },
+  {
+    "id": "waec-2026-french-001",
+    "subject": "French",
+    "topic": "Comprehension",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "French Comprehension question 1",
+    "options": {
+      "A": "A 1",
+      "B": "B 1",
+      "C": "C 1",
+      "D": "D 1"
+    },
+    "correctAnswer": "A",
+    "explanation": "French explanation 1",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.510Z"
+  },
+  {
+    "id": "waec-2026-french-002",
+    "subject": "French",
+    "topic": "Grammar",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "French Grammar question 2",
+    "options": {
+      "A": "A 2",
+      "B": "B 2",
+      "C": "C 2",
+      "D": "D 2"
+    },
+    "correctAnswer": "B",
+    "explanation": "French explanation 2",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.510Z"
+  },
+  {
+    "id": "waec-2026-french-003",
+    "subject": "French",
+    "topic": "Vocabulary",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "French Vocabulary question 3",
+    "options": {
+      "A": "A 3",
+      "B": "B 3",
+      "C": "C 3",
+      "D": "D 3"
+    },
+    "correctAnswer": "C",
+    "explanation": "French explanation 3",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.510Z"
+  },
+  {
+    "id": "waec-2026-french-004",
+    "subject": "French",
+    "topic": "Translation",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "French Translation question 4",
+    "options": {
+      "A": "A 4",
+      "B": "B 4",
+      "C": "C 4",
+      "D": "D 4"
+    },
+    "correctAnswer": "D",
+    "explanation": "French explanation 4",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.510Z"
+  },
+  {
+    "id": "waec-2026-french-005",
+    "subject": "French",
+    "topic": "Comprehension",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "French Comprehension question 5",
+    "options": {
+      "A": "A 5",
+      "B": "B 5",
+      "C": "C 5",
+      "D": "D 5"
+    },
+    "correctAnswer": "A",
+    "explanation": "French explanation 5",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.510Z"
+  },
+  {
+    "id": "waec-2026-french-006",
+    "subject": "French",
+    "topic": "Grammar",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "French Grammar question 6",
+    "options": {
+      "A": "A 6",
+      "B": "B 6",
+      "C": "C 6",
+      "D": "D 6"
+    },
+    "correctAnswer": "B",
+    "explanation": "French explanation 6",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.510Z"
+  },
+  {
+    "id": "waec-2026-french-007",
+    "subject": "French",
+    "topic": "Vocabulary",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "French Vocabulary question 7",
+    "options": {
+      "A": "A 7",
+      "B": "B 7",
+      "C": "C 7",
+      "D": "D 7"
+    },
+    "correctAnswer": "C",
+    "explanation": "French explanation 7",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.510Z"
+  },
+  {
+    "id": "waec-2026-french-008",
+    "subject": "French",
+    "topic": "Translation",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "French Translation question 8",
+    "options": {
+      "A": "A 8",
+      "B": "B 8",
+      "C": "C 8",
+      "D": "D 8"
+    },
+    "correctAnswer": "D",
+    "explanation": "French explanation 8",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.511Z"
+  },
+  {
+    "id": "waec-2026-french-009",
+    "subject": "French",
+    "topic": "Comprehension",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "French Comprehension question 9",
+    "options": {
+      "A": "A 9",
+      "B": "B 9",
+      "C": "C 9",
+      "D": "D 9"
+    },
+    "correctAnswer": "A",
+    "explanation": "French explanation 9",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.511Z"
+  },
+  {
+    "id": "waec-2026-french-010",
+    "subject": "French",
+    "topic": "Grammar",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "French Grammar question 10",
+    "options": {
+      "A": "A 10",
+      "B": "B 10",
+      "C": "C 10",
+      "D": "D 10"
+    },
+    "correctAnswer": "B",
+    "explanation": "French explanation 10",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.511Z"
+  },
+  {
+    "id": "waec-2026-french-011",
+    "subject": "French",
+    "topic": "Vocabulary",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "French Vocabulary question 11",
+    "options": {
+      "A": "A 11",
+      "B": "B 11",
+      "C": "C 11",
+      "D": "D 11"
+    },
+    "correctAnswer": "C",
+    "explanation": "French explanation 11",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.511Z"
+  },
+  {
+    "id": "waec-2026-french-012",
+    "subject": "French",
+    "topic": "Translation",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "French Translation question 12",
+    "options": {
+      "A": "A 12",
+      "B": "B 12",
+      "C": "C 12",
+      "D": "D 12"
+    },
+    "correctAnswer": "D",
+    "explanation": "French explanation 12",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.511Z"
+  },
+  {
+    "id": "waec-2026-french-013",
+    "subject": "French",
+    "topic": "Comprehension",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "French Comprehension question 13",
+    "options": {
+      "A": "A 13",
+      "B": "B 13",
+      "C": "C 13",
+      "D": "D 13"
+    },
+    "correctAnswer": "A",
+    "explanation": "French explanation 13",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.511Z"
+  },
+  {
+    "id": "waec-2026-french-014",
+    "subject": "French",
+    "topic": "Grammar",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "French Grammar question 14",
+    "options": {
+      "A": "A 14",
+      "B": "B 14",
+      "C": "C 14",
+      "D": "D 14"
+    },
+    "correctAnswer": "B",
+    "explanation": "French explanation 14",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.511Z"
+  },
+  {
+    "id": "waec-2026-french-015",
+    "subject": "French",
+    "topic": "Vocabulary",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "French Vocabulary question 15",
+    "options": {
+      "A": "A 15",
+      "B": "B 15",
+      "C": "C 15",
+      "D": "D 15"
+    },
+    "correctAnswer": "C",
+    "explanation": "French explanation 15",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.511Z"
+  },
+  {
+    "id": "waec-2026-french-016",
+    "subject": "French",
+    "topic": "Translation",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "French Translation question 16",
+    "options": {
+      "A": "A 16",
+      "B": "B 16",
+      "C": "C 16",
+      "D": "D 16"
+    },
+    "correctAnswer": "D",
+    "explanation": "French explanation 16",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.511Z"
+  },
+  {
+    "id": "waec-2026-french-017",
+    "subject": "French",
+    "topic": "Comprehension",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "French Comprehension question 17",
+    "options": {
+      "A": "A 17",
+      "B": "B 17",
+      "C": "C 17",
+      "D": "D 17"
+    },
+    "correctAnswer": "A",
+    "explanation": "French explanation 17",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.511Z"
+  },
+  {
+    "id": "waec-2026-french-018",
+    "subject": "French",
+    "topic": "Grammar",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "French Grammar question 18",
+    "options": {
+      "A": "A 18",
+      "B": "B 18",
+      "C": "C 18",
+      "D": "D 18"
+    },
+    "correctAnswer": "B",
+    "explanation": "French explanation 18",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.511Z"
+  },
+  {
+    "id": "waec-2026-french-019",
+    "subject": "French",
+    "topic": "Vocabulary",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "French Vocabulary question 19",
+    "options": {
+      "A": "A 19",
+      "B": "B 19",
+      "C": "C 19",
+      "D": "D 19"
+    },
+    "correctAnswer": "C",
+    "explanation": "French explanation 19",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.511Z"
+  },
+  {
+    "id": "waec-2026-french-020",
+    "subject": "French",
+    "topic": "Translation",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "French Translation question 20",
+    "options": {
+      "A": "A 20",
+      "B": "B 20",
+      "C": "C 20",
+      "D": "D 20"
+    },
+    "correctAnswer": "D",
+    "explanation": "French explanation 20",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.511Z"
+  },
+  {
+    "id": "waec-2026-french-021",
+    "subject": "French",
+    "topic": "Comprehension",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "French Comprehension question 21",
+    "options": {
+      "A": "A 21",
+      "B": "B 21",
+      "C": "C 21",
+      "D": "D 21"
+    },
+    "correctAnswer": "A",
+    "explanation": "French explanation 21",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.511Z"
+  },
+  {
+    "id": "waec-2026-french-022",
+    "subject": "French",
+    "topic": "Grammar",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "French Grammar question 22",
+    "options": {
+      "A": "A 22",
+      "B": "B 22",
+      "C": "C 22",
+      "D": "D 22"
+    },
+    "correctAnswer": "B",
+    "explanation": "French explanation 22",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.511Z"
+  },
+  {
+    "id": "waec-2026-french-023",
+    "subject": "French",
+    "topic": "Vocabulary",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "French Vocabulary question 23",
+    "options": {
+      "A": "A 23",
+      "B": "B 23",
+      "C": "C 23",
+      "D": "D 23"
+    },
+    "correctAnswer": "C",
+    "explanation": "French explanation 23",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.511Z"
+  },
+  {
+    "id": "waec-2026-french-024",
+    "subject": "French",
+    "topic": "Translation",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "French Translation question 24",
+    "options": {
+      "A": "A 24",
+      "B": "B 24",
+      "C": "C 24",
+      "D": "D 24"
+    },
+    "correctAnswer": "D",
+    "explanation": "French explanation 24",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.511Z"
+  },
+  {
+    "id": "waec-2026-french-025",
+    "subject": "French",
+    "topic": "Comprehension",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "French Comprehension question 25",
+    "options": {
+      "A": "A 25",
+      "B": "B 25",
+      "C": "C 25",
+      "D": "D 25"
+    },
+    "correctAnswer": "A",
+    "explanation": "French explanation 25",
+    "source": "generated",
+    "createdAt": "2026-11-14T12:34:08.511Z"
+  },
+  {
+    "id": "waec-2026-useofenglishlanguage-012",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Use of English Language question 12",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Use of English Language question 12",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.469Z"
+  },
+  {
+    "id": "waec-2026-useofenglishlanguage-013",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Use of English Language question 13",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Use of English Language question 13",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.475Z"
+  },
+  {
+    "id": "waec-2026-useofenglishlanguage-014",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Use of English Language question 14",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Use of English Language question 14",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.476Z"
+  },
+  {
+    "id": "waec-2026-useofenglishlanguage-015",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Use of English Language question 15",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Use of English Language question 15",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.476Z"
+  },
+  {
+    "id": "waec-2026-useofenglishlanguage-016",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Use of English Language question 16",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Use of English Language question 16",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.476Z"
+  },
+  {
+    "id": "waec-2026-useofenglishlanguage-017",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Use of English Language question 17",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Use of English Language question 17",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.476Z"
+  },
+  {
+    "id": "waec-2026-useofenglishlanguage-018",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Use of English Language question 18",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Use of English Language question 18",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.476Z"
+  },
+  {
+    "id": "waec-2026-useofenglishlanguage-019",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Use of English Language question 19",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Use of English Language question 19",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.476Z"
+  },
+  {
+    "id": "waec-2026-useofenglishlanguage-020",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Use of English Language question 20",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Use of English Language question 20",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.476Z"
+  },
+  {
+    "id": "waec-2026-useofenglishlanguage-021",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Use of English Language question 21",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Use of English Language question 21",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.476Z"
+  },
+  {
+    "id": "waec-2026-useofenglishlanguage-022",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Use of English Language question 22",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Use of English Language question 22",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.476Z"
+  },
+  {
+    "id": "waec-2026-useofenglishlanguage-023",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Use of English Language question 23",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Use of English Language question 23",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-useofenglishlanguage-024",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Use of English Language question 24",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Use of English Language question 24",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-useofenglishlanguage-025",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Use of English Language question 25",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Use of English Language question 25",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-useofenglishlanguage-026",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Use of English Language question 26",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Use of English Language question 26",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-economics-012",
+    "subject": "Economics",
+    "topic": "Microeconomics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Economics question 12",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Economics question 12",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-economics-013",
+    "subject": "Economics",
+    "topic": "Microeconomics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Economics question 13",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Economics question 13",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-economics-014",
+    "subject": "Economics",
+    "topic": "Microeconomics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Economics question 14",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Economics question 14",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-economics-015",
+    "subject": "Economics",
+    "topic": "Microeconomics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Economics question 15",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Economics question 15",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-economics-016",
+    "subject": "Economics",
+    "topic": "Microeconomics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Economics question 16",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Economics question 16",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-economics-017",
+    "subject": "Economics",
+    "topic": "Microeconomics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Economics question 17",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Economics question 17",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-economics-018",
+    "subject": "Economics",
+    "topic": "Microeconomics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Economics question 18",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Economics question 18",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-economics-019",
+    "subject": "Economics",
+    "topic": "Microeconomics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Economics question 19",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Economics question 19",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-economics-020",
+    "subject": "Economics",
+    "topic": "Microeconomics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Economics question 20",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Economics question 20",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-economics-021",
+    "subject": "Economics",
+    "topic": "Microeconomics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Economics question 21",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Economics question 21",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-economics-022",
+    "subject": "Economics",
+    "topic": "Microeconomics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Economics question 22",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Economics question 22",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-economics-023",
+    "subject": "Economics",
+    "topic": "Microeconomics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Economics question 23",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Economics question 23",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-economics-024",
+    "subject": "Economics",
+    "topic": "Microeconomics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Economics question 24",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Economics question 24",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-economics-025",
+    "subject": "Economics",
+    "topic": "Microeconomics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Economics question 25",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Economics question 25",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-economics-026",
+    "subject": "Economics",
+    "topic": "Microeconomics",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Economics question 26",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Economics question 26",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-government-011",
+    "subject": "Government",
+    "topic": "Constitution",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Government question 11",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Government question 11",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-government-012",
+    "subject": "Government",
+    "topic": "Constitution",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Government question 12",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Government question 12",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-government-013",
+    "subject": "Government",
+    "topic": "Constitution",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Government question 13",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Government question 13",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-government-014",
+    "subject": "Government",
+    "topic": "Constitution",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Government question 14",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Government question 14",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-government-015",
+    "subject": "Government",
+    "topic": "Constitution",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Government question 15",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Government question 15",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-government-016",
+    "subject": "Government",
+    "topic": "Constitution",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Government question 16",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Government question 16",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-government-017",
+    "subject": "Government",
+    "topic": "Constitution",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Government question 17",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Government question 17",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-government-018",
+    "subject": "Government",
+    "topic": "Constitution",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Government question 18",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Government question 18",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-government-019",
+    "subject": "Government",
+    "topic": "Constitution",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Government question 19",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Government question 19",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-government-020",
+    "subject": "Government",
+    "topic": "Constitution",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Government question 20",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Government question 20",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-government-021",
+    "subject": "Government",
+    "topic": "Constitution",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Government question 21",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Government question 21",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-government-022",
+    "subject": "Government",
+    "topic": "Constitution",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Government question 22",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Government question 22",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-government-023",
+    "subject": "Government",
+    "topic": "Constitution",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Government question 23",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Government question 23",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-government-024",
+    "subject": "Government",
+    "topic": "Constitution",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Government question 24",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Government question 24",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-government-025",
+    "subject": "Government",
+    "topic": "Constitution",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Government question 25",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Government question 25",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-english-010",
+    "subject": "English",
+    "topic": "Grammar",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "English question 10",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for English question 10",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-english-011",
+    "subject": "English",
+    "topic": "Grammar",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "English question 11",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for English question 11",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-english-012",
+    "subject": "English",
+    "topic": "Grammar",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "English question 12",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for English question 12",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-english-013",
+    "subject": "English",
+    "topic": "Grammar",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "English question 13",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for English question 13",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-english-014",
+    "subject": "English",
+    "topic": "Grammar",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "English question 14",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for English question 14",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-english-015",
+    "subject": "English",
+    "topic": "Grammar",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "English question 15",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for English question 15",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-english-016",
+    "subject": "English",
+    "topic": "Grammar",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "English question 16",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for English question 16",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-english-017",
+    "subject": "English",
+    "topic": "Grammar",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "English question 17",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for English question 17",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-english-018",
+    "subject": "English",
+    "topic": "Grammar",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "English question 18",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for English question 18",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.477Z"
+  },
+  {
+    "id": "waec-2026-english-019",
+    "subject": "English",
+    "topic": "Grammar",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "English question 19",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for English question 19",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.478Z"
+  },
+  {
+    "id": "waec-2026-english-020",
+    "subject": "English",
+    "topic": "Grammar",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "English question 20",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for English question 20",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.478Z"
+  },
+  {
+    "id": "waec-2026-english-021",
+    "subject": "English",
+    "topic": "Grammar",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "English question 21",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for English question 21",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.478Z"
+  },
+  {
+    "id": "waec-2026-english-022",
+    "subject": "English",
+    "topic": "Grammar",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "English question 22",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for English question 22",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.478Z"
+  },
+  {
+    "id": "waec-2026-english-023",
+    "subject": "English",
+    "topic": "Grammar",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "English question 23",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for English question 23",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.478Z"
+  },
+  {
+    "id": "waec-2026-english-024",
+    "subject": "English",
+    "topic": "Grammar",
+    "exam": [
+      "WAEC"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "English question 24",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for English question 24",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:33:42.478Z"
   }
 ]

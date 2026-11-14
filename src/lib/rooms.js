@@ -21,6 +21,7 @@ import { db, auth } from "../firebaseConfig";
 import { apiUrl } from "./apiBase";
 import { getQuestionsFromBank } from "../data/questions/compat";
 import { timestampMs } from "./presence";
+import { getUserProfile } from "./userProfile";
 
 function needDb() {
   if (!db) throw new Error("Not available offline");
@@ -45,6 +46,9 @@ export async function createRoom({
   const roomRef = doc(db, "studyRooms", code);
   const batch = writeBatch(db);
   const focusMs = Math.max(1, Number(focusMinutes) || 25) * 60_000;
+  // Fetch user profile to get orgId if available
+  const userProfile = await getUserProfile(hostUid);
+  const orgId = userProfile?.orgId || null;
   // Room doc = everything players may see. NO answer key, NO explanations
   // (an explanation can give the answer away). The key goes to
   // studyRooms/{code}/key/{qid}, which firestore.rules denies to all clients.
@@ -63,6 +67,7 @@ export async function createRoom({
     allowChat: allowChat !== false,
     showLeaderboard: showLeaderboard !== false,
     active: true,
+    orgId: orgId,
     timer: {
       enabled: true,
       running: false,

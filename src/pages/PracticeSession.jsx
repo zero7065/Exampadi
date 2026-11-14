@@ -8,7 +8,7 @@ import { explainQuestion, getAIErrorIfRecent } from "../lib/ai";
 import { bufferInteraction, flushMemory } from "../lib/aiMemory";
 import { motivatorFor } from "../data/wellness";
 import ProUpgradeModal from "../components/ProUpgradeModal";
-import { Whiteboard } from "../components/Whiteboard";
+import Scratchpad from "../components/Scratchpad";
 import NotepadDrawer from "../components/NotepadDrawer";
 import { useHint } from "../hooks/useHints";
 import { ChevronRight, Sparkles, AlertCircle, CheckCircle2, XCircle, Flag, BookOpen, Lightbulb, PenTool, NotebookPen } from "lucide-react";
@@ -563,7 +563,7 @@ export default function PracticeSession() {
         <NotebookPen size={20} />
       </button>
 
-      <Whiteboard open={whiteboardOpen} onClose={() => setWhiteboardOpen(false)} />
+      <Scratchpad open={whiteboardOpen} onClose={() => setWhiteboardOpen(false)} context={current?.question || ""} />
       <NotepadDrawer open={notepadOpen} onClose={() => setNotepadOpen(false)} context={current?.question || ""} />
 
       <ProUpgradeModal open={showProModal} onClose={handleClosePro} reason={proReason} dismissible />

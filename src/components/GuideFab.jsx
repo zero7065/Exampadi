@@ -133,6 +133,26 @@ export default function GuideFab() {
           onClick={(e) => { if (e.target === e.currentTarget) setOpen(false); }}>
           <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.55)", backdropFilter: "blur(3px)" }} />
           <div className="glass-card" style={{ position: "relative", width: "100%", maxWidth: 560, maxHeight: "82vh", overflowY: "auto", padding: 20 }}>
+            <button
+              onClick={() => setOpen(false)}
+              style={{
+                position: "absolute",
+                top: 12,
+                right: 12,
+                background: "none",
+                border: "none",
+                color: "var(--text-muted)",
+                cursor: "pointer",
+                padding: 4,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: 6,
+              }}
+              title="Close"
+            >
+              <X size={20} />
+            </button>
             <GuideAssistant compact onNavigate={() => setOpen(false)} />
           </div>
         </div>

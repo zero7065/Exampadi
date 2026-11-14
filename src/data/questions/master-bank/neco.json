@@ -2429,5 +2429,1013 @@
     "repeatedFrom": [
       2024
     ]
+  },
+  {
+    "id": "neco-2026-useofenglishlanguage-009",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Use of English Language question 9",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Use of English Language question 9",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.451Z"
+  },
+  {
+    "id": "neco-2026-useofenglishlanguage-010",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Use of English Language question 10",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Use of English Language question 10",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.463Z"
+  },
+  {
+    "id": "neco-2026-useofenglishlanguage-011",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Use of English Language question 11",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Use of English Language question 11",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.463Z"
+  },
+  {
+    "id": "neco-2026-useofenglishlanguage-012",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Use of English Language question 12",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Use of English Language question 12",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.463Z"
+  },
+  {
+    "id": "neco-2026-useofenglishlanguage-013",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Use of English Language question 13",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Use of English Language question 13",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.463Z"
+  },
+  {
+    "id": "neco-2026-useofenglishlanguage-014",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Use of English Language question 14",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Use of English Language question 14",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.463Z"
+  },
+  {
+    "id": "neco-2026-useofenglishlanguage-015",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Use of English Language question 15",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Use of English Language question 15",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.463Z"
+  },
+  {
+    "id": "neco-2026-useofenglishlanguage-016",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Use of English Language question 16",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Use of English Language question 16",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.463Z"
+  },
+  {
+    "id": "neco-2026-useofenglishlanguage-017",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Use of English Language question 17",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Use of English Language question 17",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.463Z"
+  },
+  {
+    "id": "neco-2026-useofenglishlanguage-018",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Use of English Language question 18",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Use of English Language question 18",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-useofenglishlanguage-019",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Use of English Language question 19",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Use of English Language question 19",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-useofenglishlanguage-020",
+    "subject": "Use of English Language",
+    "topic": "Comprehension",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Use of English Language question 20",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Use of English Language question 20",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-economics-008",
+    "subject": "Economics",
+    "topic": "Microeconomics",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Economics question 8",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Economics question 8",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-economics-009",
+    "subject": "Economics",
+    "topic": "Microeconomics",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Economics question 9",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Economics question 9",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-economics-010",
+    "subject": "Economics",
+    "topic": "Microeconomics",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Economics question 10",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Economics question 10",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-economics-011",
+    "subject": "Economics",
+    "topic": "Microeconomics",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Economics question 11",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Economics question 11",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-economics-012",
+    "subject": "Economics",
+    "topic": "Microeconomics",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Economics question 12",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Economics question 12",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-economics-013",
+    "subject": "Economics",
+    "topic": "Microeconomics",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Economics question 13",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Economics question 13",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-economics-014",
+    "subject": "Economics",
+    "topic": "Microeconomics",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Economics question 14",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Economics question 14",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-economics-015",
+    "subject": "Economics",
+    "topic": "Microeconomics",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Economics question 15",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Economics question 15",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-economics-016",
+    "subject": "Economics",
+    "topic": "Microeconomics",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Economics question 16",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Economics question 16",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-economics-017",
+    "subject": "Economics",
+    "topic": "Microeconomics",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Economics question 17",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Economics question 17",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-economics-018",
+    "subject": "Economics",
+    "topic": "Microeconomics",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Economics question 18",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Economics question 18",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-economics-019",
+    "subject": "Economics",
+    "topic": "Microeconomics",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Economics question 19",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Economics question 19",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-government-008",
+    "subject": "Government",
+    "topic": "Constitution",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Government question 8",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Government question 8",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-government-009",
+    "subject": "Government",
+    "topic": "Constitution",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Government question 9",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Government question 9",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-government-010",
+    "subject": "Government",
+    "topic": "Constitution",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Government question 10",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Government question 10",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-government-011",
+    "subject": "Government",
+    "topic": "Constitution",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Government question 11",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Government question 11",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-government-012",
+    "subject": "Government",
+    "topic": "Constitution",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Government question 12",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Government question 12",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-government-013",
+    "subject": "Government",
+    "topic": "Constitution",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Government question 13",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Government question 13",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-government-014",
+    "subject": "Government",
+    "topic": "Constitution",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Government question 14",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Government question 14",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-government-015",
+    "subject": "Government",
+    "topic": "Constitution",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Government question 15",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Government question 15",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-government-016",
+    "subject": "Government",
+    "topic": "Constitution",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Government question 16",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for Government question 16",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-government-017",
+    "subject": "Government",
+    "topic": "Constitution",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "Government question 17",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for Government question 17",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-government-018",
+    "subject": "Government",
+    "topic": "Constitution",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "Government question 18",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for Government question 18",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-government-019",
+    "subject": "Government",
+    "topic": "Constitution",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "Government question 19",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for Government question 19",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-english-004",
+    "subject": "English",
+    "topic": "Grammar",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "English question 4",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for English question 4",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-english-005",
+    "subject": "English",
+    "topic": "Grammar",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "English question 5",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for English question 5",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-english-006",
+    "subject": "English",
+    "topic": "Grammar",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "English question 6",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for English question 6",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-english-007",
+    "subject": "English",
+    "topic": "Grammar",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "English question 7",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for English question 7",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-english-008",
+    "subject": "English",
+    "topic": "Grammar",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "English question 8",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for English question 8",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-english-009",
+    "subject": "English",
+    "topic": "Grammar",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "English question 9",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for English question 9",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-english-010",
+    "subject": "English",
+    "topic": "Grammar",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "English question 10",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for English question 10",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-english-011",
+    "subject": "English",
+    "topic": "Grammar",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "English question 11",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for English question 11",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-english-012",
+    "subject": "English",
+    "topic": "Grammar",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "English question 12",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "A",
+    "explanation": "Explanation for English question 12",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-english-013",
+    "subject": "English",
+    "topic": "Grammar",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "easy",
+    "question": "English question 13",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "B",
+    "explanation": "Explanation for English question 13",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-english-014",
+    "subject": "English",
+    "topic": "Grammar",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "medium",
+    "question": "English question 14",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "C",
+    "explanation": "Explanation for English question 14",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
+  },
+  {
+    "id": "neco-2026-english-015",
+    "subject": "English",
+    "topic": "Grammar",
+    "exam": [
+      "NECO"
+    ],
+    "year": 2026,
+    "difficulty": "hard",
+    "question": "English question 15",
+    "options": {
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    },
+    "correctAnswer": "D",
+    "explanation": "Explanation for English question 15",
+    "source": "generated",
+    "createdAt": "2026-11-14T13:34:57.464Z"
   }
 ]
