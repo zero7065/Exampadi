@@ -172,3 +172,23 @@ export function getLatestResources(limit = 10) {
     .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
     .slice(0, limit);
 }
+
+// ─── Video lessons (real, curated YouTube resources) ───
+// Each entry is a search link so it never rots when a specific video is removed.
+export const VIDEO_LESSONS = [
+  { subject: "Mathematics", title: "JAMB Mathematics — Integration & Differentiation", desc: "Step-by-step calculus lessons for JAMB/WAEC candidates.", url: "https://www.youtube.com/results?search_query=JAMB+mathematics+integration+differentiation+lesson", channel: "YouTube", level: "All" },
+  { subject: "Physics", title: "Physics Practical — WAEC & JAMB Experiments", desc: "How to set up, measure and record physics practicals.", url: "https://www.youtube.com/results?search_query=WAEC+physics+practical+experiment+tutorial", channel: "YouTube", level: "All" },
+  { subject: "Chemistry", title: "Organic Chemistry Made Simple", desc: "Nomenclature, reactions and mechanisms explained slowly.", url: "https://www.youtube.com/results?search_query=organic+chemistry+for+JAMB+WAEC+lesson", channel: "YouTube", level: "All" },
+  { subject: "Biology", title: "Cell Biology & Genetics for Exams", desc: "Diagrams and facts examiners love — explained clearly.", url: "https://www.youtube.com/results?search_query=cell+biology+genetics+JAMB+lesson", channel: "YouTube", level: "All" },
+  { subject: "Use of English", title: "English Grammar & Comprehension Drills", desc: "Lexis, structure and comprehension strategies.", url: "https://www.youtube.com/results?search_query=English+grammar+comprehension+JAMB+lesson", channel: "YouTube", level: "All" },
+  { subject: "Economics", title: "Economics Diagrams & Graphs Explained", desc: "Demand/supply curves and market structures made easy.", url: "https://www.youtube.com/results?search_query=economics+diagrams+graphs+JAMB+WAEC+lesson", channel: "YouTube", level: "All" },
+  { subject: "Government", title: "Government & Civics for Exams", desc: "Constitutions, federalism and ECOWAS explained.", url: "https://www.youtube.com/results?search_query=government+civics+JAMB+WAEC+lesson", channel: "YouTube", level: "All" },
+  { subject: "IELTS", title: "IELTS Speaking & Writing Band 7+", desc: "Techniques to raise your IELTS band score.", url: "https://www.youtube.com/results?search_query=IELTS+speaking+writing+band+7+tutorial", channel: "YouTube", level: "All" },
+];
+
+export const VIDEO_SUBJECTS = ["All", ...new Set(VIDEO_LESSONS.map((v) => v.subject))];
+
+export function getVideosBySubject(subject) {
+  if (!subject || subject === "All") return VIDEO_LESSONS;
+  return VIDEO_LESSONS.filter((v) => v.subject === subject);
+}

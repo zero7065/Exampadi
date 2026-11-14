@@ -6,8 +6,9 @@ import { useSubscription } from "../hooks/useSubscription";
 import { getUserProfile } from "../lib/userProfile";
 import { getRandomQuestions } from "../data/questions/compat";
 import ProUpgradeModal from "../components/ProUpgradeModal";
+import Scratchpad from "../components/Scratchpad";
 import { recordSession } from "../lib/aiMemory";
-import { Clock, Flag, ChevronLeft, ChevronRight, AlertTriangle } from "lucide-react";
+import { Clock, Flag, ChevronLeft, ChevronRight, AlertTriangle, Calculator } from "lucide-react";
 
 const EXAM_CONFIG = {
   "JAMB UTME": { duration: 7200, questionsPerSubject: 45, maxSubjects: 4 },
@@ -37,6 +38,7 @@ export default function MockExam() {
   const [examSubmitted, setExamSubmitted] = useState(false);
   const [warningShown, setWarningShown] = useState(false);
   const [showSubmitModal, setShowSubmitModal] = useState(false);
+  const [scratchpadOpen, setScratchpadOpen] = useState(false);
   const timerRef = useRef(null);
 
   useEffect(() => {
@@ -349,6 +351,22 @@ export default function MockExam() {
           <div style={{ fontSize: 11, color: "var(--text-muted)" }}>Flagged: {flagged.size}</div>
         </div>
       </div>
+
+      {/* Scratchpad FAB — movable rough-work panel (never covers the question) */}
+      <button
+        onClick={() => setScratchpadOpen(true)}
+        title="Scratchpad — rough work & calculator"
+        style={{
+          position: "fixed", bottom: 24, right: 220, zIndex: 9998,
+          width: 48, height: 48, borderRadius: "50%",
+          background: "var(--bg-2)", border: "1px solid var(--border)", color: "var(--text)",
+          cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+          boxShadow: "0 4px 20px rgba(0,0,0,0.35)",
+        }}
+      >
+        <Calculator size={20} />
+      </button>
+      <Scratchpad open={scratchpadOpen} onClose={() => setScratchpadOpen(false)} context={current?.question || ""} />
 
       {/* Submit modal */}
       {showSubmitModal && (

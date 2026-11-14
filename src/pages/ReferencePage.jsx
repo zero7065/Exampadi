@@ -3,8 +3,8 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { REFERENCE_SHEETS } from "../data/reference";
 import { BOOK_RECS, BOOK_SUBJECTS } from "../data/resources";
-import { LEARNING_RESOURCES, formatRSSDate, getCategoryIcon } from "../data/learningRSS";
-import { Search, ArrowLeft, BookOpen, LibraryBig, Newspaper, ExternalLink, Clock, Tag } from "lucide-react";
+import { LEARNING_RESOURCES, formatRSSDate, getCategoryIcon, VIDEO_LESSONS, VIDEO_SUBJECTS } from "../data/learningRSS";
+import { Search, ArrowLeft, BookOpen, LibraryBig, Newspaper, ExternalLink, Clock, Tag, Video } from "lucide-react";
 
 export default function ReferencePage() {
   const [tab, setTab] = useState("sheets");
@@ -14,6 +14,7 @@ export default function ReferencePage() {
   const [bookQuery, setBookQuery] = useState("");
   const [feedCategory, setFeedCategory] = useState("All");
   const [feedQuery, setFeedQuery] = useState("");
+  const [videoSubject, setVideoSubject] = useState("All");
 
   const books = BOOK_RECS.filter(
     (b) =>
@@ -67,9 +68,34 @@ export default function ReferencePage() {
         <button onClick={() => setTab("feed")} className={tab === "feed" ? "btn-primary" : "btn-secondary"} style={{ padding: "10px 18px", fontSize: 13 }}>
           <Newspaper size={15} /> Learning Feed
         </button>
+        <button onClick={() => setTab("videos")} className={tab === "videos" ? "btn-primary" : "btn-secondary"} style={{ padding: "10px 18px", fontSize: 13 }}>
+          <Video size={15} /> Video Lessons
+        </button>
       </div>
 
-      {tab === "feed" ? (
+      {tab === "videos" ? (
+        <>
+          <div className="flex items-center justify-between gap-2 flex-wrap">
+            <select value={videoSubject} onChange={(e) => setVideoSubject(e.target.value)} className="input-field" style={{ maxWidth: 220 }}>
+              {VIDEO_SUBJECTS.map((s) => <option key={s} value={s}>{s}</option>)}
+            </select>
+            <p className="text-xs text-text-muted">{getVideosBySubject(videoSubject).length} lesson collection{getVideosBySubject(videoSubject).length === 1 ? "" : "s"}</p>
+          </div>
+          <div className="grid-auto">
+            {getVideosBySubject(videoSubject).map((v, i) => (
+              <a key={i} href={v.url} target="_blank" rel="noopener noreferrer" className="glass-card p-4" style={{ display: "block", textDecoration: "none" }}>
+                <div className="flex items-center gap-2 mb-1">
+                  <span style={{ fontSize: 10, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--primary)" }}>{v.subject}</span>
+                  <span className="text-[10px] text-text-muted inline-flex items-center gap-1"><Video size={10} /> {v.channel}</span>
+                </div>
+                <div className="font-bold text-text text-sm mb-1 flex items-center gap-1">{v.title} <ExternalLink size={11} /></div>
+                <div className="text-sm text-text-muted" style={{ lineHeight: 1.55 }}>{v.desc}</div>
+              </a>
+            ))}
+          </div>
+          <p className="text-xs text-text-muted">Curated video collections from YouTube — tap any card to open the lessons. New content is added regularly.</p>
+        </>
+      ) : tab === "feed" ? (
         <>
           <div className="flex flex-col sm:flex-row gap-2">
             <select value={feedCategory} onChange={(e) => setFeedCategory(e.target.value)} className="input-field" style={{ maxWidth: 200 }}>

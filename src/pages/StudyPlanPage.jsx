@@ -6,7 +6,7 @@ import { useToast } from "../components/Toast";
 import { generateStudyPlan, getAIErrorIfRecent } from "../lib/ai";
 import { collection, query, where, getDocs, doc, setDoc, getDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebaseConfig";
-import { BookOpen, Target, Calendar, Clock, CheckCircle, ArrowRight, Loader2, Sparkles } from "lucide-react";
+import { BookOpen, Target, Calendar, Clock, CheckCircle, ArrowRight, Loader2, Sparkles, Download } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const StudyPlanPage = () => {
@@ -111,6 +111,35 @@ const StudyPlanPage = () => {
       }
     }
   };
+
+  // Export the plan as a CSV spreadsheet (opens in Excel/Google Sheets)
+  function downloadTimetable() {
+    if (!studyPlan?.topics?.length) {
+      toast({ message: "Generate a plan first", type: "warning" });
+      return;
+    }
+    const esc = (v) => `"${String(v ?? "").replace(/"/g, '""')}"`;
+    const rows = [
+      ["Day", "Topic", "Duration", "Description", "Practice Tasks", "Status"],
+      ...studyPlan.topics.map((item, i) => [
+        i + 1,
+        item.topic || "",
+        item.duration || "",
+        item.description || "",
+        Array.isArray(item.exercises) ? item.exercises.join("; ") : "",
+        completedTopics.includes(item.topic) ? "Completed" : "Pending",
+      ]),
+    ];
+    const csv = rows.map((r) => r.map(esc).join(",")).join("\n");
+    const blob = new Blob(["\ufeff" + csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `exampadi-study-timetable-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+    toast({ message: "Timetable downloaded ✓ — open it in Excel or Google Sheets", type: "success" });
+  }
 
   if (!proStatus) {
     // Free users get a preview
@@ -302,14 +331,20 @@ const StudyPlanPage = () => {
           </div>
 
           {/* Actions */}
-          <div className="flex gap-4">
-            <button 
+          <div className="flex gap-4 flex-wrap">
+            <button
               onClick={() => { setStudyPlan(null); setCompletedTopics([]); }}
               className="btn-secondary flex-1"
             >
               Create New Plan
             </button>
-            <button 
+            <button
+              onClick={downloadTimetable}
+              className="btn-secondary flex-1"
+            >
+              <Download size={16} style={{ marginRight: 6, display: "inline" }} /> Download Timetable (CSV)
+            </button>
+            <button
               onClick={() => navigate("/select")}
               className="btn-primary flex-1"
             >
