@@ -5,6 +5,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Sparkles } from "lucide-react";
+import DeviceShowcase from "./DeviceShowcase";
 import { loadHomepageContent, DEFAULT_HOMEPAGE } from "../../lib/homepageContent";
 
 // ── Animated SVG background scenes (each fills the slide) ──
@@ -190,25 +191,32 @@ export default function HeroCarousel({ user }) {
 
       {/* Content */}
       <div className="lp-container" style={{ position: "relative", zIndex: 2, width: "100%", paddingTop: 100, paddingBottom: 60 }}>
-        <div key={slide.id} style={{ maxWidth: 560, animation: "heroSlideIn 0.6s ease" }}>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "6px 16px", borderRadius: 100, background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)", backdropFilter: "blur(10px)", marginBottom: 20, fontSize: 12, fontWeight: 700, color: "#fff" }}>
-            <Sparkles size={13} /> {slide.eyebrow}
-          </div>
-          <h1 style={{ fontSize: "clamp(2rem, 5vw, 3.2rem)", fontWeight: 900, lineHeight: 1.1, margin: "0 0 18px", letterSpacing: "-0.03em", color: "#fff", textShadow: "0 2px 20px rgba(0,0,0,0.4)" }}>
-            {slide.title}
-          </h1>
-          <p style={{ fontSize: 17, lineHeight: 1.65, color: "rgba(255,255,255,0.85)", margin: "0 0 26px", textShadow: "0 1px 10px rgba(0,0,0,0.3)" }}>
-            {slide.body}
-          </p>
-          <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-            <Link to={user ? "/dashboard" : (slide.ctaTo || "/auth")} className="lp-btn-primary" style={{ background: "var(--primary)", color: "#04120D" }}>
-              {user ? "Go to Dashboard" : (slide.ctaLabel || "Start Free")} <ArrowRight size={18} />
-            </Link>
-            {slide.secondaryLabel && (
-              <Link to={slide.secondaryTo || "/demo"} style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "14px 24px", borderRadius: 12, background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.25)", color: "#fff", fontWeight: 700, fontSize: 15, textDecoration: "none", backdropFilter: "blur(10px)" }}>
-                {slide.secondaryLabel}
+        <div className="hero-split" style={{ display: "grid", gridTemplateColumns: "1.05fr 0.95fr", gap: 40, alignItems: "center" }}>
+          <div key={slide.id} style={{ maxWidth: 560, animation: "heroSlideIn 0.6s ease" }}>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "6px 16px", borderRadius: 100, background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)", backdropFilter: "blur(10px)", marginBottom: 20, fontSize: 12, fontWeight: 700, color: "#fff" }}>
+              <Sparkles size={13} /> {slide.eyebrow}
+            </div>
+            <h1 style={{ fontSize: "clamp(2rem, 5vw, 3.2rem)", fontWeight: 900, lineHeight: 1.1, margin: "0 0 18px", letterSpacing: "-0.03em", color: "#fff", textShadow: "0 2px 20px rgba(0,0,0,0.4)" }}>
+              {slide.title}
+            </h1>
+            <p style={{ fontSize: 17, lineHeight: 1.65, color: "rgba(255,255,255,0.85)", margin: "0 0 26px", textShadow: "0 1px 10px rgba(0,0,0,0.3)" }}>
+              {slide.body}
+            </p>
+            <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+              <Link to={user ? "/dashboard" : (slide.ctaTo || "/auth")} className="lp-btn-primary" style={{ background: "var(--primary)", color: "#04120D" }}>
+                {user ? "Go to Dashboard" : (slide.ctaLabel || "Start Free")} <ArrowRight size={18} />
               </Link>
-            )}
+              {slide.secondaryLabel && (
+                <Link to={slide.secondaryTo || "/demo"} style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "14px 24px", borderRadius: 12, background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.25)", color: "#fff", fontWeight: 700, fontSize: 15, textDecoration: "none", backdropFilter: "blur(10px)" }}>
+                  {slide.secondaryLabel}
+                </Link>
+              )}
+            </div>
+          </div>
+
+          {/* Live phone simulation — auto-solves demo questions */}
+          <div className="hero-phone">
+            <DeviceShowcase />
           </div>
         </div>
       </div>
@@ -226,8 +234,13 @@ export default function HeroCarousel({ user }) {
 
       <style>{`
         @keyframes heroSlideIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-        @media (max-width: 768px) {
-          section { min-height: 92vh !important; }
+        @media (max-width: 900px) {
+          .hero-split { grid-template-columns: 1fr !important; gap: 28px !important; }
+          .hero-phone { order: 2; max-width: 340px; margin: 0 auto; }
+          section { min-height: auto !important; }
+        }
+        @media (max-width: 480px) {
+          .hero-phone { transform: scale(0.92); }
         }
       `}</style>
     </section>
