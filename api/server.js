@@ -55,6 +55,7 @@ import image from "./_image.js";
 import reminders from "./_reminders.js";
 import surveyVote from "./_survey-vote.js";
 import createTeacher from "./_create-teacher.js";  // NEW
+import syncCron from "./_sync-cron.js";  // 72h smart sync cron
 
 // --- Express app ---
 const app = express();
@@ -134,6 +135,14 @@ app.post("/api/image", async (req, res) => {
 // --- Route: POST /api/reminders ---
 app.post("/api/reminders", async (req, res) => {
   await reminders(req, res);
+});
+
+// --- Route: GET|POST /api/cron/sync (72h smart sync) ---
+app.get("/api/cron/sync", async (req, res) => {
+  await syncCron(req, res);
+});
+app.post("/api/cron/sync", async (req, res) => {
+  await syncCron(req, res);
 });
 
 // --- Route: POST /api/survey-vote ---

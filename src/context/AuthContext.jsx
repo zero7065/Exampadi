@@ -79,6 +79,16 @@ export function AuthProvider({ children }) {
         setUser(firebaseUser);
         setLoading(false);
         retryCount = 0;
+        // Smart 72h sync: only runs when interval elapsed + activity exists
+        if (firebaseUser) {
+          import("../lib/sync").then(({ runSmartSync, shouldSync }) => {
+            if (shouldSync()) {
+              import("../lib/userProfile").then(({ getUserProfile }) =>
+                getUserProfile(firebaseUser.uid).then((p) => runSmartSync(firebaseUser.uid, p))
+              ).catch(() => {});
+            }
+          }).catch(() => {});
+        }
       }, (error) => {
         clearTimeout(timeout);
         if (cancelled) return;
