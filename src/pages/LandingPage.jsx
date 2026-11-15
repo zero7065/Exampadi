@@ -17,6 +17,7 @@ import {
   LandingWhyForYou,
 } from "../components/landing/LandingSections";
 import LandingPricing from "../components/landing/LandingPricing";
+import LandingGames from "../components/landing/LandingGames";
 import { LandingFaq, LandingCta, LandingFooter } from "../components/landing/LandingClosing";
 
 export default function LandingPage() {
@@ -74,6 +75,7 @@ export default function LandingPage() {
       <LandingStrategic />
       <LandingIELTS />
       <LandingWhyForYou />
+      <LandingGames />
       <LandingWhyUs />
       <LandingAbout />
       <LandingTestimonials />

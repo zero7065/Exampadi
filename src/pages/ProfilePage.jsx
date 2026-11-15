@@ -29,6 +29,8 @@ export default function ProfilePage() {
   const [showDelete, setShowDelete] = useState(false);
   const [deleteEmail, setDeleteEmail] = useState("");
   const [deleting, setDeleting] = useState(false);
+  const [editingBio, setEditingBio] = useState(false);
+  const [bioInput, setBioInput] = useState("");
 
   useEffect(() => {
     if (user) {
@@ -36,6 +38,7 @@ export default function ProfilePage() {
         setProfile(p);
         setNameInput(user.displayName || p?.name || "");
         setSchoolInput(p?.school || "");
+        setBioInput(p?.bio || "");
       }).catch(() => {});
     }
   }, [user]);
@@ -70,6 +73,19 @@ export default function ProfilePage() {
       toast({ message: "Could not save school", type: "error" });
     } finally {
       setEditingSchool(false);
+    }
+  }
+
+  async function saveBio() {
+    if (!user) { setEditingBio(false); return; }
+    try {
+      await updateUserProfile(user.uid, { bio: bioInput.trim().slice(0, 200) });
+      setProfile((p) => ({ ...(p || {}), bio: bioInput.trim().slice(0, 200) }));
+      toast({ message: "Bio updated", type: "success" });
+    } catch {
+      toast({ message: "Could not save bio", type: "error" });
+    } finally {
+      setEditingBio(false);
     }
   }
 
@@ -131,6 +147,46 @@ export default function ProfilePage() {
                 </div>
               )}
             <p className="text-text-muted text-sm">{user?.email}</p>
+            {/* Username / ID — how friends find you */}
+            <div className="flex items-center gap-2 mt-1 justify-center sm:justify-start flex-wrap">
+              {profile?.username && (
+                <span className="text-xs px-2 py-0.5 rounded-md" style={{ background: "var(--bg-3)", color: "var(--text-muted)" }}>
+                  @{profile.username}
+                </span>
+              )}
+              <button
+                onClick={() => { navigator.clipboard.writeText(user?.uid || "").then(() => toast({ message: "User ID copied — share it so friends can add you", type: "success" })); }}
+                className="text-xs px-2 py-0.5 rounded-md inline-flex items-center gap-1"
+                style={{ background: "rgb(var(--primary-rgb) / 0.1)", color: "var(--primary)" }}
+                title="Copy your User ID"
+              >
+                ID: {user?.uid?.slice(0, 8)}…
+              </button>
+            </div>
+            {/* Bio */}
+            {editingBio ? (
+              <div className="mt-2">
+                <textarea
+                  autoFocus
+                  value={bioInput}
+                  onChange={(e) => setBioInput(e.target.value)}
+                  onBlur={saveBio}
+                  rows={2}
+                  maxLength={200}
+                  placeholder="Write a short bio — your goal, your favourite subject, a study tip…"
+                  className="input-field"
+                  style={{ maxWidth: 360, fontSize: 13 }}
+                />
+                <button onClick={saveBio} className="btn-primary text-xs px-3 py-1.5 mt-1"><Check size={12} style={{ display: "inline", marginRight: 4 }} />Save bio</button>
+              </div>
+            ) : (
+              <div className="flex items-center gap-2 mt-1 justify-center sm:justify-start">
+                <p className="text-sm" style={{ color: profile?.bio ? "var(--text)" : "var(--text-muted)", fontStyle: profile?.bio ? "normal" : "italic", maxWidth: 340 }}>
+                  {profile?.bio || "No bio yet — add one so partners know your goal."}
+                </p>
+                <button onClick={() => setEditingBio(true)} className="text-text-muted hover:text-primary" title="Edit bio"><Pencil size={13} /></button>
+              </div>
+            )}
             <button
               onClick={async () => {
                 try {
