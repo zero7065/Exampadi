@@ -5,12 +5,15 @@ import { getUserProfile } from "../lib/userProfile";
 import { getFilteredQuestions, getTopics, getAllSubjects, getTotalCount } from "../data/questions/compat";
 import { getEnabledExams } from "../lib/exams";
 import RepetitionBadge from "../components/QuestionBank/RepetitionBadge";
-import { ChevronRight, ChevronLeft, Search, BookOpen } from "lucide-react";
+import { ChevronRight, ChevronLeft, Search, BookOpen, Download, FileSpreadsheet } from "lucide-react";
+import { exportQuestionBankCSV, exportQuestionSummaryCSV } from "../lib/questionExport";
+import { useToast } from "../components/Toast";
 
 const DIFFICULTY_COLORS = { easy: "#4ADE80", medium: "#FF9F43", hard: "#FF4D6A" };
 
 export default function QuestionBank() {
   const { user } = useAuth();
+  const { toast } = useToast();
   const navigate = useNavigate();
   const [profile, setProfile] = useState(null);
   const [expandedId, setExpandedId] = useState(null);
@@ -100,6 +103,27 @@ export default function QuestionBank() {
 
           <button onClick={() => updateFilter("highYieldOnly", !filters.highYieldOnly)} style={{ padding: "6px 14px", borderRadius: 20, border: filters.highYieldOnly ? "1px solid #f97316" : "1px solid #333", background: filters.highYieldOnly ? "rgba(249,115,22,0.15)" : "transparent", color: filters.highYieldOnly ? "#f97316" : "var(--text-muted)", fontSize: 12, fontWeight: 700, cursor: "pointer" }}>
             🔥 High-yield only
+          </button>
+
+          <button
+            onClick={() => {
+              const n = exportQuestionBankCSV(filters);
+              toast({ message: `Exported ${n} questions to CSV ✓`, type: "success" });
+            }}
+            title="Download the filtered bank as a spreadsheet (CSV)"
+            style={{ padding: "8px 14px", borderRadius: 20, border: "1px solid var(--success)", background: "rgba(74,222,128,0.1)", color: "var(--success)", fontSize: 12, fontWeight: 700, cursor: "pointer", display: "flex", alignItems: "center", gap: 5, fontFamily: "inherit" }}
+          >
+            <FileSpreadsheet size={13} /> CSV
+          </button>
+          <button
+            onClick={() => {
+              const n = exportQuestionSummaryCSV();
+              toast({ message: `Exported ${n} subject summary rows ✓`, type: "success" });
+            }}
+            title="Download a subject × count summary spreadsheet"
+            style={{ padding: "8px 14px", borderRadius: 20, border: "1px solid var(--border)", background: "transparent", color: "var(--text-muted)", fontSize: 12, fontWeight: 700, cursor: "pointer", display: "flex", alignItems: "center", gap: 5, fontFamily: "inherit" }}
+          >
+            <Download size={13} /> Summary
           </button>
 
           <button onClick={handleStartPractice} style={{ marginLeft: "auto", padding: "10px 20px", borderRadius: 10, border: "none", background: "var(--primary)", color: "#fff", fontWeight: 700, fontSize: 13, cursor: "pointer", display: "flex", alignItems: "center", gap: 6, fontFamily: "inherit" }}>

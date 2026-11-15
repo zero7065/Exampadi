@@ -4,7 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import ImageCarousel from "../components/ImageCarousel";
 import LandingStyles from "../components/landing/LandingStyles";
 import LandingNav from "../components/landing/LandingNav";
-import LandingHero from "../components/landing/LandingHero";
+import HeroCarousel from "../components/landing/HeroCarousel";
 import LandingBento, { LandingStats } from "../components/landing/LandingBento";
 import LandingMission from "../components/landing/LandingMission";
 import {
@@ -19,6 +19,7 @@ import {
 import LandingPricing from "../components/landing/LandingPricing";
 import LandingGames from "../components/landing/LandingGames";
 import WhatsNew from "../components/landing/WhatsNew";
+import EduClips from "../components/landing/EduClips";
 import { LandingFaq, LandingCta, LandingFooter } from "../components/landing/LandingClosing";
 
 export default function LandingPage() {
@@ -28,7 +29,7 @@ export default function LandingPage() {
     <div className="landing-page">
       <LandingStyles />
       <LandingNav user={user} />
-      <LandingHero user={user} />
+      <HeroCarousel user={user} />
       <LandingStats />
       <LandingBento />
 
@@ -73,6 +74,7 @@ export default function LandingPage() {
 
       <LandingHow />
       <WhatsNew />
+      <EduClips />
       <LandingMission />
       <LandingStrategic />
       <LandingIELTS />
