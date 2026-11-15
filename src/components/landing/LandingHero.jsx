@@ -93,7 +93,7 @@ export default function LandingHero({ user }) {
           <div style={{ display: "flex", gap: 24, marginTop: 48, flexWrap: "wrap", justifyContent: "center" }}>
             {[
               { icon: Users, label: "Active Students", value: stats.totalUsers || "500+" },
-              { icon: BookOpen, label: "Questions Answered", value: stats.totalQuestions?.toLocaleString() || "50,000+" },
+              { icon: BookOpen, label: "Real Questions", value: "1,594+" },
               { icon: TrendingUp, label: "Success Rate", value: "87%" },
             ].map((s) => (
               <div key={s.label} className="lp-glass" style={{

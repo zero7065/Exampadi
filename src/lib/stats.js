@@ -3,25 +3,31 @@
 // Both landing page and app components should import from here.
 
 export const STATS = {
-  /** Public practice-question target (all exams combined) */
-  practiceQuestions: 9000,
+  /** Public practice-question target (all exams combined, real validated) */
+  practiceQuestions: 1594,
   /** Number of high-yield topics covered */
   highYieldTopics: 320,
   /** Number of subjects available */
-  subjects: 16,
+  subjects: 24,
   /** Number of exam bodies covered */
-  examBodies: 5, // JAMB, WAEC, NECO, NABTEB, IELTS
+  examBodies: 7, // JAMB, WAEC, NECO, NABTEB, POST-UTME, IELTS, SAT
   /** Years of past questions */
   yearsOfQuestions: 10, // 2017–2026
+  /** Chess levels vs AI */
+  chessLevels: 10,
+  /** Learning content styles (Legend Mode) */
+  legendStyles: 8,
 };
 
 /** Per-exam share of the public question target (sums to STATS.practiceQuestions). */
 export const EXAM_QUESTION_COUNTS = {
-  JAMB: 4000,
-  WAEC: 2000,
-  NECO: 1300,
-  NABTEB: 1100,
-  IELTS: 600,
+  JAMB: 721,
+  WAEC: 373,
+  NECO: 131,
+  NABTEB: 108,
+  "POST-UTME": 25,
+  IELTS: 147,
+  SAT: 89,
 };
 
 export const STATS_DISPLAY = {

@@ -839,6 +839,10 @@ export const GUIDE_ROUTES = [
   { path: "/payment", label: "Go Pro", keywords: ["pro", "pay", "upgrade", "cost", "price", "subscription", "unlock", "limit"] },
   { path: "/help", label: "Help", keywords: ["help", "guide", "how to", "support"] },
   { path: "/contact", label: "Contact", keywords: ["contact", "human", "whatsapp", "email", "complain"] },
+  { path: "/community", label: "School Community", keywords: ["community", "school group", "school chat", "class group", "school community", "group chat", "gist", "my school"] },
+  { path: "/games", label: "Games", keywords: ["game", "games", "trivia", "brain teaser", "puzzle", "play", "fun", "quiz me for fun"] },
+  { path: "/games/chess", label: "Chess vs AI", keywords: ["chess", "play chess", "chess game", "chess ai", "grandmaster", "checkmate"] },
+  { path: "/legend", label: "Legend Mode", keywords: ["legend", "legend mode", "riddle", "poem", "story", "metaphor", "learn differently", "edu hack", "learning hack", "strict", "think like a legend"] },
 ];
 
 // Local intent matcher: free, instant, offline. Returns matched routes.

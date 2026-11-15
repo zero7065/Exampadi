@@ -4,20 +4,24 @@ import { useState } from "react";
 import GuideAssistant from "../components/GuideAssistant";
 import OnboardingTour from "../components/OnboardingTour";
 import { Sparkles } from "lucide-react";
-import { 
-  BookOpen, 
-  Target, 
-  Clock, 
-  Zap, 
-  BarChart3, 
-  StickyNote, 
+import {
+  BookOpen,
+  Target,
+  Clock,
+  Zap,
+  BarChart3,
+  StickyNote,
   Calendar,
   ChevronRight,
   CheckCircle,
   ArrowRight,
   MonitorPlay,
   LibraryBig,
-  Newspaper
+  Newspaper,
+  Gamepad2,
+  MessagesSquare,
+  Crown,
+  Swords,
 } from "lucide-react";
 
 const HelpPage = () => {
@@ -91,7 +95,47 @@ const HelpPage = () => {
       description: "See top students, ask the community when stuck, and help others — a public study hall.",
       action: "Open Feed",
       link: "/feed"
-    }
+    },
+    {
+      icon: <MessagesSquare size={24} />,
+      title: "School Community",
+      description: "Your school's private group chat with AI assist. Join after payment or admin approval — chat with classmates and teachers, share tips, and learn together. (Pro/School)",
+      action: "Open Community",
+      link: "/community",
+      pro: true
+    },
+    {
+      icon: <Gamepad2 size={24} />,
+      title: "Games & Brain Training",
+      description: "Play chess vs AI across 10 difficulty levels, plus trivia, brain teasers and pattern puzzles. Challenge friends and earn achievements. (Pro)",
+      action: "Play Games",
+      link: "/games",
+      pro: true
+    },
+    {
+      icon: <Swords size={24} />,
+      title: "Challenge Friends",
+      description: "Send game challenges to your study partners — chess or trivia. Accept, play, and like each other's wins. (Pro)",
+      action: "Challenge",
+      link: "/games",
+      pro: true
+    },
+    {
+      icon: <Crown size={24} />,
+      title: "Legend Mode",
+      description: "Learn any topic in a style that sticks — riddles, metaphors, poems, stories or edu-hacks. Adjust strictness from gentle to legend. (Pro)",
+      action: "Try Legend Mode",
+      link: "/legend",
+      pro: true
+    },
+    {
+      icon: <Target size={24} />,
+      title: "Learning Patterns",
+      description: "As you practice, we track your best study hours, weakest subjects and pace — and turn them into smart recommendations. (Pro)",
+      action: "See Patterns",
+      link: "/stats",
+      pro: true
+    },
   ];
 
   return (

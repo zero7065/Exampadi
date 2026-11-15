@@ -183,6 +183,20 @@ export default function Feed() {
         <p className="lead">Top students, open questions, and help from people who just solved them.</p>
       </header>
 
+      {/* Quick access to social features */}
+      <div className="grid grid-cols-3 gap-2">
+        {[
+          { to: "/community", icon: "👥", label: "School Chat" },
+          { to: "/games", icon: "♟️", label: "Games" },
+          { to: "/legend", icon: "👑", label: "Legend" },
+        ].map((q) => (
+          <Link key={q.to} to={q.to} className="glass-card p-3 text-center" style={{ textDecoration: "none", borderColor: "rgb(var(--primary-rgb) / 0.25)" }}>
+            <div style={{ fontSize: 20 }}>{q.icon}</div>
+            <div style={{ fontSize: 11, fontWeight: 700, color: "var(--text)", marginTop: 2 }}>{q.label}</div>
+          </Link>
+        ))}
+      </div>
+
       {/* Top students */}
       <section>
         <h2 className="font-black text-text mb-3 flex items-center gap-2"><Trophy size={18} className="text-accent" /> Top students this week</h2>

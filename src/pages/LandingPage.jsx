@@ -18,6 +18,7 @@ import {
 } from "../components/landing/LandingSections";
 import LandingPricing from "../components/landing/LandingPricing";
 import LandingGames from "../components/landing/LandingGames";
+import WhatsNew from "../components/landing/WhatsNew";
 import { LandingFaq, LandingCta, LandingFooter } from "../components/landing/LandingClosing";
 
 export default function LandingPage() {
@@ -71,6 +72,7 @@ export default function LandingPage() {
       </section>
 
       <LandingHow />
+      <WhatsNew />
       <LandingMission />
       <LandingStrategic />
       <LandingIELTS />

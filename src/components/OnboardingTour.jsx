@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { markTourSeen } from "../lib/tour";
-import { Zap, Bot, Users, Trophy, X, ArrowRight, ArrowLeft, BookOpen, Layers, Settings, PenTool } from "lucide-react";
+import { Zap, Bot, Users, Trophy, X, ArrowRight, ArrowLeft, BookOpen, Layers, Settings, PenTool, Gamepad2, MessagesSquare, Crown } from "lucide-react";
 
 const STEPS = [
   {
@@ -27,24 +27,39 @@ const STEPS = [
     to: "/leaderboard", cta: "See leaderboard",
   },
   {
-    icon: BookOpen, title: "5 · Mock Exams & Exam Mode",
+    icon: MessagesSquare, title: "5 · Your School Community",
+    body: "Join your school's private group after payment or admin approval. Chat with classmates and teachers — with AI assist when you're stuck.",
+    to: "/community", cta: "Open community",
+  },
+  {
+    icon: Gamepad2, title: "6 · Games & Chess",
+    body: "Play chess vs AI across 10 levels (beginner → grandmaster), plus trivia, brain teasers and pattern puzzles. Challenge friends and win badges.",
+    to: "/games", cta: "Play a game",
+  },
+  {
+    icon: Crown, title: "7 · Legend Mode",
+    body: "Learn any topic through riddles, metaphors, poems, stories or edu-hacks. Adjust strictness from gentle to legend — think like a legend.",
+    to: "/legend", cta: "Try Legend Mode",
+  },
+  {
+    icon: BookOpen, title: "8 · Mock Exams & Exam Mode",
     body: "Take full-length timed mock exams that simulate real exam conditions. Get instant scores and detailed breakdowns.",
     to: "/mock-exam", cta: "Try a mock exam",
   },
   {
-    icon: Layers, title: "6 · Flashcards & Study Plans",
+    icon: Layers, title: "9 · Flashcards & Study Plans",
     body: "Review key concepts with AI-generated flashcards. Follow personalized study plans that adapt to your weak topics.",
     to: "/flashcards", cta: "Browse flashcards",
   },
   {
-    icon: Settings, title: "7 · Settings & Preferences",
+    icon: Settings, title: "10 · Settings & Preferences",
     body: "Customize your experience: toggle exams, set learning style, manage notifications, and control your privacy.",
     to: "/settings", cta: "Open settings",
   },
   {
-    icon: PenTool, title: "8 · Whiteboard & AI Analysis",
-    body: "Draw on the whiteboard to work through problems. Let AI analyze your rough work and show you exactly where you went wrong.",
-    to: "/practice", cta: "Try the whiteboard",
+    icon: PenTool, title: "11 · Scratchpad & Calculator",
+    body: "Use the movable scratchpad for rough work in practice and exam mode. The built-in calculator floats anywhere you drag it.",
+    to: "/practice", cta: "Try the scratchpad",
   },
 ];
 
