@@ -8,7 +8,7 @@ import { useToast } from "../components/Toast";
 import { useSubscription } from "../hooks/useSubscription";
 import ProGate from "../components/ProGate";
 import { getBestMove, getOpeningMove, LEVELS } from "../lib/games/chessEngine";
-import { ArrowLeft, RotateCcw, Flag, Handshake, ChevronLeft, ChevronRight, Trophy, Zap, Loader2, Crown } from "lucide-react";
+import { ArrowLeft, RotateCcw, Flag, Handshake, ChevronLeft, ChevronRight, Trophy, Zap, Loader2, Crown, Users } from "lucide-react";
 
 const PIECE_GLYPH = {
   w: { k: "♔", q: "♕", r: "♖", b: "♗", n: "♘", p: "♙" },
@@ -165,6 +165,7 @@ export default function ChessPage() {
           <h1 className="text-xl font-black flex items-center gap-2"><Crown size={18} className="text-amber-500" /> Chess vs AI</h1>
         </div>
         <div className="flex gap-2">
+          <Link to="/chess/room" className="btn-primary text-xs px-3 py-2"><Users size={14} /> Play a friend</Link>
           <button onClick={() => reset()} className="btn-secondary text-xs px-3 py-2"><RotateCcw size={14} /> New game</button>
           <button onClick={resign} className="btn-secondary text-xs px-3 py-2" style={{ color: "var(--danger)" }}><Flag size={14} /> Resign</button>
           <button onClick={offerDraw} className="btn-secondary text-xs px-3 py-2"><Handshake size={14} /> Draw</button>
