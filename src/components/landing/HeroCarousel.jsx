@@ -4,8 +4,8 @@
 // override slide 1 with an uploaded hero image (siteContent/landing hero).
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import LandingMedia from "./LandingMedia";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { loadHomepageContent, DEFAULT_HOMEPAGE } from "../../lib/homepageContent";
 
 // ── Animated SVG background scenes (each fills the slide) ──
 function SceneStudy() {
@@ -133,48 +133,37 @@ function SceneCommunity() {
   );
 }
 
-const SLIDES = [
-  {
-    id: "study",
-    scene: SceneStudy,
-    eyebrow: "AI-POWERED EXAM PREP",
-    title: "Ace Your Exams with AI-Powered Precision",
-    body: "1,594 real past questions from JAMB, WAEC, NECO, NABTEB, IELTS & SAT — with AI explanations, timed exams, and smart progress tracking.",
-    cta: { to: "/auth", label: "Start Free" },
-    secondary: { to: "/demo", label: "Try a demo" },
-  },
-  {
-    id: "graduation",
-    scene: SceneGraduation,
-    eyebrow: "BUILT FOR SUCCESS",
-    title: "From SS1 to First Choice University",
-    body: "Personalized study plans, daily streaks, and XP that keep you consistent. Join thousands of Nigerian students passing first try.",
-    cta: { to: "/auth", label: "Begin now" },
-    secondary: { to: "/ielts", label: "IELTS pathway" },
-  },
-  {
-    id: "community",
-    scene: SceneCommunity,
-    eyebrow: "NEVER STUDY ALONE",
-    title: "Your School Community, Live",
-    body: "Private school group chats with AI assist, study rooms with friends, and challenges that make learning social — all in one app.",
-    cta: { to: "/auth", label: "Join your school" },
-    secondary: { to: "/community", label: "See community" },
-  },
-];
+// Scene registry — admin picks a scene id per slide.
+const SCENES = {
+  study: SceneStudy,
+  graduation: SceneGraduation,
+  community: SceneCommunity,
+};
 
 export default function HeroCarousel({ user }) {
   const [idx, setIdx] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [slides, setSlides] = useState(DEFAULT_HOMEPAGE.slides);
+
+  // Load admin-customized content (falls back to defaults)
+  useEffect(() => {
+    let live = true;
+    loadHomepageContent().then((c) => { if (live) setSlides(c.slides); }).catch(() => {});
+    return () => { live = false; };
+  }, []);
 
   useEffect(() => {
     if (paused) return;
-    const t = setInterval(() => setIdx((i) => (i + 1) % SLIDES.length), 6000);
+    const t = setInterval(() => setIdx((i) => (i + 1) % slides.length), 6000);
     return () => clearInterval(t);
-  }, [paused]);
+  }, [paused, slides.length]);
 
-  const slide = SLIDES[idx];
-  const Scene = slide.scene;
+  useEffect(() => {
+    if (idx >= slides.length) setIdx(0);
+  }, [slides.length, idx]);
+
+  const slide = slides[idx] || slides[0];
+  const Scene = SCENES[slide?.scene] || SceneStudy;
 
   return (
     <section
@@ -183,10 +172,10 @@ export default function HeroCarousel({ user }) {
       onMouseLeave={() => setPaused(false)}
     >
       {/* Background scenes (crossfade) */}
-      {SLIDES.map((s, i) => {
-        const S = s.scene;
+      {slides.map((s, i) => {
+        const S = SCENES[s.scene] || SceneStudy;
         return (
-          <div key={s.id} style={{
+          <div key={`${s.id || "s"}-${i}`} style={{
             position: "absolute", inset: 0,
             opacity: i === idx ? 1 : 0,
             transition: "opacity 1s ease",
@@ -212,20 +201,22 @@ export default function HeroCarousel({ user }) {
             {slide.body}
           </p>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-            <Link to={user ? "/dashboard" : slide.cta.to} className="lp-btn-primary" style={{ background: "var(--primary)", color: "#04120D" }}>
-              {user ? "Go to Dashboard" : slide.cta.label} <ArrowRight size={18} />
+            <Link to={user ? "/dashboard" : (slide.ctaTo || "/auth")} className="lp-btn-primary" style={{ background: "var(--primary)", color: "#04120D" }}>
+              {user ? "Go to Dashboard" : (slide.ctaLabel || "Start Free")} <ArrowRight size={18} />
             </Link>
-            <Link to={slide.secondary.to} style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "14px 24px", borderRadius: 12, background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.25)", color: "#fff", fontWeight: 700, fontSize: 15, textDecoration: "none", backdropFilter: "blur(10px)" }}>
-              {slide.secondary.label}
-            </Link>
+            {slide.secondaryLabel && (
+              <Link to={slide.secondaryTo || "/demo"} style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "14px 24px", borderRadius: 12, background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.25)", color: "#fff", fontWeight: 700, fontSize: 15, textDecoration: "none", backdropFilter: "blur(10px)" }}>
+                {slide.secondaryLabel}
+              </Link>
+            )}
           </div>
         </div>
       </div>
 
       {/* Dots */}
       <div style={{ position: "absolute", bottom: 28, left: "50%", transform: "translateX(-50%)", display: "flex", gap: 8, zIndex: 3 }}>
-        {SLIDES.map((s, i) => (
-          <button key={s.id} onClick={() => setIdx(i)} aria-label={`Go to slide ${i + 1}`} style={{
+        {slides.map((s, i) => (
+          <button key={`${s.id || "d"}-${i}`} onClick={() => setIdx(i)} aria-label={`Go to slide ${i + 1}`} style={{
             width: i === idx ? 28 : 10, height: 10, borderRadius: 6, border: "none", cursor: "pointer",
             background: i === idx ? "var(--primary)" : "rgba(255,255,255,0.4)",
             transition: "all 0.3s",

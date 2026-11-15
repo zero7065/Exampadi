@@ -21,6 +21,7 @@ import AdminAIUsage from "../components/AdminAIUsage";
 import AdminMessages from "../components/AdminMessages";
 import AdminManagement from "../components/AdminManagement";
 import AdminDiagnostics from "../components/AdminDiagnostics";
+import AdminHomepage from "../components/AdminHomepage";
 
 const FULL_PRO_FEATURES = {
   notepad: true,
@@ -365,6 +366,7 @@ export default function AdminPage() {
             { id: "messages", label: "Messages" },
             { id: "management", label: "Management" },
             { id: "diagnostics", label: "Diagnostics" },
+            { id: "homepage", label: "Homepage" },
             { id: "userDetail", label: "User Details" },
           ].map(tab => (
             <button key={tab.id} onClick={() => setActiveTab(tab.id)} style={{
@@ -713,6 +715,11 @@ export default function AdminPage() {
         {/* Diagnostics Tab (health, auto-fix, backup/restore) */}
         {activeTab === "diagnostics" && (
           <AdminDiagnostics />
+        )}
+
+        {/* Homepage Tab (hero slides + section toggles) */}
+        {activeTab === "homepage" && (
+          <AdminHomepage />
         )}
 
         {/* Landing Media Tab */}

@@ -1,6 +1,8 @@
 // src/pages/LandingPage.jsx — composes theme-aware landing sections.
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { loadHomepageContent, DEFAULT_HOMEPAGE } from "../lib/homepageContent";
 import ImageCarousel from "../components/ImageCarousel";
 import LandingStyles from "../components/landing/LandingStyles";
 import LandingNav from "../components/landing/LandingNav";
@@ -24,6 +26,13 @@ import { LandingFaq, LandingCta, LandingFooter } from "../components/landing/Lan
 
 export default function LandingPage() {
   const { user } = useAuth();
+  const [sections, setSections] = useState(DEFAULT_HOMEPAGE.sections);
+
+  useEffect(() => {
+    let live = true;
+    loadHomepageContent().then((c) => { if (live && c?.sections) setSections(c.sections); }).catch(() => {});
+    return () => { live = false; };
+  }, []);
 
   return (
     <div className="landing-page">
@@ -73,18 +82,18 @@ export default function LandingPage() {
       </section>
 
       <LandingHow />
-      <WhatsNew />
-      <EduClips />
+      {sections.whatsNew && <WhatsNew />}
+      {sections.eduClips && <EduClips />}
       <LandingMission />
       <LandingStrategic />
       <LandingIELTS />
       <LandingWhyForYou />
-      <LandingGames />
+      {sections.games && <LandingGames />}
       <LandingWhyUs />
       <LandingAbout />
-      <LandingTestimonials />
-      <LandingPricing />
-      <LandingFaq />
+      {sections.testimonials && <LandingTestimonials />}
+      {sections.pricing && <LandingPricing />}
+      {sections.faq && <LandingFaq />}
       <LandingCta user={user} />
       <LandingFooter />
     </div>
