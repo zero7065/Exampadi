@@ -866,3 +866,41 @@ you are built by Google. You are ExamPadi powered by Groq.`;
   const user = `Student says: "${issueText}". Student exam: ${userProfile?.exam || "JAMB"}. Give the organized steps.`;
   return callGroqWithFallback(system, user, 300, 0.5, { source: "guide" });
 }
+
+// ─── Legend Mode: content styles for deep learning ───
+// Riddles, metaphors, poems, stories, edu-hacks — with strictness levels.
+// strictness: "gentle" | "balanced" | "strict" (legend mode = strict)
+const STRICTNESS_PROMPTS = {
+  gentle: "Be encouraging and gentle. Use simple examples. Praise effort. Never shame.",
+  balanced: "Be clear and direct. Correct mistakes factually but kindly.",
+  strict: "Think like a legend. Be rigorous and uncompromising on accuracy. Demand precision. Challenge assumptions. No fluff — every sentence must teach.",
+};
+
+export async function generateLearningContent({ style, topic, exam, strictness = "balanced" }) {
+  const stylePrompts = {
+    riddle: "Create 3 riddles that teach this topic. Each riddle: 2-4 lines, then the answer with a one-line explanation.",
+    metaphor: "Explain this topic using 2 vivid metaphors/analogies from everyday Nigerian life. Then state the literal meaning.",
+    poem: "Write a short educational poem (8-12 lines) that teaches this topic. Rhyming is welcome. End with a 2-line summary.",
+    story: "Write a short story (150-200 words) where a character learns/uses this topic to solve a real problem.",
+    hack: "Give 3 practical educational hacks/tips for mastering this topic faster. Be specific and actionable.",
+    cyber: "Explain this topic through a cybersecurity/hacking lens — how it connects to protecting systems or thinking like a hacker (ethical).",
+    code: "Explain this topic like a software developer would — relate it to programming concepts, then give a tiny code analogy.",
+    legend: "Teach this topic like a legend: deep insight, non-obvious connections, and a mindset shift. Challenge the student to think bigger.",
+  };
+  const sys = `You are ExamPadi's Legend Tutor. ${STRICTNESS_PROMPTS[strictness] || STRICTNESS_PROMPTS.balanced}
+Style: ${stylePrompts[style] || stylePrompts.metaphor}
+Exam: ${exam || "JAMB"}. Topic: ${topic}.
+Keep it tight, vivid and memorable. Never invent facts.`;
+  return callGroqWithFallback(sys, `Teach me: ${topic}`, 600, 0.8, { source: "legend" });
+}
+
+export const CONTENT_STYLES = [
+  { id: "riddle", label: "Riddles", icon: "🧩", desc: "Learn through puzzles" },
+  { id: "metaphor", label: "Metaphors", icon: "🌍", desc: "Everyday analogies" },
+  { id: "poem", label: "Poems", icon: "✒️", desc: "Educational poetry" },
+  { id: "story", label: "Stories", icon: "📖", desc: "Learn through narrative" },
+  { id: "hack", label: "Edu Hacks", icon: "⚡", desc: "Study smarter tips" },
+  { id: "cyber", label: "Cyber Mind", icon: "🔐", desc: "Security thinking" },
+  { id: "code", label: "Dev Mode", icon: "👨‍💻", desc: "Programming lens" },
+  { id: "legend", label: "Legend Mode", icon: "👑", desc: "Think like a legend" },
+];

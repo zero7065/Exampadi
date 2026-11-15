@@ -64,6 +64,7 @@ const StudyPartnersPage = lazy(() => import("./pages/StudyPartnersPage"));
 const CommunityPage = lazy(() => import("./pages/CommunityPage"));
 const GamesPage = lazy(() => import("./pages/GamesPage"));
 const ChessPage = lazy(() => import("./pages/ChessPage"));
+const LegendModePage = lazy(() => import("./pages/LegendModePage"));
 const SharedTestPage = lazy(() => import("./pages/SharedTestPage"));
 const StudentAssignments = lazy(() => import("./pages/StudentAssignments"));
 const SchoolsLanding = lazy(() => import("./pages/schools/SchoolsLanding"));
@@ -142,6 +143,7 @@ function AuthAwareRoutes() {
       "/community": "School Community — ExamPadi",
       "/games": "Games & Brain Training — ExamPadi",
       "/games/chess": "Chess vs AI — ExamPadi",
+      "/legend": "Legend Mode — ExamPadi",
       "/shared-test": "Shared Test — ExamPadi",
       "/assignment": "Assignments — ExamPadi",
       "/assignments": "Assignments — ExamPadi",
@@ -243,6 +245,7 @@ function AuthAwareRoutes() {
           <Route path="/community" element={<ProtectedRoute><CommunityPage /></ProtectedRoute>} />
           <Route path="/games" element={<ProtectedRoute><GamesPage /></ProtectedRoute>} />
           <Route path="/games/chess" element={<ProtectedRoute><ChessPage /></ProtectedRoute>} />
+          <Route path="/legend" element={<ProtectedRoute><LegendModePage /></ProtectedRoute>} />
           <Route path="/friends/chat/:pairId" element={<ProtectedRoute><FriendChat /></ProtectedRoute>} />
           <Route path="/team/:teamId" element={<ProtectedRoute><TeamPage /></ProtectedRoute>} />
           <Route path="/room" element={<ProtectedRoute><StudyRoom /></ProtectedRoute>} />

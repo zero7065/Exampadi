@@ -41,7 +41,8 @@ import {
   Newspaper,
   LibraryBig,
   MonitorPlay,
-  Plane
+  Plane,
+  Sparkles
 } from "lucide-react";
 
 const Navbar = () => {
@@ -80,6 +81,7 @@ const Navbar = () => {
       title: "AI & Insights",
       items: [
         { name: "AI Tutor", path: "/ai-tutor", icon: Bot },
+        { name: "Legend Mode", path: "/legend", icon: Sparkles },
         { name: "Mastery", path: "/mastery", icon: Target },
         { name: "Stats", path: "/stats", icon: BarChart3 },
         { name: "Progress", path: "/progress", icon: LineChart },

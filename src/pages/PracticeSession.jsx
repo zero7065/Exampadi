@@ -6,6 +6,7 @@ import { useSubscription } from "../hooks/useSubscription";
 import { checkQuestionLimit, trackQuestion, checkAILimit } from "../lib/usageTracker";
 import { explainQuestion, getAIErrorIfRecent } from "../lib/ai";
 import { bufferInteraction, flushMemory } from "../lib/aiMemory";
+import { trackLearningPattern } from "../lib/learningPatterns";
 import { motivatorFor } from "../data/wellness";
 import ProUpgradeModal from "../components/ProUpgradeModal";
 import Scratchpad from "../components/Scratchpad";
@@ -281,6 +282,14 @@ export default function PracticeSession() {
     hintState.reset();
     // Flush buffered AI-memory interactions (single Firestore write)
     if (user) flushMemory(user.uid).catch(() => {});
+    // Track learning pattern for admin insights (real data, not simulation)
+    if (user) trackLearningPattern({
+      uid: user.uid,
+      subject,
+      correct,
+      total: scored.length,
+      timeSeconds: timeElapsed,
+    }).catch(() => {});
     navigate("/session-summary", {
       state: {
         subject,

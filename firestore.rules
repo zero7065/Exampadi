@@ -909,6 +909,14 @@ service cloud.firestore {
       }
     }
 
+    // ─── LEARNING PATTERNS (owner read/write; admin/management read) ───
+    match /learningPatterns/{uid} {
+      allow read: if isAdmin()
+        || (request.auth != null && request.auth.uid == uid)
+        || (request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.get("role", "") == "management");
+      allow write: if request.auth != null && request.auth.uid == uid;
+    }
+
     // ─── GAME CHALLENGES (account-vs-account) ───
     match /gameChallenges/{challengeId} {
       allow read: if request.auth != null && (
@@ -925,6 +933,32 @@ service cloud.firestore {
         || isAdmin()
       );
       allow delete: if isAdmin();
+    }
+
+    // ─── PARENT-TEACHER COMMENT THREADS ───
+    match /parentThreads/{threadId} {
+      allow read: if request.auth != null && (
+        resource.data.teacherUid == request.auth.uid
+        || resource.data.parentUid == request.auth.uid
+        || isAdmin()
+      );
+      allow create: if request.auth != null && request.resource.data.teacherUid == request.auth.uid;
+      allow update: if request.auth != null && (
+        resource.data.teacherUid == request.auth.uid
+        || resource.data.parentUid == request.auth.uid
+      );
+      match /messages/{msgId} {
+        allow read: if request.auth != null && (
+          get(/databases/$(database)/documents/parentThreads/$(threadId)).data.teacherUid == request.auth.uid
+          || get(/databases/$(database)/documents/parentThreads/$(threadId)).data.parentUid == request.auth.uid
+        );
+        allow create: if request.auth != null
+          && request.resource.data.fromUid == request.auth.uid
+          && (
+            get(/databases/$(database)/documents/parentThreads/$(threadId)).data.teacherUid == request.auth.uid
+            || get(/databases/$(database)/documents/parentThreads/$(threadId)).data.parentUid == request.auth.uid
+          );
+      }
     }
 
     // ─── NOTIFICATIONS (server fan-out; owner reads/marks read) ───

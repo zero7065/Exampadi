@@ -19,6 +19,8 @@ export default function AdminAnalytics() {
         const sessions = sessionsSnap.docs.map((d) => d.data());
         const payments = paymentsSnap.docs.map((d) => d.data());
         const aiEntries = aiSnap.docs.map((d) => d.data());
+        const patternSnap = await getDocs(query(collection(db, "learningPatterns"), limit(100)));
+        const patterns = patternSnap.docs.map((d) => ({ id: d.id, ...d.data() }));
 
         const totalXP = users.reduce((sum, u) => sum + (u.totalXP || 0), 0);
         const proUsers = users.filter((u) => u.plan === "pro" || u.subscription?.status === "active").length;
@@ -51,6 +53,7 @@ export default function AdminAnalytics() {
           aiInteractions: aiEntries.length,
           last7Days,
           avgScore: sessions.length > 0 ? Math.round(sessions.reduce((sum, s) => sum + (s.percentageScore || s.score || 0), 0) / sessions.length) : 0,
+          patterns,
         });
       } catch (e) {
         console.error("Failed to load analytics:", e);
@@ -129,7 +132,7 @@ export default function AdminAnalytics() {
         })}
       </div>
 
-      <div style={{ background: "var(--bg-3)", borderRadius: 12, padding: 16 }}>
+      <div style={{ background: "var(--bg-3)", borderRadius: 12, padding: 16, marginBottom: 16 }}>
         <div style={{ fontSize: 13, fontWeight: 700, color: "var(--text-muted)", marginBottom: 12, textTransform: "uppercase", letterSpacing: 1 }}>Sessions (Last 7 Days)</div>
         <div style={{ display: "flex", alignItems: "flex-end", gap: 8, height: 100 }}>
           {data.last7Days.map((d) => (
@@ -140,6 +143,26 @@ export default function AdminAnalytics() {
           ))}
         </div>
       </div>
+
+      {/* Learning Patterns — real data collected as students practice */}
+      {data.patterns && data.patterns.length > 0 && (
+        <div style={{ background: "var(--bg-3)", borderRadius: 12, padding: 16 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: "var(--text-muted)", marginBottom: 12, textTransform: "uppercase", letterSpacing: 1 }}>
+            Learning Patterns — {data.patterns.length} tracked student{data.patterns.length === 1 ? "" : "s"}
+          </div>
+          <div style={{ display: "grid", gap: 8 }}>
+            {data.patterns.slice(0, 15).map((p) => (
+              <div key={p.id} style={{ background: "var(--bg-2)", borderRadius: 8, padding: "8px 12px", display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+                <span className="text-xs font-bold" style={{ color: "var(--primary)" }}>{p.id.slice(0, 8)}</span>
+                <span className="text-xs text-text-muted">Avg: {p.avgPct ?? 0}%</span>
+                <span className="text-xs text-text-muted">{p.totalSessions ?? 0} sessions</span>
+                <span className="text-xs text-text-muted">Best hour: {p.bestStudyHour || "—"}</span>
+                {p.avgPct >= 80 && <span className="text-[10px] font-bold px-1.5 py-0.5 rounded" style={{ background: "rgba(74,222,128,0.15)", color: "#4ADE80" }}>TOP</span>}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
