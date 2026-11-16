@@ -8,6 +8,7 @@ import RepetitionBadge from "../components/QuestionBank/RepetitionBadge";
 import { ChevronRight, ChevronLeft, Search, BookOpen, Download, FileSpreadsheet } from "lucide-react";
 import { exportQuestionBankCSV, exportQuestionSummaryCSV } from "../lib/questionExport";
 import { useToast } from "../components/Toast";
+import ShareButton from "../components/ShareButton";
 
 const DIFFICULTY_COLORS = { easy: "#4ADE80", medium: "#FF9F43", hard: "#FF4D6A" };
 
@@ -177,6 +178,17 @@ export default function QuestionBank() {
                           <div style={{ fontSize: 10, fontWeight: 700, color: "var(--primary)", textTransform: "uppercase", marginBottom: 6 }}>Explanation</div>
                           <p style={{ fontSize: 13, color: "var(--text)", lineHeight: 1.5, margin: 0 }}>{q.explanation}</p>
                           {q.hint && <p style={{ fontSize: 12, color: "var(--accent)", marginTop: 8, fontStyle: "italic" }}>💡 {q.hint}</p>}
+                          <div style={{ marginTop: 10 }}>
+                            <ShareButton
+                              type="question"
+                              title={q.question}
+                              options={Object.values(q.options)}
+                              answer={`${q.answer}) ${q.options[q.answer]}\n\n${q.explanation || ""}`}
+                              label="Share this question"
+                              className="btn-secondary text-xs px-3 py-1.5"
+                              compact
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>

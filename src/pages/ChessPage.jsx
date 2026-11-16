@@ -7,8 +7,10 @@ import { useAuth } from "../context/AuthContext";
 import { useToast } from "../components/Toast";
 import { useSubscription } from "../hooks/useSubscription";
 import ProGate from "../components/ProGate";
+import ShareButton from "../components/ShareButton";
 import { getBestMove, getOpeningMove, LEVELS } from "../lib/games/chessEngine";
-import { ArrowLeft, RotateCcw, Flag, Handshake, ChevronLeft, ChevronRight, Trophy, Zap, Loader2, Crown, Users } from "lucide-react";
+import { createChessResult } from "../lib/games/chessResults";
+import { ArrowLeft, RotateCcw, Flag, Handshake, ChevronLeft, ChevronRight, Trophy, Zap, Loader2, Crown, Users, Share2 } from "lucide-react";
 
 const PIECE_GLYPH = {
   w: { k: "♔", q: "♕", r: "♖", b: "♗", n: "♘", p: "♙" },
@@ -32,6 +34,8 @@ export default function ChessPage() {
   const [history, setHistory] = useState([]);
   const [result, setResult] = useState(null);
   const [playerColor] = useState("w");
+  const [shareId, setShareId] = useState(null);
+  const savedResultRef = useRef(false);
   const aiTimer = useRef(null);
 
   const playerTurn = game.turn() === playerColor;
@@ -75,9 +79,38 @@ export default function ChessPage() {
       const winner = g.turn() === "w" ? "Black" : "White";
       setResult({ winner, reason: "checkmate" });
       toast({ message: winner === "White" ? "You won by checkmate! 🎉" : "Checkmate — AI wins this one.", type: winner === "White" ? "success" : "info" });
+      saveResultCard(winner === "White" ? "checkmate" : "loss", g.history());
     } else if (g.isDraw()) {
       setResult({ winner: "Draw", reason: "draw" });
+      saveResultCard("draw", g.history());
     }
+  }
+
+  // Persist a shareable result card (once per game) for click-bait sharing.
+  async function saveResultCard(resultStr, moves) {
+    if (!user || savedResultRef.current) return;
+    savedResultRef.current = true;
+    try {
+      const id = await createChessResult({
+        uid: user.uid,
+        name: user.displayName || "Player",
+        mode: "ai",
+        levelName: LEVELS.find((l) => l.level === level)?.name || "",
+        level,
+        result: resultStr,
+        moves,
+        timeControl: "unlimited",
+        opponentName: "AI",
+      });
+      setShareId(id);
+    } catch { /* sharing is optional */ }
+  }
+
+  function shareResult() {
+    if (!shareId) { toast({ message: "Finish a game to share your result", type: "info" }); return; }
+    const link = `${window.location.origin}/chess/result/${shareId}`;
+    const msg = `I just finished a game at Level ${level} on ExamPadi Chess ♟️ Can you beat that?`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(msg + "\n" + link)}`, "_blank", "noopener,noreferrer");
   }
 
   function onSquareClick(square) {
@@ -128,12 +161,15 @@ export default function ChessPage() {
     setLegalMoves([]);
     setResult(null);
     setThinking(false);
+    setShareId(null);
+    savedResultRef.current = false;
     if (newLevel) setLevel(newLevel);
   }
 
   function resign() {
     if (gameOver || result) return;
     setResult({ winner: "AI", reason: "resignation" });
+    saveResultCard("resignation", game.history());
     toast({ message: "You resigned. Start a new game!", type: "info" });
   }
 
@@ -166,6 +202,15 @@ export default function ChessPage() {
         </div>
         <div className="flex gap-2">
           <Link to="/chess/room" className="btn-primary text-xs px-3 py-2"><Users size={14} /> Play a friend</Link>
+          <ShareButton
+            type="chess"
+            title={`Beat me at chess — Level ${level} (${LEVELS.find((l) => l.level === level)?.name})`}
+            answer={`Challenge: reach Level ${level} and win. Open ExamPadi → Games → Chess.`}
+            extra={{ level, levelName: LEVELS.find((l) => l.level === level)?.name }}
+            label="Challenge"
+            className="btn-secondary text-xs px-3 py-2"
+            compact
+          />
           <button onClick={() => reset()} className="btn-secondary text-xs px-3 py-2"><RotateCcw size={14} /> New game</button>
           <button onClick={resign} className="btn-secondary text-xs px-3 py-2" style={{ color: "var(--danger)" }}><Flag size={14} /> Resign</button>
           <button onClick={offerDraw} className="btn-secondary text-xs px-3 py-2"><Handshake size={14} /> Draw</button>
@@ -197,6 +242,16 @@ export default function ChessPage() {
             {result.winner === "Draw" ? "🤝 Draw" : result.winner === "White" ? "🎉 You won!" : "🤖 AI wins"}
           </div>
           <div className="text-xs text-text-muted mt-1">{result.reason} · <button onClick={() => reset()} className="text-primary font-semibold">Play again</button></div>
+          <div className="flex gap-2 justify-center mt-3 flex-wrap">
+            {shareId ? (
+              <>
+                <button onClick={shareResult} className="btn-primary text-xs px-4 py-2 inline-flex items-center gap-1.5"><Share2 size={13} /> Share result</button>
+                <Link to={`/chess/result/${shareId}`} className="btn-secondary text-xs px-4 py-2">View card</Link>
+              </>
+            ) : (
+              <span className="text-[10px] text-text-muted">Sign in to share your result</span>
+            )}
+          </div>
         </div>
       )}
 

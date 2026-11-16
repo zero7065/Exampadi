@@ -10,6 +10,7 @@ import ProGate from "../components/ProGate";
 import {
   createChessRoom, joinChessRoom, subscribeChessRoom, syncChessMove, finishChessRoom, resignChessRoom,
 } from "../lib/games/chessMultiplayer";
+import { createChessResult } from "../lib/games/chessResults";
 import { ArrowLeft, Copy, Check, Clock, Flag, Handshake, Users, Loader2, Share2, Crown, Timer } from "lucide-react";
 
 const PIECE_GLYPH = {
@@ -268,6 +269,29 @@ export default function ChessRoomPage() {
             {room.result === "draw" ? "🤝 Draw" : room.winnerUid === user.uid ? "🎉 You won!" : "Opponent won"}
           </div>
           <div className="text-xs text-text-muted mt-1">{room.reason || room.result} · <button onClick={() => navigate("/chess/room")} className="text-primary font-semibold">New game</button></div>
+          <button
+            onClick={async () => {
+              try {
+                const id = await createChessResult({
+                  uid: user.uid,
+                  name: user.displayName || "Player",
+                  mode: "friend",
+                  levelName: "Multitenant Match",
+                  level: 0,
+                  result: room.winnerUid === user.uid ? "win" : room.result === "draw" ? "draw" : "loss",
+                  moves: game.history(),
+                  timeControl: room.timeControl === "unlimited" ? "unlimited" : `${Math.round((room.initialSeconds || 0) / 60)} min`,
+                  opponentName: isHost ? room.guestName : room.hostName,
+                });
+                navigate(`/chess/result/${id}`);
+              } catch (e) {
+                toast({ message: e.message, type: "error" });
+              }
+            }}
+            className="btn-primary text-xs px-4 py-2 mt-3 inline-flex items-center gap-1.5"
+          >
+            <Share2 size={13} /> Share result
+          </button>
         </div>
       )}
 

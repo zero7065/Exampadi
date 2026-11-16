@@ -181,6 +181,15 @@ export async function listSchoolClasses(schoolId) {
   return snap.docs.map((d) => ({ id: d.id, ...d.data() }));
 }
 
+// Classes owned by a teacher — works for BOTH school teachers and independent
+// teachers (no school). Provable against the firestore rule teacherId==uid.
+export async function listTeacherClasses(teacherId) {
+  needDb();
+  if (!teacherId) return [];
+  const snap = await getDocs(query(collection(db, "classes"), where("teacherId", "==", teacherId), limit(50)));
+  return snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+}
+
 export async function getClass(classId) {
   needDb();
   const snap = await getDoc(doc(db, "classes", classId));

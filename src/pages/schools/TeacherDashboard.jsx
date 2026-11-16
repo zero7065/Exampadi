@@ -4,9 +4,9 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { useToast } from "../../components/Toast";
-import { getUserProfile } from "../../lib/userProfile";
+import { getUserProfile, updateUserProfile } from "../../lib/userProfile";
 import {
-  listSchoolClasses, createClass, createClassInvite, getClass, updateClassSettings,
+  listSchoolClasses, listTeacherClasses, createClass, createClassInvite, getClass, updateClassSettings,
   saveTeacherNote, getTeacherNote, createLessonPlan, listLessonPlans, deleteLessonPlan,
 } from "../../lib/schools";
 import { collection, query, where, getDocs, limit } from "firebase/firestore";
@@ -92,13 +92,30 @@ export default function TeacherDashboard() {
 
   const schoolId = profile?.schoolId;
 
+  // Independent teachers (no school) get an automatic personal workspace so
+  // every class / invite / roster tool works without joining a school.
+  const isIndependent = Boolean(profile?.role === "teacher" && !profile?.schoolId);
+
   useEffect(() => {
-    if (!schoolId) return;
-    // Auto-join the school community group (idempotent)
-    ensureSchoolCommunity({ schoolId, schoolName: profile?.schoolName || "", managementId: schoolId })
-      .then(() => joinCommunity({ groupId: schoolId, uid: user?.uid, name: profile?.name || user?.displayName, role: "teacher" }))
+    if (!user || !profile) return;
+    if (profile.role !== "teacher" || profile.schoolId) return;
+    const personal = `personal_${user.uid}`;
+    const schoolName = `${profile.name || "Teacher"}'s Classroom`;
+    updateUserProfile(user.uid, { schoolId: personal, schoolName, independent: true })
+      .then(() => setProfile((p) => ({ ...(p || {}), schoolId: personal, schoolName, independent: true })))
       .catch(() => {});
-    listSchoolClasses(schoolId).then((cs) => {
+  }, [user, profile]);
+
+  useEffect(() => {
+    if (!schoolId || !user) return;
+    // Auto-join the school community group only for real schools (not personal)
+    if (!schoolId.startsWith("personal_")) {
+      ensureSchoolCommunity({ schoolId, schoolName: profile?.schoolName || "", managementId: schoolId })
+        .then(() => joinCommunity({ groupId: schoolId, uid: user.uid, name: profile?.name || user?.displayName, role: "teacher" }))
+        .catch(() => {});
+    }
+    // List classes owned by this teacher — works for school + independent alike.
+    listTeacherClasses(user.uid).then((cs) => {
       setClasses(cs);
       if (cs.length > 0) setClassId(cs[0].id);
       else {
@@ -111,7 +128,7 @@ export default function TeacherDashboard() {
       setLoading(false);
     });
 
-  }, [schoolId, toast]);
+  }, [schoolId, user, toast]);
 
   // Load teachers for this school
   useEffect(() => {
@@ -509,12 +526,11 @@ export default function TeacherDashboard() {
     }
   }
 
-  if (profile && !schoolId) {
+  if (profile && profile.role === "teacher" && !schoolId) {
     return (
       <div className="page-content max-w-2xl mx-auto text-center space-y-4">
-        <h1 className="text-2xl font-black text-text">Teacher Dashboard</h1>
-        <p className="text-text-muted">Your account isn't linked to a school yet. Ask your admin to assign your teacher role and school, or register one below.</p>
-        <Link to="/schools/signup" className="btn-primary inline-flex px-6">Register a school</Link>
+        <Loader2 className="animate-spin mx-auto" size={26} style={{ color: "var(--primary)" }} />
+        <p className="text-text-muted">Setting up your teacher workspace…</p>
       </div>
     );
   }
@@ -528,7 +544,10 @@ export default function TeacherDashboard() {
       <header className="flex flex-wrap items-center gap-3 justify-between">
         <div>
           <h1 className="text-2xl font-black text-text">Teacher Dashboard</h1>
-          <p className="text-sm text-text-muted">{roster.length} students · {topics.length} tracked topics</p>
+          <p className="text-sm text-text-muted">
+            {roster.length} students · {topics.length} tracked topics
+            {isIndependent && <span style={{ marginLeft: 8, fontSize: 10, fontWeight: 800, padding: "2px 8px", borderRadius: 6, background: "rgb(var(--accent-rgb) / 0.15)", color: "var(--accent)" }}>INDEPENDENT WORKSPACE</span>}
+          </p>
         </div>
         <div className="flex gap-2 flex-wrap">
           <select value={classId} onChange={(e) => setClassId(e.target.value)} className="input-field" style={{ maxWidth: 220 }}>

@@ -8,6 +8,7 @@ import { useToast } from "../components/Toast";
 import ProGate from "../components/ProGate";
 import { TRIVIA_QUESTIONS, BRAIN_TEASERS, PATTERNS, GAME_CATEGORIES } from "../data/games";
 import { getPartners } from "../lib/studyPartners";
+import ShareButton from "../components/ShareButton";
 import {
   createChallenge, subscribeIncomingChallenges, respondChallenge,
 } from "../lib/games/challenges";
@@ -213,8 +214,17 @@ function GamePlayer({ category, idx, score, picked, showAnswer, teaserAnswer, se
           })}
         </div>
         {picked !== null && (
-          <div className="flex gap-2">
+          <div className="flex gap-2 flex-wrap">
             <button onClick={onNext} className="btn-primary flex-1">{idx + 1 >= TRIVIA_QUESTIONS.length ? "Finish" : "Next"} →</button>
+            <ShareButton
+              type="trivia"
+              title={q.q}
+              options={q.o}
+              answer={`${String.fromCharCode(65 + q.a)}) ${q.o[q.a]}`}
+              label="Challenge a friend"
+              className="btn-secondary px-3"
+              compact
+            />
             <button onClick={onBack} className="btn-secondary px-4">Exit</button>
           </div>
         )}
@@ -248,8 +258,16 @@ function GamePlayer({ category, idx, score, picked, showAnswer, teaserAnswer, se
               <div className="text-lg font-bold">{t.a}</div>
               <div className="text-xs text-text-muted mt-1">💡 {t.hint}</div>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 flex-wrap">
               <button onClick={onNext} className="btn-primary flex-1">{idx + 1 >= BRAIN_TEASERS.length ? "Finish" : "Next"} →</button>
+              <ShareButton
+                type="teaser"
+                title={t.q}
+                answer={`${t.a}\n\n💡 ${t.hint}`}
+                label="Challenge a friend"
+                className="btn-secondary px-3"
+                compact
+              />
               <button onClick={onBack} className="btn-secondary px-4">Exit</button>
             </div>
           </div>
@@ -285,8 +303,16 @@ function GamePlayer({ category, idx, score, picked, showAnswer, teaserAnswer, se
               <div className="text-2xl font-black">{p.answer}</div>
               <div className="text-xs text-text-muted mt-1">{p.rule}</div>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 flex-wrap">
               <button onClick={onNext} className="btn-primary flex-1">{idx + 1 >= PATTERNS.length ? "Finish" : "Next"} →</button>
+              <ShareButton
+                type="teaser"
+                title={`What comes next? ${p.seq}`}
+                answer={`${p.answer}\n\n${p.rule}`}
+                label="Challenge a friend"
+                className="btn-secondary px-3"
+                compact
+              />
               <button onClick={onBack} className="btn-secondary px-4">Exit</button>
             </div>
           </div>

@@ -39,6 +39,9 @@ export default function LandingNav({ user }) {
               >{item}</a>
             ))}
           </div>
+          <Link to="/teacher/register" style={{ padding: "10px 16px", fontSize: 14, fontWeight: 700, color: "var(--accent)", textDecoration: "none", borderRadius: 10, border: "1px solid rgb(var(--accent-rgb) / 0.35)", background: "rgb(var(--accent-rgb) / 0.08)" }}>
+            For Teachers
+          </Link>
           <Link to={user ? "/dashboard" : "/auth"} className="lp-btn-primary" style={{ padding: "10px 24px", fontSize: 14 }}>
             {user ? "Dashboard" : "Sign In"} <ArrowRight size={16} />
           </Link>
@@ -61,6 +64,9 @@ export default function LandingNav({ user }) {
               textDecoration: "none", borderBottom: "1px solid var(--border)",
             }}>{item}</a>
           ))}
+          <Link to="/teacher/register" onClick={() => setMenuOpen(false)} style={{ padding: "12px 8px", fontSize: 15, fontWeight: 700, color: "var(--accent)", textDecoration: "none" }}>
+            👩‍🏫 For Teachers
+          </Link>
         </div>
       )}
     </nav>

@@ -329,12 +329,14 @@ service cloud.firestore {
         || (resource.data.keys().hasAny(["schoolId", "orgId"]) && hasOrgId(resource.data.orgId || resource.data.schoolId))
       );
       // Teachers create their own classes; admin can create for any teacher.
-      allow create: if request.auth != null
-        && (isTeacher() || isAdmin())
-        && hasOrgId(request.resource.data.orgId || request.resource.data.schoolId)
-        && (isAdmin()
-            || (request.resource.data.createdBy == request.auth.uid
-                && request.resource.data.get("teacherId", "") == request.auth.uid));
+      // A teacher may create a class they own WITHOUT a school orgId (independent
+      // teachers get an auto personal workspace).
+      allow create: if request.auth != null && (
+        isAdmin()
+        || (isTeacher()
+            && request.resource.data.createdBy == request.auth.uid
+            && request.resource.data.get("teacherId", "") == request.auth.uid)
+      );
       // Class owner/teacher or admin. Students are added by the server join
       // endpoint (Admin SDK), never by self-writing the students array.
       allow update: if request.auth != null && (
@@ -933,6 +935,22 @@ service cloud.firestore {
         || isAdmin()
       );
       allow delete: if isAdmin();
+    }
+
+    // ─── SHARED ITEMS (public questions/teasers/chess challenges) ───
+    match /sharedItems/{itemId} {
+      allow read: if true;
+      allow create: if request.auth != null && request.resource.data.sharerUid == request.auth.uid;
+      allow delete: if isAdmin() || (request.auth != null && resource.data.sharerUid == request.auth.uid);
+    }
+
+    // ─── CHESS RESULTS (public shareable performance cards) ───
+    match /chessResults/{resultId} {
+      allow read: if true;
+      allow create: if request.auth != null && request.resource.data.uid == request.auth.uid;
+      allow update: if request.auth != null
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["likes", "likeCount"]);
+      allow delete: if isAdmin() || (request.auth != null && resource.data.uid == request.auth.uid);
     }
 
     // ─── CHESS ROOMS (multiplayer) ───

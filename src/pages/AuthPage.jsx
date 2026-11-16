@@ -7,6 +7,7 @@ import { isTeacherRole } from "../lib/roles";
 import Logo from "../components/Logo";
 import { Eye, EyeOff, HelpCircle, User, Lock, Building2, Key } from "lucide-react";
 import { captureRefCodeFromUrl, attributePartnerRef } from "../lib/partner";
+import { captureFriendRefFromUrl, redeemFriendRef } from "../lib/friendShare";
 import { loadBranding } from "../lib/branding";
 
 export default function AuthPage() {
@@ -35,28 +36,51 @@ export default function AuthPage() {
     loadBranding().then((b) => setBranding(b));
   }, []);
 
+  // Deep link: /auth?role=teacher preselects the teacher signup path.
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("role") === "teacher") {
+        setMode("signup");
+        setAccountType("teacher");
+      }
+    } catch { /* ignore */ }
+  }, []);
+
   useEffect(() => {
     captureRefCodeFromUrl();
+    captureFriendRefFromUrl();
   }, []);
 
   useEffect(() => {
     if (user && !didRedirect.current) {
       didRedirect.current = true;
       attributePartnerRef(user).catch(() => {});
-        getUserProfile(user.uid)
-          .then((profile) => {
-            const isTeacher = isTeacherRole(profile, user);
-            if (isTeacher) {
-              navigate("/teacher", { replace: true });
-            } else if (profile?.onboarded) {
-              navigate("/dashboard", { replace: true });
-            } else {
-              navigate("/onboarding", { replace: true });
-            }
-          })
-          .catch(() => {
+      // Read ?next= (e.g. back to a shared item) to return the user there.
+      let next = null;
+      try { next = new URLSearchParams(window.location.search).get("next"); } catch { /* ignore */ }
+      getUserProfile(user.uid)
+        .then((profile) => {
+          // Auto-connect to the friend who shared the link.
+          redeemFriendRef(user)
+            .then((res) => {
+              if (res) toast({ message: `You're now connected with ${res.partnerName} — find them in Study Partners!`, type: "success" });
+            })
+            .catch(() => {});
+          const isTeacher = isTeacherRole(profile, user);
+          if (next && next.startsWith("/")) {
+            navigate(next, { replace: true });
+          } else if (isTeacher) {
+            navigate("/teacher", { replace: true });
+          } else if (profile?.onboarded) {
+            navigate("/dashboard", { replace: true });
+          } else {
             navigate("/onboarding", { replace: true });
-          });
+          }
+        })
+        .catch(() => {
+          navigate(next && next.startsWith("/") ? next : "/onboarding", { replace: true });
+        });
     }
   }, [user, navigate]);
 
@@ -619,7 +643,17 @@ export default function AuthPage() {
                   <div style={{ flex: 1, height: 1, background: "var(--border)" }} />
                 </div>
 
-                {mode === "signup" && (
+            {mode === "signin" && (
+              <button
+                type="button"
+                onClick={() => { setMode("signup"); setAccountType("teacher"); setErrors({}); }}
+                style={{ width: "100%", marginBottom: 16, background: "rgb(var(--accent-rgb) / 0.08)", border: "1px solid rgb(var(--accent-rgb) / 0.3)", borderRadius: 10, padding: "10px", color: "var(--accent)", fontWeight: 700, fontSize: 13, cursor: "pointer", fontFamily: "inherit" }}
+              >
+                👩‍🏫 I'm a teacher — create a free teacher account
+              </button>
+            )}
+
+            {mode === "signup" && (
                 <>
                   <div style={{ marginBottom: 16, textAlign: "center" }}>
                     <button
