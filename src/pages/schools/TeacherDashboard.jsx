@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { useToast } from "../../components/Toast";
+import { useSubscription } from "../../hooks/useSubscription";
 import { getUserProfile, updateUserProfile } from "../../lib/userProfile";
 import {
   listSchoolClasses, listTeacherClasses, createClass, createClassInvite, getClass, updateClassSettings,
@@ -33,6 +34,7 @@ function cellColor(acc) {
 export default function TeacherDashboard() {
   const { user } = useAuth();
   const { toast } = useToast();
+  const { isPro } = useSubscription();
   const [profile, setProfile] = useState(null);
   const [classes, setClasses] = useState([]);
   const [classId, setClassId] = useState("");
@@ -551,8 +553,9 @@ export default function TeacherDashboard() {
         </div>
         <div className="flex gap-2 flex-wrap">
           <select value={classId} onChange={(e) => setClassId(e.target.value)} className="input-field" style={{ maxWidth: 220 }}>
-            {classes.map((c) => <option key={c.id} value={c.id}>{c.name} · {c.subject}</option>)}
+            {classes.map((c) => <option key={c.id} value={c.id}>{c.name} A� {c.subject}</option>)}
           </select>
+          <Link to="/teacher/profile" className="btn-secondary px-4 text-sm flex items-center gap-1.5"><Users size={15} /> My Profile</Link>
           <button onClick={() => setShowCreate(true)} className="btn-secondary px-4 text-sm"><Plus size={15} /> Class</button>
           <button onClick={() => setShowSettings(true)} disabled={!classId} className="btn-secondary px-4 text-sm disabled:opacity-50"><Settings2 size={15} /> Settings</button>
           <button onClick={handleInvite} className="btn-secondary px-4 text-sm"><Users size={15} /> Invite code</button>
@@ -560,6 +563,17 @@ export default function TeacherDashboard() {
           <Link to="/teacher/reviews" className="btn-secondary px-4 text-sm flex items-center gap-1.5"><Inbox size={15} /> Reviews</Link>
         </div>
       </header>
+
+      {!isPro && (
+        <div className="glass-card p-4 flex items-center justify-between gap-3 flex-wrap" style={{ borderColor: "rgb(var(--accent-rgb) / 0.4)", background: "linear-gradient(120deg, rgb(var(--accent-rgb) / 0.10), var(--bg-2))" }}>
+          <div>
+            <div className="font-black text-text flex items-center gap-1.5"><Sparkles size={15} className="text-accent" /> Unlock Teacher Pro</div>
+            <div className="text-xs text-text-muted">₦3,500/month unlocks AI lesson plans, PDF exams, classroom mode & parent reports.</div>
+          </div>
+          <Link to="/payment" className="btn-primary text-sm px-4 py-2">Upgrade</Link>
+        </div>
+      )}
+
 
       {inviteCode && (
         <div className="glass-card p-4 flex items-center gap-3 flex-wrap">

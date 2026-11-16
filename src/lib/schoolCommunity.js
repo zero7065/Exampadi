@@ -143,6 +143,17 @@ export async function joinUserGroup(groupId, uid) {
   });
 }
 
+export async function leaveUserGroup(groupId, uid) {
+  needDb();
+  const ref = doc(db, "userGroups", groupId);
+  const snap = await getDoc(ref);
+  if (!snap.exists()) return;
+  const data = snap.data();
+  if (!data.members?.includes(uid)) return;
+  const members = data.members.filter((x) => x !== uid);
+  await updateDoc(ref, { members, memberCount: members.length });
+}
+
 export function subscribeUserGroups(cb, max = 30) {
   if (!db) { cb([]); return () => {}; }
   return onSnapshot(

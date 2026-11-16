@@ -9,7 +9,7 @@ import { askGroq } from "../lib/ai";
 import {
   subscribeCommunity, subscribeCommunityMembers, subscribeCommunityChat,
   sendCommunityMessage, deleteCommunityMessage,
-  subscribeUserGroups, createUserGroup, joinUserGroup,
+  subscribeUserGroups, createUserGroup, joinUserGroup, leaveUserGroup,
   subscribeUserGroupChat, sendUserGroupMessage,
 } from "../lib/schoolCommunity";
 import { ArrowLeft, Send, Users, Sparkles, Plus, MessageCircle, Bot, User, Trash2, Hash, Loader2 } from "lucide-react";
@@ -133,20 +133,23 @@ export default function CommunityPage() {
     }
   }
 
-  if (!groupId) {
-    return (
-      <div className="page-content max-w-2xl mx-auto">
-        <Link to="/dashboard" className="inline-flex items-center gap-1.5 text-sm font-semibold mb-4" style={{ color: "var(--text-muted)" }}>
-          <ArrowLeft size={16} /> Dashboard
-        </Link>
-        <div className="glass-card p-10 text-center">
-          <Users size={48} className="mx-auto mb-4" style={{ color: "var(--text-muted)" }} />
-          <h2 className="text-xl font-black mb-2">No school community yet</h2>
-          <p className="text-sm text-text-muted mb-4">Join a school with your school code (from your teacher or school admin) to unlock your private community group.</p>
-          <Link to="/settings" className="btn-primary inline-flex">Add school code</Link>
-        </div>
-      </div>
-    );
+  async function handleJoinGroup(g) {
+    if (!user) return;
+    try {
+      if (!g.members?.includes(user.uid)) await joinUserGroup(g.id, user.uid);
+      setActiveGroup(g.id);
+    } catch (e) {
+      toast({ message: e.message || "Could not join group", type: "error" });
+    }
+  }
+
+  async function handleLeaveGroup(g) {
+    try {
+      await leaveUserGroup(g.id, user.uid);
+      if (activeGroup === g.id) setActiveGroup(null);
+    } catch (e) {
+      toast({ message: e.message || "Could not leave group", type: "error" });
+    }
   }
 
   return (
@@ -155,13 +158,18 @@ export default function CommunityPage() {
         <div className="flex items-center gap-2">
           <Link to="/dashboard" className="p-2 rounded-lg hover:bg-subtle" aria-label="Back"><ArrowLeft size={18} /></Link>
           <div>
-            <h1 className="text-xl font-black flex items-center gap-2"><Hash size={18} className="text-primary" /> {community?.schoolName || "School Community"}</h1>
-            <p className="text-xs text-text-muted">{members.length} member{members.length === 1 ? "" : "s"} · students & teachers</p>
+            <h1 className="text-xl font-black flex items-center gap-2"><Hash size={18} className="text-primary" /> {groupId ? (community?.schoolName || "School Community") : "Groups & Community"}</h1>
+            <p className="text-xs text-text-muted">
+              {groupId ? `${members.length} member${members.length === 1 ? "" : "s"} · students & teachers` : `${userGroups.length} group${userGroups.length === 1 ? "" : "s"} · join any group`}
+            </p>
           </div>
         </div>
-        <button onClick={() => setShowCreate((s) => !s)} className="btn-secondary text-xs px-3 py-2">
-          <Plus size={14} /> New Group
-        </button>
+        <div className="flex gap-2">
+          <Link to="/dashboard" className="btn-secondary text-xs px-3 py-2">Dashboard</Link>
+          <button onClick={() => setShowCreate((s) => !s)} className="btn-primary text-xs px-3 py-2">
+            <Plus size={14} /> New Group
+          </button>
+        </div>
       </div>
 
       {/* Welcome banner */}
@@ -172,7 +180,7 @@ export default function CommunityPage() {
       )}
 
       <div className="grid lg:grid-cols-[1fr_300px] gap-4">
-        {/* Chat area */}
+        {groupId ? (
         <div className="glass-card p-4 flex flex-col" style={{ minHeight: 420 }}>
           <div className="flex items-center justify-between gap-2 mb-3 flex-wrap">
             <h2 className="font-black text-sm flex items-center gap-1.5"><MessageCircle size={15} className="text-primary" /> Community chat</h2>
@@ -220,9 +228,18 @@ export default function CommunityPage() {
             <button onClick={send} disabled={sending || !text.trim()} className="btn-primary px-4"><Send size={16} /></button>
           </div>
         </div>
+        ) : (
+          <div className="glass-card p-6 text-center flex flex-col items-center justify-center" style={{ minHeight: 420 }}>
+            <Users size={40} className="mb-3" style={{ color: "var(--text-muted)" }} />
+            <h2 className="text-lg font-black mb-1">Join your school community</h2>
+            <p className="text-sm text-text-muted mb-3 max-w-xs">Add your school code in Settings to unlock your private school group chat with classmates and teachers. You can still join student groups on the right.</p>
+            <Link to="/settings" className="btn-primary text-sm px-4 py-2">Add school code</Link>
+          </div>
+        )}
 
         {/* Sidebar: members + groups */}
         <div className="space-y-4">
+          {groupId && (
           <div className="glass-card p-4">
             <h3 className="font-black text-xs uppercase tracking-widest text-text-muted mb-2 flex items-center gap-1"><Users size={12} /> Members</h3>
             <div className="space-y-1.5 max-h-48 overflow-y-auto">
@@ -237,16 +254,32 @@ export default function CommunityPage() {
               ))}
             </div>
           </div>
+          )}
 
           <div className="glass-card p-4">
             <h3 className="font-black text-xs uppercase tracking-widest text-text-muted mb-2 flex items-center gap-1"><Hash size={12} /> Student Groups</h3>
             {userGroups.length === 0 && <p className="text-xs text-text-muted">No groups yet. Create one!</p>}
-            <div className="space-y-1">
-              {userGroups.map((g) => (
-                <button key={g.id} onClick={() => setActiveGroup(g.id)} className="w-full text-left px-2 py-1.5 rounded-lg text-xs font-semibold transition-colors" style={{ background: activeGroup === g.id ? "rgb(var(--primary-rgb) / 0.15)" : "transparent", color: activeGroup === g.id ? "var(--primary)" : "var(--text)" }}>
-                  #{g.name}
-                </button>
-              ))}
+            <div className="space-y-1.5">
+              {userGroups.map((g) => {
+                const joined = user?.uid && g.members?.includes(user.uid);
+                return (
+                  <div key={g.id} className="flex items-center gap-1.5">
+                    <button
+                      onClick={() => handleJoinGroup(g)}
+                      className="flex-1 text-left px-2 py-1.5 rounded-lg text-xs font-semibold transition-colors truncate"
+                      style={{ background: activeGroup === g.id ? "rgb(var(--primary-rgb) / 0.15)" : "transparent", color: activeGroup === g.id ? "var(--primary)" : "var(--text)" }}
+                    >
+                      #{g.name}
+                      <span className="ml-1 opacity-60" style={{ fontSize: 9 }}>{g.memberCount || g.members?.length || 0}</span>
+                    </button>
+                    {joined ? (
+                      <button onClick={() => handleLeaveGroup(g)} title="Leave group" className="text-[10px] px-1.5 py-1 rounded" style={{ color: "var(--danger)", background: "rgba(255,77,106,0.1)" }}>Leave</button>
+                    ) : (
+                      <button onClick={() => handleJoinGroup(g)} className="text-[10px] px-2 py-1 rounded font-bold" style={{ color: "var(--primary)", background: "rgb(var(--primary-rgb) / 0.12)" }}>Join</button>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
