@@ -1,15 +1,15 @@
 rules_version = '2';
 service firebase.storage {
   match /b/{bucket}/o {
-    // Landing media — public read; any signed-in admin can write.
+    // Landing media — public read; any signed-in admin can write (50MB cap).
     // The Admin page itself is gated by isAdmin() (email or VITE_ADMIN_UIDS),
     // so only admins reach this UI. File type + size are still enforced here.
     // Deploy: firebase deploy --only storage
     match /landing/{fileName} {
       allow read: if true;
       allow write: if request.auth != null
-        && request.resource.size < 2 * 1024 * 1024
-        && request.resource.contentType.matches("image/.*");
+        && request.resource.size < 50 * 1024 * 1024
+        && request.resource.contentType.matches("image/.*|video/.*");
       allow delete: if request.auth != null;
     }
     // Avatars — public read, owner-only write (2MB image cap).

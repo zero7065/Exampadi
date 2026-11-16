@@ -5,3 +5,7 @@ export function isTeacherRole(profile, user) {
   if (checkAdmin(user)) return true;
   return profile?.role === "teacher";
 }
+
+export function isManagementRole(profile) {
+  return profile?.role === "management";
+}

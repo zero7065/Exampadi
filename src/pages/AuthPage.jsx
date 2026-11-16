@@ -8,7 +8,7 @@ import Logo from "../components/Logo";
 import { Eye, EyeOff, HelpCircle, User, Lock, Building2, Key } from "lucide-react";
 import { captureRefCodeFromUrl, attributePartnerRef } from "../lib/partner";
 import { captureFriendRefFromUrl, redeemFriendRef } from "../lib/friendShare";
-import { loadBranding } from "../lib/branding";
+import { loadBranding, BACKGROUND_PRESETS } from "../lib/branding";
 
 export default function AuthPage() {
   const navigate = useNavigate();
@@ -70,6 +70,8 @@ export default function AuthPage() {
           const isTeacher = isTeacherRole(profile, user);
           if (next && next.startsWith("/")) {
             navigate(next, { replace: true });
+          } else if (profile?.role === "management") {
+            navigate("/management", { replace: true });
           } else if (isTeacher) {
             navigate("/teacher", { replace: true });
           } else if (profile?.onboarded) {
@@ -250,14 +252,18 @@ export default function AuthPage() {
     transition: "border 0.2s",
   });
 
+  const presetBg = branding?.backgroundPreset ? BACKGROUND_PRESETS[branding.backgroundPreset] : null;
+
   return (
     <div style={{
       minHeight: "100vh",
-      background: branding?.backgroundImageUrl
-        ? `linear-gradient(rgba(244,241,234,0.75), rgba(244,241,234,0.75)), url(${branding.backgroundImageUrl})`
+      background: presetBg
+        ? presetBg
+        : branding?.backgroundImageUrl
+        ? `linear-gradient(rgba(10,12,20,0.55), rgba(10,12,20,0.55)), url(${branding.backgroundImageUrl})`
         : "var(--bg)",
-      backgroundSize: branding?.backgroundImageUrl ? "cover" : "auto",
-      backgroundPosition: branding?.backgroundImageUrl ? "center" : "center",
+      backgroundSize: branding?.backgroundImageUrl && !presetBg ? "cover" : "auto",
+      backgroundPosition: "center",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",

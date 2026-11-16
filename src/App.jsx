@@ -6,6 +6,7 @@ import { PresenceProvider } from "./context/PresenceContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminRoute from "./components/AdminRoute";
 import TeacherRoute from "./components/TeacherRoute";
+import ManagementRoute from "./components/ManagementRoute";
 import Navbar from "./components/Navbar";
 import ScrollToTop from "./components/ScrollToTop";
 import InstallPrompt from "./components/InstallPrompt";
@@ -68,6 +69,7 @@ const LegendModePage = lazy(() => import("./pages/LegendModePage"));
 const ChessRoomPage = lazy(() => import("./pages/ChessRoomPage"));
 const ChessResultPage = lazy(() => import("./pages/ChessResultPage"));
 const SharePage = lazy(() => import("./pages/SharePage"));
+const ManagementPage = lazy(() => import("./pages/ManagementPage"));
 const SharedTestPage = lazy(() => import("./pages/SharedTestPage"));
 const StudentAssignments = lazy(() => import("./pages/StudentAssignments"));
 const SchoolsLanding = lazy(() => import("./pages/schools/SchoolsLanding"));
@@ -150,6 +152,7 @@ function AuthAwareRoutes() {
       "/chess/room/:code": "Chess Room — ExamPadi",
       "/chess/result/:id": "Chess Result — ExamPadi",
       "/share/:id": "Shared with you — ExamPadi",
+      "/management": "School Management — ExamPadi",
       "/legend": "Legend Mode — ExamPadi",
       "/shared-test": "Shared Test — ExamPadi",
       "/assignment": "Assignments — ExamPadi",
@@ -282,7 +285,7 @@ function AuthAwareRoutes() {
 
           {/* Teacher (role-gated) */}
           <Route path="/teacher" element={<TeacherRoute><TeacherDashboard /></TeacherRoute>} />
-          <Route path="/teacher/exam-generator" element={<TeacherRoute><ExamGenerator /></TeacherRoute>} />
+          <Route path="/management" element={<ManagementRoute><ManagementPage /></ManagementRoute>} />          <Route path="/teacher/exam-generator" element={<TeacherRoute><ExamGenerator /></TeacherRoute>} />
           <Route path="/teacher/classroom" element={<TeacherRoute><ClassroomMode /></TeacherRoute>} />
           <Route path="/teacher/reviews" element={<TeacherRoute><ReviewInbox /></TeacherRoute>} />
           <Route path="/teacher/parent-reports" element={<TeacherRoute><ParentReports /></TeacherRoute>} />

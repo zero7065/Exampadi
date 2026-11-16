@@ -362,6 +362,25 @@ export default function Dashboard() {
           </button>
         </div>
 
+        {/* Streak & achievements (persisted on the user profile) */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 16, marginBottom: 24 }}>
+          <div style={{ background: "linear-gradient(135deg, rgba(249,115,22,0.12), rgba(239,68,68,0.05))", border: "1px solid rgba(249,115,22,0.3)", borderRadius: 16, padding: 18, display: "flex", alignItems: "center", gap: 12 }}>
+            <span style={{ fontSize: 30 }}>🔥</span>
+            <div>
+              <div style={{ fontSize: 24, fontWeight: 800, color: "#fff" }}>{streak} day{streak === 1 ? "" : "s"}</div>
+              <div style={{ fontSize: 12, color: "var(--text-muted)" }}>Current streak — practice daily to keep it alive</div>
+            </div>
+          </div>
+          <div style={{ background: "linear-gradient(135deg, rgba(99,102,241,0.12), rgba(168,85,247,0.05))", border: "1px solid rgba(99,102,241,0.3)", borderRadius: 16, padding: 18, display: "flex", alignItems: "center", gap: 12, cursor: "pointer" }}
+            onClick={() => navigate("/progress")}>
+            <span style={{ fontSize: 30 }}>🏅</span>
+            <div>
+              <div style={{ fontSize: 24, fontWeight: 800, color: "#fff" }}>{(profile?.achievements || []).length} badge{(profile?.achievements || []).length === 1 ? "" : "s"}</div>
+              <div style={{ fontSize: 12, color: "var(--text-muted)" }}>Achievements unlocked — tap to view all</div>
+            </div>
+          </div>
+        </div>
+
         {/* School Community + Games banner */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 16, marginBottom: 40 }}>
           <div

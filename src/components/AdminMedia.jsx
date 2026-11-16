@@ -18,7 +18,7 @@ const SLOT_LABELS = {
   aiTutor: "AI Tutor screen",
 };
 
-function downscaleImage(file, maxDim = 800, quality = 0.8) {
+function downscaleImage(file, maxDim = 1600, quality = 0.85) {
   return new Promise((resolve, reject) => {
     const url = URL.createObjectURL(file);
     const img = new Image();
@@ -75,11 +75,15 @@ export default function AdminMedia() {
       toast({ message: "Please choose an image file", type: "warning" });
       return;
     }
+    if (file.size > 50 * 1024 * 1024) {
+      toast({ message: "Image is over 50MB — please choose a smaller file", type: "warning" });
+      return;
+    }
     setUploading((u) => ({ ...u, [slot]: true }));
     try {
       const blob = await downscaleImage(file);
-      if (blob.size > 400 * 1024) {
-        toast({ message: "Image still large after compression — try a smaller file", type: "warning" });
+      if (blob.size > 2 * 1024 * 1024) {
+        toast({ message: "Large after compression — try a smaller file", type: "warning" });
       }
       const storage = getAppStorage();
       const path = `landing/${slot}-${crypto.randomUUID()}.jpg`;
@@ -116,9 +120,9 @@ export default function AdminMedia() {
   return (
     <div>
       <p style={{ color: "var(--text-muted)", fontSize: 13, margin: "0 0 16px", lineHeight: 1.6 }}>
-        Upload landing page images. Each slot falls back automatically:
+        Upload landing page images (max 50MB each). Each slot falls back automatically:
         your upload → bundled screenshot → code-drawn mockup.
-        Images are compressed to ≤800px JPEG on upload.
+        Images are compressed to ≤1600px JPEG on upload.
       </p>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 16 }}>
         {LANDING_SLOTS.map((slot) => (

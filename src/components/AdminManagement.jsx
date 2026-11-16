@@ -1,5 +1,6 @@
-// AdminManagement — create management logins, oversee school performance.
-// Management accounts are school-scoped, invisible to other admins.
+// AdminManagement — management logins are ONLY created for a registered,
+// approved school. Creating one also generates a teacher login code for the
+// school. Management accounts are school-scoped and invisible to other admins.
 import { useState, useEffect } from "react";
 import { useToast } from "./Toast";
 import { useAuth } from "../context/AuthContext";
@@ -7,9 +8,10 @@ import {
   createManagementAccount, subscribeManagementAccounts,
   setManagementStatus, deleteManagementAccount,
 } from "../lib/management";
+import { createTeacherInvite } from "../lib/teacherInvites";
 import { collection, query, where, getDocs, orderBy, limit } from "firebase/firestore";
 import { db } from "../firebaseConfig";
-import { Shield, Plus, Loader2, Trash2, Power, Building2, Users, Activity, Mail } from "lucide-react";
+import { Shield, Plus, Loader2, Trash2, Power, Building2, Users, Activity, Mail, KeyRound, CheckCircle2 } from "lucide-react";
 
 export default function AdminManagement() {
   const { toast } = useToast();
@@ -18,7 +20,8 @@ export default function AdminManagement() {
   const [schools, setSchools] = useState([]);
   const [loading, setLoading] = useState(true);
   const [creating, setCreating] = useState(false);
-  const [form, setForm] = useState({ email: "", password: "", name: "", schoolId: "", schoolName: "" });
+  const [form, setForm] = useState({ email: "", password: "", name: "", schoolId: "" });
+  const [issued, setIssued] = useState(null); // { email, password, schoolName, teacherCode }
 
   useEffect(() => {
     const unsub = subscribeManagementAccounts(setAccounts);
@@ -29,32 +32,71 @@ export default function AdminManagement() {
 
   async function loadSchools() {
     try {
-      const snap = await getDocs(query(collection(db, "schools"), orderBy("createdAt", "desc"), limit(50)));
+      const snap = await getDocs(query(collection(db, "schools"), where("status", "==", "approved"), orderBy("createdAt", "desc"), limit(50)));
       setSchools(snap.docs.map((d) => ({ id: d.id, ...d.data() })));
-    } catch (e) { console.warn(e); }
+    } catch (e) {
+      // Fallback: some schools may lack createdAt — load all approved without order.
+      try {
+        const snap2 = await getDocs(query(collection(db, "schools"), where("status", "==", "approved"), limit(50)));
+        setSchools(snap2.docs.map((d) => ({ id: d.id, ...d.data() })));
+      } catch { /* ignore */ }
+    }
   }
 
   async function handleCreate() {
+    if (!form.schoolId) {
+      toast({ message: "Select a registered, approved school — management logins require a school", type: "warning" });
+      return;
+    }
     if (!form.email || !form.password || form.password.length < 6) {
       toast({ message: "Enter an email and password (min 6 chars)", type: "warning" });
       return;
     }
     setCreating(true);
     try {
-      await createManagementAccount({
+      const school = schools.find((s) => s.id === form.schoolId);
+      const result = await createManagementAccount({
         email: form.email.trim(),
         password: form.password,
-        name: form.name.trim() || "School Management",
-        schoolId: form.schoolId || null,
-        schoolName: form.schoolName || "",
+        name: form.name.trim() || `${school?.name || "School"} Management`,
+        schoolId: form.schoolId,
+        schoolName: school?.name || "",
       });
-      toast({ message: "Management account created ✓ — they can log in at /auth with this email", type: "success" });
-      setForm({ email: "", password: "", name: "", schoolId: "", schoolName: "" });
+      // Also generate a teacher login code for this school (school onboarding).
+      let teacherCode = null;
+      try {
+        const invite = await createTeacherInvite({
+          schoolId: form.schoolId,
+          schoolName: school?.name || "",
+          createdBy: "admin",
+          createdByName: "Admin",
+        });
+        teacherCode = invite.code;
+      } catch (e) {
+        console.warn("teacher code generation failed:", e?.message);
+      }
+      setIssued({ email: result.email, password: result.password, schoolName: result.schoolName, teacherCode });
+      setForm({ email: "", password: "", name: "", schoolId: "" });
+      toast({ message: "Management login created ✓", type: "success" });
     } catch (e) {
-      const msg = e.code === "auth/email-already-in-use" ? "Email already in use" : e.message;
-      toast({ message: msg, type: "error" });
+      toast({ message: e.message, type: "error" });
     } finally {
       setCreating(false);
+    }
+  }
+
+  async function generateTeacherCodeFor(school) {
+    try {
+      const invite = await createTeacherInvite({
+        schoolId: school.id,
+        schoolName: school.name || "",
+        createdBy: "admin",
+        createdByName: "Admin",
+      });
+      setIssued({ email: null, password: null, schoolName: school.name, teacherCode: invite.code });
+      toast({ message: "Teacher login code generated ✓", type: "success" });
+    } catch (e) {
+      toast({ message: e.message, error: "error" });
     }
   }
 
@@ -62,30 +104,45 @@ export default function AdminManagement() {
 
   return (
     <div className="space-y-4">
-      {/* Create management login */}
       <div className="glass-card p-5" style={{ borderColor: "rgb(var(--primary-rgb) / 0.35)" }}>
-        <div className="flex items-center gap-2 mb-3">
+        <div className="flex items-center gap-2 mb-2">
           <Shield size={18} className="text-primary" />
           <h3 className="font-black text-text">Create a management login</h3>
         </div>
         <p className="text-xs text-text-muted mb-3" style={{ lineHeight: 1.5 }}>
-          Management accounts are school-scoped logins (email + password). They approve schools, pull sync, and message their school — but never see other schools or other admins.
+          Management logins exist <strong>only for a registered, approved school</strong>. They approve their school, pull sync, message their community, and never see other schools or other admins. Creating one also issues a teacher login code for the school.
         </p>
-        <div className="grid sm:grid-cols-2 gap-2 mb-2">
-          <input value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="Email (login)" className="input-field" />
-          <input value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} type="password" placeholder="Password (min 6)" className="input-field" />
-          <input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Display name" className="input-field" />
-          <select value={form.schoolId} onChange={(e) => {
-            const s = schools.find((x) => x.id === e.target.value);
-            setForm({ ...form, schoolId: e.target.value, schoolName: s?.name || "" });
-          }} className="input-field">
-            <option value="">No school (global)</option>
-            {schools.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
-          </select>
+
+        <label className="text-xs font-bold text-text-muted mb-1 block">Registered school (required)</label>
+        <select value={form.schoolId} onChange={(e) => setForm({ ...form, schoolId: e.target.value })} className="input-field mb-2">
+          <option value="">Select an approved school…</option>
+          {schools.map((s) => <option key={s.id} value={s.id}>{s.name || "Unnamed school"} · {s.id.slice(0, 8)}</option>)}
+        </select>
+        {schools.length === 0 && (
+          <p className="text-[11px] mb-2" style={{ color: "var(--accent)" }}>
+            No approved schools yet. Register a school at <a href="/schools/signup" style={{ color: "var(--primary)", fontWeight: 700 }}>/schools/signup</a> and approve it in the schools queue first.
+          </p>
+        )}
+
+        <div className="grid sm:grid-cols-3 gap-2">
+          <input value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="Management email (login)" className="input-field" />
+          <input value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} type="text" placeholder="Temp password (min 6)" className="input-field" />
+          <input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Display name (optional)" className="input-field" />
         </div>
-        <button onClick={handleCreate} disabled={creating} className="btn-primary px-5 mt-2">
-          {creating ? <Loader2 size={15} className="animate-spin" /> : <Plus size={15} />} Create login
+        <button onClick={handleCreate} disabled={creating || !form.schoolId} className="btn-primary px-5 mt-2 disabled:opacity-50">
+          {creating ? <Loader2 size={15} className="animate-spin" /> : <Plus size={15} />} Create management login
         </button>
+
+        {issued && (
+          <div className="mt-3 p-3 rounded-xl space-y-1.5" style={{ background: "rgb(var(--success-rgb) / 0.08)", border: "1px solid rgba(74,222,128,0.4)" }}>
+            <div className="text-xs font-black flex items-center gap-1" style={{ color: "var(--success)" }}><CheckCircle2 size={13} /> Save these now — shown once</div>
+            {issued.schoolName && <div className="text-xs text-text">School: <strong>{issued.schoolName}</strong></div>}
+            {issued.email && <div className="text-xs text-text">Management email: <code>{issued.email}</code></div>}
+            {issued.password && <div className="text-xs text-text">Temp password: <code>{issued.password}</code></div>}
+            {issued.teacherCode && <div className="text-xs text-text">Teacher login code: <code className="font-black" style={{ color: "var(--primary)" }}>{issued.teacherCode}</code></div>}
+            <div className="text-[10px] text-text-muted">Management logs in at /auth with the email + password. Teachers redeem the code at /teacher/register.</div>
+          </div>
+        )}
       </div>
 
       {/* Management accounts list */}
@@ -99,31 +156,28 @@ export default function AdminManagement() {
             </div>
             <div className="flex-1 min-w-0">
               <div className="font-bold text-sm text-text">{a.name} <span className="text-xs font-normal text-text-muted">· {a.email}</span></div>
-              <div className="text-xs text-text-muted flex items-center gap-1">
-                <Building2 size={10} /> {a.schoolName || "Global (all schools)"}
-              </div>
+              <div className="text-xs text-text-muted flex items-center gap-1"><Building2 size={10} /> {a.schoolName || "—"}</div>
             </div>
             <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${a.active !== false ? "bg-green-500/15 text-green-500" : "bg-gray-500/15 text-gray-500"}`}>
               {a.active !== false ? "ACTIVE" : "DISABLED"}
             </span>
-            <button onClick={() => setManagementStatus(a.id, a.active === false)} className="p-2 rounded-lg hover:bg-subtle" title={a.active === false ? "Enable" : "Disable"}>
-              <Power size={14} />
-            </button>
-            <button onClick={() => { if (confirm("Disable this login permanently?")) deleteManagementAccount(a.id); }} className="p-2 rounded-lg hover:bg-subtle text-danger" title="Revoke">
-              <Trash2 size={14} />
-            </button>
+            <button onClick={() => setManagementStatus(a.id, a.active === false)} className="p-2 rounded-lg hover:bg-subtle" title={a.active === false ? "Enable" : "Disable"}><Power size={14} /></button>
+            <button onClick={() => { if (confirm("Disable this login permanently?")) deleteManagementAccount(a.id); }} className="p-2 rounded-lg hover:bg-subtle text-danger" title="Revoke"><Trash2 size={14} /></button>
           </div>
         ))}
       </div>
 
-      {/* School overview */}
-      <h3 className="font-black text-xs uppercase tracking-widest text-text-muted flex items-center gap-1"><Activity size={12} /> Schools ({schools.length})</h3>
+      {/* School oversight */}
+      <h3 className="font-black text-xs uppercase tracking-widest text-text-muted flex items-center gap-1"><Activity size={12} /> Schools ({schools.length} approved)</h3>
       <div className="grid sm:grid-cols-2 gap-2">
         {schools.map((s) => (
           <div key={s.id} className="glass-card p-4">
-            <div className="font-bold text-sm text-text flex items-center gap-1"><Building2 size={13} /> {s.name}</div>
-            <div className="text-xs text-text-muted mt-0.5">{s.contactEmail || "No contact"} · {s.status || "pending"}</div>
-            <div className="text-[10px] mt-1 text-text-muted">Management ID: <span className="font-mono">{s.id?.slice(0, 8)}</span></div>
+            <div className="font-bold text-sm text-text flex items-center gap-1"><Building2 size={13} /> {s.name || "Unnamed school"}</div>
+            <div className="text-xs text-text-muted mt-0.5">{s.contactEmail || "No contact"} · {s.status}</div>
+            <div className="text-[10px] mt-1 text-text-muted">Management ID: <span className="font-mono">{s.id?.slice(0, 10)}</span></div>
+            <button onClick={() => generateTeacherCodeFor(s)} className="btn-secondary text-xs px-3 py-1.5 mt-2 inline-flex items-center gap-1">
+              <KeyRound size={12} /> Generate teacher code
+            </button>
           </div>
         ))}
       </div>

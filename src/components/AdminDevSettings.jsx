@@ -20,7 +20,9 @@ export default function AdminDevSettings() {
       whiteboard: true,
       flashcards: true,
     },
+    variables: {},
   });
+  const [newVar, setNewVar] = useState({ key: "", value: "" });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -147,6 +149,53 @@ export default function AdminDevSettings() {
               </button>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* Custom variables — arbitrary key/value config the admin can add */}
+      <div style={{ marginBottom: 16 }}>
+        <label style={{ fontSize: 12, fontWeight: 700, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: 1, display: "block", marginBottom: 8 }}>
+          <Key size={12} style={{ display: "inline", marginRight: 4 }} /> Custom Variables
+        </label>
+        <p style={{ color: "var(--text-muted)", fontSize: 11, marginTop: 0, marginBottom: 8 }}>Add any key/value the app can read at runtime. Type "true"/"false" for booleans, numbers auto-convert.</p>
+        <div style={{ display: "flex", flexDirection: "column", gap: 6, marginBottom: 8 }}>
+          {Object.entries(settings.variables || {}).map(([k, v]) => (
+            <div key={k} style={{ display: "flex", gap: 6, alignItems: "center" }}>
+              <input value={k} readOnly style={{ width: 140, padding: "8px 10px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid var(--border)", color: "var(--primary)", fontSize: 12, fontFamily: "monospace" }} />
+              <input
+                value={String(v)}
+                onChange={(e) => setSettings({ ...settings, variables: { ...settings.variables, [k]: e.target.value } })}
+                style={{ flex: 1, padding: "8px 10px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid var(--border)", color: "#fff", fontSize: 12 }}
+              />
+              <button
+                onClick={() => { const next = { ...(settings.variables || {}) }; delete next[k]; setSettings({ ...settings, variables: next }); }}
+                style={{ padding: "8px 10px", borderRadius: 8, background: "rgba(255,77,106,0.12)", border: "none", color: "#FF4D6A", cursor: "pointer" }}
+              >✕</button>
+            </div>
+          ))}
+        </div>
+        <div style={{ display: "flex", gap: 6 }}>
+          <input
+            value={newVar.key}
+            onChange={(e) => setNewVar({ ...newVar, key: e.target.value })}
+            placeholder="key"
+            style={{ width: 140, padding: "8px 10px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid var(--border)", color: "#fff", fontSize: 12, fontFamily: "monospace" }}
+          />
+          <input
+            value={newVar.value}
+            onChange={(e) => setNewVar({ ...newVar, value: e.target.value })}
+            placeholder="value"
+            style={{ flex: 1, padding: "8px 10px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid var(--border)", color: "#fff", fontSize: 12 }}
+          />
+          <button
+            onClick={() => {
+              const k = newVar.key.trim();
+              if (!k) return;
+              setSettings({ ...settings, variables: { ...(settings.variables || {}), [k]: newVar.value } });
+              setNewVar({ key: "", value: "" });
+            }}
+            style={{ padding: "8px 14px", borderRadius: 8, background: "var(--primary)", border: "none", color: "#fff", fontWeight: 700, fontSize: 12, cursor: "pointer" }}
+          >Add</button>
         </div>
       </div>
 

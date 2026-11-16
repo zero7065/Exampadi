@@ -2,7 +2,7 @@
 // contact details, background image, and reset admin login.
 import { useState, useEffect } from "react";
 import { Image, Mail, Phone, Send, User, Loader2, Save, AlertTriangle } from "lucide-react";
-import { loadBranding, saveBranding } from "../lib/branding";
+import { loadBranding, saveBranding, BACKGROUND_PRESETS } from "../lib/branding";
 import { auth, sendPasswordResetEmail } from "../firebaseConfig";
 import { useToast } from "./Toast";
 
@@ -76,6 +76,30 @@ export default function AdminBranding() {
 
       <div style={{ marginBottom: 16 }}>
         <label style={{ fontSize: 12, fontWeight: 700, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: 1, display: "block", marginBottom: 8 }}>
+          <Image size={12} style={{ display: "inline", marginRight: 4 }} /> Background Theme
+        </label>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8, marginBottom: 10 }}>
+          {Object.entries(BACKGROUND_PRESETS).map(([key, css]) => (
+            <button
+              key={key}
+              type="button"
+              onClick={() => setBranding({ ...branding, backgroundPreset: branding.backgroundPreset === key ? "" : key })}
+              title={key}
+              style={{
+                height: 48, borderRadius: 10, cursor: "pointer", position: "relative",
+                background: css, border: branding.backgroundPreset === key ? "2px solid var(--primary)" : "1px solid var(--border)",
+                overflow: "hidden",
+              }}
+            >
+              <span style={{ position: "absolute", bottom: 3, left: 0, right: 0, fontSize: 9, fontWeight: 800, color: "#fff", textShadow: "0 1px 3px rgba(0,0,0,0.8)", textTransform: "capitalize" }}>{key}</span>
+            </button>
+          ))}
+        </div>
+        <p style={{ color: "var(--text-muted)", fontSize: 11, margin: "0 0 8px" }}>Pick a ready-made theme, or paste a custom image URL below. Theme wins over URL.</p>
+      </div>
+
+      <div style={{ marginBottom: 16 }}>
+        <label style={{ fontSize: 12, fontWeight: 700, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: 1, display: "block", marginBottom: 8 }}>
           <Image size={12} style={{ display: "inline", marginRight: 4 }} /> Background Image URL
         </label>
         <input
@@ -84,7 +108,7 @@ export default function AdminBranding() {
           placeholder="https://example.com/bg.jpg"
           style={{ width: "100%", padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "#fff", fontSize: 13, outline: "none" }}
         />
-        <p style={{ color: "var(--text-muted)", fontSize: 11, marginTop: 4 }}>Paste any public image URL. Applied to the sign-in page shell. No Storage billing needed.</p>
+        <p style={{ color: "var(--text-muted)", fontSize: 11, marginTop: 4 }}>Paste any public image URL (max upload size 50MB). Applied to the sign-in page shell.</p>
       </div>
 
       <div style={{ marginBottom: 16 }}>
@@ -162,6 +186,7 @@ const DEFAULT_BRANDING = {
   siteName: "ExamPadi",
   tagline: "Pass JAMB, WAEC & NABTEB First Try",
   backgroundImageUrl: "",
+  backgroundPreset: "",
   footerText: "Developed by Jadai Studios",
   contactEmail: "jadai7065@gmail.com",
   contactPhone: "+234 812 763 6057",

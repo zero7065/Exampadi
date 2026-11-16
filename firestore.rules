@@ -27,6 +27,17 @@ service cloud.firestore {
       return request.auth != null && userDoc().get("role", "") == "teacher";
     }
 
+    // Management accounts are school-scoped. These helpers let a manager read
+    // ONLY their own school's data (never other schools or other admins).
+    function isManagement() {
+      return request.auth != null && userDoc().get("role", "") == "management";
+    }
+    function isManagerOf(schoolId) {
+      return request.auth != null
+        && userDoc().get("role", "") == "management"
+        && userDoc().get("schoolId", "") == schoolId;
+    }
+
     function classDoc(classId) {
       return get(/databases/$(database)/documents/classes/$(classId)).data;
     }
@@ -114,6 +125,7 @@ service cloud.firestore {
         isAdmin()
         || request.auth.uid == userId
         || hasOrgId(request.resource.data.orgId)
+        || isManagerOf(request.resource.data.schoolId)
       );
       allow create: if (request.auth.uid == userId
                         && request.resource.data.get("role", "user") in ["user", "teacher", "student"])
@@ -299,6 +311,7 @@ service cloud.firestore {
         isAdmin()
         || resource.data.contactEmail == request.auth.token.email
         || hasOrgId(schoolId)
+        || isManagerOf(schoolId)
       );
       allow update: if isAdmin()
         || (request.auth != null && request.auth.uid == request.resource.data.contactEmail && request.resource.data.orgId == schoolId);
@@ -327,6 +340,7 @@ service cloud.firestore {
         || (resource.data.keys().hasAny(["createdBy"]) && resource.data.createdBy == request.auth.uid)
         || (resource.data.keys().hasAny(["teacherId"]) && resource.data.teacherId == request.auth.uid)
         || (resource.data.keys().hasAny(["schoolId", "orgId"]) && hasOrgId(resource.data.orgId || resource.data.schoolId))
+        || (resource.data.keys().hasAny(["schoolId"]) && isManagerOf(resource.data.schoolId))
       );
       // Teachers create their own classes; admin can create for any teacher.
       // A teacher may create a class they own WITHOUT a school orgId (independent

@@ -6,44 +6,34 @@ import {
   doc, getDoc, setDoc, updateDoc, addDoc,
   collection, query, where, orderBy, limit, onSnapshot, serverTimestamp,
 } from "firebase/firestore";
-import { db, auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "../firebaseConfig";
+import { db, auth, signInWithEmailAndPassword, signOut } from "../firebaseConfig";
+import { apiUrl } from "./apiBase";
 import { logActivity, isAdmin } from "./activityLog";
 
 function needDb() {
   if (!db) throw new Error("Not available offline");
 }
 
-// Create a management login (admin only). Creates a real Firebase Auth user
-// + managementAccounts doc + users doc with role "management".
+// Create a management login via the admin-only server endpoint.
+// ENFORCED: management accounts only exist for a registered, approved school.
 export async function createManagementAccount({ email, password, name, schoolId, schoolName }) {
-  needDb();
-  if (!isAdmin(auth?.currentUser)) throw new Error("Admin only");
-  const cred = await createUserWithEmailAndPassword(auth, email, password);
-  const uid = cred.user.uid;
-  await setDoc(doc(db, "users", uid), {
-    email,
-    name: name || "School Management",
-    username: email.split("@")[0].toLowerCase(),
-    role: "management",
-    accountType: "management",
-    schoolId: schoolId || null,
-    schoolName: schoolName || "",
-    onboarded: true,
-    createdAt: serverTimestamp(),
-  }, { merge: true });
-  await setDoc(doc(db, "managementAccounts", uid), {
-    uid,
-    email,
-    name: name || "School Management",
-    schoolId: schoolId || null,
-    schoolName: schoolName || "",
-    active: true,
-    createdBy: auth.currentUser?.uid,
-    createdAt: serverTimestamp(),
-  }, { merge: true });
-  await signOut(auth).catch(() => {});
-  await logActivity({ action: "management_created", userId: auth?.currentUser?.uid, email: auth?.currentUser?.email, details: { managementEmail: email, schoolId } }).catch(() => {});
-  return { uid, email };
+  if (!schoolId) throw new Error("Select a registered, approved school first");
+  const u = auth?.currentUser;
+  if (!u) throw new Error("Sign in as admin");
+  if (!isAdmin(u)) throw new Error("Admin only");
+  const token = await u.getIdToken();
+  const res = await fetch(apiUrl("/api/create-management"), {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+    body: JSON.stringify({ email, password, name, schoolId, schoolName }),
+  });
+  const data = await res.json().catch(() => null);
+  if (!res.ok) throw new Error(data?.error || "Failed to create management account");
+  await logActivity({
+    action: "management_created", userId: u.uid, email: u.email,
+    details: { managementEmail: email, schoolId },
+  }).catch(() => {});
+  return data;
 }
 
 export function subscribeManagementAccounts(cb, max = 50) {

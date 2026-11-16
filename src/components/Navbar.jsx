@@ -50,6 +50,7 @@ const Navbar = () => {
   const { isPro: proStatus, profile } = useSubscription();
   const isTeacher = profile?.role === "teacher" || isAdmin(user);
   const isAdminUser = isAdmin(user);
+  const isManagement = profile?.role === "management";
   const { theme, toggle } = useTheme();
   const location = useLocation();
   const [moreOpen, setMoreOpen] = useState(false);
@@ -98,6 +99,7 @@ const Navbar = () => {
         { name: "Games", path: "/games", icon: Trophy },
         { name: "Partners", path: "/study-partners", icon: Users, requiresPro: true },
         ...(isTeacher ? [{ name: "Teacher", path: "/teacher", icon: GraduationCap }] : []),
+        ...(isManagement ? [{ name: "Management", path: "/management", icon: ShieldCheck }] : []),
         ...(isAdminUser ? [{ name: "Admin", path: "/admin", icon: ShieldCheck }] : []),
       ],
     },

@@ -55,6 +55,7 @@ import image from "./_image.js";
 import reminders from "./_reminders.js";
 import surveyVote from "./_survey-vote.js";
 import createTeacher from "./_create-teacher.js";  // NEW
+import createManagement from "./_create-management.js";  // management login
 import syncCron from "./_sync-cron.js";  // 72h smart sync cron
 
 // --- Express app ---
@@ -105,6 +106,11 @@ app.post("/api/generate-teacher-code", aiRateLimiter, async (req, res) => {
 // --- Route: POST /api/create-teacher ---
 app.post("/api/create-teacher", async (req, res) => {
   await createTeacher(req, res);
+});
+
+// --- Route: POST /api/create-management (school-scoped admin only) ---
+app.post("/api/create-management", async (req, res) => {
+  await createManagement(req, res);
 });
 
 // --- Route: POST /api/redeem-teacher-code ---
