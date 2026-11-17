@@ -71,6 +71,8 @@ const ChessResultPage = lazy(() => import("./pages/ChessResultPage"));
 const SharePage = lazy(() => import("./pages/SharePage"));
 const ManagementPage = lazy(() => import("./pages/ManagementPage"));
 const TeacherProfilePage = lazy(() => import("./pages/TeacherProfilePage"));
+const TriviaRoomPage = lazy(() => import("./pages/TriviaRoomPage"));
+const TeacherAuthPage = lazy(() => import("./pages/TeacherAuthPage"));
 const SharedTestPage = lazy(() => import("./pages/SharedTestPage"));
 const StudentAssignments = lazy(() => import("./pages/StudentAssignments"));
 const SchoolsLanding = lazy(() => import("./pages/schools/SchoolsLanding"));
@@ -155,6 +157,10 @@ function AuthAwareRoutes() {
       "/share/:id": "Shared with you — ExamPadi",
       "/management": "School Management — ExamPadi",
       "/teacher/profile": "Teacher Profile — ExamPadi",
+      "/games/trivia/room": "Live Trivia — ExamPadi",
+      "/games/trivia/room/:code": "Live Trivia Room — ExamPadi",
+      "/teacher/signup": "Teacher Portal — ExamPadi",
+      "/teacher/login": "Teacher Login — ExamPadi",
       "/legend": "Legend Mode — ExamPadi",
       "/shared-test": "Shared Test — ExamPadi",
       "/assignment": "Assignments — ExamPadi",
@@ -221,6 +227,8 @@ function AuthAwareRoutes() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/demo" element={<DemoPage />} />
           <Route path="/auth" element={<AuthPage />} />
+          <Route path="/teacher/signup" element={<TeacherAuthPage />} />
+          <Route path="/teacher/login" element={<TeacherAuthPage />} />
           <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/terms" element={<TermsPage />} />
@@ -257,6 +265,8 @@ function AuthAwareRoutes() {
           <Route path="/community" element={<ProtectedRoute><CommunityPage /></ProtectedRoute>} />
           <Route path="/games" element={<ProtectedRoute><GamesPage /></ProtectedRoute>} />
           <Route path="/games/chess" element={<ProtectedRoute><ChessPage /></ProtectedRoute>} />
+          <Route path="/games/trivia/room" element={<ProtectedRoute><TriviaRoomPage /></ProtectedRoute>} />
+          <Route path="/games/trivia/room/:code" element={<ProtectedRoute><TriviaRoomPage /></ProtectedRoute>} />
           <Route path="/chess/room" element={<ProtectedRoute><ChessRoomPage /></ProtectedRoute>} />
           <Route path="/chess/room/:code" element={<ProtectedRoute><ChessRoomPage /></ProtectedRoute>} />
           <Route path="/chess/result/:id" element={<ChessResultPage />} />

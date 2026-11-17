@@ -1,15 +1,37 @@
 import { useState, useEffect } from "react";
-import { GraduationCap, Plus, Copy, Trash2, Loader2 } from "lucide-react";
+import { GraduationCap, Plus, Copy, Trash2, Loader2, Users, ShieldOff } from "lucide-react";
 import { createTeacherInvite, listTeacherInvites, revokeTeacherInvite } from "../lib/teacherInvites";
 import { listSchools } from "../lib/schools";
+import { collection, query, where, getDocs, doc, updateDoc, limit } from "firebase/firestore";
+import { db } from "../firebaseConfig";
 
 export default function AdminTeachers() {
   const [invites, setInvites] = useState([]);
+  const [teachers, setTeachers] = useState([]);
   const [schoolName, setSchoolName] = useState("");
   const [schoolId, setSchoolId] = useState("");
   const [approvedSchools, setApprovedSchools] = useState([]);
   const [creating, setCreating] = useState(false);
   const [copied, setCopied] = useState(null);
+
+  async function loadTeachers() {
+    try {
+      const snap = await getDocs(query(collection(db, "users"), where("role", "==", "teacher"), limit(200)));
+      setTeachers(snap.docs.map((d) => ({ uid: d.id, ...d.data() })));
+    } catch (e) {
+      console.warn("load teachers:", e.message);
+    }
+  }
+
+  async function revokeTeacher(uid) {
+    if (!confirm("Revoke teacher access for this account? They become a normal student account.")) return;
+    try {
+      await updateDoc(doc(db, "users", uid), { role: "user", accountType: "student" });
+      setTeachers((list) => list.filter((t) => t.uid !== uid));
+    } catch (e) {
+      console.warn("revoke teacher:", e.message);
+    }
+  }
 
   async function load() {
     try {
@@ -31,6 +53,7 @@ export default function AdminTeachers() {
       }
     }
     init();
+    loadTeachers();
     // Approved schools power the picker — their doc ids become users.schoolId.
     listSchools("approved")
       .then((data) => { if (!cancelled) setApprovedSchools(data); })
@@ -146,6 +169,34 @@ export default function AdminTeachers() {
           </table>
         </div>
       )}
+
+      {/* Teacher accounts — admin oversight */}
+      <div style={{ marginTop: 24, paddingTop: 20, borderTop: "1px solid var(--border)" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
+          <Users size={16} color="var(--primary)" />
+          <span style={{ fontSize: 13, fontWeight: 700, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: 1 }}>Teacher Accounts ({teachers.length})</span>
+        </div>
+        {teachers.length === 0 ? (
+          <div style={{ color: "var(--text-muted)", fontSize: 13, textAlign: "center", padding: 16 }}>No teacher accounts yet</div>
+        ) : (
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            {teachers.map((t) => (
+              <div key={t.uid} style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 12px", borderRadius: 10, background: "var(--bg-3)", flexWrap: "wrap" }}>
+                <div style={{ width: 30, height: 30, borderRadius: 8, background: "rgb(var(--accent-rgb) / 0.2)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--accent)", fontWeight: 800, fontSize: 13 }}>
+                  {(t.name || t.email || "T")[0].toUpperCase()}
+                </div>
+                <div style={{ flex: 1, minWidth: 140 }}>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: "var(--text)" }}>{t.name || "Teacher"}</div>
+                  <div style={{ fontSize: 11, color: "var(--text-muted)" }}>{t.email} · {t.schoolName || (t.schoolId?.startsWith("personal_") ? "Independent" : t.schoolId || "No school")}</div>
+                </div>
+                <button onClick={() => revokeTeacher(t.uid)} title="Revoke teacher access" style={{ background: "rgba(255,77,106,0.1)", border: "1px solid rgba(255,77,106,0.3)", borderRadius: 8, padding: "6px 10px", cursor: "pointer", color: "#FF4D6A", fontSize: 11, fontWeight: 700, display: "flex", alignItems: "center", gap: 4 }}>
+                  <ShieldOff size={12} /> Revoke
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

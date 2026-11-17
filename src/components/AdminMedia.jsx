@@ -113,6 +113,47 @@ export default function AdminMedia() {
     }
   }
 
+  async function handleVideoUpload(file) {
+    if (!file) return;
+    if (!file.type.startsWith("video/")) {
+      toast({ message: "Please choose a video file (mp4/webm)", type: "warning" });
+      return;
+    }
+    if (file.size > 50 * 1024 * 1024) {
+      toast({ message: "Video is over 50MB — please choose a smaller file", type: "warning" });
+      return;
+    }
+    setUploading((u) => ({ ...u, heroVideo: true }));
+    try {
+      const storage = getAppStorage();
+      const ext = file.type.includes("webm") ? "webm" : "mp4";
+      const path = `landing/hero-video-${crypto.randomUUID()}.${ext}`;
+      await uploadBytes(ref(storage, path), file, { contentType: file.type });
+      const url = await getDownloadURL(ref(storage, path));
+      await setDoc(doc(db, "siteContent", "landing"), { heroVideo: url, updatedAt: serverTimestamp() }, { merge: true });
+      setUrls((prev) => ({ ...prev, heroVideo: url }));
+      invalidateLandingMediaCache();
+      toast({ message: "Hero background video updated ✓ — refresh the landing page", type: "success" });
+    } catch (e) {
+      toast({ message: `Video upload failed: ${e.message}`, type: "error" });
+    } finally {
+      setUploading((u) => ({ ...u, heroVideo: false }));
+    }
+  }
+
+  async function handleVideoRevert() {
+    try {
+      const next = { ...urls };
+      delete next.heroVideo;
+      await setDoc(doc(db, "siteContent", "landing"), { heroVideo: null, updatedAt: serverTimestamp() }, { merge: true });
+      setUrls(next);
+      invalidateLandingMediaCache();
+      toast({ message: "Hero video removed", type: "success" });
+    } catch (e) {
+      toast({ message: `Revert failed: ${e.message}`, type: "error" });
+    }
+  }
+
   if (loading) {
     return <div style={{ color: "var(--text-muted)", padding: 24 }}>Loading landing media…</div>;
   }
@@ -124,6 +165,30 @@ export default function AdminMedia() {
         your upload → bundled screenshot → code-drawn mockup.
         Images are compressed to ≤1600px JPEG on upload.
       </p>
+
+      {/* Hero background video */}
+      <div style={{ background: "var(--bg-2)", border: "1px solid var(--border)", borderRadius: 14, padding: 16, marginBottom: 16 }}>
+        <div style={{ fontSize: 13, fontWeight: 700, color: "#fff", marginBottom: 4 }}>Hero background video</div>
+        <div style={{ fontSize: 11, color: "var(--text-muted)", marginBottom: 12 }}>
+          {urls.heroVideo ? "Custom video active (plays muted, looping behind the hero)" : "No video — animated scenes are used"}
+        </div>
+        {urls.heroVideo && (
+          <video src={urls.heroVideo} muted loop playsInline autoPlay style={{ width: "100%", maxHeight: 200, borderRadius: 10, marginBottom: 12, objectFit: "cover", background: "#000" }} />
+        )}
+        <div style={{ display: "flex", gap: 8 }}>
+          <label style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 6, padding: "10px", borderRadius: 10, background: "var(--primary)", color: "#fff", fontWeight: 700, fontSize: 12, cursor: "pointer" }}>
+            {uploading.heroVideo ? <Loader2 size={14} style={{ animation: "spin 0.8s linear infinite" }} /> : <ImagePlus size={14} />}
+            {uploading.heroVideo ? "Uploading…" : "Upload video (≤50MB)"}
+            <input type="file" accept="video/mp4,video/webm" disabled={!!uploading.heroVideo} style={{ display: "none" }}
+              onChange={(e) => { handleVideoUpload(e.target.files?.[0]); e.target.value = ""; }} />
+          </label>
+          {urls.heroVideo && (
+            <button onClick={handleVideoRevert} title="Remove video" style={{ padding: "10px 12px", borderRadius: 10, background: "var(--bg-3)", border: "1px solid #333", color: "var(--text-muted)", cursor: "pointer", display: "flex", alignItems: "center" }}>
+              <RotateCcw size={14} />
+            </button>
+          )}
+        </div>
+      </div>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 16 }}>
         {LANDING_SLOTS.map((slot) => (
           <div key={slot} style={{ background: "var(--bg-2)", border: "1px solid var(--border)", borderRadius: 14, padding: 16 }}>

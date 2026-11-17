@@ -55,3 +55,9 @@ export async function getSlotSources(slot) {
   if (BUNDLED_SHOTS[slot]) sources.push(BUNDLED_SHOTS[slot]);
   return sources;
 }
+
+// Hero background video (admin-uploaded). Returns a URL or null.
+export async function getHeroVideo() {
+  const media = await getLandingMedia();
+  return media?.heroVideo || null;
+}

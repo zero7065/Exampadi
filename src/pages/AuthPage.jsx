@@ -469,7 +469,7 @@ export default function AuthPage() {
                     <button
                       key={t.id}
                       type="button"
-                      onClick={() => setAccountType(t.id)}
+                      onClick={() => { if (t.id === "teacher") { window.location.href = "/teacher/signup"; } else { setAccountType(t.id); } }}
                       style={{
                         padding: "12px 10px",
                         borderRadius: 12,
@@ -652,7 +652,7 @@ export default function AuthPage() {
             {mode === "signin" && (
               <button
                 type="button"
-                onClick={() => { setMode("signup"); setAccountType("teacher"); setErrors({}); }}
+                onClick={() => { window.location.href = "/teacher/signup"; }}
                 style={{ width: "100%", marginBottom: 16, background: "rgb(var(--accent-rgb) / 0.08)", border: "1px solid rgb(var(--accent-rgb) / 0.3)", borderRadius: 10, padding: "10px", color: "var(--accent)", fontWeight: 700, fontSize: 13, cursor: "pointer", fontFamily: "inherit" }}
               >
                 👩‍🏫 I'm a teacher — create a free teacher account

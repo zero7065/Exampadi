@@ -88,6 +88,19 @@ export default function GamesPage() {
             ))}
           </div>
 
+          {/* Live multiplayer */}
+          <div className="glass-card p-5" style={{ borderColor: "rgb(var(--accent-rgb) / 0.35)", background: "linear-gradient(135deg, rgb(var(--accent-rgb) / 0.10), var(--bg-2))" }}>
+            <div className="flex items-center gap-2 mb-1">
+              <Swords size={18} className="text-accent" />
+              <h2 className="font-black text-text">Live multiplayer</h2>
+            </div>
+            <p className="text-xs text-text-muted mb-3">Play real people in real time — not bots.</p>
+            <div className="grid sm:grid-cols-2 gap-2">
+              <Link to="/games/trivia/room" className="btn-primary text-sm py-2.5 text-center">🧠 Live Trivia</Link>
+              <Link to="/chess/room" className="btn-secondary text-sm py-2.5 text-center">♟️ Live Chess</Link>
+            </div>
+          </div>
+
           {/* Challenges */}
           <div className="glass-card p-5 mt-2">
             <div className="flex items-center gap-2 mb-3">

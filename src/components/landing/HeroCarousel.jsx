@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Sparkles } from "lucide-react";
 import DeviceShowcase from "./DeviceShowcase";
 import { loadHomepageContent, DEFAULT_HOMEPAGE } from "../../lib/homepageContent";
+import { getHeroVideo } from "../../lib/landingMedia";
 
 // ── Animated SVG background scenes (each fills the slide) ──
 function SceneStudy() {
@@ -145,11 +146,13 @@ export default function HeroCarousel({ user }) {
   const [idx, setIdx] = useState(0);
   const [paused, setPaused] = useState(false);
   const [slides, setSlides] = useState(DEFAULT_HOMEPAGE.slides);
+  const [heroVideo, setHeroVideo] = useState(null);
 
   // Load admin-customized content (falls back to defaults)
   useEffect(() => {
     let live = true;
     loadHomepageContent().then((c) => { if (live) setSlides(c.slides); }).catch(() => {});
+    getHeroVideo().then((v) => { if (live) setHeroVideo(v); }).catch(() => {});
     return () => { live = false; };
   }, []);
 
@@ -173,19 +176,27 @@ export default function HeroCarousel({ user }) {
       onMouseLeave={() => setPaused(false)}
     >
       {/* Background scenes (crossfade) */}
-      {slides.map((s, i) => {
-        const S = SCENES[s.scene] || SceneStudy;
-        return (
-          <div key={`${s.id || "s"}-${i}`} style={{
-            position: "absolute", inset: 0,
-            opacity: i === idx ? 1 : 0,
-            transition: "opacity 1s ease",
-            pointerEvents: "none",
-          }}>
-            <S />
-          </div>
-        );
-      })}
+      {heroVideo ? (
+        <video
+          src={heroVideo}
+          autoPlay muted loop playsInline
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }}
+        />
+      ) : (
+        slides.map((s, i) => {
+          const S = SCENES[s.scene] || SceneStudy;
+          return (
+            <div key={`${s.id || "s"}-${i}`} style={{
+              position: "absolute", inset: 0,
+              opacity: i === idx ? 1 : 0,
+              transition: "opacity 1s ease",
+              pointerEvents: "none",
+            }}>
+              <S />
+            </div>
+          );
+        })
+      )}
       {/* Dark overlay for text clarity */}
       <div style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 60%, transparent 100%)", pointerEvents: "none" }} />
 
