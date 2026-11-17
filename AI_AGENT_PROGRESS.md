@@ -32,8 +32,10 @@ Keep it updated after every work session.
 ### Accounts & roles
 - Email/password + Google auth; recovery PIN.
 - Signup account type: **Student / Teacher** (`accountType`), `role` set at creation.
+- **Official Teacher Portal** (`/teacher/signup`, `/teacher/login`) — separate signup/login/Google; creates `role:"teacher"`. Student accounts cannot be upgraded to teacher (portal blocks student Google accounts; role is creation-only).
 - Independent teacher auto-provisions a personal workspace (`schoolId = personal_<uid>`).
 - `roles.js`: `isTeacherRole`, `isManagementRole`.
+- Admin manages teacher accounts (list + revoke) in Admin → Teacher Invites tab.
 
 ### School / teacher / management
 - `SchoolSignup` → `schools` doc (pending) → admin approve (`setSchoolStatus`) → teacher codes + default class + partner enrollment.
@@ -50,9 +52,10 @@ Keep it updated after every work session.
 ### Games
 - Chess vs AI (`lib/games/chessEngine.js`, 10 levels, minimax) → `ChessPage`.
 - Chess multiplayer (`lib/games/chessMultiplayer.js`) → `ChessRoomPage` (timer/unlimited/custom, share invite).
+- **Live trivia multiplayer** (`lib/games/triviaRooms.js`) → `TriviaRoomPage` (`/games/trivia/room`): real-time 1v1, shared questions, live scores, per-question timer, winner.
 - Shareable chess results (`lib/games/chessResults.js`) → `ChessResultPage` (public, likes, challenge CTA).
 - Trivia / teasers / patterns (`data/games`, `GamesPage`) + challenge system (`lib/games/challenges.js`).
-- Games gated to Pro/team members.
+- Games gated to Pro/team members. Games hub has a **Live multiplayer** section (trivia + chess).
 
 ### Legend Mode
 - `lib/ai.js generateLearningContent` — riddles/metaphor/poem/story/hack/cyber/code/legend + strictness.
@@ -136,13 +139,13 @@ api/
 
 ## 4. Firestore collections (new this cycle)
 
-`communityGroups`, `communityMembers`, `userGroups`, `managementAccounts`, `adminMessages`, `learningPatterns`, `parentThreads`, `syncMarkers`, `gameChallenges`, `chessRooms`, `chessResults`, `sharedItems`, `siteContent/homepage`.
+`communityGroups`, `communityMembers`, `userGroups`, `managementAccounts`, `adminMessages`, `learningPatterns`, `parentThreads`, `syncMarkers`, `gameChallenges`, `chessRooms`, `chessResults`, `sharedItems`, `triviaRooms`, `siteContent/homepage`.
 
 ---
 
 ## 5. Where we stopped / next plans
 
-**Completed this cycle:** teacher separation + independent workspace, teacher entry buttons, no teacher buttons for students, chess multiplayer + shareable results, friend-referral share flow, management-via-school flow + management dashboard, background presets, 50MB upload, admin custom variables, homepage carousel + edu clips + phone sim, CSV spreadsheets, docs.
+**Completed this cycle:** teacher separation + independent workspace, teacher entry buttons, no teacher buttons for students, chess multiplayer + shareable results, friend-referral share flow, management-via-school flow + management dashboard, background presets, 50MB upload, admin custom variables, homepage carousel + edu clips + phone sim, CSV spreadsheets, docs, hero background video upload, live multiplayer trivia rooms, official Teacher Portal (separate signup/login/Google), student→teacher blocked, admin teacher account management.
 
 **Next (not yet done):**
 1. Server-side admin verification on `/api/create-teacher` (currently no caller-auth check — mirror `_create-management`).
