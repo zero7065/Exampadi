@@ -16,6 +16,7 @@ import { LEARNING_STYLES } from "../components/Onboarding/LearningStyleMini";
 import { exportUserData, downloadJson, exportAllowedAt, markExported } from "../lib/compliance";
 import { ALL_EXAMS } from "../lib/exams";
 import { useTheme } from "../context/ThemeContext";
+import { MOODS, MOOD_ORDER } from "../lib/mood";
 import pkg from "../../package.json";
 import { Sliders, ChevronRight, Check, Pencil } from "lucide-react";
 import NetworkDiagnostic from "../components/NetworkDiagnostic";
@@ -109,7 +110,7 @@ export default function Settings() {
   });
   const [exporting, setExporting] = useState(false);
   const debounceRef = useRef(null);
-  const { theme, toggle: toggleTheme } = useTheme();
+  const { theme, toggle: toggleTheme, mood, moodMode, setMoodMode, ambient, setAmbient } = useTheme();
 
   useEffect(() => {
     document.documentElement.classList.toggle("reduce-motion", reduceMotion);
@@ -257,6 +258,23 @@ export default function Settings() {
         <Section title="Appearance">
           <ToggleRow label={`Theme (currently ${theme})`} value={theme === "dark"} onChange={() => toggleTheme()} />
           <ToggleRow label="Reduce motion" value={reduceMotion} onChange={setReduceMotion} />
+          <div style={{ marginTop: 12 }}>
+            <div style={{ fontSize: 13, fontWeight: 600, color: "var(--text)", marginBottom: 6 }}>
+              App mood{moodMode === "auto" ? " · auto" : mood ? ` · ${mood}` : " · off"}
+            </div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+              {[{ id: "auto", label: "Auto", emoji: "🕒" }, { id: "off", label: "Off", emoji: "⭕" }, ...MOOD_ORDER.map(id => ({ id, ...MOODS[id] }))].map(o => {
+                const sel = moodMode === o.id;
+                return (
+                  <button key={o.id} onClick={() => setMoodMode(o.id)} style={{ padding: "6px 12px", borderRadius: 8, border: sel ? "2px solid var(--primary)" : "1px solid var(--border)", background: sel ? "rgb(var(--primary-rgb) / 0.2)" : "var(--bg-3)", color: sel ? "var(--text)" : "var(--text-muted)", fontWeight: sel ? 600 : 400, fontSize: 12, cursor: "pointer", fontFamily: "inherit" }}>
+                    {o.emoji} {o.label}
+                  </button>
+                );
+              })}
+            </div>
+            <p style={{ color: "var(--text-muted)", fontSize: 11, marginTop: 6 }}>Auto shifts the app backdrop with the time of day — morning → day → evening → night.</p>
+          </div>
+          <ToggleRow label="Animated background" value={ambient} onChange={setAmbient} />
         </Section>
 
         {/* Subjects */}

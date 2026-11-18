@@ -23,6 +23,7 @@ import { flushTrainingQueue } from "./lib/aiTraining";
 import { useToast } from "./components/Toast";
 
 import GuideFab from "./components/GuideFab";
+import AmbientBackground from "./components/AmbientBackground";
 
 // Critical path — direct imports (auth shell only; landing is lazy for a lean entry chunk)
 import AuthPage from "./pages/AuthPage";
@@ -182,7 +183,8 @@ function AuthAwareRoutes() {
   }, [location.pathname, loading]);
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen bg-bg text-text selection:bg-primary/30">
+    <div className="flex flex-col md:flex-row min-h-screen text-text selection:bg-primary/30">
+      <AmbientBackground />
       {isOffline && (
         <div style={{
           position: "fixed", top: 0, left: 0, right: 0, zIndex: 9999,

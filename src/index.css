@@ -53,6 +53,8 @@
   --accent-rgb: 245 196 81;
   --danger-rgb: 251 113 133;
   --success-rgb: 52 211 153;
+  --mood-a: 46 230 168;
+  --mood-b: 245 196 81;
 }
 
 /* Light Theme — Milky Ash (not pure white) */
@@ -100,6 +102,8 @@
   --accent-rgb: 183 121 31;
   --danger-rgb: 220 38 38;
   --success-rgb: 15 159 122;
+  --mood-a: 15 159 122;
+  --mood-b: 183 121 31;
 }
 
 /* Prevent FOUC (Flash of Unstyled Content) */
@@ -115,14 +119,14 @@ html {
 body {
   margin: 0;
   background:
-    radial-gradient(520px 420px at 88% -6%, rgb(var(--primary-rgb) / 0.10), transparent 70%),
-    radial-gradient(460px 420px at 4% 106%, rgb(var(--accent-rgb) / 0.10), transparent 70%),
+    radial-gradient(560px 460px at 86% -8%, rgb(var(--mood-a) / 0.13), transparent 70%),
+    radial-gradient(520px 460px at 4% 106%, rgb(var(--mood-b) / 0.11), transparent 70%),
     var(--bg);
   background-attachment: fixed;
   color: var(--text);
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: background 0.7s ease, color 0.3s ease;
 }
 
 ::-webkit-scrollbar {
@@ -643,4 +647,59 @@ img, video, canvas, svg { max-width: 100%; }
   display: inline-block;
   text-shadow: none;
 }
+
+/* ─── Mood palettes (time-of-day) — recolour background tints + ambient glow.
+   Only backgrounds and glow colours change; text/border tokens are untouched so
+   contrast is preserved in both light and dark. ─── */
+[data-mood="morning"] { --mood-a: 255 179 102; --mood-b: 255 121 89;
+  --bg-primary:#0a0907; --bg-secondary:#12100b; --bg-card:#16130d; --bg-elevated:#1c1811;
+  --bg-rgb:10 9 7; --bg-2-rgb:18 16 11; --bg-3-rgb:22 19 13; --subtle-rgb:28 24 17; }
+[data-mood="day"] { --mood-a: 46 230 168; --mood-b: 56 189 248;
+  --bg-primary:#07090c; --bg-secondary:#0c1117; --bg-card:#111820; --bg-elevated:#162029;
+  --bg-rgb:7 9 12; --bg-2-rgb:12 17 23; --bg-3-rgb:17 24 32; --subtle-rgb:22 32 41; }
+[data-mood="evening"] { --mood-a: 244 114 182; --mood-b: 249 168 37;
+  --bg-primary:#0b0810; --bg-secondary:#120d17; --bg-card:#170f1e; --bg-elevated:#1d1327;
+  --bg-rgb:11 8 16; --bg-2-rgb:18 13 23; --bg-3-rgb:23 15 30; --subtle-rgb:29 19 39; }
+[data-mood="night"] { --mood-a: 129 140 248; --mood-b: 139 92 246;
+  --bg-primary:#060810; --bg-secondary:#0a0d18; --bg-card:#0e1220; --bg-elevated:#131829;
+  --bg-rgb:6 8 16; --bg-2-rgb:10 13 24; --bg-3-rgb:14 18 32; --subtle-rgb:19 24 41; }
+
+[data-theme="light"][data-mood="morning"] { --mood-a: 245 158 11; --mood-b: 249 115 22;
+  --bg-primary:#F8F1E6; --bg-secondary:#FCF8F0; --bg-card:#FCF8F0; --bg-elevated:#F0E7D7;
+  --bg-rgb:248 241 230; --bg-2-rgb:252 248 240; --bg-3-rgb:252 248 240; --subtle-rgb:240 231 215; }
+[data-theme="light"][data-mood="day"] { --mood-a: 15 159 122; --mood-b: 56 189 248;
+  --bg-primary:#F4F1EA; --bg-secondary:#FBFAF6; --bg-card:#FBFAF6; --bg-elevated:#EDE9E0;
+  --bg-rgb:244 241 234; --bg-2-rgb:251 250 246; --bg-3-rgb:251 250 246; --subtle-rgb:237 233 224; }
+[data-theme="light"][data-mood="evening"] { --mood-a: 219 39 119; --mood-b: 217 119 6;
+  --bg-primary:#F7EDEC; --bg-secondary:#FCF7F6; --bg-card:#FCF7F6; --bg-elevated:#F0E3E1;
+  --bg-rgb:247 237 236; --bg-2-rgb:252 247 246; --bg-3-rgb:252 247 246; --subtle-rgb:240 227 225; }
+[data-theme="light"][data-mood="night"] { --mood-a: 99 102 241; --mood-b: 124 58 237;
+  --bg-primary:#EEF0F6; --bg-secondary:#F7F8FC; --bg-card:#F7F8FC; --bg-elevated:#E4E7F0;
+  --bg-rgb:238 240 246; --bg-2-rgb:247 248 252; --bg-3-rgb:247 248 252; --subtle-rgb:228 231 240; }
+
+/* ─── Ambient animated background (mood-tinted, sits behind content) ─── */
+.ambient-bg {
+  position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none;
+}
+.ambient-blob {
+  position: absolute; width: 46vmax; height: 46vmax; border-radius: 50%;
+  filter: blur(72px); opacity: 0.5; will-change: transform;
+}
+.blob-1 { top: -18%; left: -12%; background: radial-gradient(circle, rgb(var(--mood-a) / 0.55), transparent 65%); animation: moodDrift1 30s ease-in-out infinite; }
+.blob-2 { bottom: -22%; right: -14%; background: radial-gradient(circle, rgb(var(--mood-b) / 0.5), transparent 65%); animation: moodDrift2 38s ease-in-out infinite; }
+.blob-3 { top: 26%; right: 12%; background: radial-gradient(circle, rgb(var(--mood-a) / 0.32), transparent 65%); animation: moodDrift3 46s ease-in-out infinite; }
+.ambient-spot {
+  position: absolute; left: 0; top: 0; width: 60vmax; height: 60vmax; border-radius: 50%;
+  transform: translate(calc(var(--mx, 50vw) - 30vmax), calc(var(--my, 42vh) - 30vmax));
+  background: radial-gradient(circle, rgb(var(--mood-a) / 0.10), transparent 60%);
+  transition: transform 0.35s ease-out;
+}
+@keyframes moodDrift1 { 0%,100% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(8vw,6vh,0) scale(1.12); } }
+@keyframes moodDrift2 { 0%,100% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(-9vw,-5vh,0) scale(1.15); } }
+@keyframes moodDrift3 { 0%,100% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(-6vw,7vh,0) scale(1.1); } }
+@media (prefers-reduced-motion: reduce) {
+  .ambient-blob, .ambient-spot { animation: none !important; }
+  .ambient-spot { transition: none !important; }
+}
+.reduce-motion .ambient-blob, .reduce-motion .ambient-spot { animation: none !important; }
 

@@ -61,6 +61,17 @@
       document.documentElement.setAttribute("data-theme", t);
       var m = document.querySelector('meta[name="theme-color"]');
       if (m) m.setAttribute("content", t === "dark" ? "#07090C" : "#F5F8F7");
+      var mm = localStorage.getItem("ep-mood-mode") || "auto";
+      var mood = null;
+      if (mm !== "off") {
+        if (mm === "auto") {
+          var h = new Date().getHours();
+          mood = h >= 5 && h < 11 ? "morning" : h >= 11 && h < 17 ? "day" : h >= 17 && h < 20 ? "evening" : "night";
+        } else {
+          mood = mm;
+        }
+      }
+      if (mood) document.documentElement.setAttribute("data-mood", mood);
     } catch (e) {}
   </script>
 </head>
