@@ -10,6 +10,8 @@ import {
   createTriviaRoom, joinTriviaRoom, subscribeTriviaRoom,
   submitTriviaAnswer, advanceTrivia, leaveTriviaRoom,
 } from "../lib/games/triviaRooms";
+import { logActivity } from "../lib/activityLog";
+import { ACTIONS } from "../lib/actions";
 import { ArrowLeft, Copy, Check, Users, Loader2, Share2, Timer, Zap } from "lucide-react";
 
 function tsMs(v) {
@@ -34,6 +36,7 @@ export default function TriviaRoomPage() {
   const [joinCode, setJoinCode] = useState("");
   const [form, setForm] = useState({ subject: "Mixed", count: 8, timePerQuestion: 20 });
   const advancing = useRef(false);
+  const triviaLogged = useRef(false);
 
   const normalized = String(code || "").trim().toUpperCase();
 
@@ -42,6 +45,12 @@ export default function TriviaRoomPage() {
     const unsub = subscribeTriviaRoom(normalized, setRoom);
     return () => unsub && unsub();
   }, [normalized]);
+
+  useEffect(() => {
+    if (room?.status !== "finished" || triviaLogged.current) return;
+    triviaLogged.current = true;
+    logActivity({ action: ACTIONS.TRIVIA_PLAYED, userId: user?.uid, email: user?.email, details: { subject: room.subject, questions: room.questions?.length || 0 } });
+  }, [room, user]);
 
   useEffect(() => {
     const t = setInterval(() => setNow(Date.now()), 500);

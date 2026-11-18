@@ -12,6 +12,8 @@ import ProUpgradeModal from "../components/ProUpgradeModal";
 import Scratchpad from "../components/Scratchpad";
 import NotepadDrawer from "../components/NotepadDrawer";
 import { useHint } from "../hooks/useHints";
+import { logActivity } from "../lib/activityLog";
+import { ACTIONS } from "../lib/actions";
 import { ChevronRight, Sparkles, AlertCircle, CheckCircle2, XCircle, Flag, Lightbulb, PenTool, NotebookPen } from "lucide-react";
 
 const MODE_MOCK = "mock";
@@ -45,6 +47,7 @@ export default function PracticeSession() {
   const [whiteboardOpen, setWhiteboardOpen] = useState(false);
   const [notepadOpen, setNotepadOpen] = useState(false);
   const timerRef = useRef(null);
+  const practiceStartLogged = useRef(false);
 
   const sessionId = sessionData?.startTime || "practice_session";
   const hintState = useHint(sessionId);
@@ -59,6 +62,12 @@ export default function PracticeSession() {
   const subject = sessionData?.subject || "Mixed";
   const totalTime = mode === MODE_MOCK ? 1800 : Infinity;
   const current = questions[currentIndex];
+
+  useEffect(() => {
+    if (practiceStartLogged.current || redirected || !questions.length) return;
+    practiceStartLogged.current = true;
+    logActivity({ action: ACTIONS.PRACTICE_START, userId: user?.uid, email: user?.email, details: { subject } });
+  }, [questions, redirected, user, subject]);
 
   useEffect(() => {
     if (!sessionData?.questions?.length && !redirected) {

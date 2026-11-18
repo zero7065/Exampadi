@@ -4,6 +4,8 @@ import { useAuth } from "../context/AuthContext";
 import { useSubscription } from "../hooks/useSubscription";
 import { useNotifications } from "../hooks/useNotifications";
 import { getUserProfile, updateUserProfile } from "../lib/userProfile";
+import { logActivity } from "../lib/activityLog";
+import { ACTIONS } from "../lib/actions";
 import { useToast } from "../components/Toast";
 import { doc, updateDoc, collection, getDocs, writeBatch, query, where } from "firebase/firestore";
 import { db } from "../firebaseConfig";
@@ -150,7 +152,10 @@ export default function Settings() {
 
   async function updateFirestore(data) {
     if (!user) return;
-    try { await updateUserProfile(user.uid, data); } catch (e) { console.warn("Settings save error:", e); toast({ message: "Failed to save — check your connection", type: "error" }); }
+    try {
+      await updateUserProfile(user.uid, data);
+      logActivity({ action: ACTIONS.SETTINGS_CHANGE, userId: user.uid, email: user.email, details: { fields: Object.keys(data) } });
+    } catch (e) { console.warn("Settings save error:", e); toast({ message: "Failed to save — check your connection", type: "error" }); }
   }
 
   function handleNameSave() {

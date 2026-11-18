@@ -14,6 +14,7 @@ import { preprocessImage } from "../lib/vision";
 import { checkAILimit } from "../lib/usageTracker";
 import { isImageRequest } from "../lib/imageGen";
 import { logActivity } from "../lib/activityLog";
+import { ACTIONS } from "../lib/actions";
 import ProUpgradeModal from "../components/ProUpgradeModal";
 import MessageBubble from "../components/AITutor/MessageBubble";
 import TypingIndicator from "../components/AITutor/TypingIndicator";
@@ -211,7 +212,7 @@ export default function AITutor() {
         setMessages(prev => [...prev, userMsg, aiMsg]);
         setInput("");
         setPendingImages([]);
-        logActivity({ action: "ai_image_request", userId: user?.uid, email: user?.email, details: { subject: activeSubject, prompt: msg.trim().slice(0, 120) } });
+        logActivity({ action: ACTIONS.AI_IMAGE_REQUEST, userId: user?.uid, email: user?.email, details: { subject: activeSubject, prompt: msg.trim().slice(0, 120) } });
         return;
       }
 
@@ -259,7 +260,7 @@ export default function AITutor() {
         toast({ message: `AI failed: ${aiErr.message}`, type: "error" });
       }
 
-      logActivity({ action: "ai_chat", userId: user?.uid, email: user?.email, details: { subject: activeSubject, questionLength: userMsg.content.length, withImages: images.length, analyzeMode: useAnalyze } });
+      logActivity({ action: ACTIONS.AI_CHAT, userId: user?.uid, email: user?.email, details: { subject: activeSubject, questionLength: userMsg.content.length, withImages: images.length, analyzeMode: useAnalyze } });
     } catch (e) {
       console.error("AI chat failed:", e);
       // Undo the optimistic counter — the message never went through.

@@ -5,6 +5,8 @@ import { useToast } from "../components/Toast";
 import { collection, query, where, getDocs, addDoc, updateDoc, deleteDoc, doc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import ProGate from "../components/ProGate";
+import { logActivity } from "../lib/activityLog";
+import { ACTIONS } from "../lib/actions";
 import { Save, Trash2, Clock } from "lucide-react";
 
 const NotepadPage = () => {
@@ -49,6 +51,7 @@ const NotepadPage = () => {
       setNotes([{ id: docRef.id, userId: user.uid, content: newNote, createdAt: new Date() }, ...notes]);
       setNewNote("");
       toast({ message: "Note saved!", type: "success" });
+      logActivity({ action: ACTIONS.NOTEPAD_SAVE, userId: user.uid, email: user.email, details: { mode: "new", chars: newNote.length } });
     } catch (e) {
       toast({ message: "Failed to save note", type: "error" });
     }
@@ -75,6 +78,7 @@ const NotepadPage = () => {
       setNewNote("");
       setEditingId(null);
       toast({ message: "Note updated!", type: "success" });
+      logActivity({ action: ACTIONS.NOTEPAD_SAVE, userId: user.uid, email: user.email, details: { mode: "edit", chars: newNote.length } });
     } catch (e) {
       toast({ message: "Failed to update note", type: "error" });
     }

@@ -7,6 +7,7 @@ import { doc, updateDoc, addDoc, collection, increment, serverTimestamp } from "
 import { db } from "../firebaseConfig";
 import { updateStreak } from "../lib/userProfile";
 import { logActivity } from "../lib/activityLog";
+import { ACTIONS } from "../lib/actions";
 import { summarizeSessionGroq, heuristicSummary, getAIErrorIfRecent } from "../lib/ai";
 import { bufferSummary, flushMemory } from "../lib/aiMemory";
 import { useSubscription } from "../hooks/useSubscription";
@@ -129,7 +130,7 @@ export default function SessionSummary() {
           }
         })();
 
-        logActivity({ action: "session_complete", userId: user.uid, email: user.email, details: { subject: data.subject, score: data.score, correct: data.correct, total: data.total, xp: data.xpEarned } });
+        logActivity({ action: ACTIONS.SESSION_COMPLETE, userId: user.uid, email: user.email, details: { subject: data.subject, score: data.score, correct: data.correct, total: data.total, xp: data.xpEarned } });
 
         // Notify on completion
         sendNotification({

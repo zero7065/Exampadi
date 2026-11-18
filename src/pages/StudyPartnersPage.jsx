@@ -10,6 +10,8 @@ import {
   getPartners, addPartner, removePartner,
   createSharedTest, getPartnerTests, getPartnerLeaderboard,
 } from "../lib/studyPartners";
+import { logActivity } from "../lib/activityLog";
+import { ACTIONS } from "../lib/actions";
 import { shareOnWhatsApp } from "../components/WhatsAppShare";
 import {
   Users, UserPlus, Trash2, Target,
@@ -89,6 +91,7 @@ export default function StudyPartnersPage() {
     }
     try {
       await addPartner(user.uid, partnerUid.trim());
+      logActivity({ action: ACTIONS.STUDY_PARTNER_CONNECT, userId: user.uid, email: user.email, details: { partnerUid: partnerUid.trim() } });
       toast({ message: "Partner added!", type: "success" });
       setShowAddModal(false);
       loadData();

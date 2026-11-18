@@ -5,6 +5,8 @@ import { useAuth } from "../context/AuthContext";
 import { useSubscription } from "../hooks/useSubscription";
 import { useToast } from "../components/Toast";
 import { getUserProfile, updateUserProfile } from "../lib/userProfile";
+import { logActivity } from "../lib/activityLog";
+import { ACTIONS } from "../lib/actions";
 import { softDeleteAccount } from "../lib/compliance";
 import { ACHIEVEMENTS } from "../config/achievements";
 import AvatarDisplay from "../components/Avatar/AvatarDisplay";
@@ -52,8 +54,9 @@ export default function ProfilePage() {
     const name = nameInput.trim();
     if (!name || !user) { setEditingName(false); return; }
     try {
-      await updateProfile(user, { displayName: name });
+await updateProfile(user, { displayName: name });
       await updateUserProfile(user.uid, { name });
+      logActivity({ action: ACTIONS.PROFILE_UPDATE, userId: user.uid, email: user.email, details: { field: "name" } });
       setProfile((p) => ({ ...(p || {}), name }));
       toast({ message: "Display name updated", type: "success" });
     } catch {
@@ -67,6 +70,7 @@ export default function ProfilePage() {
     if (!user) { setEditingSchool(false); return; }
     try {
       await updateUserProfile(user.uid, { school: schoolInput.trim() });
+      logActivity({ action: ACTIONS.PROFILE_UPDATE, userId: user.uid, email: user.email, details: { field: "school" } });
       setProfile((p) => ({ ...(p || {}), school: schoolInput.trim() }));
       toast({ message: "School saved", type: "success" });
     } catch {
@@ -80,6 +84,7 @@ export default function ProfilePage() {
     if (!user) { setEditingBio(false); return; }
     try {
       await updateUserProfile(user.uid, { bio: bioInput.trim().slice(0, 200) });
+      logActivity({ action: ACTIONS.PROFILE_UPDATE, userId: user.uid, email: user.email, details: { field: "bio" } });
       setProfile((p) => ({ ...(p || {}), bio: bioInput.trim().slice(0, 200) }));
       toast({ message: "Bio updated", type: "success" });
     } catch {
@@ -191,7 +196,8 @@ export default function ProfilePage() {
               onClick={async () => {
                 try {
                   const next = !profile?.isPublic;
-                  await updateUserProfile(user.uid, { isPublic: next });
+await updateUserProfile(user.uid, { isPublic: next });
+                  logActivity({ action: ACTIONS.PROFILE_UPDATE, userId: user.uid, email: user.email, details: { field: "isPublic", value: next } });
                   setProfile((p) => ({ ...(p || {}), isPublic: next }));
                   toast({ message: next ? "Public profile ON â€” you appear on the feed & leaderboard ðŸŒ" : "Public profile OFF â€” only you (and partners) see details", type: "success" });
                 } catch {

@@ -6,6 +6,7 @@ import { doc, updateDoc, addDoc, collection, increment, serverTimestamp } from "
 import { db } from "../firebaseConfig";
 import { updateStreak } from "../lib/userProfile";
 import { logActivity } from "../lib/activityLog";
+import { ACTIONS } from "../lib/actions";
 import { ArrowLeft, RotateCcw, ChevronDown, ChevronUp, Target, Zap, Clock, CheckCircle2, XCircle } from "lucide-react";
 import { WhatsAppShareButton } from "../components/WhatsAppShare";
 import ReviewPrompt from "../components/ReviewPrompt";
@@ -60,7 +61,7 @@ export default function MockSummary() {
           await addDoc(collection(db, "mockExams"), { userId: user.uid, examType: data.examType, subjects: data.subjects, overallScore: data.overallScore, jamb400Score: data.jamb400Score, subjectBreakdown: data.subjectBreakdown, totalQuestions: data.totalQuestions, timeUsed: data.timeUsed, xpEarned: data.xpEarned, weakTopics: data.weakTopics, completedAt: serverTimestamp() });
           await updateDoc(doc(db, "users", user.uid), { mockExamsCompleted: increment(1), totalXP: increment(data.xpEarned || 0), totalQuestionsAnswered: increment(data.totalQuestions), lastActive: serverTimestamp() });
         }
-        logActivity({ action: "mock_exam_complete", userId: user.uid, email: user.email, details: { examType: data.examType, overallScore: data.overallScore, jamb400Score: data.jamb400Score, correct: data.correct, total: data.totalQuestions } });
+        logActivity({ action: ACTIONS.MOCK_EXAM_COMPLETE, userId: user.uid, email: user.email, details: { examType: data.examType, overallScore: data.overallScore, jamb400Score: data.jamb400Score, correct: data.correct, total: data.totalQuestions } });
         await updateStreak(user.uid);
         setSaved(true);
         setReviewKey(`mock-${Date.now()}`);

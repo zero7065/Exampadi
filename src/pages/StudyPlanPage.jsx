@@ -4,6 +4,8 @@ import { useAuth } from "../context/AuthContext";
 import { useSubscription } from "../hooks/useSubscription";
 import { useToast } from "../components/Toast";
 import { generateStudyPlan, getAIErrorIfRecent } from "../lib/ai";
+import { logActivity } from "../lib/activityLog";
+import { ACTIONS } from "../lib/actions";
 import { collection, query, where, getDocs, doc, setDoc, getDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import { BookOpen, Target, Calendar, Clock, CheckCircle, ArrowRight, Loader2, Sparkles, Download } from "lucide-react";
@@ -87,6 +89,7 @@ const StudyPlanPage = () => {
           completedTopics: [],
           createdAt: serverTimestamp(),
         }, { merge: true });
+        logActivity({ action: ACTIONS.STUDY_PLAN_UPDATE, userId: user.uid, email: user.email, details: { targetScore, examDate, topics: plan.topics?.length || 0 } });
       }
       
       if (updateUser) {

@@ -9,6 +9,7 @@ import { usePaystack } from "../hooks/usePaystack";
 import { PLANS as CONFIG_PLANS, TEAM_PLANS, CURRENCIES, formatMoney, teamPrice } from "../config/plans";
 import { Check, Crown, Zap, ShieldCheck, Sparkles, ChevronRight, Loader2, Award, Users, Ticket } from "lucide-react";
 import { logActivity } from "../lib/activityLog";
+import { ACTIONS } from "../lib/actions";
 import { createTeamDraft, activateTeam, joinTeamByCode } from "../lib/teams";
 
 const PaymentPage = () => {
@@ -101,7 +102,7 @@ const PaymentPage = () => {
         onPaid: async (response) => {
           const duration = YEARLY.has(planKey) ? 365 : 30;
           const persisted = await activatePro(planKey, duration, response.reference);
-          logActivity({ action: "payment_success", userId: user.uid, email: user.email, details: { plan: planKey, reference: response.reference, amount: planConfig.price, currency, persisted } });
+          logActivity({ action: ACTIONS.PAYMENT_SUCCESS, userId: user.uid, email: user.email, details: { plan: planKey, reference: response.reference, amount: planConfig.price, currency, persisted } });
           if (persisted) toast({ message: "Payment successful! You're now Pro", type: "success" });
           navigate("/payment/success", { state: { reference: response.reference, plan: planKey, activated: persisted } });
         },
@@ -113,7 +114,7 @@ const PaymentPage = () => {
       const msg = err.message || "Payment failed. Try again.";
       if (msg !== "Payment cancelled" && msg !== "SKIP_GENERIC_TOAST") {
         setPayError(msg);
-        logActivity({ action: "payment_failed", userId: user.uid, email: user.email, details: { plan: planKey, error: msg } });
+        logActivity({ action: ACTIONS.PAYMENT_FAILED, userId: user.uid, email: user.email, details: { plan: planKey, error: msg } });
       }
     } finally {
       setPayLoading(false);
@@ -156,7 +157,7 @@ const PaymentPage = () => {
           }
           setTeamCode(code);
           toast({ message: `Team activated! Share code ${code} with your group.`, type: "success" });
-          logActivity({ action: "payment_success", userId: user.uid, email: user.email, details: { plan: teamPlan, teamId, seats, reference: response.reference, amount: total } });
+          logActivity({ action: ACTIONS.PAYMENT_SUCCESS, userId: user.uid, email: user.email, details: { plan: teamPlan, teamId, seats, reference: response.reference, amount: total } });
           navigate("/team/" + teamId, { state: { reference: response.reference } });
         },
       });

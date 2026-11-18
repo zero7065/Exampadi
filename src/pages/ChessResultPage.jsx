@@ -1,9 +1,11 @@
 // Chess result — public, click-bait performance card.
 // "Can you beat this?" — drives new signups via shared links.
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { getChessResult, likeChessResult } from "../lib/games/chessResults";
+import { logActivity } from "../lib/activityLog";
+import { ACTIONS } from "../lib/actions";
 import { Crown, Trophy, Heart, Share2, ArrowRight, Loader2, Swords, Flame } from "lucide-react";
 
 const RESULT_LABEL = {
@@ -17,10 +19,17 @@ export default function ChessResultPage() {
   const navigate = useNavigate();
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(true);
+  const resultLogged = useRef(false);
 
   useEffect(() => {
     getChessResult(id).then((r) => setResult(r)).finally(() => setLoading(false));
   }, [id]);
+
+  useEffect(() => {
+    if (!result || resultLogged.current) return;
+    resultLogged.current = true;
+    logActivity({ action: ACTIONS.CHESS_RESULT, userId: user?.uid, email: user?.email, details: { result: result.result, id } });
+  }, [result, id, user]);
 
   function share() {
     const link = window.location.href;

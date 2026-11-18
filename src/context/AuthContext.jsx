@@ -12,6 +12,7 @@ import {
 import { auth, db, signInWithGoogle as firebaseGoogleSignIn } from "../firebaseConfig";
 import { doc, setDoc, serverTimestamp, getDoc, runTransaction } from "firebase/firestore";
 import { logActivity } from "../lib/activityLog";
+import { ACTIONS } from "../lib/actions";
 import { onConnectionChange, startConnectionMonitor } from "../lib/connectionHealth";
 import { flushQueue } from "../lib/offlineQueue";
 
@@ -229,7 +230,7 @@ export function AuthProvider({ children }) {
       }
     }
     setUser({ ...cred.user, displayName: name });
-    logActivity({ action: "register", userId: cred.user.uid, email, details: { name, schoolCode } });
+    logActivity({ action: ACTIONS.REGISTER, userId: cred.user.uid, email, details: { name, schoolCode } });
   }
 
   async function login(email, password) {
@@ -251,7 +252,7 @@ export function AuthProvider({ children }) {
         throw e;
       }
     }
-    logActivity({ action: "login", userId: cred.user.uid, email });
+    logActivity({ action: ACTIONS.LOGIN, userId: cred.user.uid, email });
   }
 
   async function signInWithGoogle() {
@@ -288,7 +289,7 @@ export function AuthProvider({ children }) {
         console.warn("Google profile creation failed:", e?.message);
       }
     }
-    logActivity({ action: "register", userId: googleUser.uid, email: googleUser.email, details: { name: googleUser.displayName, provider: "google" } });
+    logActivity({ action: ACTIONS.REGISTER, userId: googleUser.uid, email: googleUser.email, details: { name: googleUser.displayName, provider: "google" } });
     setUser({ ...googleUser, displayName: googleUser.displayName });
   }
 
@@ -297,7 +298,7 @@ export function AuthProvider({ children }) {
     const email = auth.currentUser?.email;
     try {
       await signOut(auth);
-      if (uid) logActivity({ action: "logout", userId: uid, email });
+      if (uid) logActivity({ action: ACTIONS.LOGOUT, userId: uid, email });
     } catch (e) {
       console.error("Logout error:", e);
     }

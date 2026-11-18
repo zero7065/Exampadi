@@ -1,11 +1,13 @@
 // src/pages/FlashcardsPage.jsx - AI flashcard revision
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "../components/Toast";
 import { generateFlashcards, getAIErrorIfRecent } from "../lib/ai";
 import { checkAILimit } from "../lib/usageTracker";
 import { PLANS } from "../config/plans";
 import { unlockAchievement } from "../lib/achievements";
+import { logActivity } from "../lib/activityLog";
+import { ACTIONS } from "../lib/actions";
 import { JAMB_SUBJECTS, WAEC_SUBJECTS } from "../data/subjects";
 import { Layers, Sparkles, Loader2, ChevronLeft, ChevronRight, RotateCcw, Check, X } from "lucide-react";
 
@@ -21,6 +23,7 @@ export default function FlashcardsPage() {
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [known, setKnown] = useState({});
+  const reviewLogged = useRef(false);
 
   const subjects = exam === "JAMB" ? JAMB_SUBJECTS : WAEC_SUBJECTS;
 
@@ -31,6 +34,7 @@ export default function FlashcardsPage() {
     setIndex(0);
     setFlipped(false);
     setKnown({});
+    reviewLogged.current = false;
     try {
       const limit = await checkAILimit(user?.uid);
       if (!limit.allowed) {
@@ -68,10 +72,18 @@ export default function FlashcardsPage() {
     setIndex(0);
     setFlipped(false);
     setKnown({});
+    reviewLogged.current = false;
   }
 
   const current = cards[index];
   const knownCount = Object.values(known).filter(Boolean).length;
+
+  useEffect(() => {
+    if (reviewLogged.current || !cards.length) return;
+    if (Object.keys(known).length < cards.length) return;
+    reviewLogged.current = true;
+    logActivity({ action: ACTIONS.FLASHCARD_REVIEW, userId: user?.uid, email: user?.email, details: { subject, topic: topic.trim() || null, exam, count: cards.length } });
+  }, [known, cards, user, subject, topic, exam]);
 
   return (
     <div className="max-w-3xl mx-auto p-6 md:p-10 space-y-6">

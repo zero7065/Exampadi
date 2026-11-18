@@ -5,6 +5,7 @@ import { createUserProfile, getUserProfile } from "../lib/userProfile";
 import { recordStyle } from "../lib/aiMemory";
 import { useToast } from "../components/Toast";
 import { logActivity } from "../lib/activityLog";
+import { ACTIONS } from "../lib/actions";
 import LearningStyleMini from "../components/Onboarding/LearningStyleMini";
 import { Check, ChevronRight, BookOpen, ArrowRight } from "lucide-react";
 
@@ -117,7 +118,7 @@ export default function Onboarding() {
       if (learningStyle) {
         recordStyle(user.uid, learningStyle).catch(() => {});
       }
-      logActivity({ action: "onboarding_complete", userId: user.uid, email: user.email, details: { exam: formData.exam, subjects: formData.subjects, targetScore: formData.targetScore } });
+      logActivity({ action: ACTIONS.ONBOARDING_COMPLETE, userId: user.uid, email: user.email, details: { exam: formData.exam, subjects: formData.subjects, targetScore: formData.targetScore } });
       toast({ message: "Profile created! Let's go 🚀", type: "success" });
       navigate("/dashboard");
     } catch (error) {

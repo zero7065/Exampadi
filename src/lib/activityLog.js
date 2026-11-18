@@ -1,21 +1,23 @@
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
-let logCache = [];
-let logTimer = null;
-
+// Central activity logger. Fire-and-forget — never blocks UX.
+// Every entry carries userId so a user can read their own trail
+// (firestore.rules: activityLog read if request.auth.uid == resource.data.userId)
+// while admins can read all.
 export async function logActivity({ action, userId, email, details }) {
-  const entry = { action, userId, email, details: details || {}, timestamp: serverTimestamp() };
-  logCache.push(entry);
-  if (db) {
-    try {
-      await addDoc(collection(db, "activityLog"), entry);
-    } catch (e) {
-      console.warn("Activity log failed:", e);
-    }
-  }
-  if (!logTimer) {
-    logTimer = setTimeout(() => { logCache = []; logTimer = null; }, 5000);
+  if (!db) return;
+  const entry = {
+    action,
+    userId: userId || null,
+    email: email || null,
+    details: details || {},
+    timestamp: serverTimestamp(),
+  };
+  try {
+    await addDoc(collection(db, "activityLog"), entry);
+  } catch (e) {
+    console.warn("Activity log failed:", e);
   }
 }
 

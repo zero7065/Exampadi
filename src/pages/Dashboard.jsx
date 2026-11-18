@@ -30,6 +30,18 @@ const SUBJECT_ICONS = {
   "Business Management": "💼",
 };
 
+// Pure relative-time formatter (caller supplies `now` so it stays out of render).
+function relTime(ts, now) {
+  const d = ts?.toDate ? ts.toDate() : ts?.seconds ? new Date(ts.seconds * 1000) : ts ? new Date(ts) : null;
+  if (!d || isNaN(d.getTime())) return "";
+  const diff = Math.floor((now - d.getTime()) / 1000);
+  if (diff < 60) return "just now";
+  if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
+  if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
+  if (diff < 604800) return `${Math.floor(diff / 86400)}d ago`;
+  return d.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+}
+
 export default function Dashboard() {
   const { user } = useAuth();
   const { toast } = useToast();
@@ -44,6 +56,7 @@ export default function Dashboard() {
   const [insights, setInsights] = useState([]);
   const [showTour, setShowTour] = useState(() => !tourSeen());
   const [updates, setUpdates] = useState([]);
+  const [recentActivity, setRecentActivity] = useState([]);
   const healthTip = dailyHealthTip(new Date().toISOString().split("T")[0]);
 
   useEffect(() => {
@@ -81,6 +94,24 @@ export default function Dashboard() {
             }
           });
           setSubjectStats(stats);
+
+          // Recent activity feed — prefer the user's own activity log (rules allow
+          // read where userId == auth.uid); fall back to saved sessions.
+          try {
+            const actSnap = await getDocs(query(collection(db, "activityLog"), where("userId", "==", user.uid), limit(25)));
+            const acts = actSnap.docs
+              .map((d) => ({ id: d.id, ...d.data() }))
+              .sort((a, b) => (b.timestamp?.seconds || 0) - (a.timestamp?.seconds || 0))
+              .slice(0, 6);
+            if (acts.length) {
+              setRecentActivity(acts.map((a) => ({ ...a, ago: relTime(a.timestamp, Date.now()) })));
+            } else {
+              setRecentActivity(docs.slice(0, 6).map((d) => {
+                const s = d.data();
+                return { id: d.id, action: "session_complete", details: { subject: s.subject, score: s.score }, timestamp: s.completedAt, ago: relTime(s.completedAt, Date.now()) };
+              }));
+            }
+          } catch { /* feed is optional */ }
           // AI learning loop: spot failure patterns + prescribe countermeasures
           try {
             const mem = await getStudentMemory(user.uid).catch(() => null);
@@ -114,6 +145,31 @@ export default function Dashboard() {
     if (hour < 12) return "Good morning";
     if (hour < 18) return "Good afternoon";
     return "Good evening";
+  }
+
+  function activityMeta(action, details = {}) {
+    switch (action) {
+      case "register": return { icon: "🎉", text: "Joined ExamPadi" };
+      case "login": return { icon: "🔑", text: "Logged in" };
+      case "onboarding_complete": return { icon: "🎯", text: `Set up ${details.exam || "their"} prep` };
+      case "practice_start": return { icon: "▶️", text: `Started ${details.subject || "a practice session"}` };
+      case "session_complete": return { icon: "✅", text: `Completed ${details.subject || "a"} session${details.score != null ? ` · ${details.score}%` : ""}` };
+      case "high_score": return { icon: "🏆", text: `High score${details.subject ? ` in ${details.subject}` : ""}${details.score != null ? ` · ${details.score}%` : ""}` };
+      case "streak": return { icon: "🔥", text: `${details.days || ""}-day streak` };
+      case "mock_exam_complete": return { icon: "📝", text: `Mock exam complete${details.overallScore != null ? ` · ${details.overallScore}%` : ""}` };
+      case "ai_chat": return { icon: "🤖", text: `Asked the AI Tutor${details.subject ? ` about ${details.subject}` : ""}` };
+      case "ai_image_request": return { icon: "🖼️", text: "Generated an AI image" };
+      case "flashcard_review": return { icon: "🃏", text: "Reviewed flashcards" };
+      case "study_plan_update": return { icon: "🗓️", text: "Updated the study plan" };
+      case "notepad_save": return { icon: "🗒️", text: "Saved a note" };
+      case "chess_result": return { icon: "♟️", text: "Played a chess match" };
+      case "trivia_played": return { icon: "🧠", text: "Played trivia" };
+      case "study_partner_connect": return { icon: "🤝", text: "Connected with a study partner" };
+      case "profile_update": return { icon: "👤", text: "Updated profile" };
+      case "settings_change": return { icon: "⚙️", text: "Changed settings" };
+      case "payment_success": return { icon: "💳", text: `Upgraded${details.plan ? ` to ${details.plan}` : " to Pro"}` };
+      default: return { icon: "•", text: action };
+    }
   }
 
   if (loading) {
@@ -413,10 +469,27 @@ export default function Dashboard() {
             </div>
           </div>
 
-          <div style={{ background: "var(--bg-2)", border: "1px solid var(--border)", borderRadius: 16, padding: 24, textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-             <div style={{ fontSize: 32, marginBottom: 12 }}>🚀</div>
-             <h3 style={{ fontSize: 16, fontWeight: 600, color: "var(--text)", marginBottom: 8 }}>No activity yet</h3>
-             <p style={{ color: "var(--text-muted)", fontSize: 13 }}>Start your first practice session!</p>
+          <div style={{ background: "var(--bg-2)", border: "1px solid var(--border)", borderRadius: 16, padding: 24 }}>
+             <h3 style={{ fontSize: 16, fontWeight: 700, color: "var(--text)", marginBottom: 12 }}>Recent Activity</h3>
+             {recentActivity.length === 0 ? (
+               <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "12px 0" }}>
+                 <div style={{ fontSize: 32, marginBottom: 8 }}>🚀</div>
+                 <p style={{ color: "var(--text-muted)", fontSize: 13, margin: 0 }}>No activity yet — start your first practice session!</p>
+               </div>
+             ) : (
+               <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                 {recentActivity.map((a) => {
+                   const m = activityMeta(a.action, a.details);
+                   return (
+                     <div key={a.id} style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                       <span style={{ fontSize: 18, width: 24, textAlign: "center" }}>{m.icon}</span>
+                       <span style={{ flex: 1, fontSize: 13, color: "var(--text)" }}>{m.text}</span>
+                       <span style={{ fontSize: 11, color: "var(--text-muted)", whiteSpace: "nowrap" }}>{a.ago}</span>
+                     </div>
+                   );
+                 })}
+               </div>
+             )}
           </div>
         </div>
       </div>
