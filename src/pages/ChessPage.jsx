@@ -1,6 +1,6 @@
 // Chess page — lichess-style board vs AI. 10 difficulty levels.
 // Click-to-move + drag, legal move dots, captured pieces, clocks, move list.
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Chess } from "chess.js";
 import { useAuth } from "../context/AuthContext";
@@ -10,7 +10,7 @@ import ProGate from "../components/ProGate";
 import ShareButton from "../components/ShareButton";
 import { getBestMove, getOpeningMove, LEVELS } from "../lib/games/chessEngine";
 import { createChessResult } from "../lib/games/chessResults";
-import { ArrowLeft, RotateCcw, Flag, Handshake, ChevronLeft, ChevronRight, Trophy, Zap, Loader2, Crown, Users, Share2 } from "lucide-react";
+import { ArrowLeft, RotateCcw, Flag, Handshake, Trophy, Zap, Loader2, Crown, Users, Share2 } from "lucide-react";
 
 const PIECE_GLYPH = {
   w: { k: "♔", q: "♕", r: "♖", b: "♗", n: "♘", p: "♙" },
@@ -50,6 +50,7 @@ export default function ChessPage() {
   useEffect(() => {
     if (gameOver || result) return;
     if (game.turn() !== playerColor && !thinking) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- flag gates player input while the AI timer runs
       setThinking(true);
       aiTimer.current = setTimeout(() => {
         try {
@@ -72,6 +73,7 @@ export default function ChessPage() {
         setThinking(false);
       }, 400 + Math.random() * 500);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- checkGameEnd is recreated each render; adding it would re-trigger the effect
   }, [fen, game, playerColor, level, thinking, gameOver, result]);
 
   function checkGameEnd(g) {

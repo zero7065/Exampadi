@@ -9,7 +9,7 @@ import AdminCompliance from "../components/AdminCompliance";
 import AdminTeams from "../components/AdminTeams";
 import AdminContent from "../components/AdminContent";
 const isAdmin = typeof _isAdmin === 'function' ? _isAdmin : () => false;
-import { Shield, Users, Activity, BookOpen, Crown, ArrowLeft, RefreshCw, Search, Zap, CreditCard, ClipboardList, Award, Clock, CheckCircle, XCircle, Eye, Wifi, WifiOff, Loader2, AlertCircle, CheckCircle2 } from "lucide-react";
+import { Shield, Users, Activity, BookOpen, Crown, ArrowLeft, RefreshCw, Search, Zap, CreditCard, ClipboardList, Award, Clock, CheckCircle, XCircle, Eye, Loader2, AlertCircle, CheckCircle2 } from "lucide-react";
 import NetworkDiagnostic from "../components/NetworkDiagnostic";
 import AdminTrainingData from "../components/AdminTrainingData";
 import AdminTeachers from "../components/AdminTeachers";
@@ -340,7 +340,7 @@ export default function AdminPage() {
                   <Icon size={20} color={color} />
                 </div>
               </div>
-              <div style={{ fontSize: 28, fontWeight: 800, color: "#fff" }}>{value}</div>
+              <div style={{ fontSize: 28, fontWeight: 800, color: "var(--text)" }}>{value}</div>
               <div style={{ fontSize: 12, color: "var(--text-muted)", marginTop: 4 }}>{label}</div>
             </div>
           ))}
@@ -391,7 +391,7 @@ export default function AdminPage() {
               onChange={e => setSearchQuery(e.target.value)}
               style={{
                 width: "100%", padding: "12px 16px 12px 40px", borderRadius: 12,
-                background: "var(--bg-2)", border: "1px solid var(--border)", color: "#fff",
+                background: "var(--bg-2)", border: "1px solid var(--border)", color: "var(--text)",
                 fontSize: 14, outline: "none", fontFamily: "inherit", boxSizing: "border-box",
               }}
             />
@@ -529,7 +529,7 @@ export default function AdminPage() {
                       const subStatus = getUserSubStatus(u);
                       return (
                         <tr key={u.id} style={{ borderBottom: "1px solid var(--border)" }}>
-                          <td style={{ padding: "12px 16px", color: "#fff", fontWeight: 600 }}>{u.name || "—"}</td>
+                          <td style={{ padding: "12px 16px", color: "var(--text)", fontWeight: 600 }}>{u.name || "—"}</td>
                           <td style={{ padding: "12px 16px", color: "var(--text-muted)" }}>{u.email || "—"}</td>
                           <td style={{ padding: "12px 16px" }}>
                             <span style={{ padding: "2px 8px", borderRadius: 4, background: "rgb(var(--primary-rgb) / 0.15)", color: "var(--primary)", fontSize: 11, fontWeight: 600 }}>{u.exam || "—"}</span>
@@ -614,7 +614,7 @@ export default function AdminPage() {
                       const features = sub?.proFeatures || u.proFeatures || {};
                       return (
                         <tr key={u.id} style={{ borderBottom: "1px solid var(--border)" }}>
-                          <td style={{ padding: "12px 16px", color: "#fff", fontWeight: 600 }}>{u.name || "—"}</td>
+                          <td style={{ padding: "12px 16px", color: "var(--text)", fontWeight: 600 }}>{u.name || "—"}</td>
                           <td style={{ padding: "12px 16px", color: "var(--text-muted)" }}>{u.email || "—"}</td>
                           <td style={{ padding: "12px 16px" }}>
                             <span style={{ padding: "2px 8px", borderRadius: 4, background: "rgb(var(--accent-rgb) / 0.15)", color: "var(--accent)", fontSize: 11, fontWeight: 600 }}>
@@ -776,7 +776,7 @@ export default function AdminPage() {
                     </button>
                     <button onClick={() => setViewingAs(selectedUser)} style={{
                       padding: "10px 20px", borderRadius: 10, border: "1px solid #333",
-                      background: "var(--border)", color: "#fff", fontWeight: 700, fontSize: 13, cursor: "pointer", fontFamily: "inherit",
+                      background: "var(--border)", color: "var(--text)", fontWeight: 700, fontSize: 13, cursor: "pointer", fontFamily: "inherit",
                     }}>
                       <Eye size={14} style={{ marginRight: 6 }} />
                       View as User
@@ -787,13 +787,13 @@ export default function AdminPage() {
                   <div style={{ display: "flex", gap: 8, marginBottom: 20, flexWrap: "wrap", alignItems: "center" }}>
                     <span style={{ fontSize: 12, color: "var(--text-muted)", fontWeight: 700 }}>ROLE:</span>
                     <select value={roleEdit.role} onChange={(e) => setRoleEdit((r) => ({ ...r, role: e.target.value }))}
-                      style={{ background: "var(--bg)", border: "1px solid #333", borderRadius: 8, padding: "8px 12px", color: "#fff", fontSize: 13, outline: "none", fontFamily: "inherit" }}>
+                      style={{ background: "var(--bg)", border: "1px solid #333", borderRadius: 8, padding: "8px 12px", color: "var(--text)", fontSize: 13, outline: "none", fontFamily: "inherit" }}>
                       <option value="user">Student (user)</option>
                       <option value="teacher">Teacher</option>
                     </select>
                     <input value={roleEdit.schoolId} onChange={(e) => setRoleEdit((r) => ({ ...r, schoolId: e.target.value }))}
                       placeholder="schoolId (for teachers)"
-                      style={{ background: "var(--bg)", border: "1px solid #333", borderRadius: 8, padding: "8px 12px", color: "#fff", fontSize: 13, outline: "none", fontFamily: "inherit", minWidth: 200 }} />
+                      style={{ background: "var(--bg)", border: "1px solid #333", borderRadius: 8, padding: "8px 12px", color: "var(--text)", fontSize: 13, outline: "none", fontFamily: "inherit", minWidth: 200 }} />
                     <button onClick={async () => {
                       try {
                         await updateDoc(doc(db, "users", selectedUser.id), { role: roleEdit.role, schoolId: roleEdit.schoolId.trim() || null });
@@ -804,7 +804,7 @@ export default function AdminPage() {
                       } catch (e) {
                         showToast(`Failed: ${e.message}`, "error");
                       }
-                    }} style={{ padding: "8px 18px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid var(--primary)", color: "#fff", fontWeight: 700, fontSize: 13, cursor: "pointer", fontFamily: "inherit" }}>
+                    }} style={{ padding: "8px 18px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid var(--primary)", color: "var(--text)", fontWeight: 700, fontSize: 13, cursor: "pointer", fontFamily: "inherit" }}>
                       Save role
                     </button>
                     {selectedUser.role === "teacher" && (
@@ -856,7 +856,7 @@ export default function AdminPage() {
                         <tbody>
                           {userStats.assignments.map((a, i) => (
                             <tr key={i} style={{ borderBottom: "1px solid var(--border)" }}>
-                              <td style={{ padding: "12px 16px", color: "#fff", fontWeight: 600 }}>{a.title || "—"}</td>
+                              <td style={{ padding: "12px 16px", color: "var(--text)", fontWeight: 600 }}>{a.title || "—"}</td>
                               <td style={{ padding: "12px 16px", color: "var(--text-muted)" }}>{a.subject || "—"}</td>
                               <td style={{ padding: "12px 16px" }}>
                                 <span style={{
@@ -957,7 +957,7 @@ export default function AdminPage() {
 
             <div style={{ background: "var(--bg-2)", borderRadius: 12, padding: 16, marginBottom: 20, border: "1px solid var(--border)" }}>
               <div style={{ color: "var(--text-muted)", fontSize: 12, marginBottom: 4 }}>Granting to:</div>
-              <div style={{ color: "#fff", fontWeight: 600, fontSize: 14 }}>{assignModal.name || "Unknown"}</div>
+              <div style={{ color: "var(--text)", fontWeight: 600, fontSize: 14 }}>{assignModal.name || "Unknown"}</div>
               <div style={{ color: "var(--text-muted)", fontSize: 12 }}>{assignModal.email}</div>
             </div>
 
@@ -1002,7 +1002,7 @@ export default function AdminPage() {
                 min={1}
                 style={{
                   width: "100%", padding: "12px 14px", borderRadius: 10,
-                  background: "var(--bg-3)", border: "1px solid #333", color: "#fff",
+                  background: "var(--bg-3)", border: "1px solid #333", color: "var(--text)",
                   fontSize: 14, outline: "none", fontFamily: "inherit", boxSizing: "border-box",
                 }}
               />

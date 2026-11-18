@@ -1,0 +1,43 @@
+========================================================
+  INSTALL ExamPadi ON YOUR PHONE  (2 minutes)
+========================================================
+
+1. Tap the ExamPadi APK link to download it.
+
+2. Open the downloaded file
+   (from your notification bar, or Files > Downloads).
+
+3. If your phone asks, tap "Settings" and turn ON
+   "Allow from this source" (also called "Install
+   unknown apps") for your browser or Files app,
+   then go back and tap install again.
+
+4. Tap "Install", then "Open".
+
+5. If Google Play Protect shows
+   "Unsafe app blocked", tap "More details" then
+   "Install anyway". This is normal for any app that
+   does not come from the Play Store.
+
+6. Done! The ExamPadi icon is now on your home screen.
+
+--------------------------------------------------------
+The app is safe and digitally signed. It opens
+full-screen with no browser bar and works offline
+after the first open.
+
+--------------------------------------------------------
+SUPPORT (if the "Install unknown apps" option is hard
+to find):
+
+Android 8.0 and above:
+  Settings > Apps > Special access > Install unknown apps
+  > choose the app you downloaded with (Chrome / Files)
+  > Allow.
+
+Android 7 and below:
+  Settings > Security > Unknown sources > turn ON.
+
+Still stuck? Make sure you tapped the APK file itself
+(the one ending in .apk), not the web link.
+========================================================

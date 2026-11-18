@@ -12,7 +12,7 @@ const SPEECHES = [
 export default function WelcomeModal() {
   const { user } = useAuth();
   const [show, setShow] = useState(false);
-  const [speech] = useState(SPEECHES[Math.floor(Math.random() * SPEECHES.length)]);
+  const [speech] = useState(() => SPEECHES[Math.floor(Math.random() * SPEECHES.length)]);
 
   useEffect(() => {
     // Check if this is first login (new user)
@@ -60,7 +60,7 @@ export default function WelcomeModal() {
           borderRadius: 14, padding: "20px 18px", marginBottom: 28,
           borderLeft: "3px solid var(--primary)",
         }}>
-          <p style={{ color: "#fff", fontSize: 15, lineHeight: 1.7, fontStyle: "italic", margin: 0 }}>
+          <p style={{ color: "var(--text)", fontSize: 15, lineHeight: 1.7, fontStyle: "italic", margin: 0 }}>
             "{speech}"
           </p>
         </div>
@@ -75,7 +75,7 @@ export default function WelcomeModal() {
               background: "var(--bg-3)", borderRadius: 12, padding: "14px 8px",
             }}>
               <div style={{ fontSize: 24, marginBottom: 4 }}>{item.icon}</div>
-              <div style={{ color: "#fff", fontSize: 12, fontWeight: 700 }}>{item.label}</div>
+              <div style={{ color: "var(--text)", fontSize: 12, fontWeight: 700 }}>{item.label}</div>
               <div style={{ color: "var(--text-muted)", fontSize: 11 }}>{item.sub}</div>
             </div>
           ))}

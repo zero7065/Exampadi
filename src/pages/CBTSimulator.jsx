@@ -1,5 +1,5 @@
 ﻿// src/pages/CBTSimulator.jsx
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useSubscription } from "../hooks/useSubscription";
@@ -23,17 +23,17 @@ const CBTSimulator = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [flagged, setFlagged] = useState(new Set());
   const [answers, setAnswers] = useState({});
-  const [redirected, setRedirected] = useState(false);
-  const [startTime] = useState(Date.now());
+  const redirectedRef = useRef(false);
+  const [startTime] = useState(() => Date.now());
   const [scratchpadOpen, setScratchpadOpen] = useState(false);
 
   useEffect(() => {
-    if (!sessionData?.questions?.length && !redirected) {
-      setRedirected(true);
+    if (!sessionData?.questions?.length && !redirectedRef.current) {
+      redirectedRef.current = true;
       navigate("/select?mode=cbt");
       return;
     }
-  }, [sessionData, navigate, redirected]);
+  }, [sessionData, navigate]);
 
   if (!sessionData?.questions?.length) return null;
 

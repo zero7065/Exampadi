@@ -6,7 +6,7 @@ import { getRandomQuestions } from "../data/questions/compat";
 import { ACHIEVEMENTS } from "../config/achievements";
 import { collection, query, where, limit, getDocs, doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { db } from "../firebaseConfig";
-import { ChevronRight, TrendingUp, Target, Zap, BookOpen, BarChart3, Flame, Trophy, Crown } from "lucide-react";
+import { TrendingUp } from "lucide-react";
 
 const SUBJECT_ICONS = {
   Biology: "🧬", Chemistry: "🧪", Physics: "⚛️", Mathematics: "📐",
@@ -37,6 +37,19 @@ export default function Progress() {
   const [newAchievements, setNewAchievements] = useState([]);
   const [mockPage, setMockPage] = useState(1);
   const animRefs = useRef([]);
+
+  function animateNumber(setter, target) {
+    const start = performance.now();
+    const duration = 1000;
+    function frame(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const cur = Math.round(target * progress);
+      setter(cur);
+      if (progress < 1) animRefs.current.push(requestAnimationFrame(frame));
+    }
+    animRefs.current.push(requestAnimationFrame(frame));
+  }
 
   useEffect(() => { document.title = "Progress — ExamPadi"; }, []);
 
@@ -84,25 +97,12 @@ export default function Progress() {
       setLoading(false);
     }
     fetch();
-    return () => { animRefs.current.forEach(cancelAnimationFrame); };
+    const refs = animRefs.current;
+    return () => { refs.forEach(cancelAnimationFrame); };
   }, [user]);
-
-  function animateNumber(setter, target) {
-    const start = performance.now();
-    const duration = 1000;
-    function frame(now) {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      const cur = Math.round(target * progress);
-      setter(cur);
-      if (progress < 1) animRefs.current.push(requestAnimationFrame(frame));
-    }
-    animRefs.current.push(requestAnimationFrame(frame));
-  }
 
   const totalXP = profile?.totalXP || 0;
   const streak = profile?.streak || 0;
-  const totalAnswered = profile?.totalQuestionsAnswered || 0;
   const subjects = profile?.subjects || [];
   const level = Math.floor(totalXP / 500) + 1;
   const xpInLevel = totalXP % 500;
@@ -171,7 +171,7 @@ export default function Progress() {
           ].map((s, i) => (
             <div key={i} style={{ background: "var(--bg-2)", border: "1px solid var(--border)", borderRadius: 16, padding: 20, borderLeft: `4px solid ${s.color || "var(--primary)"}`, boxShadow: s.glow ? "0 0 20px rgb(var(--accent-rgb) / 0.15)" : "none" }}>
               <div style={{ fontSize: 11, color: "var(--text-muted)", marginBottom: 6, display: "flex", alignItems: "center", gap: 6 }}><span>{s.icon}</span> {s.label}</div>
-              <div style={{ fontSize: 28, fontWeight: 800, color: "#fff" }}>{s.value}</div>
+              <div style={{ fontSize: 28, fontWeight: 800, color: "var(--text)" }}>{s.value}</div>
               <div style={{ fontSize: 12, color: "var(--text-muted)", marginTop: 2 }}>{s.sub}</div>
             </div>
           ))}
@@ -227,14 +227,14 @@ export default function Progress() {
                 <div key={s} style={{ background: "var(--bg-2)", border: "1px solid var(--border)", borderRadius: 16, padding: 20 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
                     <span style={{ fontSize: 24 }}>{getSubjectIcon(s)}</span>
-                    <span style={{ fontWeight: 700, fontSize: 16, color: "#fff" }}>{s}</span>
+                    <span style={{ fontWeight: 700, fontSize: 16, color: "var(--text)" }}>{s}</span>
                   </div>
                   <div style={{ position: "relative", width: 80, height: 80, margin: "0 auto 12px" }}>
                     <svg width="80" height="80" viewBox="0 0 80 80">
                       <circle cx="40" cy="40" r="34" fill="none" stroke="var(--border)" strokeWidth="6" />
                       <circle cx="40" cy="40" r="34" fill="none" stroke={ringColor} strokeWidth="6" strokeDasharray={`${(pct / 100) * 214} 214`} strokeLinecap="round" transform="rotate(-90 40 40)" />
                     </svg>
-                    <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, fontWeight: 800, color: "#fff" }}>{pct}%</div>
+                    <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, fontWeight: 800, color: "var(--text)" }}>{pct}%</div>
                   </div>
                   <div style={{ textAlign: "center", fontSize: 12, color: "var(--text-muted)", marginBottom: 8 }}>{stats.correct}/{stats.total} correct</div>
                   {stats.total > 0 && <div style={{ textAlign: "center", fontSize: 11, color: "var(--text-muted)", marginBottom: 12 }}>Best: {stats.best}%</div>}
@@ -265,9 +265,9 @@ export default function Progress() {
                     return (
                       <tr key={m.id || i} style={{ background: i % 2 === 0 ? "var(--bg-2)" : "var(--bg)", cursor: "pointer" }}>
                         <td style={{ padding: "12px 16px", color: "var(--text-muted)", whiteSpace: "nowrap" }}>{m.completedAt?.toDate?.().toLocaleDateString?.() || "Recent"}</td>
-                        <td style={{ padding: "12px 16px", color: "#fff" }}>{m.examType}</td>
-                        <td style={{ padding: "12px 16px", color: "#fff", fontWeight: 700 }}>{m.overallScore}%</td>
-                        <td style={{ padding: "12px 16px", color: "#fff" }}>{m.jamb400Score}/400</td>
+                        <td style={{ padding: "12px 16px", color: "var(--text)" }}>{m.examType}</td>
+                        <td style={{ padding: "12px 16px", color: "var(--text)", fontWeight: 700 }}>{m.overallScore}%</td>
+                        <td style={{ padding: "12px 16px", color: "var(--text)" }}>{m.jamb400Score}/400</td>
                         <td style={{ padding: "12px 16px" }}><span style={{ padding: "2px 8px", borderRadius: 6, background: `${g.c}22`, color: g.c, fontWeight: 700, fontSize: 12 }}>{g.l}</span></td>
                         <td style={{ padding: "12px 16px", color: "var(--text-muted)" }}>{Math.floor((m.timeUsed || 0) / 60)}m</td>
                         <td style={{ padding: "12px 16px" }}><span style={{ color: "var(--primary)", fontSize: 12, fontWeight: 600 }}>View →</span></td>
@@ -279,9 +279,9 @@ export default function Progress() {
             </div>
             {mockExams.length > 5 && (
               <div style={{ display: "flex", justifyContent: "center", gap: 8, padding: 12 }}>
-                <button disabled={mockPage <= 1} onClick={() => setMockPage(p => p - 1)} style={{ padding: "6px 14px", borderRadius: 6, background: "var(--bg-3)", border: "1px solid #333", color: mockPage <= 1 ? "var(--text-muted)" : "#fff", cursor: mockPage <= 1 ? "not-allowed" : "pointer", fontSize: 12 }}>Prev</button>
+                <button disabled={mockPage <= 1} onClick={() => setMockPage(p => p - 1)} style={{ padding: "6px 14px", borderRadius: 6, background: "var(--bg-3)", border: "1px solid #333", color: mockPage <= 1 ? "var(--text-muted)" : "var(--text)", cursor: mockPage <= 1 ? "not-allowed" : "pointer", fontSize: 12 }}>Prev</button>
                 <span style={{ fontSize: 12, color: "var(--text-muted)", alignSelf: "center" }}>{mockPage}/{Math.ceil(mockExams.length / 5)}</span>
-                <button disabled={mockPage >= Math.ceil(mockExams.length / 5)} onClick={() => setMockPage(p => p + 1)} style={{ padding: "6px 14px", borderRadius: 6, background: "var(--bg-3)", border: "1px solid #333", color: mockPage >= Math.ceil(mockExams.length / 5) ? "var(--text-muted)" : "#fff", cursor: mockPage >= Math.ceil(mockExams.length / 5) ? "not-allowed" : "pointer", fontSize: 12 }}>Next</button>
+                <button disabled={mockPage >= Math.ceil(mockExams.length / 5)} onClick={() => setMockPage(p => p + 1)} style={{ padding: "6px 14px", borderRadius: 6, background: "var(--bg-3)", border: "1px solid #333", color: mockPage >= Math.ceil(mockExams.length / 5) ? "var(--text-muted)" : "var(--text)", cursor: mockPage >= Math.ceil(mockExams.length / 5) ? "not-allowed" : "pointer", fontSize: 12 }}>Next</button>
               </div>
             )}
           </div>
@@ -296,7 +296,7 @@ export default function Progress() {
               return (
                 <div key={topic} style={{ marginBottom: 12 }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
-                    <span style={{ fontSize: 13, fontWeight: 600, color: "#fff" }}>{topic}</span>
+                    <span style={{ fontSize: 13, fontWeight: 600, color: "var(--text)" }}>{topic}</span>
                     <span style={{ fontSize: 11, color: "#FF6B6B" }}>{count} wrong</span>
                   </div>
                   <div style={{ height: 6, background: "var(--border)", borderRadius: 3, overflow: "hidden" }}>
@@ -314,7 +314,7 @@ export default function Progress() {
         {topWeak.length === 0 && sessions.length === 0 && (
           <div style={{ textAlign: "center", padding: "60px 20px" }}>
             <div style={{ fontSize: 48, marginBottom: 16 }}>🚀</div>
-            <h3 style={{ fontSize: 18, fontWeight: 700, color: "#fff", marginBottom: 8 }}>Start your first practice session</h3>
+            <h3 style={{ fontSize: 18, fontWeight: 700, color: "var(--text)", marginBottom: 8 }}>Start your first practice session</h3>
             <p style={{ color: "var(--text-muted)", fontSize: 14, marginBottom: 20 }}>to see your progress here</p>
             <button onClick={() => navigate("/practice-select")} style={{ padding: "12px 28px", borderRadius: 10, background: "var(--primary)", border: "none", color: "#fff", fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>
               Practice Now →
@@ -326,18 +326,12 @@ export default function Progress() {
         <h2 style={{ fontSize: 20, fontWeight: 700, marginBottom: 16 }}>Achievements</h2>
         <div style={{ display: "flex", gap: 16, overflowX: "auto", paddingBottom: 8, marginBottom: 24 }}>
           {ACHIEVEMENTS.map(a => {
-            const totalQ = profile?.totalQuestionsAnswered || 0;
-            const streakV = profile?.streak || 0;
-            const totalXPV = profile?.totalXP || 0;
-            const bestScore = sessions.length > 0 ? Math.max(...sessions.map(s => s.score || 0)) : 0;
-            const stats = { totalQuestionsAnswered: totalQ, streak: streakV, totalXP: totalXPV, mockExamsCompleted: mockExams.length, bestScore };
-            const unlocked = a.condition(stats);
             const existingBadges = profile?.achievements || [];
             const showUnlocked = existingBadges.includes(a.id);
             return (
               <div key={a.id} style={{ minWidth: 140, background: "var(--bg-2)", border: showUnlocked ? "1px solid rgb(var(--accent-rgb) / 0.4)" : "1px solid #333", borderRadius: 12, padding: 16, textAlign: "center", filter: showUnlocked ? "none" : "grayscale(1)", opacity: showUnlocked ? 1 : 0.5, position: "relative" }}>
                 <div style={{ fontSize: 32, marginBottom: 8 }}>{a.icon}</div>
-                <div style={{ fontSize: 13, fontWeight: 700, color: "#fff" }}>{a.name}</div>
+                <div style={{ fontSize: 13, fontWeight: 700, color: "var(--text)" }}>{a.name}</div>
                 <div style={{ fontSize: 11, color: "var(--text-muted)", marginTop: 4 }}>{a.desc}</div>
                 {!showUnlocked && <div style={{ position: "absolute", top: 8, right: 8, fontSize: 14 }}>🔒</div>}
                 {showUnlocked && <div style={{ fontSize: 10, color: "var(--accent)", marginTop: 4 }}>Unlocked ✓</div>}

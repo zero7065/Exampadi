@@ -39,6 +39,7 @@ export default function Scratchpad({ open, onClose, context = "" }) {
     if (!open) return;
     try {
       const saved = localStorage.getItem(storageKey);
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- hydrate saved scratch work when the pad opens
       if (saved) setText(saved);
     } catch { /* ignore */ }
   }, [open, storageKey]);

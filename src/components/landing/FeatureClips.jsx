@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 // Animated feature previews — code-designed "short clips" (pure SVG/CSS animation).
 // Each clip is a live animated mini-UI that shows what the feature feels like.
 // No external assets: crisp on every screen, zero load cost.

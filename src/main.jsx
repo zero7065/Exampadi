@@ -24,7 +24,7 @@ try {
   if (localStorage.getItem("ep-reduce-motion") === "1") {
     document.documentElement.classList.add("reduce-motion");
   }
-} catch (_) {}
+} catch (_) { /* ignore */ }
 // Register the service worker (offline shell). Cleanup of stale SWs/caches
 // runs at most once per SW_VERSION inside clearOldServiceWorker (App.jsx).
 if ('serviceWorker' in navigator) {

@@ -162,12 +162,8 @@ export default function HeroCarousel({ user }) {
     return () => clearInterval(t);
   }, [paused, slides.length]);
 
-  useEffect(() => {
-    if (idx >= slides.length) setIdx(0);
-  }, [slides.length, idx]);
-
-  const slide = slides[idx] || slides[0];
-  const Scene = SCENES[slide?.scene] || SceneStudy;
+  const activeIdx = idx < slides.length ? idx : 0;
+  const slide = slides[activeIdx] || slides[0];
 
   return (
     <section
@@ -188,7 +184,7 @@ export default function HeroCarousel({ user }) {
           return (
             <div key={`${s.id || "s"}-${i}`} style={{
               position: "absolute", inset: 0,
-              opacity: i === idx ? 1 : 0,
+              opacity: i === activeIdx ? 1 : 0,
               transition: "opacity 1s ease",
               pointerEvents: "none",
             }}>
@@ -236,8 +232,8 @@ export default function HeroCarousel({ user }) {
       <div style={{ position: "absolute", bottom: 28, left: "50%", transform: "translateX(-50%)", display: "flex", gap: 8, zIndex: 3 }}>
         {slides.map((s, i) => (
           <button key={`${s.id || "d"}-${i}`} onClick={() => setIdx(i)} aria-label={`Go to slide ${i + 1}`} style={{
-            width: i === idx ? 28 : 10, height: 10, borderRadius: 6, border: "none", cursor: "pointer",
-            background: i === idx ? "var(--primary)" : "rgba(255,255,255,0.4)",
+            width: i === activeIdx ? 28 : 10, height: 10, borderRadius: 6, border: "none", cursor: "pointer",
+            background: i === activeIdx ? "var(--primary)" : "rgba(255,255,255,0.4)",
             transition: "all 0.3s",
           }} />
         ))}

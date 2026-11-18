@@ -116,7 +116,7 @@ export default function FileUpload({ onUploadComplete, onUploadError }) {
       {!file ? (
         <button onClick={() => inputRef.current?.click()} style={{ width: "100%", padding: 24, borderRadius: 12, background: "rgb(var(--primary-rgb) / 0.08)", border: "2px dashed rgb(var(--primary-rgb) / 0.3)", cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
           <Upload size={32} color="var(--primary)" />
-          <span style={{ color: "#fff", fontSize: 14, fontWeight: 600 }}>Upload Document or Video</span>
+          <span style={{ color: "var(--text)", fontSize: 14, fontWeight: 600 }}>Upload Document or Video</span>
           <span style={{ color: "var(--text-muted)", fontSize: 12 }}>PDF, PNG, JPG, WEBP, MP4, WEBM — max 50MB</span>
         </button>
       ) : (
@@ -130,7 +130,7 @@ export default function FileUpload({ onUploadComplete, onUploadError }) {
               <FileText size={32} color="var(--primary)" />
             )}
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ color: "#fff", fontSize: 13, fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{file.name}</div>
+              <div style={{ color: "var(--text)", fontSize: 13, fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{file.name}</div>
               <div style={{ color: "var(--text-muted)", fontSize: 11 }}>{(file.size / 1024 / 1024).toFixed(1)} MB</div>
             </div>
             {!uploading && (

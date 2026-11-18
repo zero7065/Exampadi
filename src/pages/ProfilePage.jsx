@@ -143,7 +143,7 @@ export default function ProfilePage() {
               ) : (
                 <div className="flex items-center gap-2 justify-center sm:justify-start">
                   <h2 className="text-2xl font-black text-text">{profile?.name || user?.displayName || "Student"}</h2>
-                  <button onClick={() => setEditingName(true)} style={{ background: "none", border: "none", cursor: "pointer", color: "var(--text-muted)", cursor: "pointer" }}><Pencil size={15} /></button>
+                  <button onClick={() => setEditingName(true)} style={{ background: "none", border: "none", cursor: "pointer", color: "var(--text-muted)" }}><Pencil size={15} /></button>
                 </div>
               )}
             <p className="text-text-muted text-sm">{user?.email}</p>

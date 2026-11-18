@@ -1,8 +1,7 @@
-import { MessageCircle, Share2, UserPlus } from "lucide-react";
+/* eslint-disable react-refresh/only-export-components */
+import { MessageCircle, UserPlus } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "./Toast";
-
-const WHATSAPP_NUMBER = "2348127636057";
 
 function buildShareUrl(path) {
   const base = typeof window !== "undefined" ? window.location.origin : "https://exampadi.jadai.dev";
@@ -26,9 +25,9 @@ export function WhatsAppShareButton({ result, type = "result", style = {} }) {
     }
 
     const name = user.displayName || "A student";
-    let title = "";
-    let text = "";
-    let url = "";
+    let title;
+    let text;
+    let url;
 
     if (type === "result" && result) {
       title = `🎯 ${name} just scored ${result.percentageScore}% on ExamPadi!`;
@@ -83,7 +82,6 @@ export function WhatsAppHelpButton({ subject, score, style = {} }) {
       return;
     }
 
-    const name = user.displayName || "A student";
     const message = `Hi! I need help studying for ${subject || "my exams"} on ExamPadi.\n\nI scored ${score || "low"}% and could use a study partner.\n\nCan you help me study? Download ExamPadi and add me as your study partner!\n\n🔗 ${buildShareUrl("/auth")}`;
     const encoded = encodeURIComponent(message);
     window.open(`https://wa.me/?text=${encoded}`, "_blank");

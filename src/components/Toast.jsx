@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState, useCallback } from "react";
 
 const ToastContext = createContext();
@@ -29,15 +30,15 @@ export function ToastProvider({ children }) {
         {toasts.map(t => (
           <div key={t.id} style={{
             background: "var(--bg-3)",
-            border: "1px solid #333",
+            border: "1px solid var(--border)",
             borderRadius: 10,
             padding: "12px 18px",
             display: "flex",
             alignItems: "center",
             gap: 10,
-            boxShadow: "0 4px 24px rgba(0,0,0,0.5)",
+            boxShadow: "var(--card-shadow)",
             animation: "toastSlideUp 0.25s ease",
-            color: "#fff",
+            color: "var(--text)",
             fontSize: 14,
             fontFamily: "system-ui, sans-serif",
           }}>

@@ -67,6 +67,6 @@ export function downloadPdf(pdf, filename) {
   pdf.save(filename);
 }
 
-export function pdfToFile(pdf, filename) {
+export function pdfToFile(pdf, _filename) {
   return pdf.output("blob");
 }

@@ -39,7 +39,7 @@ exports.paystackWebhook = onRequest(
     logger.info(`Paystack event: ${event.event}`, { reference: event.data?.reference });
 
     if (event.event === "charge.success") {
-      const { reference, metadata, amount, status } = event.data;
+      const { reference, metadata, amount } = event.data;
 
       // Parse metadata from both formats:
       // 1. Top-level keys: { userId, plan } — used by usePaystack.js hook

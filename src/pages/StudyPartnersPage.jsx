@@ -46,6 +46,7 @@ export default function StudyPartnersPage() {
   useEffect(() => {
     if (!user) return;
     loadData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- loadData is stable; run when the signed-in user changes
   }, [user]);
 
   useEffect(
@@ -398,7 +399,7 @@ export default function StudyPartnersPage() {
                       {i + 1}
                     </div>
                     <div style={{ flex: 1 }}>
-                      <div style={{ fontWeight: 600, fontSize: 14, color: entry.isMe ? "var(--primary)" : "#fff" }}>
+                      <div style={{ fontWeight: 600, fontSize: 14, color: entry.isMe ? "var(--primary)" : "var(--text)" }}>
                         {entry.name} {entry.isMe && "(You)"}
                       </div>
                     </div>
@@ -477,7 +478,7 @@ export default function StudyPartnersPage() {
                 style={{
                   width: "100%", padding: "12px 14px", borderRadius: 12,
                   background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)",
-                  color: "#fff", fontSize: 14,
+                  color: "var(--text)", fontSize: 14,
                 }}
               >
                 {SUBJECTS.map((s) => <option key={s} value={s}>{s}</option>)}
@@ -493,7 +494,7 @@ export default function StudyPartnersPage() {
                   style={{
                     width: "100%", padding: "12px 14px", borderRadius: 12,
                     background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)",
-                    color: "#fff", fontSize: 14,
+                    color: "var(--text)", fontSize: 14,
                   }}
                 >
                   <option value={5}>5 Questions</option>
@@ -510,7 +511,7 @@ export default function StudyPartnersPage() {
                   style={{
                     width: "100%", padding: "12px 14px", borderRadius: 12,
                     background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)",
-                    color: "#fff", fontSize: 14,
+                    color: "var(--text)", fontSize: 14,
                   }}
                 >
                   <option value={300}>5 minutes</option>
@@ -551,7 +552,7 @@ function AddPartnerForm({ onSubmit }) {
         style={{
           width: "100%", padding: "14px 16px", borderRadius: 12,
           background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)",
-          color: "#fff", fontSize: 14, marginBottom: 12, boxSizing: "border-box",
+          color: "var(--text)", fontSize: 14, marginBottom: 12, boxSizing: "border-box",
         }}
       />
       <button

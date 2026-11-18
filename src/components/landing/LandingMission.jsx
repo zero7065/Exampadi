@@ -1,5 +1,5 @@
 // Mission: aim, objectives, and live coverage data.
-import { Target, Eye, BarChart3, Wifi, Users, ShieldCheck, BookOpen, Calendar } from "lucide-react";
+import { Target, Eye, Wifi, Users, ShieldCheck, BookOpen, Calendar } from "lucide-react";
 import { STATS_DISPLAY } from "../../lib/stats";
 
 const OBJECTIVES = [

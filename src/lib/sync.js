@@ -21,7 +21,6 @@ export function shouldSync() {
 // Check if the user has activity since the given timestamp
 async function hasActivitySince(uid, sinceMs) {
   if (!db || !uid) return false;
-  const since = new Date(sinceMs);
   try {
     // Sessions
     const s = await getDocs(query(

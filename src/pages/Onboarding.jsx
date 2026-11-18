@@ -6,7 +6,7 @@ import { recordStyle } from "../lib/aiMemory";
 import { useToast } from "../components/Toast";
 import { logActivity } from "../lib/activityLog";
 import LearningStyleMini from "../components/Onboarding/LearningStyleMini";
-import { Check, ChevronRight, Target, GraduationCap, BookOpen, PenTool, ArrowRight } from "lucide-react";
+import { Check, ChevronRight, BookOpen, ArrowRight } from "lucide-react";
 
 const EXAMS = [
   { id: "jamb", title: "JAMB UTME", subtitle: "University entrance exam · 180 questions · 2hrs", icon: "🎯" },
@@ -70,7 +70,6 @@ export default function Onboarding() {
     );
   }
 
-  const totalSteps = 5;
   const subjects = formData.exam ? SUBJECTS[formData.exam] : [];
 
   function handleExamSelect(exam) {

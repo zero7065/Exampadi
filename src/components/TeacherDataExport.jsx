@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Download, Share2, FileText, MessageCircle } from "lucide-react";
+import { Download, FileText, MessageCircle } from "lucide-react";
 import { shareToWhatsApp } from "../../lib/share";
 
 export default function TeacherDataExport({ roster, schoolName }) {
-  const [exporting, setExporting] = useState(false);
+  const [exporting] = useState(false);
 
   function generateCSV() {
     const headers = ["Name", "XP", "Streak", "Topics Attempted", "Accuracy %"];

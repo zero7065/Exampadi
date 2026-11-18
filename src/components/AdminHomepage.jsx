@@ -55,7 +55,7 @@ export default function AdminHomepage() {
         secondaryTo: "",
       }],
     }));
-    setActive((a) => (content?.slides?.length || 0));
+    setActive((_a) => (content?.slides?.length || 0));
   }
 
   function removeSlide(i) {

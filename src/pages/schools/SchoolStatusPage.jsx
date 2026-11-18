@@ -2,24 +2,23 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useToast } from "../../components/Toast";
+import { Users, Key, Plus } from "lucide-react";
 import {
-  Users, Building2, Key, ClipboardList, Eye, EyeOff, Settings2,
-} from "lucide-react";
-import {
-  listSchoolClasses, listSchoolTeachers, getClass,
+  listSchoolClasses, listSchoolTeachers, createClass,
 } from "../../lib/schools";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 
 export default function SchoolStatusPage() {
   const { user } = useAuth();
+  const { toast } = useToast();
   const [schoolId, setSchoolId] = useState("");
-  const [schoolName, setSchoolName] = useState("");
+  const [, setSchoolName] = useState("");
   const [classes, setClasses] = useState([]);
   const [teachers, setTeachers] = useState([]);
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [showClassModal, setShowClassModal] = useState(false);
+  const [, setShowClassModal] = useState(false);
   const [newClassName, setNewClassName] = useState("");
   const [newClassSubject, setNewClassSubject] = useState("");
 
@@ -56,12 +55,12 @@ export default function SchoolStatusPage() {
       toast({ message: `Failed to load data: ${e.message}`, type: "error" });
       setLoading(false);
     });
-  }, [schoolId]);
+  }, [schoolId, toast]);
 
-  async function handleCreateClass() {
+  async function _handleCreateClass() {
     if (!newClassName.trim() || !newClassSubject.trim()) return;
     try {
-      const id = await createClass(schoolId, {
+      await createClass(schoolId, {
         name: newClassName.trim(),
         subject: newClassSubject.trim(),
         createdBy: user?.uid || "",

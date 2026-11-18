@@ -8,10 +8,6 @@ export function useServiceWorkerUpdate() {
 
     let reg = null;
 
-    function onUpdate(registration) {
-      setWaiting(registration.waiting);
-    }
-
     function onChange(registration) {
       if (registration.waiting) setWaiting(registration.waiting);
     }

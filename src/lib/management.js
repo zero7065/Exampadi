@@ -3,10 +3,10 @@
 // can approve schools, pull sync, and message their school community.
 // Invisible to other admins/management accounts (filtered by schoolId).
 import {
-  doc, getDoc, setDoc, updateDoc, addDoc,
-  collection, query, where, orderBy, limit, onSnapshot, serverTimestamp,
+  doc, updateDoc,
+  collection, query, orderBy, limit, onSnapshot, serverTimestamp,
 } from "firebase/firestore";
-import { db, auth, signInWithEmailAndPassword, signOut } from "../firebaseConfig";
+import { db, auth, signInWithEmailAndPassword } from "../firebaseConfig";
 import { apiUrl } from "./apiBase";
 import { logActivity, isAdmin } from "./activityLog";
 

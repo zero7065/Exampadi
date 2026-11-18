@@ -43,7 +43,7 @@ export async function getLandingMedia() {
   _cacheAt = Date.now();
   try {
     localStorage.setItem("exampadi_landing_media", JSON.stringify(_cache));
-  } catch (_) {}
+  } catch (_) { /* storage unavailable */ }
   return _cache;
 }
 

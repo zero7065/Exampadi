@@ -4,7 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import { useToast } from "../components/Toast";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebaseConfig";
-import { Mail, MessageCircle, Send, CheckCircle } from "lucide-react";
+import { MessageCircle, Send, CheckCircle } from "lucide-react";
 
 const ContactPage = () => {
   const { user } = useAuth();

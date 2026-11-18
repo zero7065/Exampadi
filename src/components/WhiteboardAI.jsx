@@ -49,7 +49,7 @@ export default function WhiteboardAI({ imageBase64, onClose }) {
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
             placeholder="Ask about this work (optional)…"
-            style={{ flex: 1, padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "#fff", fontSize: 13, outline: "none" }}
+            style={{ flex: 1, padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "var(--text)", fontSize: 13, outline: "none" }}
           />
           <button onClick={analyze} disabled={loading || !imageBase64} style={{ padding: "10px 20px", borderRadius: 8, background: "var(--primary)", border: "none", color: "#fff", fontWeight: 700, fontSize: 13, cursor: loading ? "not-allowed" : "pointer", display: "flex", alignItems: "center", gap: 6, opacity: loading || !imageBase64 ? 0.6 : 1 }}>
             {loading ? <Loader2 size={14} /> : <Send size={14} />} Analyze

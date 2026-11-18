@@ -17,6 +17,9 @@ export default defineConfig([
       globals: globals.browser,
       parserOptions: { ecmaFeatures: { jsx: true } },
     },
+    rules: {
+      'no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_', caughtErrors: 'none' }],
+    },
   },
   {
     // Node code: CLI scripts, serverless API functions, Cloud Functions.
@@ -27,6 +30,20 @@ export default defineConfig([
     },
     rules: {
       'no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_', caughtErrors: 'none' }],
+    },
+  },
+  {
+    // Root build/config files and standalone Node seeders.
+    files: ['*.config.js', 'seed.js'],
+    languageOptions: {
+      globals: { ...globals.node },
+    },
+  },
+  {
+    // Service worker runs in a worker scope (self, caches, clients, etc.).
+    files: ['public/sw.js'],
+    languageOptions: {
+      globals: { ...globals.browser, ...globals.serviceworker },
     },
   },
 ])

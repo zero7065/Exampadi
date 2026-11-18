@@ -55,7 +55,7 @@ export async function generateImage({ prompt, provider = "auto" }) {
   const clean = String(prompt || "").trim();
   if (!clean) throw new Error("Describe the image you want first.");
 
-  let token = null;
+  let token;
   try {
     token = auth?.currentUser ? await auth.currentUser.getIdToken() : null;
   } catch {
@@ -78,9 +78,9 @@ export async function generateImage({ prompt, provider = "auto" }) {
     });
   } catch (e) {
     clearTimeout(timer);
-    if (e?.name === "AbortError") throw new Error("Image generation timed out — try again.");
+    if (e?.name === "AbortError") throw new Error("Image generation timed out — try again.", { cause: e });
     if (provider === "auto" || provider === "pollinations") return keylessResult(clean);
-    throw new Error("Could not reach the image service.");
+    throw new Error("Could not reach the image service.", { cause: e });
   } finally {
     clearTimeout(timer);
   }

@@ -33,7 +33,7 @@ export async function withRetry(fn, { retries = 2, baseMs = 500, factor = 2, onR
     } catch (err) {
       if (attempt >= retries || !isRetryableError(err)) throw err;
       attempt++;
-      try { onRetry?.(attempt, err); } catch (_) {}
+      try { onRetry?.(attempt, err); } catch (_) { /* onRetry is best-effort */ }
       await sleep(baseMs * Math.pow(factor, attempt - 1));
     }
   }

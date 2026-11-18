@@ -1,6 +1,6 @@
 import {
   doc, setDoc, getDoc, getDocs, updateDoc, deleteDoc,
-  collection, query, where, orderBy, serverTimestamp
+  collection, query, where, serverTimestamp
 } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
@@ -94,7 +94,7 @@ export async function acceptInvitation(inviteId, toUid) {
   return invite.fromUid;
 }
 
-export async function getPendingInvitations(userEmail) {
+export async function getPendingInvitations(_userEmail) {
   const q = query(
     collection(db, "invitations"),
     where("status", "==", "pending")
@@ -122,7 +122,7 @@ export async function createSharedTest(creatorUid, creatorName, config) {
   return testId;
 }
 
-export async function acceptSharedTest(testId, partnerUid) {
+export async function acceptSharedTest(testId, _partnerUid) {
   await updateDoc(doc(db, "sharedTests", testId), {
     status: "active",
     partnerJoinedAt: serverTimestamp(),

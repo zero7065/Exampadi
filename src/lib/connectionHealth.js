@@ -4,7 +4,6 @@
 
 const FIREBASE_KEY =
   (import.meta.env?.VITE_FIREBASE_API_KEY) || "AIzaSyDbXyJpW351DfqEyxwrsc4zZUNLcltaGQE";
-const PROJECT = import.meta.env?.VITE_FIREBASE_PROJECT_ID || "jamb-tutor";
 
 let _degraded = false;
 const listeners = new Set();
@@ -15,11 +14,15 @@ async function flushPendingData() {
   try {
     const { flushLocalSessions } = await import("./questions");
     await flushLocalSessions().catch(() => {});
-  } catch {}
+  } catch {
+    // questions module unavailable — skip
+  }
   try {
     const { flushQueue } = await import("./offlineQueue");
     await flushQueue().catch(() => {});
-  } catch {}
+  } catch {
+    // offline queue unavailable — skip
+  }
 }
 
 export function isDegraded() {
@@ -35,7 +38,9 @@ function emit(next) {
   if (_degraded === next) return;
   _degraded = next;
   listeners.forEach((fn) => {
-    try { fn(next); } catch (_) {}
+    try { fn(next); } catch (_) {
+      // listener threw — keep notifying the rest
+    }
   });
 }
 

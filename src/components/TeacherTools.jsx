@@ -1,5 +1,5 @@
 ﻿// TeacherTools \u2014 Real-time classroom interaction tools for teachers.
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { useToast } from "../components/Toast";
 import { useAuth } from "../context/AuthContext";
 import { collection, query, where, onSnapshot, doc, updateDoc, serverTimestamp } from "firebase/firestore";
@@ -14,12 +14,12 @@ function isRecentlyActive(ts, windowMs = 60000) {
   return Date.now() - ms < windowMs;
 }
 import { 
-  Users, Send, TrendingUp, AlertTriangle, Zap, 
-  MessageSquare, ThumbsUp, ThumbsDown, Volume2, VolumeX,
-  Eye, EyeOff, Timer, Settings, RefreshCw, Download, Plus, X, HelpCircle, EyeOff as EyeOffIcon, Volume2 as Volume2Icon
+  Users, TrendingUp, AlertTriangle, Zap, 
+  MessageSquare, ThumbsUp, ThumbsDown, Volume2,
+  Eye, EyeOff, Plus, X
 } from "lucide-react";
 
-export default function TeacherTools({ schoolId, roster, classId }) {
+export default function TeacherTools({ schoolId: _schoolId, roster, classId }) {
   const { toast } = useToast();
   const { user } = useAuth();
   const [activeTab, setActiveTab] = useState("overview");
@@ -136,7 +136,7 @@ export default function TeacherTools({ schoolId, roster, classId }) {
       .catch(function(e) { toast({ message: "Failed: " + e.message, type: "error" }); });
   }
 
-  function resolveAttention(requestId, studentUid) {
+  function resolveAttention(requestId, _studentUid) {
     updateDoc(doc(db, "attentionRequests", requestId), { resolved: true, resolvedAt: serverTimestamp() })
       .then(function() { toast({ message: "Attention request resolved", type: "success" }); })
       .catch(function(e) { toast({ message: "Failed: " + e.message, type: "error" }); });

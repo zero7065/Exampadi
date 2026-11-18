@@ -77,8 +77,10 @@ export default function AITutor() {
   useEffect(() => {
     try {
       const saved = localStorage.getItem(`ep-chat-${conversationId}`);
+      // External-system sync (localStorage) when the conversation changes.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       if (saved) setMessages(JSON.parse(saved));
-    } catch {}
+    } catch { /* ignore corrupt/blocked storage */ }
   }, [conversationId]);
 
   // Auto-send initial message
@@ -86,6 +88,8 @@ export default function AITutor() {
     if (initialMessage && messages.length === 0) {
       handleSend(initialMessage);
     }
+    // Fire only when a new initial message arrives; handleSend is read live.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialMessage]);
 
   // Scroll to bottom on new messages
@@ -109,6 +113,8 @@ export default function AITutor() {
         appendToAISession(currentSessionId, messages.map((m) => ({ role: m.role, content: m.content }))).catch(() => {});
       }
     }
+    // Persist whenever messages change; session id is captured from latest render.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [messages]);
 
   function handleNewChat() {

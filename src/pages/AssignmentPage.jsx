@@ -2,7 +2,6 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "../components/Toast";
-import { useSubscription } from "../hooks/useSubscription";
 import {
   getActiveAssignment,
   startAssignment,
@@ -28,7 +27,6 @@ const TIME_LIMIT = 1500;
 export default function AssignmentPage() {
   const { user } = useAuth();
   const { toast } = useToast();
-  const { isPro } = useSubscription();
   const navigate = useNavigate();
   const { isOpen, toggle, canvasRef, clear } = useWhiteboard();
 
@@ -48,6 +46,8 @@ export default function AssignmentPage() {
     if (active) {
       if (active.status === "pending") {
         const started = startAssignment(user.uid, active.id);
+        // Hydrate the active assignment from storage on entry.
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setAssignment(started);
         setStep("exam");
       } else if (active.status === "active") {
@@ -61,6 +61,21 @@ export default function AssignmentPage() {
       setStep("none");
     }
   }, [user]);
+
+  const handleSubmit = useCallback(() => {
+    if (!user || !assignment) return;
+    if (timerRef.current) clearInterval(timerRef.current);
+    const answerArray = assignment.questions.map((_, i) => answers[i] || null);
+    const res = submitAssignment(user.uid, assignment.id, answerArray);
+    setResult(res);
+    setStep("results");
+    if (res.score >= 35) {
+      addXp(user.uid, 30, "assignment_pass");
+      toast({ message: "Assignment passed! +30 XP", type: "success" });
+    } else {
+      toast({ message: "Assignment failed. Try again!", type: "error" });
+    }
+  }, [user, assignment, answers, toast]);
 
   useEffect(() => {
     if (step !== "exam" || timeRemaining <= 0) return;
@@ -78,6 +93,9 @@ export default function AssignmentPage() {
       });
     }, 1000);
     return () => clearInterval(timerRef.current);
+    // handleSubmit is invoked from the ticking interval; re-creating the timer
+    // whenever `answers` changes would reset the countdown.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [step]);
 
   const handleRequestAssignment = useCallback(() => {
@@ -92,21 +110,6 @@ export default function AssignmentPage() {
       toast({ message: "Assignment generated!", type: "success" });
     }
   }, [user, toast]);
-
-  const handleSubmit = useCallback(() => {
-    if (!user || !assignment) return;
-    if (timerRef.current) clearInterval(timerRef.current);
-    const answerArray = assignment.questions.map((_, i) => answers[i] || null);
-    const res = submitAssignment(user.uid, assignment.id, answerArray);
-    setResult(res);
-    setStep("results");
-    if (res.score >= 35) {
-      addXp(user.uid, 30, "assignment_pass");
-      toast({ message: "Assignment passed! +30 XP", type: "success" });
-    } else {
-      toast({ message: "Assignment failed. Try again!", type: "error" });
-    }
-  }, [user, assignment, answers, toast]);
 
   const handleRetry = useCallback(() => {
     setStep("none");
@@ -206,7 +209,7 @@ export default function AssignmentPage() {
             }}
           >
             <span style={{ color: "var(--text-muted)" }}>Time Limit</span>
-            <span style={{ color: "#fff", fontWeight: 600 }}>25 minutes</span>
+            <span style={{ color: "var(--text)", fontWeight: 600 }}>25 minutes</span>
           </div>
           <div
             style={{
@@ -220,7 +223,7 @@ export default function AssignmentPage() {
             }}
           >
             <span style={{ color: "var(--text-muted)" }}>Questions</span>
-            <span style={{ color: "#fff", fontWeight: 600 }}>25</span>
+            <span style={{ color: "var(--text)", fontWeight: 600 }}>25</span>
           </div>
           <div
             style={{
@@ -355,7 +358,7 @@ export default function AssignmentPage() {
                 textAlign: "center",
               }}
             >
-              <div style={{ fontSize: 32, fontWeight: 800, color: "#fff" }}>
+              <div style={{ fontSize: 32, fontWeight: 800, color: "var(--text)" }}>
                 {result.correctCount}/{result.questions.length}
               </div>
               <div style={{ fontSize: 11, color: "var(--text-muted)", marginTop: 4 }}>Correct</div>
@@ -430,7 +433,7 @@ export default function AssignmentPage() {
     const current = assignment.questions[currentIndex];
     const answeredCount = Object.keys(answers).length;
     const timerColor =
-      timeRemaining < 300 ? "#FF4D6A" : timeRemaining < 600 ? "#FF9F43" : "#fff";
+      timeRemaining < 300 ? "#FF4D6A" : timeRemaining < 600 ? "#FF9F43" : "var(--text)";
 
     return (
       <div
@@ -623,7 +626,7 @@ export default function AssignmentPage() {
                   fontWeight: 600,
                   lineHeight: 1.6,
                   margin: "0 0 24px",
-                  color: "#fff",
+                  color: "var(--text)",
                 }}
               >
                 {current.question}
@@ -741,7 +744,7 @@ export default function AssignmentPage() {
                   borderRadius: 8,
                   background: "var(--bg-3)",
                   border: "1px solid #333",
-                  color: currentIndex === 0 ? "var(--text-muted)" : "#fff",
+                  color: currentIndex === 0 ? "var(--text-muted)" : "var(--text)",
                   cursor: currentIndex === 0 ? "not-allowed" : "pointer",
                   fontFamily: "inherit",
                   display: "flex",
@@ -844,7 +847,7 @@ export default function AssignmentPage() {
                       borderRadius: 6,
                       background: bg,
                       border,
-                      color: a ? "#000" : "#fff",
+                      color: a ? "#000" : "var(--text)",
                       fontSize: 11,
                       fontWeight: 600,
                       cursor: "pointer",

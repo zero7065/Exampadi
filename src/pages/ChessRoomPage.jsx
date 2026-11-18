@@ -1,6 +1,6 @@
 // Chess multiplayer room — create/join with code, play on app with timer.
 // Both players sync moves live; either can create a room and share the code/link.
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Chess } from "chess.js";
 import { useAuth } from "../context/AuthContext";
@@ -11,7 +11,7 @@ import {
   createChessRoom, joinChessRoom, subscribeChessRoom, syncChessMove, finishChessRoom, resignChessRoom,
 } from "../lib/games/chessMultiplayer";
 import { createChessResult } from "../lib/games/chessResults";
-import { ArrowLeft, Copy, Check, Clock, Flag, Handshake, Users, Loader2, Share2, Crown, Timer } from "lucide-react";
+import { ArrowLeft, Copy, Check, Clock, Flag, Users, Loader2, Share2, Crown, Timer } from "lucide-react";
 
 const PIECE_GLYPH = {
   w: { k: "♔", q: "♕", r: "♖", b: "♗", n: "♘", p: "♙" },
@@ -38,7 +38,7 @@ export default function ChessRoomPage() {
   const [legalMoves, setLegalMoves] = useState([]);
   const [lastMove, setLastMove] = useState(null);
   const [copied, setCopied] = useState(false);
-  const [now, setNow] = useState(Date.now());
+  const [, setNow] = useState(() => Date.now());
   const [whiteMs, setWhiteMs] = useState(0);
   const [blackMs, setBlackMs] = useState(0);
   const [creating, setCreating] = useState(false);
@@ -103,7 +103,6 @@ export default function ChessRoomPage() {
       setGame(g);
       setSelected(null);
       setLegalMoves([]);
-      const nextWhite = game.turn() === "w" ? whiteMs : whiteMs;
       await syncChessMove(normalized, {
         fen: g.fen(),
         pgn: g.pgn(),

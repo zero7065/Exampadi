@@ -2,8 +2,8 @@
 // A room = code + settings (time control) + both players + live moves.
 // Players share the invite code/link; either can create; both sync moves live.
 import {
-  doc, getDoc, setDoc, updateDoc, addDoc,
-  collection, query, where, orderBy, limit, onSnapshot, serverTimestamp,
+  doc, getDoc, setDoc, updateDoc,
+  onSnapshot, serverTimestamp,
 } from "firebase/firestore";
 import { Chess } from "chess.js";
 import { db } from "../../firebaseConfig";

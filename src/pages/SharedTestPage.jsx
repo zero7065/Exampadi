@@ -4,7 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import { useToast } from "../components/Toast";
 import { getQuestionsFromBank } from "../data/questions/compat";
 import { submitSharedTest, getSharedTest } from "../lib/studyPartners";
-import { Clock, CheckCircle, XCircle, Trophy, ArrowRight } from "lucide-react";
+import { Clock, Trophy, ArrowRight } from "lucide-react";
 
 export default function SharedTestPage() {
   const { user } = useAuth();
@@ -24,6 +24,7 @@ export default function SharedTestPage() {
   useEffect(() => {
     if (!test) { navigate("/study-partners"); return; }
     const qs = getQuestionsFromBank({ subject: test.subject, count: test.questionCount || 10 });
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- initialize test state from route data
     setQuestions(qs);
     setTimeLeft(test.timeLimit);
     // Load partner results if test is completed
@@ -43,6 +44,7 @@ export default function SharedTestPage() {
     if (timeLeft <= 0 && !finished && questions.length > 0) {
       handleFinish();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- fire once when the timer reaches zero
   }, [timeLeft]);
 
   const handleAnswer = useCallback((qId, letter) => {
@@ -157,7 +159,7 @@ export default function SharedTestPage() {
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
         <span style={{
           fontSize: 14, fontWeight: 700,
-          color: timeLeft < 60 ? "#ff3b30" : "#fff",
+          color: timeLeft < 60 ? "#ff3b30" : "var(--text)",
         }}>
           <Clock size={16} style={{ verticalAlign: -3 }} /> {formatTime(timeLeft)}
         </span>
@@ -200,7 +202,7 @@ export default function SharedTestPage() {
                 ? "rgb(var(--primary-rgb) / 0.2)" : "rgba(255,255,255,0.04)",
               border: answers[q.id] === letter
                 ? "2px solid var(--primary)" : "1px solid rgba(255,255,255,0.08)",
-              color: "#fff", textAlign: "left", cursor: "pointer",
+              color: "var(--text)", textAlign: "left", cursor: "pointer",
               fontSize: 14, transition: "all 0.2s",
             }}
           >
@@ -224,7 +226,7 @@ export default function SharedTestPage() {
             onClick={() => setCurrent(current - 1)}
             style={{
               flex: 1, padding: "14px", borderRadius: 14,
-              background: "rgba(255,255,255,0.06)", color: "#fff",
+              background: "rgba(255,255,255,0.06)", color: "var(--text)",
               fontWeight: 700, fontSize: 14, border: "none", cursor: "pointer",
             }}
           >

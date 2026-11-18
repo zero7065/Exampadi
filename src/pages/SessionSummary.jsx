@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { useToast } from "../components/Toast";
 import { useNotifications } from "../hooks/useNotifications";
 import { getRandomQuestions } from "../data/questions/compat";
 import { doc, updateDoc, addDoc, collection, increment, serverTimestamp } from "firebase/firestore";
@@ -11,14 +10,13 @@ import { logActivity } from "../lib/activityLog";
 import { summarizeSessionGroq, heuristicSummary, getAIErrorIfRecent } from "../lib/ai";
 import { bufferSummary, flushMemory } from "../lib/aiMemory";
 import { useSubscription } from "../hooks/useSubscription";
-import { ArrowLeft, RotateCcw, Share2, Sparkles, CheckCircle2, XCircle } from "lucide-react";
+import { ArrowLeft, RotateCcw, CheckCircle2, XCircle } from "lucide-react";
 import { WhatsAppShareButton, WhatsAppHelpButton } from "../components/WhatsAppShare";
 import ReviewPrompt from "../components/ReviewPrompt";
 import { shouldAskReview } from "../lib/community";
 
 export default function SessionSummary() {
   const { user } = useAuth();
-  const { toast } = useToast();
   const { isPro } = useSubscription();
   const navigate = useNavigate();
   const location = useLocation();
@@ -49,6 +47,8 @@ export default function SessionSummary() {
     }, duration / steps);
 
     return () => { if (animRef.current) clearInterval(animRef.current); };
+    // Intentionally mount-only: the XP count-up animation must not restart.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Save to Firestore once
@@ -143,11 +143,13 @@ export default function SessionSummary() {
       }
     }
     saveSession();
+    // Run once per session payload; `saved` guards against duplicate writes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, user, saved]);
 
   if (!data) return null;
 
-  const { subject, mode, questions, answers, correct, wrong, total, score, timeSeconds, xpEarned, weakTopics } = data;
+  const { subject, mode, questions, answers, correct, wrong, score, timeSeconds, weakTopics } = data;
   const grade = score >= 80 ? "A" : score >= 65 ? "B" : score >= 50 ? "C" : "F";
   const headline = score >= 80 ? "Excellent! 🔥" : score >= 60 ? "Good effort! 💪" : "Keep pushing! 📚";
   const conicColor = score >= 80 ? "#4ADE80" : score >= 60 ? "var(--accent)" : score >= 40 ? "#FF9F43" : "#FF4D6A";
@@ -163,12 +165,6 @@ export default function SessionSummary() {
     navigate("/practice", { state: { questions: newQs, subject, mode } });
   }
 
-  function handleShare() {
-    const text = `I scored ${score}% on ${subject} JAMB practice on ExamPadi 🔥 Try it free: exampadi.com`;
-    if (navigator.share) { navigator.share({ title: "ExamPadi Score", text }).catch(() => {}); }
-    else { navigator.clipboard.writeText(text); toast({ message: "Copied! Share with friends 🎉", type: "success" }); }
-  }
-
   return (
     <div style={{ minHeight: "100vh", background: "var(--bg)", fontFamily: "'Inter', system-ui, sans-serif", color: "var(--text)", padding: "32px 24px" }}>
       <div style={{ maxWidth: 640, margin: "0 auto" }}>
@@ -181,7 +177,7 @@ export default function SessionSummary() {
               <circle cx="80" cy="80" r="70" fill="none" stroke={conicColor} strokeWidth="10" strokeDasharray={`${(score / 100) * 440} 440`} strokeLinecap="round" transform="rotate(-90 80 80)" style={{ transition: "stroke-dasharray 1s ease" }} />
             </svg>
             <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-              <span style={{ fontSize: 36, fontWeight: 800, color: "#fff" }}>{score}%</span>
+              <span style={{ fontSize: 36, fontWeight: 800, color: "var(--text)" }}>{score}%</span>
               <span style={{ fontSize: 14, fontWeight: 700, color: conicColor }}>Grade {grade}</span>
             </div>
           </div>
@@ -261,7 +257,7 @@ export default function SessionSummary() {
           <button onClick={handlePracticeAgain} style={{ padding: 14, borderRadius: 12, background: "var(--primary)", border: "none", color: "#fff", fontWeight: 700, fontSize: 15, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, fontFamily: "inherit" }}>
             <RotateCcw size={18} /> Practice Again
           </button>
-          <button onClick={() => navigate("/dashboard")} style={{ padding: 14, borderRadius: 12, background: "var(--bg-2)", border: "1px solid #333", color: "#fff", fontWeight: 600, fontSize: 14, cursor: "pointer", fontFamily: "inherit" }}>
+          <button onClick={() => navigate("/dashboard")} style={{ padding: 14, borderRadius: 12, background: "var(--bg-2)", border: "1px solid #333", color: "var(--text)", fontWeight: 600, fontSize: 14, cursor: "pointer", fontFamily: "inherit" }}>
             <ArrowLeft size={18} style={{ verticalAlign: "middle", marginRight: 8 }} /> Back to Dashboard
           </button>
           <WhatsAppShareButton

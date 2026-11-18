@@ -2,9 +2,10 @@
 // Only sees its own school's data. Can pull sync, message the community,
 // and review performance. Independent from admin and from other schools.
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "../components/Toast";
+import { isAdmin } from "../lib/activityLog";
 import { getUserProfile } from "../lib/userProfile";
 import { getSchool, listSchoolClasses } from "../lib/schools";
 import { syncNow } from "../lib/sync";
@@ -15,11 +16,16 @@ import { Building2, Users, GraduationCap, BookOpen, RefreshCw, Loader2, Messages
 export default function ManagementPage() {
   const { user } = useAuth();
   const { toast } = useToast();
+  const [searchParams] = useSearchParams();
+  const previewSchool = searchParams.get("school");
   const [profile, setProfile] = useState(null);
   const [school, setSchool] = useState(null);
   const [counts, setCounts] = useState({ students: 0, teachers: 0, classes: 0 });
   const [loading, setLoading] = useState(true);
   const [syncing, setSyncing] = useState(false);
+
+  // Admins previewing a school use the ?school= param; managers use their own.
+  const effectiveSchoolId = previewSchool && isAdmin(user) ? previewSchool : profile?.schoolId;
 
   useEffect(() => {
     if (!user) return;
@@ -27,11 +33,11 @@ export default function ManagementPage() {
       try {
         const p = await getUserProfile(user.uid);
         setProfile(p);
-        if (p?.schoolId) {
+        if (effectiveSchoolId) {
           const [sch, classes, usersSnap] = await Promise.all([
-            getSchool(p.schoolId).catch(() => null),
-            listSchoolClasses(p.schoolId).catch(() => []),
-            getDocs(query(collection(db, "users"), where("schoolId", "==", p.schoolId), limit(500))).catch(() => ({ docs: [] })),
+            getSchool(effectiveSchoolId).catch(() => null),
+            listSchoolClasses(effectiveSchoolId).catch(() => []),
+            getDocs(query(collection(db, "users"), where("schoolId", "==", effectiveSchoolId), limit(500))).catch(() => ({ docs: [] })),
           ]);
           setSchool(sch);
           const users = usersSnap.docs.map((d) => d.data());
@@ -47,9 +53,13 @@ export default function ManagementPage() {
         setLoading(false);
       }
     })();
-  }, [user]);
+  }, [user, effectiveSchoolId]);
 
   async function handleSync() {
+    if (!user || !effectiveSchoolId || (previewSchool && isAdmin(user))) {
+      toast({ message: "Switch to the management account to sync this school", type: "info" });
+      return;
+    }
     setSyncing(true);
     try {
       const res = await syncNow(user.uid, profile);
@@ -63,7 +73,7 @@ export default function ManagementPage() {
 
   if (loading) return <div className="page-content text-center" style={{ color: "var(--text-muted)" }}><Loader2 className="animate-spin mx-auto" /> Loading school…</div>;
 
-  if (!profile?.schoolId) {
+  if (!effectiveSchoolId) {
     return (
       <div className="page-content max-w-md mx-auto text-center space-y-3">
         <h1 className="text-xl font-black">Management</h1>
@@ -77,10 +87,13 @@ export default function ManagementPage() {
     <div className="page-content max-w-5xl mx-auto space-y-5">
       <header className="flex items-center justify-between gap-2 flex-wrap">
         <div>
-          <h1 className="text-2xl font-black flex items-center gap-2"><ShieldCheck size={22} className="text-primary" /> {school?.name || profile.schoolName || "School"} Management</h1>
-          <p className="text-sm text-text-muted">School-scoped oversight · {school?.status || "active"} · ID {profile.schoolId?.slice(0, 10)}</p>
+          <h1 className="text-2xl font-black flex items-center gap-2"><ShieldCheck size={22} className="text-primary" /> {school?.name || profile?.schoolName || "School"} Management</h1>
+          <p className="text-sm text-text-muted">School-scoped oversight · {school?.status || "active"} · ID {(effectiveSchoolId || "").slice(0, 10)}</p>
         </div>
         <div className="flex gap-2">
+          {previewSchool && isAdmin(user) && (
+            <Link to="/admin" className="btn-secondary px-4 py-2 text-sm">Back to admin</Link>
+          )}
           <button onClick={handleSync} disabled={syncing} className="btn-secondary px-4 py-2 text-sm">
             {syncing ? <Loader2 size={14} className="animate-spin" /> : <RefreshCw size={14} />} Pull sync
           </button>

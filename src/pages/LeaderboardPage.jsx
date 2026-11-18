@@ -5,7 +5,7 @@ import { db } from "../firebaseConfig";
 import { useAuth } from "../context/AuthContext";
 import AvatarDisplay from "../components/Avatar/AvatarDisplay";
 import { getActiveBadge } from "../lib/achievements";
-import { Trophy, Crown, Medal, Award, Flame, TrendingUp, Zap } from "lucide-react";
+import { Trophy, Crown, Medal, Award, Flame, TrendingUp } from "lucide-react";
 
 const podiumColors = [
   { bg: "from-amber-400 to-amber-600", shadow: "shadow-amber-500/20", icon: Crown },

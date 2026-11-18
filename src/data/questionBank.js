@@ -1773,7 +1773,7 @@ export function getQuestionsFromBank({ subject, year, exam, topic = null, count 
 
 export function getAllSubjectsForExam(exam) {
   const subjects = new Set();
-  for (const [key, value] of Object.entries(QUESTION_BANK)) {
+  for (const [, value] of Object.entries(QUESTION_BANK)) {
     for (const q of value) {
       if (!exam || q.exam === exam) {
         subjects.add(q.subject);

@@ -26,6 +26,7 @@ export default function NotepadDrawer({ open, onClose, context = "" }) {
     if (!open) return;
     try {
       const saved = localStorage.getItem(storageKey);
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- hydrate saved notes when the drawer opens
       if (saved) setText(saved);
     } catch { /* ignore */ }
   }, [open, storageKey]);

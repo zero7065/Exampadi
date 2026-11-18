@@ -47,6 +47,7 @@ export default function Practice() {
   }, [user, subjectParam]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- reflect the ?subject= query param in the picker
     if (subjectParam) setSelectedSubject(subjectParam);
   }, [subjectParam]);
 
@@ -148,7 +149,7 @@ export default function Practice() {
                   }}
                 >
                   <Icon size={24} color={isActive ? "var(--primary)" : "var(--text-muted)"} style={{ margin: "0 auto 8px", display: "block" }} />
-                  <div style={{ fontSize: 13, fontWeight: 600, color: isActive ? "#fff" : "var(--text)" }}>{m.label}</div>
+                  <div style={{ fontSize: 13, fontWeight: 600, color: isActive ? "var(--text)" : "var(--text)" }}>{m.label}</div>
                   <div style={{ fontSize: 11, color: "var(--text-muted)", marginTop: 4 }}>{m.desc}</div>
                 </button>
               );
@@ -177,7 +178,7 @@ export default function Practice() {
                     }}
                   >
                     <span style={{ fontSize: 24 }}>{getSubjectIcon(subj)}</span>
-                    <span style={{ flex: 1, fontWeight: 600, color: isActive ? "#fff" : "var(--text)" }}>{subj}</span>
+                    <span style={{ flex: 1, fontWeight: 600, color: isActive ? "var(--text)" : "var(--text)" }}>{subj}</span>
                     {isActive && <CheckCircle2 size={20} color="var(--accent)" />}
                   </button>
                 );
@@ -188,23 +189,23 @@ export default function Practice() {
 
         {/* Summary & Start */}
         <div style={{ background: "var(--bg-2)", border: "1px solid var(--border)", borderRadius: 16, padding: 20, marginBottom: 24 }}>
-          <h3 style={{ fontSize: 16, fontWeight: 700, color: "#fff", marginBottom: 16 }}>Session Summary</h3>
+          <h3 style={{ fontSize: 16, fontWeight: 700, color: "var(--text)", marginBottom: 16 }}>Session Summary</h3>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 20 }}>
             <div style={{ background: "var(--bg-3)", borderRadius: 10, padding: 12 }}>
               <div style={{ fontSize: 11, color: "var(--text-muted)", marginBottom: 4 }}>Subject</div>
-              <div style={{ fontWeight: 600, color: "#fff" }}>{selectedSubject || "Not selected"}</div>
+              <div style={{ fontWeight: 600, color: "var(--text)" }}>{selectedSubject || "Not selected"}</div>
             </div>
             <div style={{ background: "var(--bg-3)", borderRadius: 10, padding: 12 }}>
               <div style={{ fontSize: 11, color: "var(--text-muted)", marginBottom: 4 }}>Mode</div>
-              <div style={{ fontWeight: 600, color: "#fff" }}>{mode === "cbt" ? "Exam Mode" : mode === "timed" ? "Timed" : "Free Practice"}</div>
+              <div style={{ fontWeight: 600, color: "var(--text)" }}>{mode === "cbt" ? "Exam Mode" : mode === "timed" ? "Timed" : "Free Practice"}</div>
             </div>
             <div style={{ background: "var(--bg-3)", borderRadius: 10, padding: 12 }}>
               <div style={{ fontSize: 11, color: "var(--text-muted)", marginBottom: 4 }}>Questions</div>
-              <div style={{ fontWeight: 600, color: "#fff" }}>{mode === "cbt" ? 40 : 10}</div>
+              <div style={{ fontWeight: 600, color: "var(--text)" }}>{mode === "cbt" ? 40 : 10}</div>
             </div>
             <div style={{ background: "var(--bg-3)", borderRadius: 10, padding: 12 }}>
               <div style={{ fontSize: 11, color: "var(--text-muted)", marginBottom: 4 }}>Time</div>
-              <div style={{ fontWeight: 600, color: "#fff" }}>{mode === "cbt" ? "60 min" : mode === "timed" ? "30 min" : "Unlimited"}</div>
+              <div style={{ fontWeight: 600, color: "var(--text)" }}>{mode === "cbt" ? "60 min" : mode === "timed" ? "30 min" : "Unlimited"}</div>
             </div>
           </div>
           <button

@@ -11,6 +11,7 @@ export default function ContextualHelp() {
   const tour = PAGE_TOURS[location.pathname];
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- reset tour progress when the route changes
     setStep(0);
     setOpen(false);
   }, [location.pathname]);

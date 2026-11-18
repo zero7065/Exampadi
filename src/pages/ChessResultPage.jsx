@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { useToast } from "../components/Toast";
 import { getChessResult, likeChessResult } from "../lib/games/chessResults";
 import { Crown, Trophy, Heart, Share2, ArrowRight, Loader2, Swords, Flame } from "lucide-react";
 
@@ -15,7 +14,6 @@ const RESULT_LABEL = {
 export default function ChessResultPage() {
   const { id } = useParams();
   const { user } = useAuth();
-  const { toast } = useToast();
   const navigate = useNavigate();
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(true);

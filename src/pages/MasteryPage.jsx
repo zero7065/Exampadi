@@ -24,7 +24,18 @@ export default function MasteryPage() {
   const [subjects, setSubjects] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  function getTimeAgo(date) {
+    const diff = Date.now() - date.getTime();
+    const mins = Math.floor(diff / 60000);
+    if (mins < 60) return `${mins}m ago`;
+    const hrs = Math.floor(mins / 60);
+    if (hrs < 24) return `${hrs}h ago`;
+    const days = Math.floor(hrs / 24);
+    return `${days}d ago`;
+  }
+
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- clears the spinner when signed out (no async work to await)
     if (!user) { setLoading(false); return; }
 
     async function fetchMastery() {
@@ -68,16 +79,6 @@ export default function MasteryPage() {
 
     fetchMastery();
   }, [user]);
-
-  function getTimeAgo(date) {
-    const diff = Date.now() - date.getTime();
-    const mins = Math.floor(diff / 60000);
-    if (mins < 60) return `${mins}m ago`;
-    const hrs = Math.floor(mins / 60);
-    if (hrs < 24) return `${hrs}h ago`;
-    const days = Math.floor(hrs / 24);
-    return `${days}d ago`;
-  }
 
   if (loading) {
     return (

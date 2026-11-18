@@ -10,8 +10,8 @@ import {
 import { db } from "../firebaseConfig";
 import { askGroq, getAIErrorIfRecent } from "../lib/ai";
 import {
-  Activity, CheckCircle2, XCircle, AlertTriangle, Loader2, Download, Upload,
-  RefreshCw, Database, Wifi, Bot, Shield, FileJson, Wrench, Heart,
+  CheckCircle2, XCircle, Loader2, Download, Upload,
+  RefreshCw, Database, Shield, FileJson, Wrench, Heart,
 } from "lucide-react";
 
 const COLLECTIONS_TO_BACKUP = [

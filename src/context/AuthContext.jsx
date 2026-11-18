@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import {
   onAuthStateChanged,
@@ -120,7 +121,7 @@ export function AuthProvider({ children }) {
     function handleReconnect() {
       retryCount = 0;
       if (unsubscribe) {
-        try { unsubscribe(); } catch (_) {}
+        try { unsubscribe(); } catch (_) { /* ignore */ }
       }
       startAuthListener();
     }
@@ -144,10 +145,10 @@ export function AuthProvider({ children }) {
         try {
           cred = await createUserWithEmailAndPassword(auth, email, password);
         } catch (retryErr) {
-          throw new Error("Cannot reach Firebase — your network is blocking Google services. Try mobile data or a different WiFi. Use the Network Diagnostic button for details.");
+          throw new Error("Cannot reach Firebase — your network is blocking Google services. Try mobile data or a different WiFi. Use the Network Diagnostic button for details.", { cause: retryErr });
         }
       } else if (e.code === 'auth/configuration-not-found' || e.code === 'auth/operation-not-allowed') {
-        throw new Error("Firebase Email/Password auth is not enabled. Go to Firebase Console → Authentication → Sign-in method → enable Email/Password.");
+        throw new Error("Firebase Email/Password auth is not enabled. Go to Firebase Console → Authentication → Sign-in method → enable Email/Password.", { cause: e });
       } else if (e.code === 'auth/email-already-in-use') {
         throw e;
       } else {
@@ -223,8 +224,8 @@ export function AuthProvider({ children }) {
       }
       console.warn("Profile write failed:", e.code);
       if (e.code !== "permission-denied" && e.code !== "unavailable") {
-        try { await deleteUser(cred.user); } catch (_) {}
-        throw new Error("Failed to create profile. Please try again.");
+        try { await deleteUser(cred.user); } catch (_) { /* ignore */ }
+        throw new Error("Failed to create profile. Please try again.", { cause: e });
       }
     }
     setUser({ ...cred.user, displayName: name });
@@ -242,10 +243,10 @@ export function AuthProvider({ children }) {
         try {
           cred = await signInWithEmailAndPassword(auth, email, password);
         } catch (retryErr) {
-          throw new Error("Cannot reach Firebase — your network is blocking Google services. Try mobile data or a different WiFi. Use the Network Diagnostic button for details.");
+          throw new Error("Cannot reach Firebase — your network is blocking Google services. Try mobile data or a different WiFi. Use the Network Diagnostic button for details.", { cause: retryErr });
         }
       } else if (e.code === 'auth/configuration-not-found' || e.code === 'auth/operation-not-allowed') {
-        throw new Error("Firebase Email/Password auth is not enabled. Go to Firebase Console → Authentication → Sign-in method → enable Email/Password.");
+        throw new Error("Firebase Email/Password auth is not enabled. Go to Firebase Console → Authentication → Sign-in method → enable Email/Password.", { cause: e });
       } else {
         throw e;
       }
@@ -259,13 +260,13 @@ export function AuthProvider({ children }) {
       result = await firebaseGoogleSignIn();
     } catch (e) {
       if (e.code === 'auth/popup-closed-by-user') {
-        throw new Error("Sign-in cancelled");
+        throw new Error("Sign-in cancelled", { cause: e });
       }
       if (e.code === 'auth/configuration-not-found' || e.code === 'auth/operation-not-allowed') {
-        throw new Error("Google sign-in is not enabled. Go to Firebase Console → Authentication → Sign-in method → enable Google.");
+        throw new Error("Google sign-in is not enabled. Go to Firebase Console → Authentication → Sign-in method → enable Google.", { cause: e });
       }
       if (e.code === 'auth/network-request-failed' || e.message?.includes('network')) {
-        throw new Error("Cannot reach Firebase — your network is blocking Google services. Try mobile data or a different WiFi.");
+        throw new Error("Cannot reach Firebase — your network is blocking Google services. Try mobile data or a different WiFi.", { cause: e });
       }
       throw e;
     }
@@ -357,12 +358,12 @@ export function AuthProvider({ children }) {
       await sendPasswordResetEmail(auth, email);
     } catch (e) {
       if (e.code === 'auth/user-not-found') {
-        throw new Error("No account found with this email");
+        throw new Error("No account found with this email", { cause: e });
       }
       if (e.code === 'auth/configuration-not-found' || e.code === 'auth/operation-not-allowed') {
-        throw new Error("Firebase Email/Password auth is not enabled. Go to Firebase Console → Authentication → Sign-in method → enable Email/Password.");
+        throw new Error("Firebase Email/Password auth is not enabled. Go to Firebase Console → Authentication → Sign-in method → enable Email/Password.", { cause: e });
       }
-      throw new Error("Failed to send reset email. Check your email address and try again.");
+      throw new Error("Failed to send reset email. Check your email address and try again.", { cause: e });
     }
   }
 
@@ -397,6 +398,8 @@ export function AuthProvider({ children }) {
     degraded,
     getRecoveryPin: () => window._examPadiPin || null,
     clearRecoveryPin: () => { window._examPadiPin = null; },
+    // The helper functions below only close over `user`, which is already a dep.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }), [user, loading, profileVersion, isOffline, degraded]);
 
   if (loading) {

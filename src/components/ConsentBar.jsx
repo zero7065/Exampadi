@@ -1,21 +1,15 @@
 // First-visit consent notice: essential storage + links to Terms/Privacy.
 // NDPR/GDPR-friendly one-time acknowledgement, stored locally.
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ShieldCheck } from "lucide-react";
 
 const KEY = "ep_consent_v1";
 
 export default function ConsentBar() {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    let mounted = true;
-    try {
-      if (!localStorage.getItem(KEY) && mounted) setVisible(true);
-    } catch { /* private mode — skip */ }
-    return () => { mounted = false; };
-  }, []);
+  const [visible, setVisible] = useState(() => {
+    try { return !localStorage.getItem(KEY); } catch { return false; }
+  });
 
   if (!visible) return null;
 

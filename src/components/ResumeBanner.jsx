@@ -13,12 +13,13 @@ export default function ResumeBanner() {
         const s = JSON.parse(raw);
         const age = Date.now() - (s.startTime || 0);
         if (age < 24 * 60 * 60 * 1000 && s.questions?.length > 0) {
+          // eslint-disable-next-line react-hooks/set-state-in-effect -- hydrate the resumable session once on mount
           setSession(s);
         } else {
           localStorage.removeItem("exampadi_active_session");
         }
       }
-    } catch {}
+    } catch { /* ignore unreadable session */ }
   }, []);
 
   if (!session) return null;
@@ -49,7 +50,7 @@ export default function ResumeBanner() {
           <Play size={18} color="var(--primary)" fill="var(--primary)" />
         </div>
         <div>
-          <div style={{ fontSize: 14, fontWeight: 700, color: "#fff" }}>
+          <div style={{ fontSize: 14, fontWeight: 700, color: "var(--text)" }}>
             Resume {subject}
           </div>
           <div style={{ fontSize: 12, color: "var(--text-muted)" }}>

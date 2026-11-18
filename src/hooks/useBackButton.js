@@ -18,7 +18,11 @@ export function useBackButton({ enabled = true } = {}) {
   const guardRef = useRef(false);
   const armedAtRef = useRef(0);
   const toastRef = useRef(toast);
-  toastRef.current = toast;
+
+  // Keep the latest toast fn without re-subscribing the popstate listener.
+  useEffect(() => {
+    toastRef.current = toast;
+  }, [toast]);
 
   // Track depth + own the guard entry
   useEffect(() => {
@@ -43,7 +47,9 @@ export function useBackButton({ enabled = true } = {}) {
           window.history.back();
           return;
         }
-      } catch (_) {}
+      } catch (_) {
+        // history access restricted — ignore
+      }
     }
 
     // Sole owner of guard pushing: reset, then push only at root
@@ -81,7 +87,9 @@ export function useBackButton({ enabled = true } = {}) {
         armedAtRef.current = now;
         try {
           toastRef.current({ message: "Tap back again to exit", type: "info" });
-        } catch (_) {}
+        } catch (_) {
+          // toast unavailable — ignore
+        }
       }
     }
 

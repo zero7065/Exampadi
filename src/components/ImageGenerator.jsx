@@ -15,6 +15,7 @@ export default function ImageGenerator({ onClose, initialPrompt = "" }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- sync the field when a new initialPrompt is supplied
     if (initialPrompt) setPrompt(initialPrompt);
   }, [initialPrompt]);
 

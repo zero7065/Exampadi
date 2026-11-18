@@ -6,7 +6,6 @@
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import { checkRateLimit } from '../src/lib/rateLimiter.js';
 
 // --- Utility imports (kept as modules, not functions) ---
 import "./_firebase.js";          // Firebase Admin SDK

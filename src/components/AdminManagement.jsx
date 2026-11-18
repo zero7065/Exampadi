@@ -3,7 +3,6 @@
 // school. Management accounts are school-scoped and invisible to other admins.
 import { useState, useEffect } from "react";
 import { useToast } from "./Toast";
-import { useAuth } from "../context/AuthContext";
 import {
   createManagementAccount, subscribeManagementAccounts,
   setManagementStatus, deleteManagementAccount,
@@ -15,20 +14,12 @@ import { Shield, Plus, Loader2, Trash2, Power, Building2, Users, Activity, Mail,
 
 export default function AdminManagement() {
   const { toast } = useToast();
-  const { user } = useAuth();
   const [accounts, setAccounts] = useState([]);
   const [schools, setSchools] = useState([]);
   const [loading, setLoading] = useState(true);
   const [creating, setCreating] = useState(false);
   const [form, setForm] = useState({ email: "", password: "", name: "", schoolId: "" });
   const [issued, setIssued] = useState(null); // { email, password, schoolName, teacherCode }
-
-  useEffect(() => {
-    const unsub = subscribeManagementAccounts(setAccounts);
-    loadSchools();
-    const t = setTimeout(() => setLoading(false), 400);
-    return () => { unsub(); clearTimeout(t); };
-  }, []);
 
   async function loadSchools() {
     try {
@@ -42,6 +33,14 @@ export default function AdminManagement() {
       } catch { /* ignore */ }
     }
   }
+
+  useEffect(() => {
+    const unsub = subscribeManagementAccounts(setAccounts);
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- async school fetch on mount
+    loadSchools();
+    const t = setTimeout(() => setLoading(false), 400);
+    return () => { unsub(); clearTimeout(t); };
+  }, []);
 
   async function handleCreate() {
     if (!form.schoolId) {
@@ -107,10 +106,11 @@ export default function AdminManagement() {
       <div className="glass-card p-5" style={{ borderColor: "rgb(var(--primary-rgb) / 0.35)" }}>
         <div className="flex items-center gap-2 mb-2">
           <Shield size={18} className="text-primary" />
-          <h3 className="font-black text-text">Create a management login</h3>
+          <h3 className="font-black text-text">Management logins</h3>
         </div>
         <p className="text-xs text-text-muted mb-3" style={{ lineHeight: 1.5 }}>
           Management logins exist <strong>only for a registered, approved school</strong>. They approve their school, pull sync, message their community, and never see other schools or other admins. Creating one also issues a teacher login code for the school.
+          Admins can preview any school's management dashboard — use the <strong>Open dashboard</strong> button next to each approved school below.
         </p>
 
         <label className="text-xs font-bold text-text-muted mb-1 block">Registered school (required)</label>
@@ -175,9 +175,14 @@ export default function AdminManagement() {
             <div className="font-bold text-sm text-text flex items-center gap-1"><Building2 size={13} /> {s.name || "Unnamed school"}</div>
             <div className="text-xs text-text-muted mt-0.5">{s.contactEmail || "No contact"} · {s.status}</div>
             <div className="text-[10px] mt-1 text-text-muted">Management ID: <span className="font-mono">{s.id?.slice(0, 10)}</span></div>
-            <button onClick={() => generateTeacherCodeFor(s)} className="btn-secondary text-xs px-3 py-1.5 mt-2 inline-flex items-center gap-1">
-              <KeyRound size={12} /> Generate teacher code
-            </button>
+            <div className="flex gap-2 mt-2 flex-wrap">
+              <a href={`/management?school=${s.id}`} target="_blank" rel="noopener noreferrer" className="btn-secondary text-xs px-3 py-1.5 inline-flex items-center gap-1">
+                <Activity size={12} /> Open dashboard
+              </a>
+              <button onClick={() => generateTeacherCodeFor(s)} className="btn-secondary text-xs px-3 py-1.5 inline-flex items-center gap-1">
+                <KeyRound size={12} /> Generate teacher code
+              </button>
+            </div>
           </div>
         ))}
       </div>

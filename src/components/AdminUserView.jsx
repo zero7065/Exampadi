@@ -101,7 +101,7 @@ export default function AdminUserView({ userId, onClose }) {
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 16 }}>
           <div style={{ padding: 12, borderRadius: 8, background: "var(--bg-3)" }}>
             <div style={{ color: "var(--text-muted)", fontSize: 11, marginBottom: 4 }}>Email</div>
-            <div style={{ color: "#fff", fontSize: 13, fontWeight: 600 }}>{profile?.email || "—"}</div>
+            <div style={{ color: "var(--text)", fontSize: 13, fontWeight: 600 }}>{profile?.email || "—"}</div>
           </div>
           <div style={{ padding: 12, borderRadius: 8, background: "var(--bg-3)" }}>
             <div style={{ color: "var(--text-muted)", fontSize: 11, marginBottom: 4 }}>Plan</div>
@@ -109,11 +109,11 @@ export default function AdminUserView({ userId, onClose }) {
           </div>
           <div style={{ padding: 12, borderRadius: 8, background: "var(--bg-3)" }}>
             <div style={{ color: "var(--text-muted)", fontSize: 11, marginBottom: 4 }}>XP</div>
-            <div style={{ color: "#fff", fontSize: 13, fontWeight: 600 }}>{profile?.totalXP || 0}</div>
+            <div style={{ color: "var(--text)", fontSize: 13, fontWeight: 600 }}>{profile?.totalXP || 0}</div>
           </div>
           <div style={{ padding: 12, borderRadius: 8, background: "var(--bg-3)" }}>
             <div style={{ color: "var(--text-muted)", fontSize: 11, marginBottom: 4 }}>Streak</div>
-            <div style={{ color: "#fff", fontSize: 13, fontWeight: 600 }}>{profile?.streak || 0} days</div>
+            <div style={{ color: "var(--text)", fontSize: 13, fontWeight: 600 }}>{profile?.streak || 0} days</div>
           </div>
         </div>
 
@@ -138,7 +138,7 @@ export default function AdminUserView({ userId, onClose }) {
           <button onClick={revokePro} disabled={acting} style={{ padding: "10px 16px", borderRadius: 8, background: "#ef4444", border: "none", color: "#fff", fontWeight: 700, fontSize: 13, cursor: "pointer", display: "flex", alignItems: "center", gap: 6 }}>
             <Ban size={14} /> Revoke Pro
           </button>
-          <button onClick={resetProgress} disabled={acting} style={{ padding: "10px 16px", borderRadius: 8, background: "var(--border)", border: "none", color: "#fff", fontWeight: 700, fontSize: 13, cursor: "pointer", display: "flex", alignItems: "center", gap: 6 }}>
+          <button onClick={resetProgress} disabled={acting} style={{ padding: "10px 16px", borderRadius: 8, background: "var(--border)", border: "none", color: "var(--text)", fontWeight: 700, fontSize: 13, cursor: "pointer", display: "flex", alignItems: "center", gap: 6 }}>
             <RefreshCw size={14} /> Reset Progress
           </button>
         </div>

@@ -12,7 +12,6 @@ import {
   BarChart3,
   StickyNote,
   Calendar,
-  ChevronRight,
   CheckCircle,
   ArrowRight,
   MonitorPlay,

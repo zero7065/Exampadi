@@ -1,4 +1,4 @@
-import { collection, getDocs, query, where, limit as firestoreLimit, doc, setDoc, addDoc, serverTimestamp } from "firebase/firestore";
+import { collection, getDocs, query, where, limit as firestoreLimit, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import { getQuestionsFromBank } from "../data/questions/compat";
 import { askGroq } from "./ai";

@@ -117,13 +117,13 @@ export default function AdminCompliance({ adminUser, usersList, logs, showToast 
           ["Pending schools", pending.length],
         ].map(([label, value]) => (
           <div key={label} style={{ background: "var(--bg-2)", border: "1px solid var(--border)", borderRadius: 14, padding: 16 }}>
-            <div style={{ fontSize: 24, fontWeight: 800, color: "#fff" }}>{value}</div>
+            <div style={{ fontSize: 24, fontWeight: 800, color: "var(--text)" }}>{value}</div>
             <div style={{ fontSize: 12, color: "var(--text-muted)", marginTop: 4 }}>{label}</div>
           </div>
         ))}
       </div>
 
-      <button onClick={exportCsv} style={{ justifySelf: "start", display: "inline-flex", alignItems: "center", gap: 8, padding: "10px 20px", borderRadius: 10, background: "var(--bg-3)", border: "1px solid #333", color: "#fff", fontWeight: 600, fontSize: 13, cursor: "pointer", fontFamily: "inherit" }}>
+      <button onClick={exportCsv} style={{ justifySelf: "start", display: "inline-flex", alignItems: "center", gap: 8, padding: "10px 20px", borderRadius: 10, background: "var(--bg-3)", border: "1px solid #333", color: "var(--text)", fontWeight: 600, fontSize: 13, cursor: "pointer", fontFamily: "inherit" }}>
         <Download size={15} /> Export audit CSV
       </button>
 
@@ -139,7 +139,7 @@ export default function AdminCompliance({ adminUser, usersList, logs, showToast 
         ) : (
           pending.map((s) => (
             <div key={s.id} style={{ padding: 20, borderBottom: "1px solid var(--border)" }}>
-              <div style={{ fontSize: 16, fontWeight: 800, color: "#fff" }}>{s.schoolName}</div>
+              <div style={{ fontSize: 16, fontWeight: 800, color: "var(--text)" }}>{s.schoolName}</div>
               <div style={{ fontSize: 12, color: "var(--text-muted)", marginTop: 4 }}>
                 {s.type} · {s.state}{s.lga ? `, ${s.lga}` : ""} · {s.studentCount || "?"} students · {s.contactName} ({s.contactEmail}, {s.contactPhone})
               </div>
@@ -148,7 +148,7 @@ export default function AdminCompliance({ adminUser, usersList, logs, showToast 
                   value={teacherEmail[s.id] || ""}
                   onChange={(e) => setTeacherEmail((m) => ({ ...m, [s.id]: e.target.value }))}
                   placeholder="Teacher account email (optional)"
-                  style={{ flex: 1, minWidth: 220, background: "var(--bg)", border: "1px solid #333", borderRadius: 8, padding: "10px 14px", color: "#fff", fontSize: 13, outline: "none", fontFamily: "inherit" }}
+                  style={{ flex: 1, minWidth: 220, background: "var(--bg)", border: "1px solid #333", borderRadius: 8, padding: "10px 14px", color: "var(--text)", fontSize: 13, outline: "none", fontFamily: "inherit" }}
                 />
                 <button onClick={() => decide(s, true)} style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "10px 18px", borderRadius: 8, background: "#4ADE80", border: "none", color: "#000", fontWeight: 700, fontSize: 13, cursor: "pointer" }}>
                   <Check size={14} /> Approve
@@ -173,7 +173,7 @@ export default function AdminCompliance({ adminUser, usersList, logs, showToast 
           commissions.map((c) => (
             <div key={c.id} style={{ padding: "14px 20px", borderBottom: "1px solid var(--border)", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
               <div>
-                <div style={{ fontSize: 14, fontWeight: 700, color: "#fff" }}>
+                <div style={{ fontSize: 14, fontWeight: 700, color: "var(--text)" }}>
                   ₦{Number(c.commissionNaira || 0).toLocaleString()} <span style={{ fontSize: 12, fontWeight: 500, color: "var(--text-muted)" }}>
                     ({Math.round((c.rate || 0.2) * 100)}% of ₦{Number(c.amountPaidNaira || 0).toLocaleString()} · {String(c.plan || "").replace(/_/g, " ")})
                   </span>

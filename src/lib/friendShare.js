@@ -1,7 +1,7 @@
 // Friend share & referral — share a question / teaser / chess challenge.
 // A visitor opens the link → signs in with Google → we auto-link them to the
 // sharer as a study partner, so they can start chatting immediately.
-import { doc, getDoc, addDoc, setDoc, collection, serverTimestamp } from "firebase/firestore";
+import { doc, getDoc, addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import { addPartner } from "./studyPartners";
 

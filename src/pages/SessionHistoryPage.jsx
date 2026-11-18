@@ -172,7 +172,7 @@ export default function SessionHistoryPage() {
                   ].map((item, j) => (
                     <div key={j} style={{ display: "flex", justifyContent: "space-between", padding: "4px 0" }}>
                       <span style={{ color: "var(--text-muted)", fontSize: 13 }}>{item.label}</span>
-                      <span style={{ fontWeight: 700, color: item.color || "#fff", fontSize: 13 }}>{item.value}</span>
+                      <span style={{ fontWeight: 700, color: item.color || "var(--text)", fontSize: 13 }}>{item.value}</span>
                     </div>
                   ))}
                 </div>
@@ -214,7 +214,7 @@ export default function SessionHistoryPage() {
                     onMouseLeave={(e) => e.currentTarget.style.border = "1px solid var(--border)"}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                       <div>
-                        <div style={{ fontSize: 15, fontWeight: 700, color: "#fff", marginBottom: 4 }}>{s.title || s.subject || "AI Chat"}</div>
+                        <div style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 4 }}>{s.title || s.subject || "AI Chat"}</div>
                         <div style={{ fontSize: 12, color: "var(--text-muted)" }}>{s.messages?.length || 0} messages · {s.subject}</div>
                       </div>
                       <div style={{ fontSize: 12, color: "var(--text-muted)" }}>{s.createdAt?.seconds ? new Date(s.createdAt.seconds * 1000).toLocaleDateString() : ""}</div>
@@ -248,7 +248,7 @@ export default function SessionHistoryPage() {
                       <div style={{ background: "var(--bg-2)", border: "1px solid var(--border)", borderRadius: 12, padding: 12 }}>
                         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                           <div>
-                            <div style={{ fontSize: 13, fontWeight: 600, color: "#fff" }}>{s.exam || "Practice"} · {s.mode || "practice"}</div>
+                            <div style={{ fontSize: 13, fontWeight: 600, color: "var(--text)" }}>{s.exam || "Practice"} · {s.mode || "practice"}</div>
                             <div style={{ fontSize: 11, color: "var(--text-muted)" }}>{date.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</div>
                           </div>
                           <div style={{ fontSize: 18, fontWeight: 800, color: getScoreColor(score) }}>{score}%</div>

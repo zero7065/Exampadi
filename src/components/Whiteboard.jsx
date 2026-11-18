@@ -242,7 +242,7 @@ const Whiteboard = ({ open, onClose, canvasRef: externalCanvasRef } = {}) => {
       border: "1px solid rgba(255,255,255,0.08)",
       boxShadow: "0 8px 40px rgba(0,0,0,0.6)",
       fontFamily: "system-ui, -apple-system, sans-serif",
-      color: "#fff",
+      color: "var(--text)",
       overflow: "hidden",
       transition: "width 0.3s",
     },
@@ -259,7 +259,7 @@ const Whiteboard = ({ open, onClose, canvasRef: externalCanvasRef } = {}) => {
     headerBtn: {
       background: "none",
       border: "none",
-      color: "#fff",
+      color: "var(--text)",
       cursor: "pointer",
       padding: 4,
       display: "flex",

@@ -29,10 +29,6 @@ export default function ParentReports() {
     }).catch(() => setLoading(false));
   }, [user]);
 
-  useEffect(() => {
-    if (classId) loadReports(classId);
-  }, [classId]); // eslint-disable-line react-hooks/exhaustive-deps
-
   async function loadReports(cid) {
     setLoading(true);
     try {
@@ -80,6 +76,11 @@ export default function ParentReports() {
       setLoading(false);
     }
   }
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- loadReports async-toggles the loading flag for the fetch
+    if (classId) loadReports(classId);
+  }, [classId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function buildPdf() {
     const { jsPDF } = await import("jspdf");

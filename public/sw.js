@@ -122,7 +122,7 @@ self.addEventListener("fetch", (event) => {
 
 // ─── Web push (FCM) ───
 self.addEventListener("push", (event) => {
-  let payload = {};
+  let payload;
   try { payload = event.data ? event.data.json() : {}; } catch { payload = {}; }
   const n = payload.notification || {};
   const data = payload.data || {};

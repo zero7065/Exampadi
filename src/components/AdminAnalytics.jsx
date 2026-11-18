@@ -125,7 +125,7 @@ export default function AdminAnalytics() {
           return (
             <div key={s.label} style={{ background: "var(--bg-3)", borderRadius: 12, padding: 14, textAlign: "center" }}>
               <Icon size={20} color={s.color} style={{ margin: "0 auto 6px" }} />
-              <div style={{ fontSize: 22, fontWeight: 800, color: "#fff" }}>{s.value}</div>
+              <div style={{ fontSize: 22, fontWeight: 800, color: "var(--text)" }}>{s.value}</div>
               <div style={{ fontSize: 11, color: "var(--text-muted)" }}>{s.label}</div>
             </div>
           );

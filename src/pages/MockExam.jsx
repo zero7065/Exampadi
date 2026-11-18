@@ -140,6 +140,7 @@ export default function MockExam() {
       });
     }, 1000);
     return () => clearInterval(timerRef.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- timer intentionally runs for the whole exam; handleAutoSubmit/toast/warningShown are stable or ref-safe
   }, [examStarted, examSubmitted]);
 
   function submitExam() {
@@ -180,7 +181,7 @@ export default function MockExam() {
     return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
   }
 
-  const timerColor = timeRemaining < 300 ? "#FF4D6A" : timeRemaining < 900 ? "#FF9F43" : "#fff";
+  const timerColor = timeRemaining < 300 ? "#FF4D6A" : timeRemaining < 900 ? "#FF9F43" : "var(--text)";
   const current = questions[currentIndex];
   const answeredCount = Object.keys(answers).length;
 
@@ -195,7 +196,7 @@ export default function MockExam() {
           <label style={{ fontSize: 11, fontWeight: 700, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: 1, marginBottom: 8, display: "block" }}>Exam Type</label>
           <div style={{ display: "flex", gap: 8, marginBottom: 20 }}>
             {Object.keys(EXAM_CONFIG).map(e => (
-              <button key={e} onClick={() => handleExamType(e)} style={{ flex: 1, padding: "10px", borderRadius: 10, border: examType === e ? "2px solid var(--primary)" : "1px solid #333", background: examType === e ? "rgb(var(--primary-rgb) / 0.15)" : "var(--bg-3)", color: examType === e ? "#fff" : "var(--text-muted)", fontWeight: 600, fontSize: 12, cursor: "pointer" }}>
+              <button key={e} onClick={() => handleExamType(e)} style={{ flex: 1, padding: "10px", borderRadius: 10, border: examType === e ? "2px solid var(--primary)" : "1px solid #333", background: examType === e ? "rgb(var(--primary-rgb) / 0.15)" : "var(--bg-3)", color: examType === e ? "var(--text)" : "var(--text-muted)", fontWeight: 600, fontSize: 12, cursor: "pointer" }}>
                 {e}
               </button>
             ))}
@@ -208,7 +209,7 @@ export default function MockExam() {
               const sel = selectedSubjects.includes(s);
               const disabled = isSubjectDisabled(s);
               return (
-                <button key={s} onClick={() => !disabled && toggleSubject(s)} disabled={disabled && !sel} style={{ padding: "8px 14px", borderRadius: 8, border: sel ? "2px solid var(--primary)" : "1px solid #333", background: sel ? "rgb(var(--primary-rgb) / 0.2)" : disabled ? "var(--bg)" : "var(--bg-3)", color: sel ? "#fff" : disabled ? "var(--text-muted)" : "var(--text)", fontWeight: sel ? 600 : 400, fontSize: 12, cursor: disabled && !sel ? "not-allowed" : "pointer", opacity: disabled && !sel ? 0.5 : 1 }}>
+                <button key={s} onClick={() => !disabled && toggleSubject(s)} disabled={disabled && !sel} style={{ padding: "8px 14px", borderRadius: 8, border: sel ? "2px solid var(--primary)" : "1px solid #333", background: sel ? "rgb(var(--primary-rgb) / 0.2)" : disabled ? "var(--bg)" : "var(--bg-3)", color: sel ? "var(--text)" : disabled ? "var(--text-muted)" : "var(--text)", fontWeight: sel ? 600 : 400, fontSize: 12, cursor: disabled && !sel ? "not-allowed" : "pointer", opacity: disabled && !sel ? 0.5 : 1 }}>
                   {s}
                 </button>
               );
@@ -217,8 +218,8 @@ export default function MockExam() {
 
           {/* Info cards */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 20 }}>
-            <div style={{ background: "var(--bg-3)", borderRadius: 10, padding: 12, textAlign: "center" }}><div style={{ fontSize: 11, color: "var(--text-muted)" }}>Duration</div><div style={{ fontSize: 16, fontWeight: 700, color: "#fff" }}>{Math.floor(duration / 60)} mins</div></div>
-            <div style={{ background: "var(--bg-3)", borderRadius: 10, padding: 12, textAlign: "center" }}><div style={{ fontSize: 11, color: "var(--text-muted)" }}>Questions</div><div style={{ fontSize: 16, fontWeight: 700, color: "#fff" }}>{selectedSubjects.length * (config?.questionsPerSubject || 45)}</div></div>
+            <div style={{ background: "var(--bg-3)", borderRadius: 10, padding: 12, textAlign: "center" }}><div style={{ fontSize: 11, color: "var(--text-muted)" }}>Duration</div><div style={{ fontSize: 16, fontWeight: 700, color: "var(--text)" }}>{Math.floor(duration / 60)} mins</div></div>
+            <div style={{ background: "var(--bg-3)", borderRadius: 10, padding: 12, textAlign: "center" }}><div style={{ fontSize: 11, color: "var(--text-muted)" }}>Questions</div><div style={{ fontSize: 16, fontWeight: 700, color: "var(--text)" }}>{selectedSubjects.length * (config?.questionsPerSubject || 45)}</div></div>
           </div>
 
           {/* Difficulty */}
@@ -229,7 +230,7 @@ export default function MockExam() {
               { id: "hard", label: "Hard Mode" },
               { id: "easy", label: "Easy Warmup" },
             ].map(d => (
-              <button key={d.id} onClick={() => setDifficulty(d.id)} style={{ flex: 1, padding: "8px", borderRadius: 8, border: difficulty === d.id ? "2px solid var(--primary)" : "1px solid #333", background: difficulty === d.id ? "rgb(var(--primary-rgb) / 0.15)" : "var(--bg-3)", color: difficulty === d.id ? "#fff" : "var(--text-muted)", fontWeight: 600, fontSize: 11, cursor: "pointer" }}>
+              <button key={d.id} onClick={() => setDifficulty(d.id)} style={{ flex: 1, padding: "8px", borderRadius: 8, border: difficulty === d.id ? "2px solid var(--primary)" : "1px solid #333", background: difficulty === d.id ? "rgb(var(--primary-rgb) / 0.15)" : "var(--bg-3)", color: difficulty === d.id ? "var(--text)" : "var(--text-muted)", fontWeight: 600, fontSize: 11, cursor: "pointer" }}>
                 {d.label}
               </button>
             ))}
@@ -282,7 +283,7 @@ export default function MockExam() {
               const c = sq.filter(q => answers[q.id]).length;
               const isActive = current.subject === s;
               return (
-                <button key={s} style={{ padding: "6px 14px", borderRadius: 8, border: "none", background: isActive ? "rgb(var(--primary-rgb) / 0.2)" : "transparent", cursor: "pointer", borderBottom: isActive ? "2px solid var(--primary)" : "2px solid transparent", color: isActive ? "#fff" : "var(--text-muted)", fontSize: 12, fontWeight: 600, whiteSpace: "nowrap", fontFamily: "inherit" }}>
+                <button key={s} style={{ padding: "6px 14px", borderRadius: 8, border: "none", background: isActive ? "rgb(var(--primary-rgb) / 0.2)" : "transparent", cursor: "pointer", borderBottom: isActive ? "2px solid var(--primary)" : "2px solid transparent", color: isActive ? "var(--text)" : "var(--text-muted)", fontSize: 12, fontWeight: 600, whiteSpace: "nowrap", fontFamily: "inherit" }}>
                   {s} ({c}/{sq.length})
                 </button>
               );
@@ -301,7 +302,7 @@ export default function MockExam() {
             <button onClick={() => setFlagged(prev => { const n = new Set(prev); n.has(current.id) ? n.delete(current.id) : n.add(current.id); return n; })} style={{ position: "absolute", top: 12, right: 12, background: "none", border: "none", cursor: "pointer", fontSize: 18 }} title="Flag for review">
               <Flag size={18} color={flagged.has(current.id) ? "var(--accent)" : "var(--text-muted)"} />
             </button>
-            <p style={{ fontSize: 17, fontWeight: 600, lineHeight: 1.6, margin: "0 0 20px", color: "#fff", paddingRight: 40 }}>{current.question}</p>
+            <p style={{ fontSize: 17, fontWeight: 600, lineHeight: 1.6, margin: "0 0 20px", color: "var(--text)", paddingRight: 40 }}>{current.question}</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               {Object.entries(current.options).map(([key, val]) => {
                 const sel = answers[current.id] === key;
@@ -316,7 +317,7 @@ export default function MockExam() {
           </div>
           {/* Navigation */}
           <div style={{ display: "flex", justifyContent: "space-between", marginTop: 16 }}>
-            <button disabled={currentIndex === 0} onClick={() => setCurrentIndex(i => i - 1)} style={{ padding: "10px 20px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: currentIndex === 0 ? "var(--text-muted)" : "#fff", cursor: currentIndex === 0 ? "not-allowed" : "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", gap: 6 }}>
+            <button disabled={currentIndex === 0} onClick={() => setCurrentIndex(i => i - 1)} style={{ padding: "10px 20px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: currentIndex === 0 ? "var(--text-muted)" : "var(--text)", cursor: currentIndex === 0 ? "not-allowed" : "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", gap: 6 }}>
               <ChevronLeft size={16} /> Previous
             </button>
             {currentIndex < questions.length - 1 ? (
@@ -342,7 +343,7 @@ export default function MockExam() {
               if (a) { bg = "var(--primary)"; border = "1px solid var(--primary)"; }
               if (f) { bg = "var(--accent)"; border = "1px solid var(--accent)"; }
               return (
-                <button key={q.id} onClick={() => setCurrentIndex(i)} style={{ width: 32, height: 32, borderRadius: 6, background: bg, border, color: a || f ? "#000" : "#fff", fontSize: 11, fontWeight: 600, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <button key={q.id} onClick={() => setCurrentIndex(i)} style={{ width: 32, height: 32, borderRadius: 6, background: bg, border, color: a || f ? "#000" : "var(--text)", fontSize: 11, fontWeight: 600, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
                   {i + 1}
                 </button>
               );
@@ -372,7 +373,7 @@ export default function MockExam() {
       {showSubmitModal && (
         <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.8)", backdropFilter: "blur(4px)", zIndex: 100, display: "flex", alignItems: "center", justifyContent: "center" }}>
           <div style={{ background: "var(--bg-2)", border: "1px solid var(--border)", borderRadius: 20, padding: "28px 24px", maxWidth: 420, width: "90%", textAlign: "center" }}>
-            <h3 style={{ fontSize: 20, fontWeight: 700, color: "#fff", margin: "0 0 12px" }}>Submit Exam?</h3>
+            <h3 style={{ fontSize: 20, fontWeight: 700, color: "var(--text)", margin: "0 0 12px" }}>Submit Exam?</h3>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12, marginBottom: 16 }}>
               <div><div style={{ fontSize: 24, fontWeight: 800, color: "#4ADE80" }}>{answeredCount}</div><div style={{ fontSize: 11, color: "var(--text-muted)" }}>Answered</div></div>
               <div><div style={{ fontSize: 24, fontWeight: 800, color: "var(--text-muted)" }}>{unanswered}</div><div style={{ fontSize: 11, color: "var(--text-muted)" }}>Unanswered</div></div>

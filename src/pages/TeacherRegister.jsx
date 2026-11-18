@@ -6,7 +6,7 @@ import { redeemTeacherInvite } from "../lib/teacherInvites";
 import { GraduationCap, ArrowLeft, CheckCircle } from "lucide-react";
 
 export default function TeacherRegister() {
-  const { user, refreshProfile } = useAuth();
+  const { refreshProfile } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
   const [code, setCode] = useState("");
@@ -65,7 +65,7 @@ export default function TeacherRegister() {
           value={code}
           onChange={(e) => setCode(e.target.value.toUpperCase())}
           placeholder="TEACH-XXXX-XXXX"
-          style={{ width: "100%", padding: "14px 16px", borderRadius: 12, background: "var(--bg-3)", border: "1px solid #333", color: "#fff", fontSize: 16, fontWeight: 700, letterSpacing: 2, textAlign: "center", outline: "none", marginBottom: 16, boxSizing: "border-box" }}
+          style={{ width: "100%", padding: "14px 16px", borderRadius: 12, background: "var(--bg-3)", border: "1px solid #333", color: "var(--text)", fontSize: 16, fontWeight: 700, letterSpacing: 2, textAlign: "center", outline: "none", marginBottom: 16, boxSizing: "border-box" }}
         />
         <button
           onClick={handleRedeem}

@@ -17,6 +17,7 @@ const NotepadPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- no signed-in user: stop the loading spinner
     if (!user) { setLoading(false); return; }
     async function fetchNotes() {
       try {

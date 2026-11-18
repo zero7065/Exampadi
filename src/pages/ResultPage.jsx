@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useToast } from "../components/Toast";
-import { Share2, Check } from "lucide-react";
 import { WhatsAppShareButton, WhatsAppHelpButton } from "../components/WhatsAppShare";
 
 function getResultTier(percentage) {
@@ -39,23 +38,25 @@ function getResultTier(percentage) {
 }
 
 // Confetti component (CSS only, no package needed):
+const CONFETTI_COLORS = ["#FFB800", "var(--success)", "#FF6B6B", "#4D9EFF", "var(--accent)"];
+
 function Confetti() {
-  const pieces = Array.from({ length: 40 }, (_, i) => i);
-  const colors = ["#FFB800", "var(--success)", "#FF6B6B", "#4D9EFF", "var(--accent)"];
+  const [pieces] = useState(() =>
+    Array.from({ length: 40 }, (_, i) => ({
+      left: `${Math.random() * 100}%`,
+      top: "-20px",
+      width: `${6 + Math.random() * 8}px`,
+      height: `${6 + Math.random() * 8}px`,
+      background: CONFETTI_COLORS[i % CONFETTI_COLORS.length],
+      borderRadius: Math.random() > 0.5 ? "50%" : "2px",
+      animation: `confettiFall ${1.5 + Math.random() * 2}s ${Math.random() * 0.5}s ease-in forwards`,
+      transform: `rotate(${Math.random() * 360}deg)`,
+    }))
+  );
   return (
     <div style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 9999, overflow: "hidden" }}>
-      {pieces.map(i => (
-        <div key={i} style={{
-          position: "absolute",
-          left: `${Math.random() * 100}%`,
-          top: "-20px",
-          width: `${6 + Math.random() * 8}px`,
-          height: `${6 + Math.random() * 8}px`,
-          background: colors[i % colors.length],
-          borderRadius: Math.random() > 0.5 ? "50%" : "2px",
-          animation: `confettiFall ${1.5 + Math.random() * 2}s ${Math.random() * 0.5}s ease-in forwards`,
-          transform: `rotate(${Math.random() * 360}deg)`,
-        }} />
+      {pieces.map((p, i) => (
+        <div key={i} style={{ position: "absolute", ...p }} />
       ))}
       <style>{`
         @keyframes confettiFall {
@@ -72,23 +73,6 @@ export default function ResultPage() {
   const navigate = useNavigate();
   const { result } = location.state || {};
   const { toast } = useToast();
-  const [copied, setCopied] = useState(false);
-
-  const handleShare = () => {
-    const shareText = `🎉 I just scored ${percentage}% on ExamPadi!\n\nTarget: 300+ in JAMB\nStudy hard, dream big! 💪\n\n#ExamPadi #JAMB2026 #StudyTips`;
-    
-    if (navigator.share) {
-      navigator.share({
-        title: 'My ExamPadi Score',
-        text: shareText,
-      }).catch(() => {});
-    } else {
-      navigator.clipboard.writeText(shareText);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-      toast({ message: "Score copied! Share with friends & family 🎉", type: "success" });
-    }
-  };
 
   useEffect(() => {
     if (!result) { navigate("/dashboard"); return; }
@@ -97,7 +81,7 @@ export default function ResultPage() {
       toast({ message: `${tier.emoji} ${tier.title} — ${Math.round(result.percentageScore)}% scored`, type: "success", duration: 5000 });
     }, 500);
     return () => clearTimeout(timer);
-  }, []);
+  }, [navigate, result, toast]);
 
   if (!result) return null;
 

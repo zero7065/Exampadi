@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useSubscription } from "../hooks/useSubscription";
 import { useNotifications } from "../hooks/useNotifications";
@@ -15,7 +15,7 @@ import { exportUserData, downloadJson, exportAllowedAt, markExported } from "../
 import { ALL_EXAMS } from "../lib/exams";
 import { useTheme } from "../context/ThemeContext";
 import pkg from "../../package.json";
-import { User, BookOpen, CreditCard, Bell, Sliders, AlertTriangle, ChevronRight, Check, Pencil, Clock, Activity } from "lucide-react";
+import { Sliders, ChevronRight, Check, Pencil } from "lucide-react";
 import NetworkDiagnostic from "../components/NetworkDiagnostic";
 
 const SUBJECT_OPTIONS = ["English", "Maths", "Physics", "Chemistry", "Biology", "Economics", "Government", "Literature", "CRS", "Geography", "Commerce", "Accounting", "Further Maths", "Agricultural Science", "Technical Drawing", "Business Management"];
@@ -88,9 +88,8 @@ const DEFAULT_PREFERENCES = {
 
 export default function Settings() {
   const { user } = useAuth();
-  const { isPro, daysLeft, loading: subLoading } = useSubscription();
-  const { permission: notifPermission, requestPermission, scheduleReminder } = useNotifications();
-  const navigate = useNavigate();
+  const { isPro, daysLeft } = useSubscription();
+  const { permission: notifPermission, requestPermission } = useNotifications();
   const { toast } = useToast();
   const [profile, setProfile] = useState(null);
   const [editingName, setEditingName] = useState(false);
@@ -423,7 +422,7 @@ export default function Settings() {
           <div style={{ background: "var(--bg-2)", border: "1px solid var(--border)", borderRadius: 20, padding: 24, maxWidth: 360, width: "90%" }}>
             <h3 style={{ margin: "0 0 16px", fontWeight: 700 }}>Select Exam Type</h3>
             {EXAM_OPTIONS.map(e => (
-              <button key={e} onClick={() => { updateFirestore({ exam: e }); setShowExamModal(false); }} style={{ display: "block", width: "100%", padding: "10px 16px", borderRadius: 8, background: (profile?.exam || "JAMB") === e ? "rgb(var(--primary-rgb) / 0.2)" : "var(--bg-3)", border: (profile?.exam || "JAMB") === e ? "1px solid var(--primary)" : "1px solid #333", color: "#fff", cursor: "pointer", marginBottom: 8, textAlign: "left", fontFamily: "inherit", fontSize: 14 }}>
+              <button key={e} onClick={() => { updateFirestore({ exam: e }); setShowExamModal(false); }} style={{ display: "block", width: "100%", padding: "10px 16px", borderRadius: 8, background: (profile?.exam || "JAMB") === e ? "rgb(var(--primary-rgb) / 0.2)" : "var(--bg-3)", border: (profile?.exam || "JAMB") === e ? "1px solid var(--primary)" : "1px solid var(--border)", color: "var(--text)", cursor: "pointer", marginBottom: 8, textAlign: "left", fontFamily: "inherit", fontSize: 14 }}>
                 {e}
               </button>
             ))}

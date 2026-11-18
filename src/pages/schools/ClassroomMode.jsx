@@ -124,7 +124,7 @@ export default function ClassroomMode() {
     setAllowChat(cfg.allowChat !== false);
     setShowLeaderboard(cfg.showLeaderboard !== false);
     setInstructions(cfg.instructions || "");
-  }, [cls?.id]);
+  }, [cls?.id, cls?.config]);
 
   const presenceIds = useMemo(() => {
     const ids = new Set([user?.uid, cls?.teacherId, session?.teacherUid]);
@@ -154,7 +154,7 @@ export default function ClassroomMode() {
     push();
     const timer = setInterval(push, 45_000);
     return () => clearInterval(timer);
-  }, [classId, user?.uid, profile?.name, pulse]);
+  }, [classId, user, profile?.name, pulse]);
 
   useEffect(() => {
     const tick = () => setNow(Date.now());

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "../components/Toast";
 import { getUserProfile } from "../lib/userProfile";
@@ -9,7 +9,6 @@ import { getQuestionsFromBank } from "../data/questions/compat";
 import { getStudentMemory } from "../lib/aiMemory";
 import { analyzeLearning } from "../lib/learningLoop";
 import { dailyHealthTip } from "../data/wellness";
-import { useNotifications } from "../hooks/useNotifications";
 import { isAdmin } from "../lib/activityLog";
 import { collection, query, where, getDocs, limit } from "firebase/firestore";
 import { db } from "../firebaseConfig";
@@ -21,7 +20,7 @@ import { tourSeen } from "../lib/tour";
 import SurveyPrompt from "../components/SurveyPrompt";
 import { subscribeUpdates } from "../lib/community";
 import {
-  Target, Calendar, CheckCircle, Zap, Send, ChevronRight, Crown, Bell, Megaphone
+  Zap, Send, ChevronRight, Crown, Megaphone
 } from "lucide-react";
 
 const SUBJECT_ICONS = {
@@ -35,8 +34,7 @@ export default function Dashboard() {
   const { user } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
-  const location = useLocation();
-  const { isPro, daysLeft, loading: subLoading } = useSubscription();
+  const { isPro } = useSubscription();
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showProModal, setShowProModal] = useState(false);
@@ -88,7 +86,7 @@ export default function Dashboard() {
             const mem = await getStudentMemory(user.uid).catch(() => null);
             const sessionData = docs.map((d) => ({ ...d.data(), id: d.id }));
             let seen = {};
-            try { seen = JSON.parse(localStorage.getItem(`rx-seen-${user.uid}`) || "{}"); } catch {}
+            try { seen = JSON.parse(localStorage.getItem(`rx-seen-${user.uid}`) || "{}"); } catch { /* ignore */ }
             const found = analyzeLearning({ sessions: sessionData, memory: mem, seenCounts: seen });
             setInsights(found.slice(0, 2));
             // record views so countermeasures escalate while a problem persists
@@ -97,7 +95,7 @@ export default function Dashboard() {
               const k = `${pattern.subject}::${pattern.topic}::${pattern.kind}`;
               next[k] = (next[k] || 0) + 1;
             });
-            try { localStorage.setItem(`rx-seen-${user.uid}`, JSON.stringify(next)); } catch {}
+            try { localStorage.setItem(`rx-seen-${user.uid}`, JSON.stringify(next)); } catch { /* ignore */ }
           } catch (e) {
             console.warn("Learning loop failed:", e?.message);
           }
@@ -109,20 +107,13 @@ export default function Dashboard() {
       setLoading(false);
     }
     fetchProfile();
-  }, [user]);
+  }, [user, toast]);
 
   function getGreeting() {
     const hour = new Date().getHours();
     if (hour < 12) return "Good morning";
     if (hour < 18) return "Good afternoon";
     return "Good evening";
-  }
-
-  function getScoreColor(score) {
-    if (score < 200) return "#FF4D6A";
-    if (score < 250) return "#FF9F43";
-    if (score < 320) return "var(--success)";
-    return "var(--accent)";
   }
 
   if (loading) {
@@ -134,8 +125,6 @@ export default function Dashboard() {
   }
 
   const subjects = profile?.subjects || [];
-  const exam = profile?.exam || "JAMB";
-  const targetScore = profile?.targetScore || 280;
   const streak = profile?.streak || 0;
   const xp = profile?.xp || 0;
 
@@ -194,7 +183,7 @@ export default function Dashboard() {
         {/* Header */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 32, flexWrap: "wrap", gap: 16 }}>
           <div style={{ minWidth: 0 }}>
-            <h1 style={{ fontSize: "clamp(20px, 4vw, 24px)", fontWeight: 700, color: "#fff", margin: 0 }}>
+            <h1 style={{ fontSize: "clamp(20px, 4vw, 24px)", fontWeight: 700, color: "var(--text)", margin: 0 }}>
               {getGreeting()}, {user?.displayName?.split(" ")[0] || "Student"} 👋
             </h1>
           </div>
@@ -412,7 +401,7 @@ export default function Dashboard() {
           <div
             onClick={() => navigate("/ai-tutor")}
             style={{ background: "var(--bg-2)", border: "1px solid var(--primary)", borderRadius: 16, padding: 24, cursor: "pointer" }}>
-            <h3 style={{ fontSize: 16, fontWeight: 700, color: "#fff", marginBottom: 8 }}>Ask AI Tutor</h3>
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: "var(--text)", marginBottom: 8 }}>Ask AI Tutor</h3>
             <p style={{ color: "var(--text-muted)", fontSize: 13, marginBottom: 16 }}>Get instant explanations for any topic or question</p>
             <div style={{ display: "flex", gap: 8 }}>
               <input type="text" placeholder="Ask anything... e.g. Explain Newton's 3rd law" readOnly style={{
@@ -426,7 +415,7 @@ export default function Dashboard() {
 
           <div style={{ background: "var(--bg-2)", border: "1px solid var(--border)", borderRadius: 16, padding: 24, textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
              <div style={{ fontSize: 32, marginBottom: 12 }}>🚀</div>
-             <h3 style={{ fontSize: 16, fontWeight: 600, color: "#fff", marginBottom: 8 }}>No activity yet</h3>
+             <h3 style={{ fontSize: 16, fontWeight: 600, color: "var(--text)", marginBottom: 8 }}>No activity yet</h3>
              <p style={{ color: "var(--text-muted)", fontSize: 13 }}>Start your first practice session!</p>
           </div>
         </div>
@@ -439,21 +428,6 @@ export default function Dashboard() {
       {showTour && <OnboardingTour onClose={() => setShowTour(false)} />}
       <SurveyPrompt createdAt={user?.metadata?.creationTime} />
 
-    </div>
-  );
-}
-
-function StatCard({ icon: Icon, label, value, subtext, color }) {
-  return (
-    <div style={{
-      background: "var(--bg-2)", border: "1px solid var(--border)", borderRadius: 16, padding: 20,
-      borderLeft: `4px solid ${color}`, display: "flex", flexDirection: "column", gap: 8
-    }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 8, color: "var(--text-muted)", fontSize: 13 }}>
-        <Icon size={16} color={color} /> {label}
-      </div>
-      <div style={{ fontSize: 32, fontWeight: 800, color: "#fff" }}>{value}</div>
-      <div style={{ fontSize: 12, color: "var(--text-muted)" }}>{subtext}</div>
     </div>
   );
 }

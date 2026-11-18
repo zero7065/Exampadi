@@ -4,7 +4,7 @@ const isClient = typeof window !== "undefined";
 // Get the API base URL from environment or default
 export const apiBase = isClient
   ? window.location.origin
-  : process.env.VERCEL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+  : import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 export function apiUrl(path) {
   if (!path) return apiBase;

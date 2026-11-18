@@ -2,7 +2,7 @@
 // Tracks: time-of-day, pace, subject mastery trend, session length, best hours.
 // Updated on each session; readable by admin/management for insights.
 import {
-  doc, getDoc, setDoc, updateDoc, increment, serverTimestamp,
+  doc, getDoc, setDoc, serverTimestamp,
 } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 

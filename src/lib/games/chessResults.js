@@ -1,7 +1,7 @@
 // Chess results — shareable, click-bait performance cards.
 // A finished game can be saved as a public result doc with a share link like
 // /chess/result/<id>. Visitors see the outcome + a "Can you beat this?" CTA.
-import { doc, getDoc, setDoc, addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { doc, getDoc, addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 
 function needDb() {

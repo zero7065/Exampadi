@@ -1,16 +1,12 @@
-import { useState, useEffect } from "react";
-import { Bell, BellOff, X } from "lucide-react";
+import { useState } from "react";
+import { Bell, X } from "lucide-react";
 
 export default function NotificationPrompt() {
-  const [dismissed, setDismissed] = useState(true);
-
-  useEffect(() => {
-    if (typeof Notification === "undefined") return;
-    if (Notification.permission === "default") {
-      const saved = localStorage.getItem("ep-notif-dismissed");
-      if (!saved) setDismissed(false);
-    }
-  }, []);
+  const [dismissed, setDismissed] = useState(() => {
+    if (typeof Notification === "undefined") return true;
+    if (Notification.permission !== "default") return true;
+    return Boolean(localStorage.getItem("ep-notif-dismissed"));
+  });
 
   if (dismissed) return null;
 

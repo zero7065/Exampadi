@@ -13,10 +13,8 @@ import {
   Zap, 
   BookOpen, 
   ShieldCheck, 
-  History, 
   Loader2,
-  CheckCircle2,
-  AlertCircle
+  CheckCircle2
 } from "lucide-react";
 
 const SubjectSelector = () => {

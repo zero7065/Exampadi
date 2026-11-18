@@ -1,7 +1,6 @@
 // Short educational clips — looping SVG micro-lessons that teach real concepts.
 // Each clip: animated diagram + one-line takeaway. Pure SVG/CSS, zero load.
-import { useState, useEffect, useRef } from "react";
-import { BookOpen, Pause, Play } from "lucide-react";
+import { BookOpen } from "lucide-react";
 
 // ── Clip 1: Photosynthesis ──
 function PhotosynthesisClip() {

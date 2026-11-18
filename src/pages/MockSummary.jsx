@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { useToast } from "../components/Toast";
 import { getRandomQuestions } from "../data/questions/compat";
 import { doc, updateDoc, addDoc, collection, increment, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import { updateStreak } from "../lib/userProfile";
 import { logActivity } from "../lib/activityLog";
-import { ArrowLeft, RotateCcw, Share2, ChevronDown, ChevronUp, Target, Zap, Clock, CheckCircle2, XCircle } from "lucide-react";
+import { ArrowLeft, RotateCcw, ChevronDown, ChevronUp, Target, Zap, Clock, CheckCircle2, XCircle } from "lucide-react";
 import { WhatsAppShareButton } from "../components/WhatsAppShare";
 import ReviewPrompt from "../components/ReviewPrompt";
 import { shouldAskReview } from "../lib/community";
@@ -35,11 +34,9 @@ function getGrade(percentage) {
 
 export default function MockSummary() {
   const { user } = useAuth();
-  const { toast } = useToast();
   const navigate = useNavigate();
   const location = useLocation();
   const data = location.state;
-  const [expandedReview, setExpandedReview] = useState(null);
   const [displayXP, setDisplayXP] = useState(0);
   const [reviewMode, setReviewMode] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -51,6 +48,8 @@ export default function MockSummary() {
     let cur = 0, step = 0;
     const int = setInterval(() => { step++; cur = Math.min(Math.ceil((target / 60) * step), target); setDisplayXP(cur); if (step >= 60) clearInterval(int); }, 25);
     return () => clearInterval(int);
+    // Intentionally mount-only: the XP count-up animation must not restart.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -72,21 +71,13 @@ export default function MockSummary() {
 
   if (!data) return null;
 
-  const { examType, subjects, questions, answers, overallScore, jamb400Score, correct, wrong, skipped, totalQuestions, timeUsed, xpEarned, weakTopics, subjectBreakdown } = data;
+  const { examType, subjects, questions, answers, overallScore, jamb400Score, correct, wrong, skipped, totalQuestions, timeUsed, weakTopics, subjectBreakdown } = data;
   const color = getScoreColor(jamb400Score);
   const grade = getGrade(overallScore);
   const strongSubject = subjects?.length ? subjects.reduce((a, b) => (subjectBreakdown?.[a]?.score || 0) > (subjectBreakdown?.[b]?.score || 0) ? a : b) : "";
   const weakSubject = subjects?.length ? subjects.reduce((a, b) => (subjectBreakdown?.[a]?.score || 100) < (subjectBreakdown?.[b]?.score || 100) ? a : b) : "";
 
-  function formatTime(s) { const m = Math.floor(s / 60); const sec = s % 60; return `${String(m).padStart(2, "0")}:${String(sec).padStart(2, "0")}`; }
-
   function handleRetake() { const allQs = []; subjects.forEach(s => { const qs = getRandomQuestions(s, 45); allQs.push(...qs); }); navigate("/practice", { state: { questions: allQs.sort(() => Math.random() - 0.5), subject: subjects.join(", "), mode: "practice" } }); }
-
-  function handleShare() {
-    const text = `I scored ${jamb400Score}/400 on a ${examType} Mock Exam on ExamPadi 🎯 Try it free: exampadi.com`;
-    if (navigator.share) navigator.share({ title: "ExamPadi Score", text }).catch(() => {});
-    else { navigator.clipboard.writeText(text); toast({ message: "Copied! Share with friends 🎉", type: "success" }); }
-  }
 
   const avgSeconds = Math.round(timeUsed / totalQuestions);
 
@@ -101,7 +92,7 @@ export default function MockSummary() {
               <circle cx="90" cy="90" r="78" fill="none" stroke={color} strokeWidth="10" strokeDasharray={`${(overallScore / 100) * 490} 490`} strokeLinecap="round" transform="rotate(-90 90 90)" style={{ transition: "stroke-dasharray 1s ease" }} />
             </svg>
             <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-              <span style={{ fontSize: 32, fontWeight: 800, color: "#fff" }}>{overallScore}%</span>
+              <span style={{ fontSize: 32, fontWeight: 800, color: "var(--text)" }}>{overallScore}%</span>
               <span style={{ fontSize: 13, fontWeight: 600, color }}>{grade.letter}</span>
             </div>
           </div>
@@ -120,11 +111,11 @@ export default function MockSummary() {
               const g = getGrade(sb.score);
               return (
                 <div key={s} style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr 60px", gap: 8, padding: "12px 16px", background: i % 2 === 0 ? "var(--bg-2)" : "var(--bg)", alignItems: "center", fontSize: 13 }}>
-                  <div style={{ fontWeight: 600, color: "#fff" }}>{s}</div>
+                  <div style={{ fontWeight: 600, color: "var(--text)" }}>{s}</div>
                   <div style={{ color: "#4ADE80" }}>{sb.correct}</div>
                   <div style={{ color: "#FF4D6A" }}>{sb.wrong}</div>
                   <div style={{ color: "var(--text-muted)" }}>{sb.skipped}</div>
-                  <div style={{ color: "#fff", fontWeight: 700 }}>{sb.score}%</div>
+                  <div style={{ color: "var(--text)", fontWeight: 700 }}>{sb.score}%</div>
                   <div style={{ padding: "2px 8px", borderRadius: 6, background: `${g.color}22`, color: g.color, fontWeight: 700, fontSize: 12, textAlign: "center" }}>{g.letter}</div>
                 </div>
               );
@@ -142,7 +133,7 @@ export default function MockSummary() {
           ].map((item, i) => (
             <div key={i} style={{ background: "var(--bg-2)", border: "1px solid var(--border)", borderRadius: 12, padding: "14px 16px" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 11, color: "var(--text-muted)", marginBottom: 6 }}>{item.icon} {item.label}</div>
-              <div style={{ fontWeight: 700, color: "#fff", fontSize: 16 }}>{item.value}</div>
+              <div style={{ fontWeight: 700, color: "var(--text)", fontSize: 16 }}>{item.value}</div>
             </div>
           ))}
         </div>
@@ -200,8 +191,8 @@ export default function MockSummary() {
         {/* Action buttons */}
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
           <button onClick={handleRetake} style={{ padding: 14, borderRadius: 12, background: "var(--primary)", border: "none", color: "#fff", fontWeight: 700, fontSize: 15, cursor: "pointer", fontFamily: "inherit" }}><RotateCcw size={18} style={{ verticalAlign: "middle", marginRight: 8 }} /> Retake Exam</button>
-          {weakTopics?.length > 0 && <button onClick={() => navigate("/practice", { state: { questions: getRandomQuestions(subjects?.[0] || "Biology", 10), subject: subjects?.[0] || "Biology", mode: "practice" } })} style={{ padding: 14, borderRadius: 12, background: "var(--bg-2)", border: "1px solid #333", color: "#fff", fontWeight: 600, fontSize: 14, cursor: "pointer", fontFamily: "inherit" }}>Practice Weak Topics</button>}
-          <button onClick={() => navigate("/dashboard")} style={{ padding: 14, borderRadius: 12, background: "var(--bg-2)", border: "1px solid #333", color: "#fff", fontWeight: 600, fontSize: 14, cursor: "pointer", fontFamily: "inherit" }}><ArrowLeft size={18} style={{ verticalAlign: "middle", marginRight: 8 }} /> Back to Dashboard</button>
+          {weakTopics?.length > 0 && <button onClick={() => navigate("/practice", { state: { questions: getRandomQuestions(subjects?.[0] || "Biology", 10), subject: subjects?.[0] || "Biology", mode: "practice" } })} style={{ padding: 14, borderRadius: 12, background: "var(--bg-2)", border: "1px solid #333", color: "var(--text)", fontWeight: 600, fontSize: 14, cursor: "pointer", fontFamily: "inherit" }}>Practice Weak Topics</button>}
+          <button onClick={() => navigate("/dashboard")} style={{ padding: 14, borderRadius: 12, background: "var(--bg-2)", border: "1px solid #333", color: "var(--text)", fontWeight: 600, fontSize: 14, cursor: "pointer", fontFamily: "inherit" }}><ArrowLeft size={18} style={{ verticalAlign: "middle", marginRight: 8 }} /> Back to Dashboard</button>
           <WhatsAppShareButton
             result={{ percentageScore: overallScore || 0, correctAnswers: correct || 0, totalQuestions: totalQuestions || 0, timeSpentSeconds: timeUsed || 0 }}
             type="mock"

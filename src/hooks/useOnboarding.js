@@ -27,13 +27,15 @@ export function useOnboarding() {
     } finally {
       setLoading(false);
     }
-  }, [user?.uid]);
+  }, [user]);
 
+  /* eslint-disable react-hooks/set-state-in-effect -- sync onboarding state with auth/profile on mount */
   useEffect(() => {
     if (!authLoading) {
       checkOnboarding();
     }
   }, [authLoading, checkOnboarding]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   return { onboarded, profile, loading: loading || authLoading, refreshProfile: checkOnboarding };
 }

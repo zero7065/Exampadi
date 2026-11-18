@@ -31,11 +31,12 @@ function currentPermission() {
 
 export function useNotifications() {
   const { user } = useAuth();
+  const uid = user?.uid;
   const [reminders, setReminders] = useState(() => getStorage());
   const [permission, setPermission] = useState(currentPermission);
 
   const registerPush = useCallback(async () => {
-    if (!user?.uid || typeof window === "undefined") return null;
+    if (!uid || typeof window === "undefined") return null;
     try {
       const supported = await isSupported().catch(() => false);
       if (!supported) return null;
@@ -45,7 +46,7 @@ export function useNotifications() {
       const messaging = getMessaging(app_meta);
       const token = await getToken(messaging, { vapidKey, serviceWorkerRegistration: registration });
       if (!token) return null;
-      await setDoc(doc(db, "users", user.uid, "pushTokens", token), {
+      await setDoc(doc(db, "users", uid, "pushTokens", token), {
         token,
         platform: /iphone|ipad|ipod/i.test(navigator.userAgent) ? "ios" : "web",
         updatedAt: serverTimestamp(),
@@ -55,7 +56,7 @@ export function useNotifications() {
       console.warn("Push registration skipped:", e?.message);
       return null;
     }
-  }, [user?.uid]);
+  }, [uid]);
 
   const requestPermission = useCallback(async () => {
     if (typeof Notification === "undefined") {

@@ -33,6 +33,7 @@ export default function AdminMessages() {
     }
   }
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect -- load sent messages on mount
   useEffect(() => { load(); }, []);
 
   async function send() {

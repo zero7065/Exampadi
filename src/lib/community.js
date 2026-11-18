@@ -1,6 +1,6 @@
 // src/lib/community.js — reviews (admin-moderated), surveys, updates/notifications.
 import {
-  doc, setDoc, getDoc, getDocs, addDoc, updateDoc, deleteDoc,
+  doc, getDoc, getDocs, addDoc, updateDoc, deleteDoc,
   collection, query, where, orderBy, limit, serverTimestamp, increment, arrayUnion, arrayRemove, onSnapshot,
 } from "firebase/firestore";
 import { db, auth } from "../firebaseConfig";

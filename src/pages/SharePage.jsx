@@ -7,7 +7,7 @@ import { useAuth } from "../context/AuthContext";
 import {
   getSharedItem, captureFriendRefFromUrl, redeemFriendRef,
 } from "../lib/friendShare";
-import { Sparkles, MessageCircle, Loader2, ArrowRight, Lightbulb, Crown, Trophy } from "lucide-react";
+import { Sparkles, MessageCircle, Loader2, ArrowRight, Lightbulb, Crown } from "lucide-react";
 
 const TYPE_META = {
   question: { icon: "📝", label: "Question challenge" },

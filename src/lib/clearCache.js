@@ -14,7 +14,7 @@ export async function clearOldServiceWorker({ force = false } = {}) {
     let lastSeen = null;
     try {
       lastSeen = localStorage.getItem("exampadi_sw_version");
-    } catch (_) {}
+    } catch (_) { /* localStorage unavailable — treat as first visit */ }
 
     if (!force && lastSeen === SW_VERSION) {
       return false; // already cleaned for this build
@@ -24,7 +24,7 @@ export async function clearOldServiceWorker({ force = false } = {}) {
     if ("serviceWorker" in navigator) {
       const registrations = await navigator.serviceWorker.getRegistrations();
       for (const reg of registrations) {
-        try { await reg.unregister(); } catch (_) {}
+        try { await reg.unregister(); } catch (_) { /* keep wiping the rest */ }
       }
     }
 
@@ -32,13 +32,13 @@ export async function clearOldServiceWorker({ force = false } = {}) {
     if ("caches" in window) {
       const cacheNames = await caches.keys();
       for (const name of cacheNames) {
-        try { await caches.delete(name); } catch (_) {}
+        try { await caches.delete(name); } catch (_) { /* keep wiping the rest */ }
       }
     }
 
     try {
       localStorage.setItem("exampadi_sw_version", SW_VERSION);
-    } catch (_) {}
+    } catch (_) { /* non-fatal if storage is full/blocked */ }
 
     return true;
   } catch (e) {

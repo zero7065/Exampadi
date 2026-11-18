@@ -2,13 +2,11 @@
 // Adjustable strictness (gentle/balanced/strict). AI-generated, real content.
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
 import { useToast } from "../components/Toast";
 import { useSubscription } from "../hooks/useSubscription";
 import ProGate from "../components/ProGate";
 import { generateLearningContent, CONTENT_STYLES } from "../lib/ai";
-import { JAMB_SUBJECTS } from "../data/subjects";
-import { ArrowLeft, Sparkles, Loader2, Crown, ChevronRight } from "lucide-react";
+import { ArrowLeft, Sparkles, Loader2, Crown } from "lucide-react";
 
 const STRICTNESS = [
   { id: "gentle", label: "Gentle", desc: "Encouraging & simple" },
@@ -17,7 +15,6 @@ const STRICTNESS = [
 ];
 
 export default function LegendModePage() {
-  const { user } = useAuth();
   const { toast } = useToast();
   const { isPro } = useSubscription();
   const [style, setStyle] = useState("riddle");

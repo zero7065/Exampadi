@@ -3,7 +3,7 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { REFERENCE_SHEETS } from "../data/reference";
 import { BOOK_RECS, BOOK_SUBJECTS } from "../data/resources";
-import { LEARNING_RESOURCES, formatRSSDate, getCategoryIcon, VIDEO_LESSONS, VIDEO_SUBJECTS } from "../data/learningRSS";
+import { LEARNING_RESOURCES, formatRSSDate, getCategoryIcon, getVideosBySubject, VIDEO_SUBJECTS } from "../data/learningRSS";
 import { Search, ArrowLeft, BookOpen, LibraryBig, Newspaper, ExternalLink, Clock, Tag, Video } from "lucide-react";
 
 export default function ReferencePage() {

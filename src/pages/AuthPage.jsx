@@ -2,19 +2,27 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "../components/Toast";
-import { getUserProfile } from "../lib/userProfile";
+import * as userProfile from "../lib/userProfile";
 import { isTeacherRole } from "../lib/roles";
 import Logo from "../components/Logo";
-import { Eye, EyeOff, HelpCircle, User, Lock, Building2, Key } from "lucide-react";
+import { Eye, EyeOff, User, ChevronDown } from "lucide-react";
 import { captureRefCodeFromUrl, attributePartnerRef } from "../lib/partner";
 import { captureFriendRefFromUrl, redeemFriendRef } from "../lib/friendShare";
 import { loadBranding, BACKGROUND_PRESETS } from "../lib/branding";
+
+function roleFromUrl() {
+  try {
+    return new URLSearchParams(window.location.search).get("role");
+  } catch {
+    return null;
+  }
+}
 
 export default function AuthPage() {
   const navigate = useNavigate();
   const { toast } = useToast();
   const { user, login, register, resetPassword, signInWithGoogle } = useAuth();
-  const [mode, setMode] = useState("signin");
+  const [mode, setMode] = useState(() => (roleFromUrl() === "teacher" ? "signup" : "signin"));
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     username: "",
@@ -27,7 +35,8 @@ export default function AuthPage() {
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [accountType, setAccountType] = useState("student"); // "student" | "teacher"
+  const [accountType, setAccountType] = useState(() => (roleFromUrl() === "teacher" ? "teacher" : "student")); // "student" | "teacher"
+  const [showOther, setShowOther] = useState(false); // Google hidden until requested
   const didRedirect = useRef(false);
   const [branding, setBranding] = useState(null);
   const [recoveryStep, setRecoveryStep] = useState("name"); // name | pin | reset
@@ -36,16 +45,7 @@ export default function AuthPage() {
     loadBranding().then((b) => setBranding(b));
   }, []);
 
-  // Deep link: /auth?role=teacher preselects the teacher signup path.
-  useEffect(() => {
-    try {
-      const params = new URLSearchParams(window.location.search);
-      if (params.get("role") === "teacher") {
-        setMode("signup");
-        setAccountType("teacher");
-      }
-    } catch { /* ignore */ }
-  }, []);
+  // Deep link: /auth?role=teacher preselects the teacher signup path (handled in initial state).
 
   useEffect(() => {
     captureRefCodeFromUrl();
@@ -59,7 +59,7 @@ export default function AuthPage() {
       // Read ?next= (e.g. back to a shared item) to return the user there.
       let next = null;
       try { next = new URLSearchParams(window.location.search).get("next"); } catch { /* ignore */ }
-      getUserProfile(user.uid)
+      userProfile.getUserProfile(user.uid)
         .then((profile) => {
           // Auto-connect to the friend who shared the link.
           redeemFriendRef(user)
@@ -84,7 +84,7 @@ export default function AuthPage() {
           navigate(next && next.startsWith("/") ? next : "/onboarding", { replace: true });
         });
     }
-  }, [user, navigate]);
+  }, [user, navigate, toast]);
 
   function validateSignup() {
     const e = {};
@@ -231,9 +231,9 @@ export default function AuthPage() {
   async function getUserProfileByUsername(usernameOrEmail) {
     // Look up by email or username in Firestore
     try {
-      const q = require("../lib/userProfile").findByUsername || null;
+      const q = userProfile.findByUsername || null;
       if (q) return q(usernameOrEmail);
-    } catch {}
+    } catch { /* ignore */ }
     return null;
   }
 
@@ -678,23 +678,32 @@ export default function AuthPage() {
               )}
 
                 <button
-                  onClick={handleGoogleSignIn}
-                  disabled={loading}
-                  style={{
-                    width: "100%", padding: "14px", borderRadius: 12,
-                    border: "1.5px solid var(--border)",
-                    background: "var(--bg-3)",
-                    color: "var(--text)",
-                    fontWeight: 700, fontSize: 15,
-                    cursor: loading ? "not-allowed" : "pointer",
-                    fontFamily: "inherit",
-                    display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
-                    transition: "all 0.2s",
-                  }}
+                  type="button"
+                  onClick={() => setShowOther((s) => !s)}
+                  style={{ width: "100%", padding: "10px", borderRadius: 10, border: "none", background: "transparent", color: "var(--text-muted)", fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", justifyContent: "center", gap: 4, marginBottom: 8 }}
                 >
-                  <User size={16} />
-                  <span style={{ fontWeight: 600 }}>Continue with Google</span>
+                  Other sign-in methods <ChevronDown size={14} style={{ transform: showOther ? "rotate(180deg)" : "none", transition: "transform 0.2s" }} />
                 </button>
+                {showOther && (
+                  <button
+                    onClick={handleGoogleSignIn}
+                    disabled={loading}
+                    style={{
+                      width: "100%", padding: "14px", borderRadius: 12,
+                      border: "1.5px solid var(--border)",
+                      background: "var(--bg-3)",
+                      color: "var(--text)",
+                      fontWeight: 700, fontSize: 15,
+                      cursor: loading ? "not-allowed" : "pointer",
+                      fontFamily: "inherit",
+                      display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
+                      transition: "all 0.2s",
+                    }}
+                  >
+                    <User size={16} />
+                    <span style={{ fontWeight: 600 }}>Continue with Google</span>
+                  </button>
+                )}
               </>
             )}
           </>

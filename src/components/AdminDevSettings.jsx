@@ -76,7 +76,7 @@ export default function AdminDevSettings() {
           value={settings.groqApiKey}
           onChange={(e) => setSettings({ ...settings, groqApiKey: e.target.value })}
           placeholder="sk-groq-..."
-          style={{ width: "100%", padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "#fff", fontSize: 13, outline: "none" }}
+          style={{ width: "100%", padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "var(--text)", fontSize: 13, outline: "none" }}
         />
         <p style={{ color: "var(--text-muted)", fontSize: 11, marginTop: 4 }}>Update this when users run out of credits. No redeploy needed.</p>
       </div>
@@ -90,7 +90,7 @@ export default function AdminDevSettings() {
           value={settings.fallbackApiKey}
           onChange={(e) => setSettings({ ...settings, fallbackApiKey: e.target.value })}
           placeholder="Backup Groq API key"
-          style={{ width: "100%", padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "#fff", fontSize: 13, outline: "none" }}
+          style={{ width: "100%", padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "var(--text)", fontSize: 13, outline: "none" }}
         />
         <p style={{ color: "var(--text-muted)", fontSize: 11, marginTop: 4 }}>Used automatically when the primary key is unavailable or out of credits.</p>
       </div>
@@ -100,7 +100,7 @@ export default function AdminDevSettings() {
         <select
           value={settings.aiModelOverride}
           onChange={(e) => setSettings({ ...settings, aiModelOverride: e.target.value })}
-          style={{ width: "100%", padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "#fff", fontSize: 13, outline: "none" }}
+          style={{ width: "100%", padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "var(--text)", fontSize: 13, outline: "none" }}
         >
           <option value="">Auto (recommended)</option>
           <option value="qwen/qwen3.8-27b">Qwen 3.8 27B</option>
@@ -130,7 +130,7 @@ export default function AdminDevSettings() {
             value={settings.maintenanceMessage}
             onChange={(e) => setSettings({ ...settings, maintenanceMessage: e.target.value })}
             placeholder="Maintenance message"
-            style={{ width: "100%", padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "#fff", fontSize: 13, outline: "none", marginTop: 8 }}
+            style={{ width: "100%", padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "var(--text)", fontSize: 13, outline: "none", marginTop: 8 }}
           />
         )}
       </div>
@@ -165,7 +165,7 @@ export default function AdminDevSettings() {
               <input
                 value={String(v)}
                 onChange={(e) => setSettings({ ...settings, variables: { ...settings.variables, [k]: e.target.value } })}
-                style={{ flex: 1, padding: "8px 10px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid var(--border)", color: "#fff", fontSize: 12 }}
+                style={{ flex: 1, padding: "8px 10px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid var(--border)", color: "var(--text)", fontSize: 12 }}
               />
               <button
                 onClick={() => { const next = { ...(settings.variables || {}) }; delete next[k]; setSettings({ ...settings, variables: next }); }}
@@ -179,13 +179,13 @@ export default function AdminDevSettings() {
             value={newVar.key}
             onChange={(e) => setNewVar({ ...newVar, key: e.target.value })}
             placeholder="key"
-            style={{ width: 140, padding: "8px 10px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid var(--border)", color: "#fff", fontSize: 12, fontFamily: "monospace" }}
+            style={{ width: 140, padding: "8px 10px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid var(--border)", color: "var(--text)", fontSize: 12, fontFamily: "monospace" }}
           />
           <input
             value={newVar.value}
             onChange={(e) => setNewVar({ ...newVar, value: e.target.value })}
             placeholder="value"
-            style={{ flex: 1, padding: "8px 10px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid var(--border)", color: "#fff", fontSize: 12 }}
+            style={{ flex: 1, padding: "8px 10px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid var(--border)", color: "var(--text)", fontSize: 12 }}
           />
           <button
             onClick={() => {

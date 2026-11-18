@@ -1,7 +1,8 @@
 // src/context/StudyContext.jsx - Works without Firebase (uses localStorage)
-import { createContext, useContext, useReducer, useEffect, useMemo } from "react";
+/* eslint-disable react-refresh/only-export-components */
+import { createContext, useContext, useReducer, useEffect, useMemo, useCallback } from "react";
 import { db } from "../firebaseConfig";
-import { doc, setDoc, updateDoc, increment, collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { doc, updateDoc, increment, collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { getQuestionsFromBank } from "../data/questions/compat";
 
 const StudyContext = createContext();
@@ -129,7 +130,7 @@ export const StudyProvider = ({ children }) => {
     return () => clearTimeout(timer);
   }, [state.currentSession]);
 
-  const startSession = async (sessionData) => {
+  const startSession = useCallback(async (sessionData) => {
     let questions = sessionData.questions;
     const isRealArray = Array.isArray(questions) && questions.length > 0 && questions[0]?.question;
 
@@ -167,17 +168,17 @@ export const StudyProvider = ({ children }) => {
         startTime: Date.now(),
       },
     });
-  };
+  }, []);
 
-  const submitAnswer = (index, answer) => {
+  const submitAnswer = useCallback((index, answer) => {
     dispatch({ type: "ANSWER_QUESTION", payload: { index, answer } });
-  };
+  }, []);
 
-  const nextQuestion = () => {
+  const nextQuestion = useCallback(() => {
     dispatch({ type: "NEXT_QUESTION" });
-  };
+  }, []);
 
-  const resumeSession = () => {
+  const resumeSession = useCallback(() => {
     const savedSession = localStorage.getItem("exampadi_active_session");
     if (savedSession) {
       try {
@@ -191,13 +192,13 @@ export const StudyProvider = ({ children }) => {
       }
     }
     return false;
-  };
+  }, []);
 
-  const clearActiveSession = () => {
+  const clearActiveSession = useCallback(() => {
     localStorage.removeItem("exampadi_active_session");
-  };
+  }, []);
 
-  const saveSessionToFirestore = async (userId, sessionResult) => {
+  const saveSessionToFirestore = useCallback(async (userId, sessionResult) => {
     // Try Firebase first, fall back to localStorage
     if (isConfigured && db) {
       try {
@@ -224,7 +225,7 @@ export const StudyProvider = ({ children }) => {
     }
     
     dispatch({ type: "END_SESSION", payload: sessionResult });
-  };
+  }, [isConfigured]);
 
   const ctxValue = useMemo(() => ({
     ...state,

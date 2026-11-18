@@ -130,7 +130,7 @@ export default function TeacherDashboard() {
       setLoading(false);
     });
 
-  }, [schoolId, user, toast]);
+  }, [schoolId, user, toast, profile?.name, profile?.schoolName]);
 
   // Load teachers for this school
   useEffect(() => {

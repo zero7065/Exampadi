@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 // LearningStyleMini — 3-question quiz that detects the student's preferred
 // learning style. Shown once during onboarding; changeable in Settings.
 import { useState } from "react";

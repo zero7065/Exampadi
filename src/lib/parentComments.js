@@ -1,7 +1,7 @@
 // Parent-teacher comments — a private thread between a teacher and a parent
 // about a specific student. Teachers start threads; parents reply.
 import {
-  doc, getDoc, setDoc, addDoc, deleteDoc,
+  doc, getDoc, setDoc, addDoc,
   collection, query, where, orderBy, limit, onSnapshot, serverTimestamp,
 } from "firebase/firestore";
 import { db } from "../firebaseConfig";

@@ -10,7 +10,7 @@ import {
   createTriviaRoom, joinTriviaRoom, subscribeTriviaRoom,
   submitTriviaAnswer, advanceTrivia, leaveTriviaRoom,
 } from "../lib/games/triviaRooms";
-import { ArrowLeft, Copy, Check, Users, Loader2, Share2, Trophy, Timer, Zap } from "lucide-react";
+import { ArrowLeft, Copy, Check, Users, Loader2, Share2, Timer, Zap } from "lucide-react";
 
 function tsMs(v) {
   if (!v) return 0;
@@ -28,7 +28,7 @@ export default function TriviaRoomPage() {
   const navigate = useNavigate();
 
   const [room, setRoom] = useState(null);
-  const [now, setNow] = useState(Date.now());
+  const [now, setNow] = useState(() => Date.now());
   const [copied, setCopied] = useState(false);
   const [creating, setCreating] = useState(false);
   const [joinCode, setJoinCode] = useState("");

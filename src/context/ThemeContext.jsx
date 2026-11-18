@@ -1,4 +1,5 @@
 // src/context/ThemeContext.jsx — Robust dark/light theme with zero white flash
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useLayoutEffect, useState } from "react";
 
 const ThemeContext = createContext();

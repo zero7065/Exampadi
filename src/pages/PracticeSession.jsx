@@ -12,7 +12,7 @@ import ProUpgradeModal from "../components/ProUpgradeModal";
 import Scratchpad from "../components/Scratchpad";
 import NotepadDrawer from "../components/NotepadDrawer";
 import { useHint } from "../hooks/useHints";
-import { ChevronRight, Sparkles, AlertCircle, CheckCircle2, XCircle, Flag, BookOpen, Lightbulb, PenTool, NotebookPen } from "lucide-react";
+import { ChevronRight, Sparkles, AlertCircle, CheckCircle2, XCircle, Flag, Lightbulb, PenTool, NotebookPen } from "lucide-react";
 
 const MODE_MOCK = "mock";
 const MODE_PRACTICE = "practice";
@@ -27,8 +27,8 @@ export default function PracticeSession() {
 
   const [showProModal, setShowProModal] = useState(false);
   const [proReason, setProReason] = useState(null);
-  const [questions, setQuestions] = useState(sessionData?.questions || []);
-  const [passage, setPassage] = useState(sessionData?.passage || "");
+  const [questions] = useState(sessionData?.questions || []);
+  const [passage] = useState(sessionData?.passage || "");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [redirected, setRedirected] = useState(false);
   const [answers, setAnswers] = useState({});
@@ -62,6 +62,8 @@ export default function PracticeSession() {
 
   useEffect(() => {
     if (!sessionData?.questions?.length && !redirected) {
+      // Mount-time guard: redirect out when no questions were passed in.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setRedirected(true);
       toast({ message: "Select a subject to start practicing", type: "warning" });
       navigate("/question-bank", { replace: true });
@@ -82,6 +84,8 @@ export default function PracticeSession() {
       }
     }
     checkLimit();
+    // Intentionally mount-only: limit check runs once per session entry.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -96,12 +100,16 @@ export default function PracticeSession() {
     }, 1000);
 
     return () => clearInterval(timerRef.current);
+    // Intentionally mount-only: the session clock must not reset mid-session.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (mode === MODE_MOCK && timeElapsed >= totalTime && !sessionComplete) {
       finishSession();
     }
+    // finishSession is a stable, intentional trigger here; keep deps value-only.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeElapsed, mode, totalTime, sessionComplete]);
 
   useEffect(() => {
@@ -115,14 +123,14 @@ export default function PracticeSession() {
       startTime: sessionData?.startTime || Date.now(),
     };
     const timer = setTimeout(() => {
-      try { localStorage.setItem("exampadi_active_session", JSON.stringify(sessionState)); } catch {}
+      try { localStorage.setItem("exampadi_active_session", JSON.stringify(sessionState)); } catch { /* storage full — non-fatal */ }
     }, 500);
     return () => clearTimeout(timer);
   }, [answers, currentIndex, questions, subject, mode, sessionComplete, sessionData]);
 
   useEffect(() => {
     if (sessionComplete) {
-      try { localStorage.removeItem("exampadi_active_session"); } catch {}
+      try { localStorage.removeItem("exampadi_active_session"); } catch { /* storage blocked — non-fatal */ }
     }
   }, [sessionComplete]);
 
@@ -137,6 +145,8 @@ export default function PracticeSession() {
     }
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
+    // handleSelect is intentionally read live; re-binding each render is undesirable.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [current, revealed, sessionComplete, limitBlocked]);
 
   const formatTime = useCallback((secs) => {
@@ -417,7 +427,7 @@ export default function PracticeSession() {
               )}
 
               {/* Question text */}
-              <h2 style={{ fontSize: 18, fontWeight: 700, lineHeight: 1.6, marginBottom: 24, margin: "0 0 24px", color: "#fff" }}>{current.question}</h2>
+              <h2 style={{ fontSize: 18, fontWeight: 700, lineHeight: 1.6, marginBottom: 24, margin: "0 0 24px", color: "var(--text)" }}>{current.question}</h2>
 
               {current.kind === "theory" ? (
                 <div style={{ marginBottom: 24 }}>
@@ -430,7 +440,7 @@ export default function PracticeSession() {
                     disabled={!!revealed[current.id]}
                     rows={5}
                     placeholder="Write your answer here…"
-                    style={{ width: "100%", padding: 14, borderRadius: 12, background: "var(--bg-2)", border: "1px solid #333", color: "#fff", fontSize: 14, outline: "none", resize: "vertical", fontFamily: "inherit", boxSizing: "border-box" }}
+                    style={{ width: "100%", padding: 14, borderRadius: 12, background: "var(--bg-2)", border: "1px solid #333", color: "var(--text)", fontSize: 14, outline: "none", resize: "vertical", fontFamily: "inherit", boxSizing: "border-box" }}
                   />
                   {!revealed[current.id] ? (
                     <button onClick={() => { setAnswers(prev => ({ ...prev, [current.id]: prev[current.id] || "REVIEWED" })); setRevealed(prev => ({ ...prev, [current.id]: true })); }}
@@ -525,7 +535,7 @@ export default function PracticeSession() {
                 if (isCurrent && isAnswered) { bg = "rgb(var(--primary-rgb) / 0.25)"; border = "1.5px solid #fff"; }
 
                 return (
-                  <button key={q.id} onClick={() => goToQuestion(i)} style={{ width: 32, height: 32, borderRadius: 6, background: bg, border, color: "#fff", fontSize: 11, fontWeight: 600, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <button key={q.id} onClick={() => goToQuestion(i)} style={{ width: 32, height: 32, borderRadius: 6, background: bg, border, color: "var(--text)", fontSize: 11, fontWeight: 600, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
                     {i + 1}
                   </button>
                 );

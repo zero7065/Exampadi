@@ -2,7 +2,7 @@
 // Exam integrity: strict guardrails the AI Tutor must follow — never reveal
 // answers to upcoming CBT questions; only coach reasoning on past/practice items.
 // Returns an object: { ok: boolean, reason?: string }.
-export function checkAnswerAllowed({ kind, questionId, source, mode = "practice" }) {
+export function checkAnswerAllowed({ kind, questionId: _questionId, source, mode = "practice" }) {
   // CBT/timed-mode live questions are forbidden.
   if (kind === "live-cbt" || mode === "live-cbt") {
     return { ok: false, reason: "I can't answer live CBT questions — that's exam malpractice." };

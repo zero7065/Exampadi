@@ -168,7 +168,7 @@ export default function AdminMedia() {
 
       {/* Hero background video */}
       <div style={{ background: "var(--bg-2)", border: "1px solid var(--border)", borderRadius: 14, padding: 16, marginBottom: 16 }}>
-        <div style={{ fontSize: 13, fontWeight: 700, color: "#fff", marginBottom: 4 }}>Hero background video</div>
+        <div style={{ fontSize: 13, fontWeight: 700, color: "var(--text)", marginBottom: 4 }}>Hero background video</div>
         <div style={{ fontSize: 11, color: "var(--text-muted)", marginBottom: 12 }}>
           {urls.heroVideo ? "Custom video active (plays muted, looping behind the hero)" : "No video — animated scenes are used"}
         </div>
@@ -192,7 +192,7 @@ export default function AdminMedia() {
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 16 }}>
         {LANDING_SLOTS.map((slot) => (
           <div key={slot} style={{ background: "var(--bg-2)", border: "1px solid var(--border)", borderRadius: 14, padding: 16 }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: "#fff", marginBottom: 4 }}>{SLOT_LABELS[slot]}</div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: "var(--text)", marginBottom: 4 }}>{SLOT_LABELS[slot]}</div>
             <div style={{ fontSize: 11, color: "var(--text-muted)", marginBottom: 12 }}>
               {urls[slot] ? "Custom upload active" : `Bundled: ${BUNDLED_SHOTS[slot]}`}
             </div>

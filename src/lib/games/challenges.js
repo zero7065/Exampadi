@@ -1,7 +1,7 @@
 // Game challenges — account-vs-account game invites + results + likes.
 // A user challenges another; the challenged accepts; result recorded; stats shareable with likes.
 import {
-  doc, getDoc, setDoc, updateDoc, addDoc,
+  doc, getDoc, updateDoc, addDoc,
   collection, query, where, orderBy, limit, onSnapshot, serverTimestamp,
 } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
@@ -45,7 +45,7 @@ export function subscribeOutgoingChallenges(uid, cb, max = 20) {
   );
 }
 
-export async function respondChallenge(challengeId, accept, uid) {
+export async function respondChallenge(challengeId, accept, _uid) {
   needDb();
   await updateDoc(doc(db, "gameChallenges", challengeId), {
     status: accept ? "accepted" : "declined",
@@ -65,7 +65,7 @@ export async function recordChallengeResult(challengeId, { winnerUid, winnerName
 // Like a challenge result (shareable stat)
 export async function likeChallenge(challengeId, uid) {
   needDb();
-  const { increment, arrayUnion, arrayRemove } = await import("firebase/firestore");
+  const { increment } = await import("firebase/firestore");
   const ref = doc(db, "gameChallenges", challengeId);
   const snap = await getDoc(ref);
   if (!snap.exists()) return;

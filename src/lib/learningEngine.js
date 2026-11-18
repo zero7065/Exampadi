@@ -4,16 +4,12 @@
 // (see src/lib/presence.js and src/harness for data models).
 
 import {
-  analyzeLearning,
   detectPatterns,
   prescribeCountermeasure,
 } from "./learningLoop";
 import {
   getConceptMisconceptions,
 } from "../harness/misconceptions";
-import {
-  getAnalogies,
-} from "../harness/realLife";
 import {
   checkAnswerAllowed,
   applyPromptGuardrails,
@@ -22,7 +18,7 @@ import {
   getOfflineExplanation,
   isOffline,
 } from "../harness/offline";
-import { CONCEPT_MISCONCEPTIONS } from "../harness/misconceptions";
+import { unlockedTransfers } from "../harness/transferBank";
 
 // — State Enums —
 export const SESSION_STATE = {
@@ -56,7 +52,7 @@ export function createSession({ uid, startedAt, lastActive }) {
 }
 
 // — Learning Engine public API —
-export function initialState({ subject, exam, topic, seenCounts = {} } = {}) {
+export function initialState({ _subject, _exam, _topic, seenCounts = {} } = {}) {
   // Detect patterns from existing data if provided, else fresh state
   return {
     session: createSession({}),
@@ -82,6 +78,15 @@ export function initialState({ subject, exam, topic, seenCounts = {} } = {}) {
     // Timestamp
     lastUpdated: Date.now(),
   };
+}
+
+function seeCounts(seenCounts = {}, patterns = []) {
+  const next = { ...seenCounts };
+  for (const p of patterns) {
+    const key = `${p.subject}::${p.topic}::${p.kind}`;
+    next[key] = (next[key] || 0) + 1;
+  }
+  return next;
 }
 
 export function transition(state, action) {
@@ -198,7 +203,7 @@ export function analyzeSession({ subject, exam, topic, questionLog = [], memory 
   // 4) Prescribe countermeasures
   const interventions = safePatterns.map((p) => {
     const key = `${p.subject}::${p.topic}::${p.kind}`;
-    const seen = state?.seenCounts?.[key] ?? 0;
+    const seen = seenCounts?.[key] ?? 0;
     const rx = prescribeCountermeasure(p, seen);
     return { pattern: p, rx };
   });

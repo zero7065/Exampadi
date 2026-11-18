@@ -60,7 +60,7 @@ export default function AdminBranding() {
           value={branding.siteName}
           onChange={(e) => setBranding({ ...branding, siteName: e.target.value })}
           placeholder="ExamPadi"
-          style={{ width: "100%", padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "#fff", fontSize: 13, outline: "none" }}
+          style={{ width: "100%", padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "var(--text)", fontSize: 13, outline: "none" }}
         />
       </div>
 
@@ -70,7 +70,7 @@ export default function AdminBranding() {
           value={branding.tagline}
           onChange={(e) => setBranding({ ...branding, tagline: e.target.value })}
           placeholder="Pass JAMB, WAEC & NABTEB First Try"
-          style={{ width: "100%", padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "#fff", fontSize: 13, outline: "none" }}
+          style={{ width: "100%", padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "var(--text)", fontSize: 13, outline: "none" }}
         />
       </div>
 
@@ -106,7 +106,7 @@ export default function AdminBranding() {
           value={branding.backgroundImageUrl}
           onChange={(e) => setBranding({ ...branding, backgroundImageUrl: e.target.value })}
           placeholder="https://example.com/bg.jpg"
-          style={{ width: "100%", padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "#fff", fontSize: 13, outline: "none" }}
+          style={{ width: "100%", padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "var(--text)", fontSize: 13, outline: "none" }}
         />
         <p style={{ color: "var(--text-muted)", fontSize: 11, marginTop: 4 }}>Paste any public image URL (max upload size 50MB). Applied to the sign-in page shell.</p>
       </div>
@@ -119,7 +119,7 @@ export default function AdminBranding() {
           value={branding.footerText}
           onChange={(e) => setBranding({ ...branding, footerText: e.target.value })}
           placeholder="Developed by Jadai Studios"
-          style={{ width: "100%", padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "#fff", fontSize: 13, outline: "none" }}
+          style={{ width: "100%", padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "var(--text)", fontSize: 13, outline: "none" }}
         />
       </div>
 
@@ -131,7 +131,7 @@ export default function AdminBranding() {
           value={branding.contactEmail}
           onChange={(e) => setBranding({ ...branding, contactEmail: e.target.value })}
           placeholder="jadei7065@gmail.com"
-          style={{ width: "100%", padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "#fff", fontSize: 13, outline: "none" }}
+          style={{ width: "100%", padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "var(--text)", fontSize: 13, outline: "none" }}
         />
       </div>
 
@@ -143,7 +143,7 @@ export default function AdminBranding() {
           value={branding.contactPhone}
           onChange={(e) => setBranding({ ...branding, contactPhone: e.target.value })}
           placeholder="+234 812 763 6057"
-          style={{ width: "100%", padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "#fff", fontSize: 13, outline: "none" }}
+          style={{ width: "100%", padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "var(--text)", fontSize: 13, outline: "none" }}
         />
       </div>
 
@@ -158,7 +158,7 @@ export default function AdminBranding() {
           value={resetEmail}
           onChange={(e) => setResetEmail(e.target.value)}
           placeholder="jadai7065@gmail.com"
-          style={{ width: "100%", padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "#fff", fontSize: 13, outline: "none", marginBottom: 8 }}
+          style={{ width: "100%", padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "var(--text)", fontSize: 13, outline: "none", marginBottom: 8 }}
         />
         <button
           onClick={handleReset}

@@ -21,7 +21,7 @@ export function rememberPaymentReference(reference, plan) {
       "ep_last_payment",
       JSON.stringify({ reference, plan: plan || prev.plan || null })
     );
-  } catch (_) {}
+  } catch (_) { /* sessionStorage unavailable — non-fatal */ }
 }
 
 export function readLastPayment() {
@@ -130,7 +130,7 @@ export function usePaystack() {
         plan: PRO_PLANS.has(plan) ? "pro" : "free",
         planExpiry: endDate.toISOString(),
       });
-    } catch (_) {}
+    } catch (_) { /* local user state is best-effort */ }
     return endDate;
   }
 
@@ -156,7 +156,7 @@ export function usePaystack() {
     } else {
       try {
         updateUser({ plan: PRO_PLANS.has(effPlan) ? "pro" : "free" });
-      } catch (_) {}
+      } catch (_) { /* local user state is best-effort */ }
     }
 
     if (v.unreachable) {
@@ -226,7 +226,7 @@ export function usePaystack() {
               await onPaid(response, v);
             } else {
               if (v.activated) {
-                try { updateUser({ plan: PRO_PLANS.has(plan) ? "pro" : "free" }); } catch (_) {}
+                try { updateUser({ plan: PRO_PLANS.has(plan) ? "pro" : "free" }); } catch (_) { /* local user state is best-effort */ }
                 toast({ message: successToast(plan), type: "success" });
               } else {
                 await persistSubscription({ reference: response.reference, plan, userId, verified: !!v.ok });

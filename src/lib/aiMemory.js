@@ -19,7 +19,9 @@ function getBuffer(uid) {
         const parsed = JSON.parse(raw);
         if (parsed && typeof parsed === "object") restored = { ...restored, ...parsed };
       }
-    } catch (_) {}
+    } catch (_) {
+      // corrupted buffer — start fresh
+    }
     buffers.set(uid, restored);
   }
   return buffers.get(uid);
@@ -28,7 +30,9 @@ function getBuffer(uid) {
 function persistBuffer(uid) {
   try {
     localStorage.setItem(LS_PREFIX + uid, JSON.stringify(getBuffer(uid)));
-  } catch (_) {}
+  } catch (_) {
+    // storage unavailable — buffer stays in memory
+  }
 }
 
 function freshMemory(uid) {

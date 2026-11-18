@@ -20,7 +20,7 @@ export class JitsiClassroomProvider {
     this.isJoined = false;
   }
 
-  async createSession({ subject, title, instructions = "" }) {
+  async createSession({ subject: _subject, title: _title, instructions: _instructions = "" }) {
     const room = this.roomName;
     const embedUrl = `https://meet.jit.si/${encodeURIComponent(room)}#config.prejoinPageEnabled=false&config.displayName=ExamPadi%20Teacher`;
     return {
@@ -86,7 +86,7 @@ export class ExternalLinkClassroomProvider {
     this.isJoined = false;
   }
 
-  async createSession({ subject, title, instructions = "" }) {
+  async createSession({ subject: _subject, title: _title, instructions: _instructions = "" }) {
     return {
       roomName: this.roomName,
       embedUrl: this.videoUrl,
@@ -96,7 +96,7 @@ export class ExternalLinkClassroomProvider {
     };
   }
 
-  async joinSession({ displayName, onEvent }) {
+  async joinSession({ displayName: _displayName, onEvent }) {
     this.isJoined = true;
     onEvent?.("external_ready");
   }

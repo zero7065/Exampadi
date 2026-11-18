@@ -4,7 +4,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
   X, Undo2, Trash2, Pen, Eraser, Type, Sparkles, Loader2,
-  Send, Save, NotebookPen, CheckCircle, ChevronLeft, ChevronRight,
+  Send, Save, NotebookPen,
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "./Toast";
@@ -60,6 +60,7 @@ export default function AttemptWorkspace({
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
 
+  /* eslint-disable react-hooks/set-state-in-effect -- reset the workspace when it is (re)opened */
   useEffect(() => {
     if (open) {
       setStrokes(initialStrokes || []);
@@ -69,6 +70,7 @@ export default function AttemptWorkspace({
       setSelectedTeacher(teacherUid || "");
     }
   }, [open, initialStrokes, teacherUid]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const currentStroke = useRef(null);
 

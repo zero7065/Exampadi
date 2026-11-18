@@ -1,4 +1,4 @@
-import { Wifi, WifiOff, X } from "lucide-react";
+import { WifiOff, X } from "lucide-react";
 import { useOnlineStatus } from "../hooks/useOnlineStatus";
 
 export default function OfflineIndicator() {

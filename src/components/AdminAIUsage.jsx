@@ -262,7 +262,7 @@ export default function AdminAIUsage() {
           return (
             <div key={s.label} style={{ background: "var(--bg-3)", borderRadius: 12, padding: 16, textAlign: "center" }}>
               <Icon size={20} color={s.color} style={{ margin: "0 auto 8px" }} />
-              <div style={{ fontSize: 24, fontWeight: 800, color: "#fff" }}>{s.value}</div>
+              <div style={{ fontSize: 24, fontWeight: 800, color: "var(--text)" }}>{s.value}</div>
               <div style={{ fontSize: 11, color: "var(--text-muted)" }}>{s.label}</div>
             </div>
           );
@@ -372,7 +372,7 @@ export default function AdminAIUsage() {
           <tbody>
             {data.topUsers.map((u) => (
               <tr key={u.uid} style={{ borderBottom: "1px solid var(--border)" }}>
-                <td style={{ padding: "10px 8px", color: "#fff", fontWeight: 600 }}>{u.name || "—"}</td>
+                <td style={{ padding: "10px 8px", color: "var(--text)", fontWeight: 600 }}>{u.name || "—"}</td>
                 <td style={{ padding: "10px 8px", color: "var(--text-muted)", fontSize: 11 }}>{u.email}</td>
                 <td style={{ padding: "10px 8px", color: "var(--primary)", fontWeight: 700 }}>{formatNumber(u.messages)}</td>
                 <td style={{ padding: "10px 8px", color: "var(--text)" }}>{formatNumber(u.tokens)}</td>

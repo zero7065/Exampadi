@@ -64,16 +64,16 @@ export default function AdminTrainingData() {
       </div>
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 12, marginBottom: 16 }}>
-        <input placeholder="User ID (optional)" value={filter.userId} onChange={(e) => setFilter({ ...filter, userId: e.target.value })} style={{ padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "#fff", fontSize: 13, outline: "none" }} />
-        <select value={filter.type} onChange={(e) => setFilter({ ...filter, type: e.target.value })} style={{ padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "#fff", fontSize: 13, outline: "none" }}>
+        <input placeholder="User ID (optional)" value={filter.userId} onChange={(e) => setFilter({ ...filter, userId: e.target.value })} style={{ padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "var(--text)", fontSize: 13, outline: "none" }} />
+        <select value={filter.type} onChange={(e) => setFilter({ ...filter, type: e.target.value })} style={{ padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "var(--text)", fontSize: 13, outline: "none" }}>
           <option value="">All types</option>
           <option value="chatWithTutor">Chat</option>
           <option value="explainAnswer">Explain Answer</option>
           <option value="explainQuestion">Explain Question</option>
           <option value="askGroq">Ask Groq</option>
         </select>
-        <input type="date" value={filter.since} onChange={(e) => setFilter({ ...filter, since: e.target.value })} style={{ padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "#fff", fontSize: 13, outline: "none" }} />
-        <input type="date" value={filter.until} onChange={(e) => setFilter({ ...filter, until: e.target.value })} style={{ padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "#fff", fontSize: 13, outline: "none" }} />
+        <input type="date" value={filter.since} onChange={(e) => setFilter({ ...filter, since: e.target.value })} style={{ padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "var(--text)", fontSize: 13, outline: "none" }} />
+        <input type="date" value={filter.until} onChange={(e) => setFilter({ ...filter, until: e.target.value })} style={{ padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "var(--text)", fontSize: 13, outline: "none" }} />
       </div>
 
       <div style={{ display: "flex", gap: 12, marginBottom: 16 }}>

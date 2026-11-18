@@ -6,7 +6,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import {
-  getFirestore, collection, addDoc, setDoc, doc, updateDoc, serverTimestamp,
+  getFirestore, collection, addDoc, setDoc, doc, serverTimestamp,
 } from "firebase/firestore";
 import fs from "node:fs";
 import path from "node:path";
@@ -22,7 +22,7 @@ function loadDotEnv() {
       const k = t.slice(0, eq).trim();
       if (!(k in process.env)) process.env[k] = t.slice(eq + 1).trim().replace(/^["']|["']$/g, "");
     }
-  } catch (_) {}
+  } catch (_) { /* no .env file — rely on existing env */ }
 }
 
 async function main() {

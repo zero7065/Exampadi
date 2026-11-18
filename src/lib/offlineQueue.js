@@ -19,7 +19,9 @@ function load() {
 function save(ops) {
   try {
     localStorage.setItem(LS_KEY, JSON.stringify(ops.slice(-MAX_OPS)));
-  } catch (_) {}
+  } catch (_) {
+    // storage unavailable (private mode/quota) — keep in-memory copy
+  }
 }
 
 let pending = load();
@@ -33,7 +35,9 @@ export function onQueueChange(fn) {
 
 function emit() {
   listeners.forEach((fn) => {
-    try { fn(pending.length); } catch (_) {}
+    try { fn(pending.length); } catch (_) {
+      // listener threw — keep notifying the rest
+    }
   });
 }
 

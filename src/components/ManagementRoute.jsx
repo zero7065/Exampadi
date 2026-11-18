@@ -4,6 +4,7 @@ import { Navigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { getUserProfile } from "../lib/userProfile";
 import { isManagementRole } from "../lib/roles";
+import { isAdmin } from "../lib/activityLog";
 
 export default function ManagementRoute({ children }) {
   const { user, loading } = useAuth();
@@ -29,7 +30,8 @@ export default function ManagementRoute({ children }) {
   }
 
   if (!user) return <Navigate to="/auth" replace />;
-  if (!isManagementRole(profile)) return <Navigate to="/dashboard" replace />;
+  // Admins may preview any school's management view (via ?school=<id>).
+  if (!isManagementRole(profile) && !isAdmin(user)) return <Navigate to="/dashboard" replace />;
 
   return children;
 }

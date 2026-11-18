@@ -8,11 +8,11 @@ import { getUserProfile } from "../lib/userProfile";
 import { askGroq } from "../lib/ai";
 import {
   subscribeCommunity, subscribeCommunityMembers, subscribeCommunityChat,
-  sendCommunityMessage, deleteCommunityMessage,
+  sendCommunityMessage,
   subscribeUserGroups, createUserGroup, joinUserGroup, leaveUserGroup,
-  subscribeUserGroupChat, sendUserGroupMessage,
+  subscribeUserGroupChat,
 } from "../lib/schoolCommunity";
-import { ArrowLeft, Send, Users, Sparkles, Plus, MessageCircle, Bot, User, Trash2, Hash, Loader2 } from "lucide-react";
+import { ArrowLeft, Send, Users, Sparkles, Plus, MessageCircle, Bot, User, Hash, Loader2 } from "lucide-react";
 
 export default function CommunityPage() {
   const { user } = useAuth();
@@ -28,7 +28,6 @@ export default function CommunityPage() {
   const [userGroups, setUserGroups] = useState([]);
   const [activeGroup, setActiveGroup] = useState(null); // user-created group
   const [groupMessages, setGroupMessages] = useState([]);
-  const [groupText, setGroupText] = useState("");
   const [showCreate, setShowCreate] = useState(false);
   const [newGroup, setNewGroup] = useState({ name: "", description: "", topic: "Study" });
   const bottomRef = useRef(null);
@@ -92,21 +91,6 @@ export default function CommunityPage() {
       toast({ message: e.message || "Could not send", type: "error" });
     } finally {
       setSending(false);
-    }
-  }
-
-  async function sendGroupMessage() {
-    const clean = groupText.trim();
-    if (!clean || !activeGroup) return;
-    try {
-      await sendUserGroupMessage(activeGroup, {
-        fromUid: user.uid,
-        fromName: profile?.name || user.displayName || "Student",
-        text: clean,
-      });
-      setGroupText("");
-    } catch (e) {
-      toast({ message: e.message || "Could not send", type: "error" });
     }
   }
 

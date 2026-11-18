@@ -12,7 +12,7 @@ import ShareButton from "../components/ShareButton";
 import {
   createChallenge, subscribeIncomingChallenges, respondChallenge,
 } from "../lib/games/challenges";
-import { ArrowLeft, Brain, Lightbulb, Hash, Trophy, Crown, CheckCircle2, XCircle, ChevronRight, RotateCcw, Sparkles, Swords, Check, X, Loader2 } from "lucide-react";
+import { ArrowLeft, Lightbulb, Hash, Trophy, CheckCircle2, XCircle, ChevronRight, Sparkles, Swords, Check, X, Loader2 } from "lucide-react";
 
 export default function GamesPage() {
   const { isPro } = useSubscription();
@@ -195,7 +195,7 @@ export default function GamesPage() {
   );
 }
 
-function GamePlayer({ category, idx, score, picked, showAnswer, teaserAnswer, setTeaserAnswer, onPick, onNext, onReveal, onBack, onReset }) {
+function GamePlayer({ category, idx, score, picked, showAnswer, teaserAnswer, setTeaserAnswer, onPick, onNext, onReveal, onBack, _onReset }) {
   if (category === "trivia") {
     const q = TRIVIA_QUESTIONS[idx];
     if (!q) return null;

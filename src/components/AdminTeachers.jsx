@@ -53,6 +53,7 @@ export default function AdminTeachers() {
       }
     }
     init();
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- fetch teacher accounts on mount
     loadTeachers();
     // Approved schools power the picker — their doc ids become users.schoolId.
     listSchools("approved")
@@ -106,7 +107,7 @@ export default function AdminTeachers() {
               const s = approvedSchools.find((x) => x.id === e.target.value);
               setSchoolName(s ? s.schoolName : "");
             }}
-            style={{ flex: 1, minWidth: 200, padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "#fff", fontSize: 13, outline: "none" }}
+            style={{ flex: 1, minWidth: 200, padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "var(--text)", fontSize: 13, outline: "none" }}
           >
             <option value="">Select approved school…</option>
             {approvedSchools.map((s) => (
@@ -121,7 +122,7 @@ export default function AdminTeachers() {
             setSchoolId("");
           }}
           placeholder={approvedSchools.length > 0 ? "…or type a school name" : "School name (e.g., Jos High School)"}
-          style={{ flex: 1, minWidth: 200, padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "#fff", fontSize: 13, outline: "none" }}
+          style={{ flex: 1, minWidth: 200, padding: "10px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid #333", color: "var(--text)", fontSize: 13, outline: "none" }}
         />
         <button onClick={handleCreate} disabled={creating || (!schoolName.trim() && !schoolId)} style={{ padding: "10px 20px", borderRadius: 8, background: "var(--primary)", border: "none", color: "#fff", fontWeight: 700, fontSize: 13, cursor: creating ? "not-allowed" : "pointer", display: "flex", alignItems: "center", gap: 8, opacity: creating || (!schoolName.trim() && !schoolId) ? 0.6 : 1 }}>
           {creating ? <Loader2 size={16} /> : <Plus size={16} />} Generate Code

@@ -53,7 +53,7 @@ export default function ProUpgradeModal({ open, onClose, reason, dismissible }) 
       onPaid: async (response) => {
         try {
           await refreshProfile();
-        } catch (_) {}
+        } catch (_) { /* profile refresh is best-effort */ }
         toast({ message: "Pro activated! Welcome to ExamPadi Pro", type: "success" });
         onClose && onClose();
         navigate("/payment/success", { state: { reference: response.reference, plan } });
@@ -149,7 +149,7 @@ export default function ProUpgradeModal({ open, onClose, reason, dismissible }) 
           </div>
 
           {/* Headline */}
-          <h2 style={{ color: "#fff", fontSize: 28, fontWeight: 800, textAlign: "center", margin: "0 0 8px", letterSpacing: "-0.5px" }}>
+          <h2 style={{ color: "var(--text)", fontSize: 28, fontWeight: 800, textAlign: "center", margin: "0 0 8px", letterSpacing: "-0.5px" }}>
             Unlock Your Full Potential
           </h2>
           <p style={{ color: "var(--text-muted)", fontSize: 15, textAlign: "center", margin: "0 0 24px" }}>
@@ -217,7 +217,7 @@ export default function ProUpgradeModal({ open, onClose, reason, dismissible }) 
                   ₦{(PLANS.pro_yearly.originalPrice || 42000).toLocaleString()}
                 </span>
               )}
-              <span style={{ fontSize: 48, fontWeight: 800, color: "#fff", letterSpacing: "-1px" }}>
+              <span style={{ fontSize: 48, fontWeight: 800, color: "var(--text)", letterSpacing: "-1px" }}>
                 ₦{planData.price.toLocaleString()}
               </span>
             </div>
@@ -237,7 +237,7 @@ export default function ProUpgradeModal({ open, onClose, reason, dismissible }) 
                 }}>
                   <Check size={12} color="#4ADE80" />
                 </div>
-                <span style={{ color: "#fff", fontSize: 13, lineHeight: 1.3 }}>{f}</span>
+                <span style={{ color: "var(--text)", fontSize: 13, lineHeight: 1.3 }}>{f}</span>
               </div>
             ))}
           </div>
@@ -297,7 +297,7 @@ export default function ProUpgradeModal({ open, onClose, reason, dismissible }) 
               style={{
                 width: "100%", height: 48, borderRadius: 14, marginTop: 12,
                 background: "var(--bg-3)", border: "1px solid var(--border)",
-                color: "#fff", fontWeight: 700, fontSize: 14, cursor: loading ? "not-allowed" : "pointer",
+                color: "var(--text)", fontWeight: 700, fontSize: 14, cursor: loading ? "not-allowed" : "pointer",
                 display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
                 fontFamily: "inherit", opacity: loading ? 0.7 : 1,
               }}

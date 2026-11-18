@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const MAX = 5;
 
 export function useHint(sessionId) {

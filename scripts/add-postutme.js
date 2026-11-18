@@ -4,7 +4,6 @@ let data = JSON.parse(fs.readFileSync(postutmePath, 'utf8'));
 
 const subjects = ['Use of English Language', 'Mathematics', 'Physics', 'Chemistry', 'Biology'];
 const topics = ['Comprehension', 'Lexis and Structure', 'Algebra', 'Geometry', 'Mechanics', 'Organic', 'Cell Biology'];
-const exams = ['POST-UTME'];
 
 for (let i = 1; i <= 25; i++) {
   const subject = subjects[(i - 1) % subjects.length];

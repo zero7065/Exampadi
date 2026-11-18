@@ -85,7 +85,7 @@ export async function activateTeam({ teamId, payerUid, payerEmail, reference, am
     });
   } catch (e) {
     console.error("activateTeam failed:", e);
-    throw new Error("Team activation failed. Please contact support — do NOT pay again.");
+    throw new Error("Team activation failed. Please contact support — do NOT pay again.", { cause: e });
   }
   await logActivity({
     action: "team_activated", userId: payerUid, email: payerEmail,

@@ -18,7 +18,6 @@ import {
   AlertCircle,
   ChevronRight,
   BookOpen,
-  ArrowUpRight,
   Trophy,
   Flame,
   Zap,
@@ -26,7 +25,6 @@ import {
   CheckCircle2,
   XCircle,
   AlertTriangle,
-  Star,
   Medal,
   Crown,
 } from "lucide-react";
