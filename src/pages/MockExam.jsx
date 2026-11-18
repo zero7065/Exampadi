@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "../components/Toast";
 import { useSubscription } from "../hooks/useSubscription";
@@ -8,7 +8,8 @@ import { getRandomQuestions } from "../data/questions/compat";
 import ProUpgradeModal from "../components/ProUpgradeModal";
 import Scratchpad from "../components/Scratchpad";
 import { recordSession } from "../lib/aiMemory";
-import { Clock, Flag, ChevronLeft, ChevronRight, AlertTriangle, Calculator } from "lucide-react";
+import { saveActiveSession, clearActiveSession } from "../lib/activeSession";
+import { Clock, Flag, ChevronLeft, ChevronRight, AlertTriangle, Calculator, Pause } from "lucide-react";
 
 const EXAM_CONFIG = {
   "JAMB UTME": { duration: 7200, questionsPerSubject: 45, maxSubjects: 4 },
@@ -21,20 +22,28 @@ export default function MockExam() {
   const { toast } = useToast();
   const { isPro } = useSubscription();
   const navigate = useNavigate();
+  const location = useLocation();
+  const saved = location.state;
+  const resuming = !!saved?.questions?.length;
   const [profile, setProfile] = useState(null);
-  const [step, setStep] = useState("setup");
-  const [examType, setExamType] = useState("JAMB UTME");
-  const [selectedSubjects, setSelectedSubjects] = useState(["English"]);
+  const [step, setStep] = useState(resuming ? "exam" : "setup");
+  const [examType, setExamType] = useState(saved?.examType || "JAMB UTME");
+  const [selectedSubjects, setSelectedSubjects] = useState(saved?.subjects || ["English"]);
   const [difficulty, setDifficulty] = useState("official");
   const [showProModal, setShowProModal] = useState(false);
 
   // Exam state
-  const [questions, setQuestions] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [answers, setAnswers] = useState({});
-  const [flagged, setFlagged] = useState(new Set());
-  const [timeRemaining, setTimeRemaining] = useState(0);
-  const [examStarted, setExamStarted] = useState(false);
+  const [questions, setQuestions] = useState(saved?.questions || []);
+  const [currentIndex, setCurrentIndex] = useState(saved?.currentIndex || 0);
+  const [answers, setAnswers] = useState(saved?.answers || {});
+  const [flagged, setFlagged] = useState(new Set(saved?.flagged || []));
+  const [timeRemaining, setTimeRemaining] = useState(() => {
+    if (!resuming) return 0;
+    const savedTime = saved?.timeRemaining;
+    if (savedTime > 0) return savedTime;
+    return EXAM_CONFIG[saved?.examType || "JAMB UTME"]?.duration || 7200;
+  });
+  const [examStarted, setExamStarted] = useState(resuming);
   const [examSubmitted, setExamSubmitted] = useState(false);
   const [warningShown, setWarningShown] = useState(false);
   const [showSubmitModal, setShowSubmitModal] = useState(false);
@@ -42,7 +51,8 @@ export default function MockExam() {
   const timerRef = useRef(null);
 
   useEffect(() => {
-    if (user) getUserProfile(user.uid).then(p => { setProfile(p); if (p?.subjects?.length) setSelectedSubjects([p.subjects[0]]); }).catch(e => { console.warn("Failed to load profile:", e); });
+    if (user) getUserProfile(user.uid).then(p => { setProfile(p); if (p?.subjects?.length && !resuming) setSelectedSubjects([p.subjects[0]]); }).catch(e => { console.warn("Failed to load profile:", e); });
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- only hydrate from profile once per user; resuming sessions keep their saved subjects
   }, [user]);
 
   const userSubjects = profile?.subjects || [];
@@ -90,10 +100,33 @@ export default function MockExam() {
   const answersRef = useRef(answers);
   const flaggedRef = useRef(flagged);
   const selectedSubjectsRef = useRef(selectedSubjects);
+  const currentIndexRef = useRef(currentIndex);
+  const timeRemainingRef = useRef(timeRemaining);
   useEffect(() => { questionsRef.current = questions; }, [questions]);
   useEffect(() => { answersRef.current = answers; }, [answers]);
   useEffect(() => { flaggedRef.current = flagged; }, [flagged]);
   useEffect(() => { selectedSubjectsRef.current = selectedSubjects; }, [selectedSubjects]);
+  useEffect(() => { currentIndexRef.current = currentIndex; }, [currentIndex]);
+  useEffect(() => { timeRemainingRef.current = timeRemaining; }, [timeRemaining]);
+
+  // Periodically snapshot the in-progress mock exam so it can be resumed later.
+  useEffect(() => {
+    if (!examStarted || examSubmitted) return;
+    const id = setInterval(() => {
+      saveActiveSession({
+        route: "/mock-exam",
+        questions: questionsRef.current,
+        answers: answersRef.current,
+        currentIndex: currentIndexRef.current,
+        flagged: [...flaggedRef.current],
+        timeRemaining: timeRemainingRef.current,
+        examType,
+        subjects: selectedSubjectsRef.current,
+        mode: "mock",
+      });
+    }, 15000);
+    return () => clearInterval(id);
+  }, [examStarted, examSubmitted, examType]);
 
   function handleAutoSubmit() {
     toast({ message: "Time's up! Submitting your exam...", type: "info" });
@@ -116,6 +149,7 @@ export default function MockExam() {
       subjectBreakdown[s] = { correct: c, wrong: w, skipped: sq.length - c - w, score: sq.length > 0 ? Math.round((c / sq.length) * 100) : 0 };
     });
     if (user) recordSession(user.uid, qs, ans, "answer").catch(() => {});
+    clearActiveSession();
     navigate("/mock-summary", {
       state: {
         examType, subjects: subs, questions: qs, answers: ans,
@@ -165,6 +199,7 @@ export default function MockExam() {
     });
 
     if (user) recordSession(user.uid, questions, answers, "answer").catch(() => {});
+    clearActiveSession();
     navigate("/mock-summary", {
       state: {
         examType, subjects: selectedSubjects, questions, answers,
@@ -174,6 +209,22 @@ export default function MockExam() {
         flaggedIds: [...flagged],
       }
     });
+  }
+
+  function handlePause() {
+    saveActiveSession({
+      route: "/mock-exam",
+      questions,
+      answers,
+      currentIndex,
+      flagged: [...flagged],
+      timeRemaining,
+      examType,
+      subjects: selectedSubjects,
+      mode: "mock",
+    });
+    toast({ message: "Mock exam saved — continue anytime from your dashboard", type: "success" });
+    navigate("/dashboard");
   }
 
   function formatTime(secs) {
@@ -271,9 +322,14 @@ export default function MockExam() {
             <Clock size={16} color={timerColor} style={timeRemaining < 300 ? { animation: "pulse 1s infinite" } : {}} />
             <span style={{ fontSize: 28, fontWeight: 800, fontFamily: "'JetBrains Mono', monospace", color: timerColor, letterSpacing: 1 }}>{formatTime(timeRemaining)}</span>
           </div>
-          <button onClick={() => setShowSubmitModal(true)} style={{ padding: "8px 18px", borderRadius: 8, background: "transparent", border: "1.5px solid #FF4D6A", color: "#FF4D6A", fontWeight: 700, fontSize: 13, cursor: "pointer", fontFamily: "inherit" }}>
-            Submit Exam
-          </button>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <button onClick={handlePause} title="Pause and continue later" style={{ padding: "8px 14px", borderRadius: 8, background: "var(--bg-3)", border: "1px solid var(--border)", color: "var(--text-muted)", fontWeight: 700, fontSize: 13, cursor: "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", gap: 6 }}>
+              <Pause size={14} /> Pause
+            </button>
+            <button onClick={() => setShowSubmitModal(true)} style={{ padding: "8px 18px", borderRadius: 8, background: "transparent", border: "1.5px solid #FF4D6A", color: "#FF4D6A", fontWeight: 700, fontSize: 13, cursor: "pointer", fontFamily: "inherit" }}>
+              Submit Exam
+            </button>
+          </div>
         </div>
         {/* Subject tabs */}
         {selectedSubjects.length > 1 && (

@@ -24,6 +24,7 @@ import { useToast } from "./components/Toast";
 
 import GuideFab from "./components/GuideFab";
 import AmbientBackground from "./components/AmbientBackground";
+import ResumeBanner from "./components/ResumeBanner";
 
 // Critical path — direct imports (auth shell only; landing is lazy for a lean entry chunk)
 import AuthPage from "./pages/AuthPage";
@@ -218,6 +219,9 @@ function AuthAwareRoutes() {
         <ContextualHelp />
         <NewUserChecklist />
         <ConsentBar />
+        <div style={{ padding: "0 16px", maxWidth: 1200, margin: "0 auto" }}>
+          <ResumeBanner />
+        </div>
         {updateAvailable && (
           <div style={{ position: "fixed", bottom: 16, left: "50%", transform: "translateX(-50%)", zIndex: 200, background: "var(--bg-2)", border: "1px solid var(--primary)", borderRadius: 12, padding: "12px 20px", display: "flex", alignItems: "center", gap: 12, boxShadow: "0 8px 32px rgba(0,0,0,0.4)" }}>
             <span style={{ color: "#fff", fontSize: 14, fontWeight: 600 }}>New version available</span>

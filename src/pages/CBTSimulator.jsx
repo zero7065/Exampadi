@@ -10,7 +10,8 @@ import Timer from "../components/Timer";
 import ProGate from "../components/ProGate";
 import Scratchpad from "../components/Scratchpad";
 import { recordSession } from "../lib/aiMemory";
-import { ChevronLeft, ChevronRight, Flag, Send, AlertCircle, Monitor, BookOpen, Calculator } from "lucide-react";
+import { saveActiveSession, clearActiveSession } from "../lib/activeSession";
+import { ChevronLeft, ChevronRight, Flag, Send, AlertCircle, Monitor, BookOpen, Calculator, Pause } from "lucide-react";
 
 const CBTSimulator = () => {
   const { user } = useAuth();
@@ -20,11 +21,12 @@ const CBTSimulator = () => {
   const location = useLocation();
   const sessionData = location.state;
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [flagged, setFlagged] = useState(new Set());
-  const [answers, setAnswers] = useState({});
+  const [currentIndex, setCurrentIndex] = useState(sessionData?.currentIndex || 0);
+  const [flagged, setFlagged] = useState(new Set(sessionData?.flagged || []));
+  const [answers, setAnswers] = useState(sessionData?.answers || {});
   const redirectedRef = useRef(false);
-  const [startTime] = useState(() => Date.now());
+  const [startTime] = useState(() => sessionData?.startTime || Date.now());
+  const [initialRemaining] = useState(() => Math.max(60, 120 * 60 - Math.floor((Date.now() - startTime) / 1000)));
   const [scratchpadOpen, setScratchpadOpen] = useState(false);
 
   useEffect(() => {
@@ -34,6 +36,26 @@ const CBTSimulator = () => {
       return;
     }
   }, [sessionData, navigate]);
+
+  useEffect(() => {
+    const qs = sessionData?.questions;
+    if (!qs?.length) return;
+    const timer = setTimeout(() => {
+      saveActiveSession({
+        route: "/cbt",
+        questions: qs,
+        answers,
+        currentIndex,
+        flagged: [...flagged],
+        subject: sessionData?.subjects?.[0]?.name || "CBT",
+        mode: "cbt",
+        exam: sessionData?.exam,
+        subjects: sessionData?.subjects,
+        startTime,
+      });
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [answers, currentIndex, flagged, sessionData, startTime]);
 
   if (!sessionData?.questions?.length) return null;
 
@@ -107,7 +129,25 @@ const CBTSimulator = () => {
     // Batch AI-memory update (single write, skipped silently offline)
     if (user) recordSession(user.uid, questions, answers, "correctAnswer").catch(() => {});
 
+    clearActiveSession();
     navigate("/result", { state: { result } });
+  };
+
+  const handlePause = () => {
+    saveActiveSession({
+      route: "/cbt",
+      questions,
+      answers,
+      currentIndex,
+      flagged: [...flagged],
+      subject: sessionData?.subjects?.[0]?.name || "CBT",
+      mode: "cbt",
+      exam: sessionData?.exam,
+      subjects: sessionData?.subjects,
+      startTime,
+    });
+    toast({ message: "CBT saved — continue anytime from your dashboard", type: "success" });
+    navigate("/dashboard");
   };
 
   return (
@@ -135,8 +175,16 @@ const CBTSimulator = () => {
         <div className="flex items-center gap-8">
           <div className="flex flex-col items-end">
             <div className="text-[10px] font-black text-text-muted uppercase tracking-widest mb-1">Time Remaining</div>
-            <Timer initialSeconds={120 * 60} onTimeUp={handleFinish} />
+            <Timer initialSeconds={initialRemaining} onTimeUp={handleFinish} />
           </div>
+          <button
+            onClick={handlePause}
+            className="btn-secondary h-12 px-5 flex items-center gap-2"
+            title="Pause and continue later"
+          >
+            <Pause size={16} />
+            Pause
+          </button>
           <button 
             onClick={handleFinish} 
             className="btn-primary bg-danger text-ash-900 px-8 h-12 flex items-center gap-3 shadow-xl shadow-danger/20"

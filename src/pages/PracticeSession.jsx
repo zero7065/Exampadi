@@ -14,7 +14,8 @@ import NotepadDrawer from "../components/NotepadDrawer";
 import { useHint } from "../hooks/useHints";
 import { logActivity } from "../lib/activityLog";
 import { ACTIONS } from "../lib/actions";
-import { ChevronRight, Sparkles, AlertCircle, CheckCircle2, XCircle, Flag, Lightbulb, PenTool, NotebookPen } from "lucide-react";
+import { saveActiveSession, clearActiveSession } from "../lib/activeSession";
+import { ChevronRight, Sparkles, AlertCircle, CheckCircle2, XCircle, Flag, Lightbulb, PenTool, NotebookPen, Pause } from "lucide-react";
 
 const MODE_MOCK = "mock";
 const MODE_PRACTICE = "practice";
@@ -31,12 +32,12 @@ export default function PracticeSession() {
   const [proReason, setProReason] = useState(null);
   const [questions] = useState(sessionData?.questions || []);
   const [passage] = useState(sessionData?.passage || "");
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(sessionData?.currentIndex || 0);
   const [redirected, setRedirected] = useState(false);
-  const [answers, setAnswers] = useState({});
-  const [flagged, setFlagged] = useState(new Set());
+  const [answers, setAnswers] = useState(sessionData?.answers || {});
+  const [flagged, setFlagged] = useState(new Set(sessionData?.flagged || []));
   const [revealed, setRevealed] = useState({});
-  const [timeElapsed, setTimeElapsed] = useState(0);
+  const [timeElapsed, setTimeElapsed] = useState(sessionData?.timeElapsed || 0);
   const [aiExplanations, setAiExplanations] = useState({});
   const [loadingAI, setLoadingAI] = useState(null);
   const [showHint, setShowHint] = useState({});
@@ -124,23 +125,22 @@ export default function PracticeSession() {
   useEffect(() => {
     if (sessionComplete || !questions.length) return;
     const sessionState = {
+      route: "/practice",
       questions,
       answers,
       currentIndex,
+      flagged: [...flagged],
       subject,
       mode,
+      timeElapsed,
       startTime: sessionData?.startTime || Date.now(),
     };
-    const timer = setTimeout(() => {
-      try { localStorage.setItem("exampadi_active_session", JSON.stringify(sessionState)); } catch { /* storage full — non-fatal */ }
-    }, 500);
+    const timer = setTimeout(() => saveActiveSession(sessionState), 500);
     return () => clearTimeout(timer);
-  }, [answers, currentIndex, questions, subject, mode, sessionComplete, sessionData]);
+  }, [answers, currentIndex, flagged, questions, subject, mode, timeElapsed, sessionComplete, sessionData]);
 
   useEffect(() => {
-    if (sessionComplete) {
-      try { localStorage.removeItem("exampadi_active_session"); } catch { /* storage blocked — non-fatal */ }
-    }
+    if (sessionComplete) clearActiveSession();
   }, [sessionComplete]);
 
   useEffect(() => {
@@ -246,6 +246,22 @@ export default function PracticeSession() {
 
   function goToQuestion(idx) {
     if (idx >= 0 && idx < questions.length) setCurrentIndex(idx);
+  }
+
+  function handlePause() {
+    saveActiveSession({
+      route: "/practice",
+      questions,
+      answers,
+      currentIndex,
+      flagged: [...flagged],
+      subject,
+      mode,
+      timeElapsed,
+      startTime: sessionData?.startTime || Date.now(),
+    });
+    toast({ message: "Session saved — continue anytime from your dashboard", type: "success" });
+    navigate("/dashboard");
   }
 
   function handleUseHint() {
@@ -398,6 +414,13 @@ export default function PracticeSession() {
             </div>
             <span style={{ fontSize: 12, color: "var(--text-muted)", fontWeight: 500, whiteSpace: "nowrap" }}>{currentIndex + 1}/{questions.length}</span>
             <span style={{ fontSize: 12, fontWeight: 700, color: "var(--accent)", fontFamily: "'JetBrains Mono', monospace", minWidth: 60, textAlign: "right" }}>{formatTime(timeElapsed)}</span>
+            <button
+              onClick={handlePause}
+              title="Pause and continue later"
+              style={{ padding: "6px 12px", borderRadius: 8, background: "var(--bg-2)", border: "1px solid var(--border)", color: "var(--text-muted)", cursor: "pointer", fontSize: 12, fontWeight: 600, fontFamily: "inherit", display: "flex", alignItems: "center", gap: 4, whiteSpace: "nowrap" }}
+            >
+              <Pause size={12} /> Pause
+            </button>
           </div>
 
           {current && (

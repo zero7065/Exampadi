@@ -13,7 +13,6 @@ import { isAdmin } from "../lib/activityLog";
 import { collection, query, where, getDocs, limit } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import ProUpgradeModal from "../components/ProUpgradeModal";
-import ResumeBanner from "../components/ResumeBanner";
 import NotificationPrompt from "../components/NotificationPrompt";
 import OnboardingTour from "../components/OnboardingTour";
 import { tourSeen } from "../lib/tour";
@@ -187,7 +186,6 @@ export default function Dashboard() {
   return (
     <div style={{ minHeight: "100vh", background: "var(--bg)", fontFamily: "'Inter', system-ui, sans-serif", color: "var(--text)" }}>
       <div className="page-content" style={{ maxWidth: 1200, margin: "0 auto" }}>
-        <ResumeBanner />
         <NotificationPrompt />
 
 {updates.length > 0 && (
