@@ -12,7 +12,7 @@ export default function AdminAnalytics() {
       try {
         const usersSnap = await getDocs(collection(db, "users"));
         const sessionsSnap = await getDocs(query(collection(db, "sessions"), limit(500)));
-        const paymentsSnap = await getDocs(query(collection(db, "activityLog"), where("action", "==", "payment"), limit(100)));
+        const paymentsSnap = await getDocs(query(collection(db, "activityLog"), where("action", "==", "payment_success"), limit(100)));
         const aiSnap = await getDocs(query(collection(db, "aiTrainingData"), limit(100)));
 
         const users = usersSnap.docs.map((d) => d.data());
