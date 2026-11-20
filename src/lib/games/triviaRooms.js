@@ -122,8 +122,8 @@ export async function leaveTriviaRoom(code, uid) {
   if (!snap.exists()) return;
   const room = snap.data();
   if (room.hostUid === uid) {
-    await updateDoc(ref, { status: "finished", updatedAt: serverTimestamp() });
+    await updateDoc(ref, { status: "finished", paused: false, pausedBy: null, pausedAt: null, updatedAt: serverTimestamp() });
   } else if (room.guestUid === uid) {
-    await updateDoc(ref, { guestUid: null, guestName: null, status: "waiting", updatedAt: serverTimestamp() });
+    await updateDoc(ref, { guestUid: null, guestName: null, status: "waiting", paused: false, pausedBy: null, pausedAt: null, updatedAt: serverTimestamp() });
   }
 }

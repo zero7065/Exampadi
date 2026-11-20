@@ -1,6 +1,6 @@
 // Chess multiplayer room — create/join with code, play on app with timer.
 // Both players sync moves live; either can create a room and share the code/link.
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Chess } from "chess.js";
 import { useAuth } from "../context/AuthContext";
@@ -8,7 +8,7 @@ import { useToast } from "../components/Toast";
 import { useSubscription } from "../hooks/useSubscription";
 import ProGate from "../components/ProGate";
 import {
-  createChessRoom, joinChessRoom, subscribeChessRoom, syncChessMove, finishChessRoom, resignChessRoom, setChessPaused,
+  createChessRoom, joinChessRoom, subscribeChessRoom, syncChessMove, finishChessRoom, resignChessRoom, setChessPaused, syncChessClock,
 } from "../lib/games/chessMultiplayer";
 import { createChessResult } from "../lib/games/chessResults";
 import { ArrowLeft, Copy, Check, Clock, Flag, Users, Loader2, Share2, Crown, Timer, Pause, Play } from "lucide-react";
@@ -39,6 +39,9 @@ export default function ChessRoomPage() {
   const [lastMove, setLastMove] = useState(null);
   const [copied, setCopied] = useState(false);
   const [, setNow] = useState(() => Date.now());
+  const whiteMsRef = useRef(whiteMs);
+  const blackMsRef = useRef(blackMs);
+  useEffect(() => { whiteMsRef.current = whiteMs; blackMsRef.current = blackMs; }, [whiteMs, blackMs]);
   const [whiteMs, setWhiteMs] = useState(0);
   const [blackMs, setBlackMs] = useState(0);
   const [creating, setCreating] = useState(false);
@@ -79,8 +82,13 @@ export default function ChessRoomPage() {
       setWhiteMs((w) => (game.turn() === "w" ? Math.max(0, w - 1000) : w));
       setBlackMs((b) => (game.turn() === "b" ? Math.max(0, b - 1000) : b));
     }, 1000);
-    return () => clearInterval(t);
-  }, [room, game]);
+    return () => {
+      clearInterval(t);
+      if (room && room.status === "active" && room.timeControl !== "unlimited") {
+        syncChessClock(normalized, { whiteTimeMs: whiteMsRef.current, blackTimeMs: blackMsRef.current });
+      }
+    };
+  }, [room, game, normalized]);
 
   // Time forfeit check
   useEffect(() => {

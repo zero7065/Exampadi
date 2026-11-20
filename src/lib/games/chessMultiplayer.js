@@ -95,6 +95,15 @@ export async function setChessPaused(code, paused, byUid = null) {
   }).catch(() => {});
 }
 
+// Persist the live clock (white/black ms) so reloads / pauses stay accurate.
+export async function syncChessClock(code, { whiteTimeMs, blackTimeMs }) {
+  needDb();
+  const patch = { updatedAt: serverTimestamp() };
+  if (typeof whiteTimeMs === "number") patch.whiteTimeMs = Math.max(0, Math.round(whiteTimeMs));
+  if (typeof blackTimeMs === "number") patch.blackTimeMs = Math.max(0, Math.round(blackTimeMs));
+  await updateDoc(doc(db, "chessRooms", String(code || "").trim().toUpperCase()), patch).catch(() => {});
+}
+
 // Finish a room with a result + winner
 export async function finishChessRoom(code, { result, winnerUid = null, winnerName = null, reason }) {
   needDb();
@@ -104,6 +113,9 @@ export async function finishChessRoom(code, { result, winnerUid = null, winnerNa
     winnerUid,
     winnerName,
     reason: reason || "",
+    paused: false,
+    pausedBy: null,
+    pausedAt: null,
     endedAt: serverTimestamp(),
   });
 }
@@ -122,6 +134,9 @@ export async function resignChessRoom(code, uid) {
     result: "resign",
     winnerUid,
     winnerName,
+    paused: false,
+    pausedBy: null,
+    pausedAt: null,
     endedAt: serverTimestamp(),
   });
 }
