@@ -84,6 +84,17 @@ export async function syncChessMove(code, { fen, pgn, turn, lastMove, whiteTimeM
   await updateDoc(doc(db, "chessRooms", String(code || "").trim().toUpperCase()), patch).catch(() => {});
 }
 
+// Pause / resume a live room. Either player can toggle; clocks stop while paused.
+export async function setChessPaused(code, paused, byUid = null) {
+  needDb();
+  await updateDoc(doc(db, "chessRooms", String(code || "").trim().toUpperCase()), {
+    paused: !!paused,
+    pausedBy: paused ? byUid : null,
+    pausedAt: paused ? serverTimestamp() : null,
+    updatedAt: serverTimestamp(),
+  }).catch(() => {});
+}
+
 // Finish a room with a result + winner
 export async function finishChessRoom(code, { result, winnerUid = null, winnerName = null, reason }) {
   needDb();

@@ -13,6 +13,7 @@ import {
   createChallenge, subscribeIncomingChallenges, respondChallenge,
 } from "../lib/games/challenges";
 import { ArrowLeft, Lightbulb, Hash, Trophy, CheckCircle2, XCircle, ChevronRight, Sparkles, Swords, Check, X, Loader2 } from "lucide-react";
+import ActiveGames from "../components/ActiveGames";
 
 export default function GamesPage() {
   const { isPro } = useSubscription();
@@ -100,6 +101,9 @@ export default function GamesPage() {
               <Link to="/chess/room" className="btn-secondary text-sm py-2.5 text-center">♟️ Live Chess</Link>
             </div>
           </div>
+
+          {/* Continue a paused/in-progress game */}
+          <ActiveGames />
 
           {/* Challenges */}
           <div className="glass-card p-5 mt-2">

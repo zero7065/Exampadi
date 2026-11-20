@@ -8,10 +8,10 @@ import { useToast } from "../components/Toast";
 import { useSubscription } from "../hooks/useSubscription";
 import ProGate from "../components/ProGate";
 import {
-  createChessRoom, joinChessRoom, subscribeChessRoom, syncChessMove, finishChessRoom, resignChessRoom,
+  createChessRoom, joinChessRoom, subscribeChessRoom, syncChessMove, finishChessRoom, resignChessRoom, setChessPaused,
 } from "../lib/games/chessMultiplayer";
 import { createChessResult } from "../lib/games/chessResults";
-import { ArrowLeft, Copy, Check, Clock, Flag, Users, Loader2, Share2, Crown, Timer } from "lucide-react";
+import { ArrowLeft, Copy, Check, Clock, Flag, Users, Loader2, Share2, Crown, Timer, Pause, Play } from "lucide-react";
 
 const PIECE_GLYPH = {
   w: { k: "♔", q: "♕", r: "♖", b: "♗", n: "♘", p: "♙" },
@@ -52,6 +52,7 @@ export default function ChessRoomPage() {
   const myColor = isHost ? "w" : isGuest ? "b" : null;
   const playerTurn = myColor ? game.turn() === myColor : true;
   const gameOver = game.isGameOver() || room?.status === "finished";
+  const isPaused = !!room?.paused;
 
   useEffect(() => {
     if (!normalized) return;
@@ -70,9 +71,9 @@ export default function ChessRoomPage() {
     return () => unsub && unsub();
   }, [normalized]);
 
-  // Clock tick
+  // Clock tick (frozen while the room is paused)
   useEffect(() => {
-    if (!room || room.status !== "active" || room.timeControl === "unlimited") return;
+    if (!room || room.status !== "active" || room.paused || room.timeControl === "unlimited") return;
     const t = setInterval(() => {
       setNow(Date.now());
       setWhiteMs((w) => (game.turn() === "w" ? Math.max(0, w - 1000) : w));
@@ -83,7 +84,7 @@ export default function ChessRoomPage() {
 
   // Time forfeit check
   useEffect(() => {
-    if (!room || room.timeControl === "unlimited" || room.status !== "active") return;
+    if (!room || room.timeControl === "unlimited" || room.status !== "active" || room.paused) return;
     if (whiteMs <= 0 && game.turn() === "w") {
       finishChessRoom(normalized, { result: "timeout", winnerUid: room.guestUid, winnerName: room.guestName, reason: "white timeout" });
     } else if (blackMs <= 0 && game.turn() === "b") {
@@ -92,7 +93,7 @@ export default function ChessRoomPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [whiteMs, blackMs]);
 
-  const myTurn = playerTurn && !gameOver && room?.status === "active";
+  const myTurn = playerTurn && !gameOver && room?.status === "active" && !isPaused;
 
   async function makeMove(from, to) {
     try {
@@ -258,9 +259,21 @@ export default function ChessRoomPage() {
         </div>
         <div className="flex gap-2">
           <button onClick={copyLink} className="btn-secondary px-3 text-xs">{copied ? <Check size={13} /> : <Copy size={13} />} Invite</button>
+          {room.status === "active" && (
+            <button onClick={() => setChessPaused(normalized, !isPaused, user.uid)} className="btn-secondary px-3 text-xs">
+              {isPaused ? <><Play size={13} /> Resume</> : <><Pause size={13} /> Pause</>}
+            </button>
+          )}
           {room.status === "active" && <button onClick={() => resignChessRoom(normalized, user.uid)} className="btn-secondary px-3 text-xs" style={{ color: "var(--danger)" }}><Flag size={13} /> Resign</button>}
         </div>
       </div>
+
+      {isPaused && room.status === "active" && (
+        <div className="glass-card p-4 text-center" style={{ borderColor: "var(--accent)" }}>
+          <div className="text-sm font-black flex items-center justify-center gap-2" style={{ color: "var(--accent)" }}><Pause size={16} /> Game paused</div>
+          <div className="text-xs text-text-muted mt-1">Clocks are stopped. Tap Pause again (or Resume) to continue where you left off.</div>
+        </div>
+      )}
 
       {room.status === "finished" && (
         <div className="glass-card p-4 text-center" style={{ borderColor: "var(--primary)" }}>
