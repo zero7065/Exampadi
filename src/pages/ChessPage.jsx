@@ -294,6 +294,7 @@ export default function ChessPage() {
                     style={{
                       aspectRatio: "1",
                       background: isSelected ? "rgba(255,235,59,0.5)" : isLast ? "rgba(255,235,59,0.25)" : isLight ? "#EBECD9" : "#739552",
+                      animation: isLast ? "lastMoveGlow 1.4s ease" : undefined,
                       border: "none",
                       cursor: piece && piece.color === playerColor && playerTurn && !gameOver ? "pointer" : "default",
                       display: "flex",

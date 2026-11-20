@@ -697,6 +697,7 @@ img, video, canvas, svg { max-width: 100%; }
 @keyframes moodDrift1 { 0%,100% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(8vw,6vh,0) scale(1.12); } }
 @keyframes moodDrift2 { 0%,100% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(-9vw,-5vh,0) scale(1.15); } }
 @keyframes moodDrift3 { 0%,100% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(-6vw,7vh,0) scale(1.1); } }
+@keyframes lastMoveGlow { 0%,100% { background-color: rgba(255,235,59,0.25); } 50% { background-color: rgba(255,235,59,0.65); } }
 @media (prefers-reduced-motion: reduce) {
   .ambient-blob, .ambient-spot { animation: none !important; }
   .ambient-spot { transition: none !important; }

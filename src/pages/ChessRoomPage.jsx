@@ -334,6 +334,7 @@ export default function ChessRoomPage() {
                 <button key={square} onClick={() => onSquareClick(square)} style={{
                   aspectRatio: "1",
                   background: isSelected ? "rgba(255,235,59,0.5)" : isLast ? "rgba(255,235,59,0.25)" : isLight ? "#EBECD9" : "#739552",
+                  animation: isLast ? "lastMoveGlow 1.4s ease" : undefined,
                   border: "none",
                   cursor: piece && piece.color === myColor && myTurn ? "pointer" : "default",
                   display: "flex", alignItems: "center", justifyContent: "center",
