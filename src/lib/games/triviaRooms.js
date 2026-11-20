@@ -42,6 +42,9 @@ export async function createTriviaRoom({ hostUid, hostName, subject = "Mixed", e
     answers: {},
     scores: {},
     status: "waiting",
+    paused: false,
+    pausedBy: null,
+    pausedAt: null,
     questionStartedAt: null,
     createdAt: serverTimestamp(),
     updatedAt: serverTimestamp(),
@@ -81,6 +84,7 @@ export async function submitTriviaAnswer(code, { uid, qid, letter, correct }) {
   const snap = await getDoc(ref);
   if (!snap.exists()) return;
   const room = snap.data();
+  if (room.paused) return;
   const answers = { ...(room.answers || {}) };
   answers[uid] = { ...(answers[uid] || {}), [qid]: letter };
   const scores = { ...(room.scores || {}) };
@@ -88,10 +92,21 @@ export async function submitTriviaAnswer(code, { uid, qid, letter, correct }) {
   await updateDoc(ref, { answers, scores, updatedAt: serverTimestamp() });
 }
 
+export async function setTriviaPaused(code, paused, byUid = null) {
+  needDb();
+  await updateDoc(doc(db, "triviaRooms", String(code || "").trim().toUpperCase()), {
+    paused: !!paused,
+    pausedBy: paused ? byUid : null,
+    pausedAt: paused ? serverTimestamp() : null,
+    updatedAt: serverTimestamp(),
+  }).catch(() => {});
+}
+
 // Host advances to the next question (or finishes).
 export async function advanceTrivia(code, room) {
   needDb();
   const ref = doc(db, "triviaRooms", String(code || "").trim().toUpperCase());
+  if (room.paused) return;
   const next = (room.currentIndex || 0) + 1;
   if (next >= (room.questions?.length || 0)) {
     await updateDoc(ref, { status: "finished", updatedAt: serverTimestamp() });

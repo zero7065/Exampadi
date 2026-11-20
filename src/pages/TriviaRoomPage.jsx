@@ -8,11 +8,11 @@ import { useSubscription } from "../hooks/useSubscription";
 import ProGate from "../components/ProGate";
 import {
   createTriviaRoom, joinTriviaRoom, subscribeTriviaRoom,
-  submitTriviaAnswer, advanceTrivia, leaveTriviaRoom,
+  submitTriviaAnswer, advanceTrivia, leaveTriviaRoom, setTriviaPaused,
 } from "../lib/games/triviaRooms";
 import { logActivity } from "../lib/activityLog";
 import { ACTIONS } from "../lib/actions";
-import { ArrowLeft, Copy, Check, Users, Loader2, Share2, Timer, Zap } from "lucide-react";
+import { ArrowLeft, Copy, Check, Users, Loader2, Share2, Timer, Zap, Pause, Play } from "lucide-react";
 
 function tsMs(v) {
   if (!v) return 0;
@@ -64,26 +64,27 @@ export default function TriviaRoomPage() {
   const hostAns = q && room?.answers?.[room?.hostUid]?.[q.id];
   const guestAns = q && room?.answers?.[room?.guestUid]?.[q.id];
   const bothAnswered = Boolean(hostAns && guestAns);
+  const paused = !!room?.paused;
 
   const remaining = useMemo(() => {
-    if (!room || room.status !== "active" || !room.timePerQuestion) return null;
+    if (!room || room.status !== "active" || !room.timePerQuestion || paused) return null;
     const started = tsMs(room.questionStartedAt);
     if (!started) return room.timePerQuestion;
     return Math.max(0, Math.ceil((started + room.timePerQuestion * 1000 - now) / 1000));
-  }, [room, now]);
+  }, [room, now, paused]);
 
   // Host advances when both answered or the timer runs out.
   useEffect(() => {
-    if (!isHost || !room || room.status !== "active" || advancing.current) return;
+    if (!isHost || !room || room.status !== "active" || paused || advancing.current) return;
     const timeUp = remaining !== null && remaining <= 0;
     if (bothAnswered || timeUp) {
       advancing.current = true;
       advanceTrivia(normalized, room).finally(() => setTimeout(() => { advancing.current = false; }, 1200));
     }
-  }, [isHost, room, bothAnswered, remaining, normalized]);
+  }, [isHost, room, bothAnswered, remaining, normalized, paused]);
 
   async function answer(letter) {
-    if (!q || myAnswer || room?.status !== "active") return;
+    if (!q || myAnswer || room?.status !== "active" || paused) return;
     const correct = letter === q.answer;
     try {
       await submitTriviaAnswer(normalized, { uid: user.uid, qid: q.id, letter, correct });
@@ -233,8 +234,18 @@ export default function TriviaRoomPage() {
           <span style={{ color: "var(--primary)", fontWeight: 800 }}>You {myScore}</span>
           <span className="text-text-muted">vs</span>
           <span style={{ color: "var(--accent)", fontWeight: 800 }}>{oppName} {oppScore}</span>
+          <button onClick={() => setTriviaPaused(normalized, !paused, user.uid)} disabled={room.status !== "active"} className="btn-secondary px-3 py-2 text-xs flex items-center gap-1">
+            {paused ? <><Play size={13} /> Resume</> : <><Pause size={13} /> Pause</>}
+          </button>
         </div>
       </div>
+
+      {paused && room.status === "active" && (
+        <div className="glass-card p-4 text-center" style={{ borderColor: "var(--primary)" }}>
+          <div className="text-sm font-black flex items-center justify-center gap-2" style={{ color: "var(--primary)" }}><Pause size={15} /> Trivia paused</div>
+          <div className="text-xs text-text-muted mt-1">Timer is frozen. Tap Resume to continue where you left off.</div>
+        </div>
+      )}
 
       <div className="glass-card p-5">
         <div className="flex items-center justify-between mb-3">
